@@ -16,28 +16,10 @@ const colors = {
   gray90: '#424242',
 };
 
-const fontSize = {
-  xs: '12px',
-  sm: '14px',
-  default: '16px',
-  lg: '22px',
-  xl: '26px',
-};
-
-const button = {
-  buttonS: 'width: 60px; height:40px; border-radius: 6px;',
-  buttonM: 'width: 80px; height:40px; border-radius: 6px;',
-  buttonL: 'width: 110px; height:40px; border-radius: 6px;',
-};
-
 export type ColorsType = typeof colors;
-export type FontsType = typeof fontSize;
-export type ButtonsType = typeof button;
 
 const theme: DefaultTheme = {
   colors,
-  fontSize,
-  button,
 };
 
 export default theme;
