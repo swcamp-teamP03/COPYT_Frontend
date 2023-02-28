@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 
 const colors = {
-  red: '#EB1F2',
+  red: '#EB1F20',
   white: '#FFFFFF',
   black: '#232323',
   gray0: '#F5F5F5',
@@ -25,9 +25,9 @@ const fontSize = {
 };
 
 const button = {
-  buttonS: 'width: 60px; height:40px; border-radius: 6px;',
-  buttonM: 'width: 80px; height:40px; border-radius: 6px;',
-  buttonL: 'width: 110px; height:40px; border-radius: 6px;',
+  buttonS: 'width: 60px; height:40px; border-radius: 6px; cursor: pointer;',
+  buttonM: 'width: 80px; height:40px; border-radius: 6px; cursor: pointer;',
+  buttonL: 'width: 110px; height:40px; border-radius: 6px; cursor: pointer;',
 };
 
 export type ColorsType = typeof colors;

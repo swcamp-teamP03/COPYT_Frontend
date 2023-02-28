@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import Modal from '../components/common/Modal';
+import PageHeader from '../components/common/PageHeader';
+import { Layout } from './Layout.styles';
 
 const CopyGroups = () => {
-  const [showModal, setShowModal] = useState(true);
-
-  const hanldeModal = () => setShowModal((prev) => !prev);
-
   return (
-    <>
-      <Modal.Frame isOpen={showModal} onClick={hanldeModal}>
-        <Modal.Header onClick={hanldeModal}>안녕~!!</Modal.Header>
-      </Modal.Frame>
-    </>
+    <Layout size="S">
+      <PageHeader title="hello" buttonTitle="수정" buttonColor="disabled" />
+    </Layout>
   );
 };
 
