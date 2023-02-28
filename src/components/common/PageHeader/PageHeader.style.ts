@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { PageHeaderProps } from '.';
 
 export const Container = styled.div`
   width: 100%;

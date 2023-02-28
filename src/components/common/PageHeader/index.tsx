@@ -7,14 +7,15 @@ export interface PageHeaderProps {
   buttonSize?: 'buttonS' | 'buttonM' | 'buttonL';
   buttonColor?: 'red' | 'white' | 'black' | 'disabled';
   disabeld?: boolean;
+  onClick: () => void;
 }
 
-const PageHeader = ({ title, buttonTitle, buttonSize = 'buttonS', buttonColor = 'black', disabeld = false }: PageHeaderProps) => {
+const PageHeader = ({ title, buttonTitle, buttonSize = 'buttonS', buttonColor = 'black', onClick }: PageHeaderProps) => {
   return (
     <>
       <S.Container>
         <S.HeadTitle>{title}</S.HeadTitle>
-        <S.HeaderButton buttonColor={buttonColor} buttonSize={buttonSize} disabled={buttonColor === 'disabled'}>
+        <S.HeaderButton buttonColor={buttonColor} buttonSize={buttonSize} disabled={buttonColor === 'disabled'} onClick={onClick}>
           {buttonTitle}
         </S.HeaderButton>
       </S.Container>
