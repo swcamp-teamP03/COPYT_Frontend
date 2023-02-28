@@ -24,20 +24,12 @@ const fontSize = {
   xl: '26px',
 };
 
-const button = {
-  buttonS: 'width: 60px; height:40px; border-radius: 6px;',
-  buttonM: 'width: 80px; height:40px; border-radius: 6px;',
-  buttonL: 'width: 110px; height:40px; border-radius: 6px;',
-};
-
 export type ColorsType = typeof colors;
 export type FontsType = typeof fontSize;
-export type ButtonsType = typeof button;
 
 const theme: DefaultTheme = {
   colors,
   fontSize,
-  button,
 };
 
 export default theme;
