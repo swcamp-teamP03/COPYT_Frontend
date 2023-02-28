@@ -38,6 +38,9 @@ export const ModalHeader = styled.div`
   h2 {
     font-size: 24px;
   }
+  div {
+    cursor: pointer;
+  }
 `;
 
 export const ModalBody = styled.div``;

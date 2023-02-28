@@ -24,11 +24,15 @@ const ModalFrame = ({ isOpen, height = '180px', width = '520px', onClick, childr
   );
 };
 
-const ModalHeader = ({ children }: PropsWithChild) => {
+export interface ModalHeaderProps extends PropsWithChild {
+  onClick: () => void;
+}
+
+const ModalHeader = ({ children, onClick }: ModalHeaderProps) => {
   return (
     <S.ModalHeader>
       <h2>{children}</h2>
-      <div>{SVG.closeButton}</div>
+      <div onClick={onClick}>{SVG.closeButton}</div>
     </S.ModalHeader>
   );
 };
