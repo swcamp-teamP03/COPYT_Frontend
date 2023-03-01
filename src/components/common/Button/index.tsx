@@ -10,6 +10,7 @@ export interface ButtonProps {
   fontSize?: CSSProperties['fontSize'];
   color?: CSSProperties['color'];
   backgroundColor?: CSSProperties['backgroundColor'];
+  border?: CSSProperties['border'];
 }
 
 const Button = ({ children, width, ...props }: ButtonProps) => {
