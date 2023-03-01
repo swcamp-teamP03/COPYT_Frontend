@@ -16,20 +16,10 @@ const colors = {
   gray90: '#424242',
 };
 
-const fontSize = {
-  xs: '12px',
-  sm: '14px',
-  default: '16px',
-  lg: '22px',
-  xl: '26px',
-};
-
 export type ColorsType = typeof colors;
-export type FontsType = typeof fontSize;
 
 const theme: DefaultTheme = {
   colors,
-  fontSize,
 };
 
 export default theme;
