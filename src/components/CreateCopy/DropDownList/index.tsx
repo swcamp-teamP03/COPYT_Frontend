@@ -4,7 +4,7 @@ import { ConditionAction } from '../CreateCondition/conditionReducer';
 import * as S from './DropDownList.styles';
 
 interface DropDonwList {
-  list: { title: string }[];
+  list: string[];
   dispatch: Dispatch<ConditionAction>;
   onClose: () => void;
   type: 'CHANGE_COUNT' | 'CHANGE_LENGTH';
@@ -22,8 +22,8 @@ const DropwDownList = ({ list, dispatch, onClose, type }: DropDonwList) => {
     <>
       <S.Container>
         {list.map((item) => (
-          <div onClick={() => handleDropDown(item.title)} key={item.title}>
-            {item.title}
+          <div onClick={() => handleDropDown(item)} key={item}>
+            {item}
           </div>
         ))}
       </S.Container>

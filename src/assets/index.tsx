@@ -5,6 +5,8 @@ import DownChevron from './chevron_down.svg';
 import Declation from './declation.svg';
 import Edit from './edit.svg';
 import Copy from './copy.svg';
+import Checked from './liked.svg';
+import UnChecked from './unliked.svg';
 
 export const SVG = {
   closeButton: <CloseButton />,
@@ -19,4 +21,9 @@ export const POST_SVG = {
 
 export const CHEVRON = {
   down: <DownChevron />,
+};
+
+export const FAVORITES = {
+  checked: <Checked />,
+  unChecked: <UnChecked />,
 };

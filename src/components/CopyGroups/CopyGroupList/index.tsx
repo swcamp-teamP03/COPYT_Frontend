@@ -1,5 +1,5 @@
 import React from 'react';
-import { SVG } from '../../../assets';
+import { FAVORITES, SVG } from '../../../assets';
 import * as S from './CopyGroupList.styles';
 
 interface CopyData {
@@ -18,10 +18,10 @@ interface CopyGroupListProps {
 const CopyGroupList = ({ totalCopy, copyList }: CopyGroupListProps) => {
   return (
     <>
-      <div>보기</div>
+      <span>보기</span>
       <S.TagContainer>
         {copyList.map((list) => (
-          <button key={list.copyId}>{list.tag}</button>
+          <S.TagButton key={list.copyId}>{list.tag}</S.TagButton>
         ))}
       </S.TagContainer>
       <hr />
@@ -37,11 +37,11 @@ const CopyGroupList = ({ totalCopy, copyList }: CopyGroupListProps) => {
       <S.ListContainer>
         {copyList.map((list) => (
           <S.GroupList key={list.copyId}>
-            <span>별</span>
+            <span>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span>
             <span>{list.createDate}</span>
             <span>{list.copyName}</span>
             <div>
-              <button>{list.tag}</button>
+              <S.TagButton>{list.tag}</S.TagButton>
             </div>
           </S.GroupList>
         ))}

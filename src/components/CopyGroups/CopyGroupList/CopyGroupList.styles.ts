@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TagContainer = styled.div`
   display: flex;
   width: 100%;
-  gap: 6px;
+  gap: 10px;
   margin: 1rem 0 1.5rem 0;
 `;
 
@@ -39,20 +39,27 @@ export const GroupList = styled.div`
   align-items: center;
   border-radius: 10px;
   background-color: #f8f8f8;
-  font-size: 21px;
+  font-size: 18px;
   span,
   div {
     display: flex;
     justify-content: center;
     color: #777777;
   }
-
   span:nth-child(3) {
     justify-content: flex-start;
     font-weight: 700;
     font-size: 21px;
     color: #444444;
   }
+`;
+export const TagButton = styled.button`
+  cursor: pointer;
+  padding: 10px 20px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.gray60};
 `;
 
 export const VerticalHr = styled.div`

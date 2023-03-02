@@ -6,8 +6,8 @@ import { ConditionAction, ConditionInit } from './conditionReducer';
 import * as S from './CreatCondition.styles';
 
 const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
-const COPY_COUNT = [{ title: '2' }, { title: '3' }, { title: '4' }, { title: '5' }];
-const COPY_LENGTH = [{ title: '50' }, { title: '100' }, { title: '150' }, { title: '200' }];
+const COPY_COUNT = ['2', '3', '4', '5'];
+const COPY_LENGTH = ['70', '200', '300', '1000'];
 
 interface CreatConditionProps {
   condition: ConditionInit;
