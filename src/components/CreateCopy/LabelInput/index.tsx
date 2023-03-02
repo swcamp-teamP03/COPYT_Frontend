@@ -1,5 +1,5 @@
 import React, { Dispatch, Key } from 'react';
-import { ConditionAction, InitialState } from '../CreateCondition/conditionReducer';
+import { ConditionAction, ConditionInit } from '../CreateCondition/conditionReducer';
 
 import * as S from './LabelInput.styles';
 
@@ -8,7 +8,7 @@ interface LabelInputProps {
   limit: number;
   labelKey: 'copyGroupName' | 'tag' | 'brandName' | 'sector' | 'productName' | 'keyword';
   dispatch: Dispatch<ConditionAction>;
-  condition: InitialState;
+  condition: ConditionInit;
   placeHolder?: string;
 }
 

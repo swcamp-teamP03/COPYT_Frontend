@@ -4,7 +4,7 @@ export interface ConditionAction {
   value: string;
 }
 
-export interface InitialState {
+export interface ConditionInit {
   copyGroupName: string;
   tag: string;
   brandName: string;
@@ -15,7 +15,7 @@ export interface InitialState {
   copyLength: string;
   type: string;
 }
-export const conditionReducer: React.Reducer<InitialState, ConditionAction> = (state, action) => {
+export const conditionReducer: React.Reducer<ConditionInit, ConditionAction> = (state, action) => {
   switch (action.type) {
     case 'CHANGE_INPUT':
       return { ...state, [action.key]: action.value };

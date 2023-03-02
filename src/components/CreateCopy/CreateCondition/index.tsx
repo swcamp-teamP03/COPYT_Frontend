@@ -1,16 +1,21 @@
-import React, { useReducer, useState } from 'react';
+import React, { Dispatch, useReducer, useState } from 'react';
 import { CHEVRON } from '../../../assets';
 import DropwDownList from '../DropDownList';
 import LabelInput from '../LabelInput';
-import { conditionInit, conditionReducer } from './conditionReducer';
+import { ConditionAction, ConditionInit } from './conditionReducer';
 import * as S from './CreatCondition.styles';
 
 const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [{ title: '2' }, { title: '3' }, { title: '4' }, { title: '5' }];
 const COPY_LENGTH = [{ title: '50' }, { title: '100' }, { title: '150' }, { title: '200' }];
 
-const CreateCondition = () => {
-  const [condition, conditionDispatch] = useReducer(conditionReducer, conditionInit);
+interface CreatConditionProps {
+  condition: ConditionInit;
+  conditionDispatch: Dispatch<ConditionAction>;
+  disabledCondition: boolean;
+}
+
+const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [showLengthDropDown, setShowLengthDropDown] = useState(false);
 
@@ -24,8 +29,6 @@ const CreateCondition = () => {
   const handleLengthDropDown = () => {
     setShowLengthDropDown((prev) => !prev);
   };
-
-  const disabeldSubmit = Object.values(condition).includes('');
 
   const isSelected = (title: string) => {
     return condition.type === title;
@@ -78,7 +81,7 @@ const CreateCondition = () => {
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
-        <button disabled={!disabeldSubmit}>카피 추천 받기</button>
+        <button disabled={disabledCondition}>카피 추천 받기</button>
       </S.CopySubmit>
     </div>
   );

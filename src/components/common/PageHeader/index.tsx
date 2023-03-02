@@ -6,7 +6,6 @@ export interface PageHeaderProps {
   buttonTitle: string;
   buttonSize?: 'buttonS' | 'buttonM' | 'buttonL';
   buttonColor?: 'red' | 'white' | 'black' | 'disabled';
-  disabeld?: boolean;
   onClick: () => void;
 }
 
