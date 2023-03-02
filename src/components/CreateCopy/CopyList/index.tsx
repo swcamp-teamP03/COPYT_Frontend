@@ -25,17 +25,22 @@ const CopyList = ({ data, selectedCopy, setSelectedCopy }: CopyListProps) => {
   return (
     <>
       <S.CopyListContainer>
-        <span>선택된 카피 수 : {selectedCopy.length} / 2</span>
-        {data.map((data, idx) => (
-          <CopyListItem
-            content={data.content}
-            key={idx}
-            isSelected={isSelectedCopy(data.content)}
-            setSelectedCopy={setSelectedCopy}
-            fullSelected={fullSelected}
-            setShowLimitedModal={setShowLimitedModal}
-          />
-        ))}
+        {data ? (
+          data.map((data, idx) => (
+            <CopyListItem
+              content={data.content}
+              key={idx}
+              isSelected={isSelectedCopy(data.content)}
+              setSelectedCopy={setSelectedCopy}
+              fullSelected={fullSelected}
+              setShowLimitedModal={setShowLimitedModal}
+            />
+          ))
+        ) : (
+          <S.NonData>
+            <span>조건을 작성하고 생성해주세요</span>
+          </S.NonData>
+        )}
       </S.CopyListContainer>
       <Modal.Frame isOpen={showLimitedModal} onClick={handelLimtedModal} height={'100px'}>
         <Modal.Body>

@@ -53,13 +53,17 @@ export const GroupList = styled.div`
     color: #444444;
   }
 `;
-export const TagButton = styled.button`
+
+interface TagButtonProps {
+  isSelectedTag?: boolean;
+}
+export const TagButton = styled.button<TagButtonProps>`
   cursor: pointer;
   padding: 10px 20px;
   height: 38px;
   border-radius: 10px;
   border: none;
-  background-color: ${({ theme }) => theme.colors.gray60};
+  background-color: ${(props) => (props.isSelectedTag ? props.theme.colors.gray60 : props.theme.colors.gray40)};
 `;
 
 export const VerticalHr = styled.div`
@@ -72,5 +76,32 @@ export const Footer = styled.div`
   display: flex;
   margin-top: 24px;
   justify-content: flex-end;
+  align-items: center;
   gap: 16px;
+`;
+
+export const ListCount = styled.div`
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #979797;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 15px;
+`;
+
+export const DropDownContainer = styled.div`
+  position: absolute;
+  border: 1px solid #dfdfdf;
+  border-radius: 12px;
+  top: 40px;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  div {
+    padding: 5px 10px;
+    border-top: 1px solid #dfdfdf;
+  }
 `;
