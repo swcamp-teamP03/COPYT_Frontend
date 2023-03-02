@@ -55,6 +55,12 @@ export const GroupList = styled.div`
   }
 `;
 
+export const VerticalHr = styled.div`
+  width: 1px;
+  height: 20px;
+  background-color: rgba(151, 151, 151, 1);
+`;
+
 export const Footer = styled.div`
   display: flex;
   margin-top: 24px;

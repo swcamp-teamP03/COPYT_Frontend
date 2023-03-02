@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from 'react';
-import SVG from '../../../assets';
+import React, { ReactNode } from 'react';
+import { SVG } from '../../../assets';
 import * as S from './Modal.styles';
 
 export interface PropsWithChild {

@@ -1,5 +1,5 @@
 import React from 'react';
-import SVG from '../../../assets';
+import { SVG } from '../../../assets';
 import * as S from './CopyGroupList.styles';
 
 interface CopyData {
@@ -48,7 +48,7 @@ const CopyGroupList = ({ totalCopy, copyList }: CopyGroupListProps) => {
       </S.ListContainer>
       <S.Footer>
         <div>전체 {totalCopy}개</div>
-        <div>|</div>
+        <S.VerticalHr />
         <div>목록 개수</div>
       </S.Footer>
     </>

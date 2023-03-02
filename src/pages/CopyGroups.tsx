@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/common/PageHeader';
 import CopyGroupList from '../components/CopyGroups/CopyGroupList';
 import NonCopyGroupList from '../components/CopyGroups/NonCopyGroupList';
@@ -26,9 +27,18 @@ const FakeData = {
 
 const CopyGroups = () => {
   const { totalCopy, copyList } = FakeData;
+  const navigate = useNavigate();
+
   return (
     <Layout size="S">
-      <PageHeader title="카피그룹 리스트" buttonTitle="카피 추천 받기" buttonSize="buttonL" onClick={() => {}} />
+      <PageHeader
+        title="카피그룹 리스트"
+        buttonTitle="카피 추천 받기"
+        buttonSize="buttonL"
+        onClick={() => {
+          navigate('/copy/create');
+        }}
+      />
       {FakeData ? <CopyGroupList totalCopy={totalCopy} copyList={copyList} /> : <NonCopyGroupList />}
     </Layout>
   );
