@@ -1,5 +1,6 @@
 import React, { Dispatch, Key } from 'react';
-import { ConditionAction, InitialState } from '../CreateCondition';
+import { ConditionAction, InitialState } from '../CreateCondition/conditionReducer';
+
 import * as S from './LabelInput.styles';
 
 interface LabelInputProps {

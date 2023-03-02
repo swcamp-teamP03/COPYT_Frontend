@@ -1,5 +1,6 @@
 import React, { Dispatch } from 'react';
-import { ConditionAction } from '../CreateCondition';
+import { ConditionAction } from '../CreateCondition/conditionReducer';
+
 import * as S from './DropDownList.styles';
 
 interface DropDonwList {

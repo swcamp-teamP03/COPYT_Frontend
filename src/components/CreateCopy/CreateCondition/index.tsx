@@ -2,56 +2,15 @@ import React, { useReducer, useState } from 'react';
 import { CHEVRON } from '../../../assets';
 import DropwDownList from '../DropDownList';
 import LabelInput from '../LabelInput';
+import { conditionInit, conditionReducer } from './conditionReducer';
 import * as S from './CreatCondition.styles';
-
-export interface ConditionAction {
-  type: 'CHANGE_INPUT' | 'CHANGE_TYPE' | 'CHANGE_LENGTH' | 'CHANGE_COUNT';
-  key: 'copyGroupName' | 'tag' | 'brandName' | 'sector' | 'productName' | 'keyword' | 'type' | 'createCount' | 'copyLength';
-  value: string;
-}
-
-export interface InitialState {
-  copyGroupName: string;
-  tag: string;
-  brandName: string;
-  sector: string;
-  productName: string;
-  keyword: string;
-  createCount: string;
-  copyLength: string;
-  type: string;
-}
-const conditionReducer: React.Reducer<InitialState, ConditionAction> = (state, action) => {
-  switch (action.type) {
-    case 'CHANGE_INPUT':
-      return { ...state, [action.key]: action.value };
-    case 'CHANGE_TYPE':
-      return { ...state, type: action.value };
-    case 'CHANGE_LENGTH':
-      return { ...state, copyLength: action.value };
-    case 'CHANGE_COUNT':
-      return { ...state, createCount: action.value };
-  }
-};
-
-const initialState = {
-  copyGroupName: '',
-  tag: '',
-  brandName: '',
-  sector: '',
-  productName: '',
-  keyword: '',
-  createCount: '3',
-  copyLength: '100',
-  type: '리뷰',
-};
 
 const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [{ title: '2' }, { title: '3' }, { title: '4' }, { title: '5' }];
 const COPY_LENGTH = [{ title: '50' }, { title: '100' }, { title: '150' }, { title: '200' }];
 
 const CreateCondition = () => {
-  const [condition, conditionDispatch] = useReducer(conditionReducer, initialState);
+  const [condition, conditionDispatch] = useReducer(conditionReducer, conditionInit);
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [showLengthDropDown, setShowLengthDropDown] = useState(false);
 
