@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '../Button/Button.style';
 import { useNavigate } from 'react-router-dom';
+import Button from '../Button';
 
 const GNB = () => {
   const navigate = useNavigate();
 
   const handleNavigation = (path: any) => {
     navigate(path);
+  };
+
+  const handleMyClick = () => {
+    handleNavigation('/my');
+  };
+  const handleLogoutClick = () => {
+    handleNavigation('/');
   };
 
   return (
@@ -21,12 +28,8 @@ const GNB = () => {
         <NavItem onClick={() => handleNavigation('/campain')}>캠페인</NavItem>
       </NavWrapper>
       <ButtonWrapper>
-        <Button backgroundColor="white" color="black" width="50px" height="40px" onClick={() => navigate('my')}>
-          MY
-        </Button>
-        <Button backgroundColor="#D0D0D0" color="gray70" width="100px" height="40px" border="none" onClick={() => navigate('/')}>
-          로그아웃
-        </Button>
+        <Button title="MY" buttonSize="buttonS" buttonColor="sNormal" borderRadius="15px" onButtonClick={handleMyClick}></Button>
+        <Button title="로그아웃" buttonSize="buttonM" buttonColor="disabled" borderRadius="15px" onButtonClick={handleLogoutClick}></Button>
       </ButtonWrapper>
     </GNBContainer>
   );
@@ -83,6 +86,6 @@ const NavItem = styled.div`
 
 const ButtonWrapper = styled.div`
   display: flex;
-  padding: 18px;
-  gap: 20px;
+  padding: 0.8rem;
+  gap: 0.3rem;
 `;

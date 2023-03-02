@@ -1,15 +1,15 @@
 import React from 'react';
-import { Button } from '../components/common/Button/Button.style';
+import styled from 'styled-components';
 
 const ClientGroups = () => {
-  return (
-    <div>
-      나는야 고객그룹 !{' '}
-      <Button width="900" height="400" backgroundColor="black">
-        카피 추천 받기
-      </Button>
-    </div>
-  );
+  return <CLient>왜 안보임</CLient>;
 };
 
 export default ClientGroups;
+
+const CLient = styled.div`
+  color: black;
+  width: 300px;
+  height: 400px;
+  background-color: orange;
+`;
