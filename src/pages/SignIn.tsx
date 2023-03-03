@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 import LabelInput from '../components/common/LabelInput';
+import { ErrorMessage } from '../components/common/LabelInput/LabelInput.styles';
+import { SIGNIN_MESSAGE } from '../constants/authMessage';
+import useError from '../hooks/useError';
 import useForm from '../hooks/useForm';
+import useSignInMutation from '../quries/Auth/useSignInMutation';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -11,9 +15,16 @@ const SignIn = () => {
     email: '',
     password: '',
   });
-  const isFormValidate = () => {};
+  const [isError, setError] = useError({
+    signIn: false,
+  });
 
-  const onSubmit = () => {};
+  const { mutate } = useSignInMutation(setError);
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    mutate({ email, password });
+  };
 
   const goFindAccount = (link: string) => {
     navigate(`/auth/find/${link}`);
@@ -27,6 +38,7 @@ const SignIn = () => {
         <Find>
           <span onClick={() => goFindAccount('email')}>아이디</span>&nbsp;/&nbsp;<span onClick={() => goFindAccount('password')}>비밀번호 찾기</span>
         </Find>
+        {isError.signIn && <ErrorMessage>* {SIGNIN_MESSAGE.SIGN_IN}</ErrorMessage>}
         <Footer>
           <Button buttonColor="black" buttonSize="buttonL" onButtonClick={() => {}} title="로그인" borderRadius="15px" type="submit" />
         </Footer>

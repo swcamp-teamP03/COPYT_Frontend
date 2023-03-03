@@ -5,7 +5,7 @@ import SignUpForm from '../components/SignUp/SignUpForm';
 import { signupInit, singUpReducer } from '../components/SignUp/SignupReducer';
 import SignUpTOS, { TOS, TOS_LIST } from '../components/SignUp/TOS';
 import useError from '../hooks/useError';
-import useSignUpMutation from '../quries/SignUp/useSignUpMutation';
+import useSignUpMutation from '../quries/Auth/useSignUpMutation';
 import isEmailValidate from '../utils/isEmailValidate';
 import isPasswordValidate from '../utils/isPasswordValidate';
 import isPhoneNumberValidate from '../utils/isPhoneNumberValidate';

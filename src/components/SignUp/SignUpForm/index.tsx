@@ -1,5 +1,5 @@
 import React, { Dispatch } from 'react';
-import { SIGNUP_MESSAGE } from '../../../constants/signUpMessage';
+import { SIGNUP_MESSAGE } from '../../../constants/authMessage';
 import useError from '../../../hooks/useError';
 import LabelInput from '../../common/LabelInput';
 import { SignUpAction } from '../SignupReducer';
