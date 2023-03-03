@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import Button from '../Button';
 import * as S from './PageHeader.style';
 
 export interface PageHeaderProps {
-  title: string;
-  buttonTitle: string;
+  children: string | ReactNode;
+  buttonTitle?: string;
   buttonSize?: 'buttonS' | 'buttonM' | 'buttonL';
-  buttonColor?: 'red' | 'white' | 'black' | 'disabled';
-  onClick: () => void;
+  buttonColor?: 'white' | 'black';
+  isDisabled?: boolean;
+  onClick?: () => void;
 }
 
-const PageHeader = ({ title, buttonTitle, buttonSize = 'buttonS', buttonColor = 'black', onClick }: PageHeaderProps) => {
+const PageHeader = ({ children, buttonTitle, buttonSize = 'buttonS', buttonColor = 'black', onClick, isDisabled = false }: PageHeaderProps) => {
   return (
     <>
       <S.Container>
-        <S.HeadTitle>{title}</S.HeadTitle>
-        <S.HeaderButton buttonColor={buttonColor} buttonSize={buttonSize} disabled={buttonColor === 'disabled'} onClick={onClick}>
-          {buttonTitle}
-        </S.HeaderButton>
+        <S.HeadTitle>{children}</S.HeadTitle>
+        {buttonTitle && <Button buttonColor={buttonColor} buttonSize={buttonSize} isDisabled={isDisabled} onButtonClick={onClick} title={buttonTitle} />}
       </S.Container>
     </>
   );

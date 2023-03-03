@@ -32,7 +32,9 @@ const CreateCopy = () => {
   return (
     <>
       <Layout size="M">
-        <PageHeader title="카피 추천 받기" buttonTitle="저장" buttonSize="buttonM" onClick={handleSubmit} buttonColor={!isAbledSubmit ? 'disabled' : 'black'} />
+        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={handleSubmit} buttonColor="black" isDisabled={!isAbledSubmit}>
+          카피 추천 받기
+        </PageHeader>
         <GridLayout>
           <CreateCondition condition={condition} conditionDispatch={conditionDispatch} disabledCondition={disabledCondition} />
           <CopyList data={FakeData} selectedCopy={selectedCopy} setSelectedCopy={setSelectedCopy} />

@@ -32,13 +32,14 @@ const CopyGroups = () => {
   return (
     <Layout size="S">
       <PageHeader
-        title="카피그룹 리스트"
         buttonTitle="카피 추천 받기"
         buttonSize="buttonL"
         onClick={() => {
-          navigate('/copy/create');
+          navigate('/copies/create');
         }}
-      />
+      >
+        카피그룹 리스트
+      </PageHeader>
       {FakeData ? <CopyGroupList totalCopy={totalCopy} copyList={copyList} /> : <NonCopyGroupList />}
     </Layout>
   );
