@@ -5,12 +5,12 @@ const colors = {
   white: '#FFFFFF',
   black: '#232323',
   gray0: '#F5F5F5',
-  gray10: '#C7C7C7',
+  gray10: '#D3D3D3',
   gray20: '#B7B7B7',
   gray30: '#DFDFDF',
   gray40: '#D0D0D0',
   gray50: '#B8B8B8',
-  gray60: '#B7B7B7',
+  gray60: '#4E4E4E',
   gray70: '#5F5F5F',
   gray80: '#555555',
   gray90: '#424242',
@@ -25,9 +25,9 @@ const fontSize = {
 };
 
 const button = {
-  buttonS: 'width: 60px; height:40px; border-radius: 6px; cursor: pointer;',
-  buttonM: 'width: 80px; height:40px; border-radius: 6px; cursor: pointer;',
-  buttonL: 'width: 110px; height:40px; border-radius: 6px; cursor: pointer;',
+  buttonS: 'width: 3.3rem; height:40px; ',
+  buttonM: 'width: 7.6rem; height:40px;',
+  buttonL: 'width: 13rem; height:40px;',
 };
 
 export type ColorsType = typeof colors;
