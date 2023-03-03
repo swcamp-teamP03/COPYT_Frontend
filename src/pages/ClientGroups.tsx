@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import ClientGroupList from '../components/ClientGrups';
 
 const ClientGroups = () => {
-  return (
-    <>
-      <ClientGroupList totalCopy={10} copyList={[{ copyId: 1, createDate: '2023-03-02', like: false, copyName: 'example', tag: 'example' }]} />
-    </>
-  );
+  return <CLient>왜 안보임</CLient>;
 };
 
 export default ClientGroups;
+
+const CLient = styled.div`
+  color: black;
+  width: 300px;
+  height: 400px;
+  background-color: orange;
+`;
