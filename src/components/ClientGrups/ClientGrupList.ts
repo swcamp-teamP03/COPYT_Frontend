@@ -10,7 +10,7 @@ export const TagContainer = styled.div`
 export const ListCategory = styled.div`
   margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 4fr 1fr;
+  grid-template-columns: 1fr 1fr 4fr 2fr;
   margin-bottom: 20px;
   div {
     display: flex;
@@ -33,7 +33,7 @@ export const ListContainer = styled.div`
 export const GroupList = styled.div`
   display: grid;
   cursor: pointer;
-  grid-template-columns: 1fr 1fr 4fr 1fr;
+  grid-template-columns: 1fr 1fr 4fr 2fr;
   height: 82px;
   justify-content: center;
   align-items: center;

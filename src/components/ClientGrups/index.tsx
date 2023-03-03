@@ -56,15 +56,15 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
           <div>{CLIENT_SVG.verticalArrow}</div>
         </div>
         <div>그룹명</div>
+        <div>고객수</div>
       </S.ListCategory>
       <S.ListContainer>
         {groupList.map((list) => (
           <S.GroupList key={list.customerGroupId}>
-            고객수<span>{list.favorite ? CLIENT_SVG.star : CLIENT_SVG.unStar}</span>
+            <span>{list.favorite ? CLIENT_SVG.star : CLIENT_SVG.unStar}</span>
             <span>{list.date}</span>
             <span>{list.groupName}</span>
             <span>{list.customerCnt}</span>
-            <div>파일</div>
           </S.GroupList>
         ))}
       </S.ListContainer>
