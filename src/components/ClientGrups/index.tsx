@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../common/Button';
+import { CLIENT_SVG } from '../../assets';
 import * as S from './ClientGrupList';
 
 interface ClientGroupListProps {
@@ -18,15 +18,7 @@ const LIST_COUNT = [10, 30, 50];
 
 const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList }) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
-  const [selectedTag, setSelectedTag] = useState('전체');
   const [listCount, setListCount] = useState(10);
-
-  const handleSelectedTag = (tag: string) => {
-    setSelectedTag(tag);
-  };
-  const isSelectedTag = (tag: string) => {
-    return selectedTag === tag;
-  };
 
   const handleCountDropDown = () => {
     setShowCountDropDown((prev) => !prev);
@@ -43,7 +35,8 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
         <div>목록 개수</div>
         <S.Footer>
           <S.ListCount onClick={handleCountDropDown}>
-            <span>{listCount}개</span>/{/* {CHEVRON.down} */}하이
+            <span>{listCount}개</span>
+            {CLIENT_SVG.arrowFlutter}
             {showCountDropDown && (
               <S.DropDownContainer>
                 {LIST_COUNT.map((count) => (
@@ -60,14 +53,14 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
         <div>즐겨찾기</div>
         <div>
           <span>생성일</span>
-          위아래 태그{/* <div>{SVG.verticalArrows}</div> */}
+          <div>{CLIENT_SVG.verticalArrow}</div>
         </div>
         <div>그룹명</div>
       </S.ListCategory>
       <S.ListContainer>
         {groupList.map((list) => (
           <S.GroupList key={list.customerGroupId}>
-            고객수{/* <span>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span> */}
+            고객수<span>{list.favorite ? CLIENT_SVG.star : CLIENT_SVG.unStar}</span>
             <span>{list.date}</span>
             <span>{list.groupName}</span>
             <span>{list.customerCnt}</span>

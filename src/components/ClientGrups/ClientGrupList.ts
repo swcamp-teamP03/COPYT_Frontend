@@ -54,18 +54,6 @@ export const GroupList = styled.div`
   }
 `;
 
-interface TagButtonProps {
-  isSelectedTag?: boolean;
-}
-export const TagButton = styled.button<TagButtonProps>`
-  cursor: pointer;
-  padding: 10px 20px;
-  height: 38px;
-  border-radius: 10px;
-  border: none;
-  background-color: ${(props) => (props.isSelectedTag ? props.theme.colors.gray60 : props.theme.colors.gray40)};
-`;
-
 export const VerticalHr = styled.div`
   width: 1px;
   height: 20px;
