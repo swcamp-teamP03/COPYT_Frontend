@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-interface HeaderButtonProps {
+interface ButtonProps {
   buttonSize: 'buttonS' | 'buttonM' | 'buttonL';
   buttonColor: 'black' | 'white';
   disabled: boolean;
   borderRadius: string;
 }
 
-export const HeaderButton = styled.button<HeaderButtonProps>`
+export const HeaderButton = styled.button<ButtonProps>`
   ${(props) => props.theme.button[`${props.buttonSize}`]}
   cursor: pointer;
   background-color: ${(props) => (props.buttonColor === 'black' ? props.theme.colors.gray90 : props.theme.colors.white)};

@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeaderButton } from './Button.style';
 
-interface PageHeaderProps {
+interface ButtonProps {
   title: string;
   buttonSize?: 'buttonS' | 'buttonM' | 'buttonL';
   buttonColor: 'black' | 'white';
@@ -10,7 +10,7 @@ interface PageHeaderProps {
   borderRadius?: string;
 }
 
-const Button: React.FC<PageHeaderProps> = ({ title, buttonSize = 'buttonM', buttonColor = 'black', onButtonClick, isDisabled = false, borderRadius = '4px' }) => {
+const Button: React.FC<ButtonProps> = ({ title, buttonSize = 'buttonM', buttonColor = 'black', onButtonClick, isDisabled = false, borderRadius = '4px' }) => {
   return (
     <div>
       <HeaderButton buttonSize={buttonSize} buttonColor={buttonColor} onClick={onButtonClick} disabled={isDisabled} borderRadius={borderRadius}>
