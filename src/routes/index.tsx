@@ -1,19 +1,15 @@
-// import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CopyGroups from '../pages/CopyGroups';
 import ClientGroups from '../pages/ClientGroups';
 import React from 'react';
-import GNB from '../components/common/GNB';
-import AuthRouter from './AuthRouter';
+import Layout from '../components/Layout';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <GNB />
       <Routes>
-        <Route path="/copies" element={<CopyGroups />} />
-        <Route path="/clients" element={<ClientGroups />} />
-        <Route path="auth/*" element={<AuthRouter />} />
+        <Route path="/copies" element={<Layout router={<CopyGroups />} />} />
+        <Route path="/clients" element={<Layout router={<ClientGroups />} />} />
       </Routes>
     </BrowserRouter>
   );
