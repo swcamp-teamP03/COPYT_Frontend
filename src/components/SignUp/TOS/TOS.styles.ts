@@ -16,8 +16,7 @@ export const CheckBoxContent = styled.div`
   position: relative;
   width: 100%;
   h3 {
-    margin: 0;
-    margin-bottom: 10px;
+    margin: 5px 0 10px 0;
   }
   span {
     font-size: ${({ theme }) => theme.fontSize.sm};
