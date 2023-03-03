@@ -58,3 +58,25 @@ export const CopySubmit = styled.div`
     height: 52px;
   }
 `;
+
+export const KeywordContainer = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+
+export const KeywordTag = styled.div`
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 14px 10px;
+  background-color: ${({ theme }) => theme.colors.gray40};
+  margin-bottom: 10px;
+  div {
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+  }
+`;

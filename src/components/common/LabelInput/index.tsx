@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, useRef } from 'react';
 import * as S from './LabelInput.styles';
 
 interface LabelInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -9,14 +9,22 @@ interface LabelInputProps extends InputHTMLAttributes<HTMLInputElement> {
   limit?: number;
 }
 
-const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, errorMessage, ...props }: LabelInputProps) => {
+const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, errorMessage, limit, ...props }: LabelInputProps) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const textCount = inputRef.current?.value.length ?? 0;
   return (
     <S.Layout flexDirection={flexDirection}>
       <S.Label>
         {labelTitle}
         {isRequire && <span>*</span>}
       </S.Label>
-      <S.Input {...props} />
+      <S.Input {...props} ref={inputRef} />
+      {limit && (
+        <S.TextCount>
+          {textCount}/ {limit}
+        </S.TextCount>
+      )}
       {errorMessage && <S.ErrorMessage>* {errorMessage}</S.ErrorMessage>}
     </S.Layout>
   );

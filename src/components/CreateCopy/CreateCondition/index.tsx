@@ -1,5 +1,5 @@
 import React, { Dispatch, useReducer, useState } from 'react';
-import { CHEVRON } from '../../../assets';
+import { CHEVRON, SVG } from '../../../assets';
 import DropwDownList from '../DropDownList';
 import LabelInput from '../../common/LabelInput';
 import { ConditionAction, ConditionInit } from './conditionReducer';
@@ -18,6 +18,7 @@ interface CreatConditionProps {
 const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [showLengthDropDown, setShowLengthDropDown] = useState(false);
+  const [isComposing, setIsComposing] = useState(false);
 
   const handleType = (value: string) => {
     conditionDispatch({ type: 'CHANGE_TYPE', value, key: 'type' });
@@ -34,24 +35,64 @@ const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: Cr
     return condition.type === title;
   };
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const removeKeyword = (keyword: string) => {
+    conditionDispatch({ type: 'REMOVE_KEYWORD', key: 'keyword', value: keyword });
+  };
+
+  const addKeyword = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const { value } = event.currentTarget;
+    if (isComposing) return;
+    if (event.key === 'Enter' && value) {
+      conditionDispatch({ type: 'ADD_KEYWORD', key: 'keyword', value });
+      event.currentTarget.value = '';
+    }
+  };
+
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>, limite: number) => {
+    const value = event.target.value.substring(0, limite - 1);
+    const name = event.target.name;
     conditionDispatch({ type: 'CHANGE_INPUT', key: name, value });
   };
 
   return (
     <div>
-      <LabelInput labelTitle="카피그룹명" limit={24} name="copyGroupName" onChange={handleInput} />
-      <LabelInput labelTitle="브랜드 이름" limit={24} name="brandName" onChange={handleInput} />
-      <LabelInput labelTitle="업종" limit={24} name="sector" onChange={handleInput} />
-      <LabelInput labelTitle="상품명" limit={30} name="productName" onChange={handleInput} />
+      <LabelInput
+        labelTitle="카피그룹명"
+        limit={24}
+        name="copyGroupName"
+        onChange={(e) => handleInput(e, 24)}
+        value={condition.copyGroupName}
+        placeholder="그룹명을 입력해 주세요."
+      />
+      <LabelInput
+        labelTitle="브랜드 이름"
+        limit={24}
+        name="brandName"
+        onChange={(e) => handleInput(e, 24)}
+        value={condition.brandName}
+        placeholder="브랜드 이름을 입력해 주세요."
+      />
+      <LabelInput labelTitle="업종" limit={24} name="sector" onChange={(e) => handleInput(e, 24)} value={condition.sector} placeholder="업종을 입력해 주세요." />
+      <LabelInput labelTitle="상품명" limit={30} name="productName" onChange={(e) => handleInput(e, 30)} value={condition.productName} placeholder="상품명을 입력해 주세요." />
       <LabelInput
         labelTitle="필수로 포함할 키워드"
         limit={30}
         name="keyword"
-        onChange={handleInput}
-        placeholder="키워드를 ',' 으로 구분하여 입력해 주세요. ( 예시: 키워드1,키워드2 )"
+        onKeyUp={addKeyword}
+        placeholder="키워드를 입력해 주세요. 최대 8개까지 등록 가능해요."
+        onCompositionStart={() => setIsComposing(true)}
+        onCompositionEnd={() => setIsComposing(false)}
+        disabled={condition.keyword.length === 8}
       />
+      <S.KeywordContainer>
+        {condition.keyword &&
+          condition.keyword.map((keyword) => (
+            <S.KeywordTag key={keyword}>
+              <span>{keyword}</span>
+              <div onClick={() => removeKeyword(keyword)}>{SVG.closeButton}</div>
+            </S.KeywordTag>
+          ))}
+      </S.KeywordContainer>
       <S.Label>유형</S.Label>
       <S.CopyTypeContainer>
         {COPY_TYPE.map((type) => (
