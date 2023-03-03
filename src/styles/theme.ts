@@ -25,9 +25,9 @@ const fontSize = {
 };
 
 const button = {
-  buttonS: 'width: 60px; height:40px; border-radius: 6px;',
-  buttonM: 'width: 80px; height:40px; border-radius: 6px;',
-  buttonL: 'width: 110px; height:40px; border-radius: 6px;',
+  buttonS: 'width: 3.3rem; height:40px; ',
+  buttonM: 'width: 7.6rem; height:40px;',
+  buttonL: 'width: 13rem; height:40px;',
 };
 
 export type ColorsType = typeof colors;
