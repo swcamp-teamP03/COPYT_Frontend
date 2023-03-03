@@ -1,7 +1,7 @@
 import React, { Dispatch, useReducer, useState } from 'react';
 import { CHEVRON } from '../../../assets';
 import DropwDownList from '../DropDownList';
-import LabelInput from '../LabelInput';
+import LabelInput from '../../common/LabelInput';
 import { ConditionAction, ConditionInit } from './conditionReducer';
 import * as S from './CreatCondition.styles';
 
@@ -33,22 +33,24 @@ const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: Cr
   const isSelected = (title: string) => {
     return condition.type === title;
   };
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    conditionDispatch({ type: 'CHANGE_INPUT', key: name, value });
+  };
+
   return (
     <div>
-      <S.FlexLayout ratio="2fr 1fr">
-        <LabelInput title="카피그룹명" limit={24} labelKey="copyGroupName" dispatch={conditionDispatch} condition={condition} />
-        <LabelInput title="태그" limit={6} labelKey="tag" dispatch={conditionDispatch} condition={condition} />
-      </S.FlexLayout>
-      <LabelInput title="브랜드 이름" limit={24} labelKey="brandName" dispatch={conditionDispatch} condition={condition} />
-      <LabelInput title="업종" limit={24} labelKey="sector" dispatch={conditionDispatch} condition={condition} />
-      <LabelInput title="상품명" limit={30} labelKey="productName" dispatch={conditionDispatch} condition={condition} />
+      <LabelInput labelTitle="카피그룹명" limit={24} name="copyGroupName" onChange={handleInput} />
+      <LabelInput labelTitle="브랜드 이름" limit={24} name="brandName" onChange={handleInput} />
+      <LabelInput labelTitle="업종" limit={24} name="sector" onChange={handleInput} />
+      <LabelInput labelTitle="상품명" limit={30} name="productName" onChange={handleInput} />
       <LabelInput
-        title="필수로 포함할 키워드"
+        labelTitle="필수로 포함할 키워드"
         limit={30}
-        labelKey="keyword"
-        dispatch={conditionDispatch}
-        condition={condition}
-        placeHolder="키워드를 ',' 으로 구분하여 입력해 주세요. ( 예시: 키워드1,키워드2 )"
+        name="keyword"
+        onChange={handleInput}
+        placeholder="키워드를 ',' 으로 구분하여 입력해 주세요. ( 예시: 키워드1,키워드2 )"
       />
       <S.Label>유형</S.Label>
       <S.CopyTypeContainer>
@@ -58,7 +60,7 @@ const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: Cr
           </S.CopyType>
         ))}
       </S.CopyTypeContainer>
-      <S.FlexLayout ratio="1fr 1fr">
+      <S.FlexLayout>
         <div>
           <S.Label>
             생성수 <span>*</span>

@@ -1,12 +1,8 @@
 import styled from 'styled-components';
 
-interface FlexLayoutProps {
-  ratio: '1fr 1fr' | '2fr 1fr';
-}
-
-export const FlexLayout = styled.div<FlexLayoutProps>`
+export const FlexLayout = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => props.ratio ?? '1fr 1fr'};
+  grid-template-columns: 1fr 1fr;
   gap: 50px;
 `;
 

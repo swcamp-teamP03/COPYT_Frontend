@@ -1,6 +1,7 @@
 export interface ConditionAction {
   type: 'CHANGE_INPUT' | 'CHANGE_TYPE' | 'CHANGE_LENGTH' | 'CHANGE_COUNT';
-  key: 'copyGroupName' | 'tag' | 'brandName' | 'sector' | 'productName' | 'keyword' | 'type' | 'createCount' | 'copyLength';
+  // key: 'copyGroupName' | 'tag' | 'brandName' | 'sector' | 'productName' | 'keyword' | 'type' | 'createCount' | 'copyLength';
+  key: string;
   value: string;
 }
 
