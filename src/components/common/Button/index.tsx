@@ -8,12 +8,13 @@ interface ButtonProps {
   onButtonClick?: () => void;
   isDisabled?: boolean;
   borderRadius?: string;
+  type?: 'submit' | 'reset' | 'button';
 }
 
-const Button: React.FC<ButtonProps> = ({ title, buttonSize = 'buttonM', buttonColor = 'black', onButtonClick, isDisabled = false, borderRadius = '4px' }) => {
+const Button: React.FC<ButtonProps> = ({ title, buttonSize = 'buttonM', buttonColor = 'black', onButtonClick, isDisabled = false, borderRadius = '4px', type }) => {
   return (
     <div>
-      <HeaderButton buttonSize={buttonSize} buttonColor={buttonColor} onClick={onButtonClick} disabled={isDisabled} borderRadius={borderRadius}>
+      <HeaderButton buttonSize={buttonSize} buttonColor={buttonColor} onClick={onButtonClick} disabled={isDisabled} borderRadius={borderRadius} type={type}>
         {title}
       </HeaderButton>
     </div>
