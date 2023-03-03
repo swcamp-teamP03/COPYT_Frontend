@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
 
-const GNB = () => {
+interface GNBProps {
+  children: ReactNode;
+}
+
+const NAV_Links = [
+  { title: '홈', url: '/' },
+  { title: '고객그룹', url: '/clients' },
+  { title: '카피생성', url: '/copies' },
+  { title: '캠페인', url: '/campain' },
+];
+
+const GNB = ({ children }: GNBProps) => {
   const navigate = useNavigate();
 
   const handleNavigation = (path: any) => {
@@ -18,36 +29,39 @@ const GNB = () => {
   };
 
   return (
-    <GNBContainer>
-      <Logo>카피티</Logo>
-      <Gap />
-      <NavWrapper>
-        <NavItem onClick={() => handleNavigation('/')}>홈</NavItem>
-        <NavItem onClick={() => handleNavigation('/clients')}>고객그룹</NavItem>
-        <NavItem onClick={() => handleNavigation('/copies')}>카피생성</NavItem>
-        <NavItem onClick={() => handleNavigation('/campain')}>캠페인</NavItem>
-      </NavWrapper>
-      <ButtonWrapper>
-        <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button>
-        <Button title="로그아웃" buttonSize="buttonM" buttonColor="black" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={true}></Button>
-      </ButtonWrapper>
-    </GNBContainer>
+    <Layout>
+      <GNBContainer>
+        <Logo>카피티</Logo>
+        <Gap />
+        <NavWrapper>
+          {NAV_Links.map((link) => (
+            <NavItem onClick={() => handleNavigation(link.url)}>{link.title}</NavItem>
+          ))}
+        </NavWrapper>
+        <ButtonWrapper>
+          <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button>
+          <Button title="로그아웃" buttonSize="buttonM" buttonColor="black" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={true}></Button>
+        </ButtonWrapper>
+      </GNBContainer>
+      {children}
+    </Layout>
   );
 };
 
 export default GNB;
 
+const Layout = styled.div`
+  display: flex;
+`;
+
 const GNBContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
+  position: sticky;
+  top: 1px;
+  height: 100vh;
   width: 200px;
   background-color: ${({ theme }) => theme.colors.gray0};
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  z-index: 1;
 `;
 
 const Logo = styled.div`
