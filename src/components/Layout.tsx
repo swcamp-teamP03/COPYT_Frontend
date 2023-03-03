@@ -10,11 +10,10 @@ interface LayoutProps {
 const Layout = ({ router }: LayoutProps) => {
   return (
     <Wrapper>
-      <Content>
-        {' '}
-        <GNB />
-        {router}
-      </Content>
+      <GNB />
+      <ContentWrapper>
+        <Content>{router}</Content>
+      </ContentWrapper>
     </Wrapper>
   );
 };
@@ -25,15 +24,16 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
-const Content = styled.div`
-  position: relative;
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 6.25rem 3.125rem 0px 16.25rem;
 `;
 
-// const Main = styled.main`
-//   padding: 20px;
-//   padding-top: 80px; /* GNB 높이만큼 여백 추가 */
-//   flex: 1;
-//   overflow: auto;
-// `;
+const Content = styled.div`
+  position: relative;
+  height: 100%;
+`;
 
 export default Layout;
