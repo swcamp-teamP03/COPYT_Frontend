@@ -8,7 +8,7 @@ import GNB from '../components/common/GNB';
 const Router = () => {
   return (
     <BrowserRouter>
-      <GNB />
+      {/* <GNB /> */}
       <Routes>
         <Route path="/copies" element={<CopyGroups />} />
         <Route path="/clients" element={<ClientGroups />} />
