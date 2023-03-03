@@ -4,7 +4,6 @@ import { Layout } from './Layout.styles';
 import styled from 'styled-components';
 import CreateCondition from '../components/CreateCopy/CreateCondition';
 import { conditionInit, conditionReducer } from '../components/CreateCopy/CreateCondition/conditionReducer';
-import Modal from '../components/common/Modal';
 import CopyList from '../components/CreateCopy/CopyList';
 
 const FakeData = [
@@ -23,16 +22,14 @@ const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(conditionReducer, conditionInit);
   const [selectedCopy, setSelectedCopy] = useState<string[]>([]);
 
-  const disabledCondition = Object.values(condition).includes('');
-
-  const isAbledSubmit = !disabledCondition;
+  const disabledCondition = Object.values(condition).includes('') || condition.keyword.length < 1;
 
   const handleSubmit = () => {};
 
   return (
     <>
       <Layout size="M">
-        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={handleSubmit} buttonColor="black" isDisabled={!isAbledSubmit}>
+        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={handleSubmit} buttonColor="black" isDisabled={disabledCondition}>
           카피 추천 받기
         </PageHeader>
         <GridLayout>

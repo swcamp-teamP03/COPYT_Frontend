@@ -7,10 +7,11 @@ import Edit from './edit.svg';
 import Copy from './copy.svg';
 import Checked from './liked.svg';
 import UnChecked from './unliked.svg';
+import Plus from './plus.svg';
+import Minus from './minus.svg';
 
 export const SVG = {
   closeButton: <CloseButton />,
-  verticalArrows: <VerticalArrows />,
 };
 
 export const POST_SVG = {
@@ -19,8 +20,14 @@ export const POST_SVG = {
   copy: <Copy />,
 };
 
+export const ARITHMETIC = {
+  plus: <Plus />,
+  minus: <Minus />,
+};
+
 export const CHEVRON = {
   down: <DownChevron />,
+  verticalArrows: <VerticalArrows />,
 };
 
 export const FAVORITES = {

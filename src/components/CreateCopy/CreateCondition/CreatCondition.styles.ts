@@ -80,3 +80,17 @@ export const KeywordTag = styled.div`
     height: 10px;
   }
 `;
+
+export const TextCount = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 5px;
+  height: 30px;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  padding: 10px 20px;
+  div {
+    cursor: pointer;
+  }
+`;

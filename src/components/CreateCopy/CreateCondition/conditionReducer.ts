@@ -6,7 +6,6 @@ export interface ConditionAction {
 
 export interface ConditionInit {
   copyGroupName: string;
-  tag: string;
   brandName: string;
   sector: string;
   productName: string;
@@ -21,8 +20,10 @@ export const conditionReducer: React.Reducer<ConditionInit, ConditionAction> = (
       return { ...state, [action.key]: action.value };
     case 'CHANGE_TYPE':
       return { ...state, [action.key]: action.value };
-    case 'CHANGE_LENGTH':
-      return { ...state, [action.key]: action.value };
+    case 'CHANGE_LENGTH': {
+      const prev = Number(state.copyLength);
+      return { ...state, [action.key]: action.value === 'plus' ? String(prev + 50) : String(prev - 50) };
+    }
     case 'CHANGE_COUNT':
       return { ...state, [action.key]: action.value };
     case 'ADD_KEYWORD':
@@ -34,7 +35,6 @@ export const conditionReducer: React.Reducer<ConditionInit, ConditionAction> = (
 
 export const conditionInit = {
   copyGroupName: '',
-  tag: '',
   brandName: '',
   sector: '',
   productName: '',

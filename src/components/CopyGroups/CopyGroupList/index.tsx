@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CHEVRON, FAVORITES, SVG } from '../../../assets';
+import { CHEVRON, FAVORITES } from '../../../assets';
 import * as S from './CopyGroupList.styles';
 
 interface CopyData {
@@ -50,7 +50,7 @@ const CopyGroupList = ({ totalCopy, copyList }: CopyGroupListProps) => {
         <div>즐겨찾기</div>
         <div>
           <span>생성일</span>
-          <div>{SVG.verticalArrows}</div>
+          <div>{CHEVRON.verticalArrows}</div>
         </div>
         <div>카피그룹명</div>
         <div>태그</div>

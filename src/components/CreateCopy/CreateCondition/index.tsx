@@ -1,13 +1,13 @@
-import React, { Dispatch, useReducer, useState } from 'react';
-import { CHEVRON, SVG } from '../../../assets';
+import React, { Dispatch, useState } from 'react';
+import { ARITHMETIC, CHEVRON, SVG } from '../../../assets';
 import DropwDownList from '../DropDownList';
 import LabelInput from '../../common/LabelInput';
 import { ConditionAction, ConditionInit } from './conditionReducer';
 import * as S from './CreatCondition.styles';
+import Button from '../../common/Button';
 
 const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = ['2', '3', '4', '5'];
-const COPY_LENGTH = ['70', '200', '300', '1000'];
 
 interface CreatConditionProps {
   condition: ConditionInit;
@@ -17,7 +17,6 @@ interface CreatConditionProps {
 
 const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
-  const [showLengthDropDown, setShowLengthDropDown] = useState(false);
   const [isComposing, setIsComposing] = useState(false);
 
   const handleType = (value: string) => {
@@ -26,9 +25,6 @@ const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: Cr
 
   const handleCountDropDown = () => {
     setShowCountDropDown((prev) => !prev);
-  };
-  const handleLengthDropDown = () => {
-    setShowLengthDropDown((prev) => !prev);
   };
 
   const isSelected = (title: string) => {
@@ -46,6 +42,13 @@ const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: Cr
       conditionDispatch({ type: 'ADD_KEYWORD', key: 'keyword', value });
       event.currentTarget.value = '';
     }
+  };
+
+  const handleCopyLength = (type: 'plus' | 'minus') => {
+    const { copyLength } = condition;
+    if (type === 'minus' && copyLength === '50') return;
+    if (type === 'plus' && copyLength === '900') return;
+    conditionDispatch({ type: 'CHANGE_LENGTH', key: 'copyLength', value: type });
   };
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>, limite: number) => {
@@ -116,15 +119,15 @@ const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: Cr
           <S.Label>
             글자수 <span>*</span>
           </S.Label>
-          <S.DropDownBox onClick={handleLengthDropDown}>
+          <S.TextCount>
+            <div onClick={() => handleCopyLength('minus')}>{ARITHMETIC.minus}</div>
             <span>{condition.copyLength}</span>
-            <div>{CHEVRON.down}</div>
-            {showLengthDropDown && <DropwDownList list={COPY_LENGTH} dispatch={conditionDispatch} onClose={handleLengthDropDown} type="CHANGE_LENGTH" />}
-          </S.DropDownBox>
+            <div onClick={() => handleCopyLength('plus')}>{ARITHMETIC.plus}</div>
+          </S.TextCount>
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
-        <button disabled={disabledCondition}>카피 추천 받기</button>
+        <Button title="카피 추천 받기" isDisabled={disabledCondition} buttonSize="buttonL" buttonColor="black" />
       </S.CopySubmit>
     </div>
   );
