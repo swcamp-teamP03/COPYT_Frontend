@@ -3,15 +3,28 @@ import styled from 'styled-components';
 import ClientGroupList from '../components/ClientGrups';
 
 const ClientGroups = () => {
-  const totalCopy = 100; // 임의의 값으로 설정
-  const copyList = [
+  const totalGroup = 100; // 임의의 값으로 설정
+  const groupList = [
     //  임의의 값으로 설정
-    { copyId: 1, createDate: '2022-03-01', like: true, copyName: 'Copy1', tag: 'Tag1' },
-    { copyId: 2, createDate: '2022-03-02', like: false, copyName: 'Copy2', tag: 'Tag2' },
-    { copyId: 3, createDate: '2022-03-03', like: true, copyName: 'Copy3', tag: 'Tag3' },
+    {
+      customerGroupId: 1,
+      groupName: '첫구매 고객 별점',
+      customerCnt: 3000,
+      favorite: false,
+      csvUploadCheck: true,
+      date: '2023/02/24',
+    },
+    {
+      customerGroupId: 2,
+      groupName: '첫구매 고객 별점2',
+      customerCnt: 5000,
+      favorite: true,
+      csvUploadCheck: false,
+      date: '2023/02/22',
+    },
   ];
 
-  return <div>{<ClientGroupList totalCopy={totalCopy} copyList={copyList} />}</div>;
+  return <div>{<ClientGroupList totalGroup={totalGroup} groupList={groupList} />}</div>;
 };
 
 export default ClientGroups;
