@@ -28,8 +28,8 @@ const GNB = () => {
         <NavItem onClick={() => handleNavigation('/campain')}>캠페인</NavItem>
       </NavWrapper>
       <ButtonWrapper>
-        <Button title="MY" buttonSize="buttonS" buttonColor="sNormal" borderRadius="15px" onButtonClick={handleMyClick}></Button>
-        <Button title="로그아웃" buttonSize="buttonM" buttonColor="disabled" borderRadius="15px" onButtonClick={handleLogoutClick}></Button>
+        <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button>
+        <Button title="로그아웃" buttonSize="buttonM" buttonColor="black" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={true}></Button>
       </ButtonWrapper>
     </GNBContainer>
   );
