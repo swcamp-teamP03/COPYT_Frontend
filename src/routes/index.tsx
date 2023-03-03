@@ -4,6 +4,7 @@ import CopyGroups from '../pages/CopyGroups';
 import ClientGroups from '../pages/ClientGroups';
 import React from 'react';
 import GNB from '../components/common/GNB';
+import AuthRouter from './AuthRouter';
 
 const Router = () => {
   return (
@@ -12,6 +13,7 @@ const Router = () => {
       <Routes>
         <Route path="/copies" element={<CopyGroups />} />
         <Route path="/clients" element={<ClientGroups />} />
+        <Route path="auth/*" element={<AuthRouter />} />
       </Routes>
     </BrowserRouter>
   );
