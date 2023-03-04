@@ -61,32 +61,50 @@ const ClientGroupDetail = () => {
       </S.HeaderLayout>
       <S.HeaderLayout>
         <h2>고객 그룹 정보</h2>
-        <p>2024러알날짜</p>
       </S.HeaderLayout>
 
-      <S.TaxtContainer>
-        <h3>고객 그룹명</h3>
-        <div>첫구매 고객 웰컴 이벤트 </div>
-      </S.TaxtContainer>
+      <S.TaxtInnerContainer>
+        <S.TaxtContainer>
+          <h3>고객 그룹명</h3>
+          <S.ClientProperty>첫구매 고객 웰컴 이벤트 </S.ClientProperty>
+        </S.TaxtContainer>
+        <S.TaxtContainer>
+          <h3>그룹 생성일</h3>
+          <div>2023/날짜 </div>
+        </S.TaxtContainer>
+      </S.TaxtInnerContainer>
+
       <S.TaxtContainer>
         <h3>고객 속성</h3>
-        <div>{CLIENT_SVG.highlight} 고객 DB의 데이터 속성(목표)을 입력해주세요. 입력한 속성은 고객 DB에 영향을 미치지 않으며, 데이터 정보 확인용으로만 활용됩니다. </div>
-        <div>속성1 </div>
-        <div>속성2 </div>
+        <S.PropertyHighlight>
+          {CLIENT_SVG.highlight} &nbsp; &nbsp;고객 DB의 데이터 속성(목표)을 입력해주세요. 입력한 속성은 고객 DB에 영향을 미치지 않으며, 데이터 정보 확인용으로만 활용됩니다.
+        </S.PropertyHighlight>
+        <div>속성 1 </div>
+        <S.ClientProperty>230202 이후 가입한 사용자</S.ClientProperty>
+        <div>속성 2 </div>
+        <S.ClientProperty></S.ClientProperty>
+
+        <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>
       </S.TaxtContainer>
+
       <S.HeaderLayout>
-        <h3>고객 DB 업로드</h3>
+        <h2>고객 DB 업로드</h2>
         <S.HeaderLayout>
-          <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px"></Button>
-          <Button title="파일 재 업로드" buttonColor="black" borderRadius="10px"></Button>{' '}
+          <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" isDisabled={true}></Button>
+          <Button title="파일 재 업로드" buttonColor="black" borderRadius="10px" isDisabled={true}></Button>
         </S.HeaderLayout>
       </S.HeaderLayout>
       <S.TaxtContainer>
-        <div>230225고객모수SQL.xls </div>
+        <S.ClientProperty style={{ height: '60px', border: 'solid 2px', borderColor: '#D3D3D3', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          230225고객모수SQL.xls{' '}
+        </S.ClientProperty>
       </S.TaxtContainer>
+
       <S.TaxtContainer>
-        <h3>연결된 캠페인</h3>
-        <div>230225고객모수SQL.xls </div>
+        <h2>연결된 캠페인</h2>
+        <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          첫구매 고객 웰컴 이벤트 <Button title="캠페인 바로가기" buttonColor="black" borderRadius="10px"></Button>
+        </S.ClientProperty>
       </S.TaxtContainer>
     </>
   );
