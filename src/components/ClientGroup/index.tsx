@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CLIENT_SVG } from '../../assets';
-import * as S from './ClientGrupList';
+import * as S from './ClientGroupList';
+import Button from '../common/Button';
 
 interface ClientGroupListProps {
   totalGroup: number;
@@ -26,10 +27,35 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
 
   return (
     <>
-      <h1>고객 그룹 설정</h1>
-      <button>그룹추가</button>
-      <hr />
-      <S.TagContainer>
+      <S.HeaderLayout>
+        <h1>고객 그룹 설정</h1>
+        <Button title="그룹추가" buttonColor="black" borderRadius="10px"></Button>
+      </S.HeaderLayout>
+      <S.HeaderLayout>
+        <S.HeaderSection>
+          {CLIENT_SVG.serch}
+          <input
+            type={'text'}
+            defaultValue={'고객 그룹 검색'}
+            style={{
+              border: 'none',
+              fontSize: '17px',
+              color: 'gray',
+            }}
+          />
+        </S.HeaderSection>
+        <S.HeaderSection>
+          <div>
+            <input type={'date'} style={{ border: 'none' }} /> ~ <input type={'date'} style={{ border: 'none' }} />
+          </div>
+        </S.HeaderSection>
+      </S.HeaderLayout>
+      <hr
+        style={{
+          color: 'gray',
+        }}
+      />
+      <S.TaxtContainer>
         <div>전체 {totalGroup}개</div>
         <S.VerticalHr />
         <div>목록 개수</div>
@@ -48,7 +74,7 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
             )}
           </S.ListCount>
         </S.Footer>
-      </S.TagContainer>
+      </S.TaxtContainer>
       <S.ListCategory>
         <div>즐겨찾기</div>
         <div>

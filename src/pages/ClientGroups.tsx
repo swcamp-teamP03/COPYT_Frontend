@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ClientGroupList from '../components/ClientGrups';
+import ClientGroupList from '../components/ClientGroup';
 
 const ClientGroups = () => {
   const totalGroup = 100; // 임의의 값으로 설정

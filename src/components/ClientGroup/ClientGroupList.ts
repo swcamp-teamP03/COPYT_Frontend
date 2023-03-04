@@ -1,9 +1,22 @@
 import styled from 'styled-components';
 
-export const TagContainer = styled.div`
+export const HeaderLayout = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+export const HeaderSection = styled.div`
+  display: flex;
+  gap: 22px;
+`;
+
+export const TaxtContainer = styled.div`
   display: flex;
   width: 100%;
   gap: 10px;
+  align-items: center;
   margin: 1rem 0 1.5rem 0;
 `;
 
@@ -62,7 +75,7 @@ export const VerticalHr = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  margin-top: 24px;
+  margin-top: 5px;
   justify-content: flex-end;
   align-items: center;
   gap: 16px;
@@ -84,7 +97,6 @@ export const DropDownContainer = styled.div`
   position: absolute;
   border: 1px solid #dfdfdf;
   border-radius: 12px;
-  top: 40px;
   left: 0;
   background-color: white;
   width: 100%;

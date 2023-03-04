@@ -6,6 +6,7 @@ import Serch from './Serch.svg';
 import Star from './Star.svg';
 import UnStar from './UnStar.svg';
 import VerticalArrow from './VerticalArrow.svg';
+import Highlight from './Highlight.svg';
 
 const SVG = {
   closeButton: <CloseButton />,
@@ -18,6 +19,7 @@ export const CLIENT_SVG = {
   star: <Star />,
   unStar: <UnStar />,
   verticalArrow: <VerticalArrow />,
+  highlight: <Highlight />,
 };
 
 export default SVG;

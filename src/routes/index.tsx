@@ -4,6 +4,8 @@ import ClientGroups from '../pages/ClientGroups';
 import React from 'react';
 import Layout from '../components/Layout';
 import AuthRouter from './AuthRouter';
+import ClientGroupDetail from '../components/ClientDetail';
+import ClientGroupCreate from '../components/ClientCreate';
 
 const Router = () => {
   return (
@@ -11,6 +13,8 @@ const Router = () => {
       <Routes>
         <Route path="/copies" element={<Layout router={<CopyGroups />} />} />
         <Route path="/clients" element={<Layout router={<ClientGroups />} />} />
+        <Route path="/clients/detail" element={<Layout router={<ClientGroupDetail />} />} />
+        <Route path="/clients/create" element={<Layout router={<ClientGroupCreate />} />} />
         <Route path="auth/*" element={<AuthRouter />} />
       </Routes>
     </BrowserRouter>
