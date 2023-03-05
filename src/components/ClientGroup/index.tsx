@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CLIENT_SVG } from '../../assets';
 import * as S from './ClientGroupList';
 import Button from '../common/Button';
+import { useNavigate } from 'react-router-dom';
 
 interface ClientGroupListProps {
   totalGroup: number;
@@ -20,16 +21,20 @@ const LIST_COUNT = [10, 30, 50];
 const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList }) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [listCount, setListCount] = useState(10);
+  const navigate = useNavigate();
 
   const handleCountDropDown = () => {
     setShowCountDropDown((prev) => !prev);
+  };
+  const onCreatehandler = () => {
+    navigate('/clients/create');
   };
 
   return (
     <>
       <S.HeaderLayout>
         <h1>고객 그룹 설정</h1>
-        <Button title="그룹추가" buttonColor="black" borderRadius="10px"></Button>
+        <Button title="그룹추가" buttonColor="black" borderRadius="10px" onButtonClick={onCreatehandler} />
       </S.HeaderLayout>
       <S.HeaderLayout>
         <S.HeaderSection>
