@@ -10,7 +10,7 @@ import { useRecoilState } from 'recoil';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(conditionReducer, conditionInit);
-  const [selectedCopy, setSelectedCopy] = useState<string[]>([]);
+
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
   const isDisabeldSave = copyList.length === 0;
@@ -23,7 +23,7 @@ const CreateCopy = () => {
         </PageHeader>
         <GridLayout>
           <CreateCondition condition={condition} conditionDispatch={conditionDispatch} />
-          <CopyList selectedCopy={selectedCopy} setSelectedCopy={setSelectedCopy} />
+          <CopyList />
         </GridLayout>
       </Layout>
     </>

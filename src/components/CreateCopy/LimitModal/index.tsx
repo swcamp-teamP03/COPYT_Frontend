@@ -8,6 +8,9 @@ interface CopyCountLimitModalProps {
 }
 
 const CopyCountLimitModal = ({ showLimitModal, handleLimitModal }: CopyCountLimitModalProps) => {
+
+
+  
   return (
     <Modal.Frame isOpen={showLimitModal} onClick={handleLimitModal} height="80px">
       <Modal.Body>최대 20개 까지 생성할 수 있어요!</Modal.Body>

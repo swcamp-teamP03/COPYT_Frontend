@@ -5,12 +5,7 @@ import { CopyListType } from '../../../types/copy';
 import CopyListItem from '../CopyListItem';
 import * as S from './CopyList.styles';
 
-interface CopyListProps {
-  selectedCopy: string[];
-  setSelectedCopy: Dispatch<SetStateAction<string[]>>;
-}
-
-const CopyList = ({ selectedCopy, setSelectedCopy }: CopyListProps) => {
+const CopyList = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
   const handlePinned = (id: number) => {
@@ -23,15 +18,11 @@ const CopyList = ({ selectedCopy, setSelectedCopy }: CopyListProps) => {
     setCopyList([...pinned, ...unPinned]);
   };
 
-  const isSelectedCopy = (content: string) => {
-    return selectedCopy.includes(content);
-  };
-
   return (
     <>
       <S.CopyListContainer>
         {copyList.length > 0 ? (
-          copyList?.map((data, id) => <CopyListItem data={data} key={id} isSelected={isSelectedCopy(data.content)} handlePinned={handlePinned} />)
+          copyList?.map((data, id) => <CopyListItem data={data} key={id} handlePinned={handlePinned} />)
         ) : (
           <S.NonData>
             <span>조건을 작성하고 생성해주세요</span>

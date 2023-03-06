@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 
-interface ContainerProps {
-  isSelected: boolean;
-}
-
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   cursor: pointer;
   width: 100%;
   background-color: white;
   border-radius: 30px;
   padding: 25px;
   margin-bottom: 25px;
-  border: 1px solid ${(props) => (props.isSelected ? 'black' : '#bebebe')};
+`;
+
+export const EditMode = styled.div`
+  textarea {
+    border-radius: 10px;
+    width: 100%;
+    resize: none;
+    height: 100%;
+  }
 `;
 
 export const Footer = styled.div`
