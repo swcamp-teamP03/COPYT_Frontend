@@ -7,23 +7,6 @@ export const TagContainer = styled.div`
   margin: 1rem 0 1.5rem 0;
 `;
 
-export const ListCategory = styled.div`
-  margin-top: 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 4fr 1fr;
-  margin-bottom: 20px;
-  div {
-    display: flex;
-    justify-content: center;
-  }
-  div:nth-child(2) {
-    gap: 30px;
-  }
-  div:nth-child(3) {
-    justify-content: flex-start;
-  }
-`;
-
 export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,7 +16,8 @@ export const ListContainer = styled.div`
 export const GroupList = styled.div`
   display: grid;
   cursor: pointer;
-  grid-template-columns: 1fr 1fr 4fr 1fr;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr 4fr;
   height: 82px;
   justify-content: center;
   align-items: center;

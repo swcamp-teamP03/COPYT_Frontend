@@ -15,14 +15,6 @@ const NonCopyGroupList = () => {
         <br />
         종류별 카피를 추천받고 발송해보세요.
       </S.Title>
-      <S.Flex>
-        {MESSAGE_TYPE.map((message) => (
-          <S.MessageBox key={message.title}>
-            <S.MessageTitle>{message.title}</S.MessageTitle>
-            <S.MessageDesc>{message.desc}</S.MessageDesc>
-          </S.MessageBox>
-        ))}
-      </S.Flex>
     </S.Layout>
   );
 };

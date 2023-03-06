@@ -1,33 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { CHEVRON } from '../assets';
 import PageHeader from '../components/common/PageHeader';
 import CopyGroupList from '../components/CopyGroups/CopyGroupList';
+import ListCount from '../components/CopyGroups/ListCount';
 import NonCopyGroupList from '../components/CopyGroups/NonCopyGroupList';
+import useCopyGroupsQuery from '../quries/Copy/useCopyGroupsQuery';
 import { Layout } from './Layout.styles';
 
-const FakeData = {
-  totalCopy: 2,
-  copyList: [
-    {
-      copyId: 1,
-      createDate: '2023-02-25',
-      like: true,
-      copyName: '나이키 할인 행사',
-      tag: '태그1',
-    },
-    {
-      copyId: 2,
-      createDate: '2023-02-25',
-      like: false,
-      copyName: '룰루레몬 이벤트',
-      tag: '태그4',
-    },
-  ],
-};
-
 const CopyGroups = () => {
-  const { totalCopy, copyList } = FakeData;
+  const [listCount, setListCount] = useState(10);
+  const [pageNum, setPageNum] = useState(0);
   const navigate = useNavigate();
+
+  const { data: groupList } = useCopyGroupsQuery(pageNum, listCount);
+  console.log(groupList);
 
   return (
     <Layout size="S">
@@ -40,9 +28,36 @@ const CopyGroups = () => {
       >
         카피그룹 리스트
       </PageHeader>
-      {FakeData ? <CopyGroupList totalCopy={totalCopy} copyList={copyList} /> : <NonCopyGroupList />}
+      <ListCount listCount={listCount} setListCount={setListCount} />
+      <ListCategory>
+        <div>즐겨찾기</div>
+        <div>
+          <span>생성일</span>
+          <div>{CHEVRON.verticalArrows}</div>
+        </div>
+        <div>카피그룹명</div>
+      </ListCategory>
+      {groupList ? <CopyGroupList copyList={groupList.groupList} /> : <NonCopyGroupList />}
     </Layout>
   );
 };
 
 export default CopyGroups;
+
+const ListCategory = styled.div`
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr 4fr;
+  margin-bottom: 20px;
+  div {
+    display: flex;
+    justify-content: center;
+  }
+  div:nth-child(2) {
+    gap: 30px;
+  }
+  div:nth-child(3) {
+    justify-content: flex-start;
+  }
+`;
