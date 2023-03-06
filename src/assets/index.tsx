@@ -13,6 +13,7 @@ import Pinned from './pinned.svg';
 import UnPinned from './unpinned.svg';
 import LeftChevron from './chevron_left.svg';
 import RightChevron from './chevron_right.svg';
+import UpChevron from './chevron_up.svg';
 
 export const SVG = {
   closeButton: <CloseButton />,
@@ -38,6 +39,7 @@ export const CHEVRON = {
   verticalArrows: <VerticalArrows />,
   left: <LeftChevron />,
   right: <RightChevron />,
+  up: <UpChevron />,
 };
 
 export const FAVORITES = {

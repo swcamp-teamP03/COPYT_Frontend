@@ -1,7 +1,7 @@
 export interface ConditionAction {
   type: 'CHANGE_INPUT' | 'CHANGE_TYPE' | 'CHANGE_LENGTH' | 'CHANGE_COUNT' | 'ADD_KEYWORD' | 'REMOVE_KEYWORD';
   key: string;
-  value: string;
+  value: string | number;
 }
 
 export interface ConditionInit {
@@ -10,8 +10,8 @@ export interface ConditionInit {
   sector: string;
   productName: string;
   keyword: string[];
-  createCount: string;
-  copyLength: string;
+  createCount: number;
+  copyLength: number;
   type: string;
 }
 export const conditionReducer: React.Reducer<ConditionInit, ConditionAction> = (state, action) => {
@@ -22,12 +22,14 @@ export const conditionReducer: React.Reducer<ConditionInit, ConditionAction> = (
       return { ...state, [action.key]: action.value };
     case 'CHANGE_LENGTH': {
       const prev = Number(state.copyLength);
-      return { ...state, [action.key]: action.value === 'plus' ? String(prev + 50) : String(prev - 50) };
+      return { ...state, [action.key]: action.value === 'plus' ? prev + 50 : prev - 50 };
     }
     case 'CHANGE_COUNT':
       return { ...state, [action.key]: action.value };
     case 'ADD_KEYWORD':
-      return { ...state, [action.key]: state.keyword.concat(action.value) };
+      if (typeof action.value === 'string') {
+        return { ...state, [action.key]: state.keyword.concat(action.value) };
+      }
     case 'REMOVE_KEYWORD':
       return { ...state, [action.key]: state.keyword.filter((keyword) => keyword !== action.value) };
   }
@@ -39,7 +41,7 @@ export const conditionInit = {
   sector: '',
   productName: '',
   keyword: [],
-  createCount: '3',
-  copyLength: '100',
+  createCount: 3,
+  copyLength: 100,
   type: '리뷰',
 };

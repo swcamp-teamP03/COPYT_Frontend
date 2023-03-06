@@ -11,7 +11,7 @@ interface ScantyModalProps {
 const ScantyModal = ({ showScantyModal, handleScantyModal }: ScantyModalProps) => {
   return (
     <>
-      <Modal.Frame isOpen={!showScantyModal} onClick={handleScantyModal} height="150px">
+      <Modal.Frame isOpen={showScantyModal} onClick={handleScantyModal} height="150px">
         <Modal.Body>{COPY_MESSAGE.SCANTY}</Modal.Body>
         <Modal.Footer>
           <Button buttonColor="black" buttonSize="buttonS" onButtonClick={handleScantyModal} title="확인" />
