@@ -5,30 +5,24 @@ import styled from 'styled-components';
 import CreateCondition from '../components/CreateCopy/CreateCondition';
 import { conditionInit, conditionReducer } from '../components/CreateCopy/CreateCondition/conditionReducer';
 import CopyList from '../components/CreateCopy/CopyList';
-import useCreateCopyMutation from '../quries/Copy/useCreateCopyMutation';
-import { CopyListType } from '../types/copy';
 import { copyListState } from '../store/copyListState';
 import { useRecoilState } from 'recoil';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(conditionReducer, conditionInit);
   const [selectedCopy, setSelectedCopy] = useState<string[]>([]);
-  const { mutate: createCoptMutate } = useCreateCopyMutation();
+  const [copyList, setCopyList] = useRecoilState(copyListState);
 
-  const disabledCondition = Object.values(condition).includes('') || condition.keyword.length < 1;
-
-  const handleSubmit = () => {
-    createCoptMutate(condition);
-  };
+  const isDisabeldSave = copyList.length === 0;
 
   return (
     <>
       <Layout size="M">
-        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={handleSubmit} buttonColor="black" isDisabled={disabledCondition}>
+        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={() => {}} buttonColor="black" isDisabled={isDisabeldSave}>
           카피 추천 받기
         </PageHeader>
         <GridLayout>
-          <CreateCondition condition={condition} conditionDispatch={conditionDispatch} disabledCondition={disabledCondition} />
+          <CreateCondition condition={condition} conditionDispatch={conditionDispatch} />
           <CopyList selectedCopy={selectedCopy} setSelectedCopy={setSelectedCopy} />
         </GridLayout>
       </Layout>

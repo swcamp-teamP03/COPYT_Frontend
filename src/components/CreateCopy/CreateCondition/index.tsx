@@ -5,6 +5,10 @@ import LabelInput from '../../common/LabelInput';
 import { ConditionAction, ConditionInit } from './conditionReducer';
 import * as S from './CreatCondition.styles';
 import Button from '../../common/Button';
+import useCreateCopyMutation from '../../../quries/Copy/useCreateCopyMutation';
+import { useRecoilState } from 'recoil';
+import { copyListState } from '../../../store/copyListState';
+import CopyCountLimitModal from '../LimitModal';
 
 const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = ['2', '3', '4', '5'];
@@ -12,12 +16,16 @@ const COPY_COUNT = ['2', '3', '4', '5'];
 interface CreatConditionProps {
   condition: ConditionInit;
   conditionDispatch: Dispatch<ConditionAction>;
-  disabledCondition: boolean;
 }
 
-const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: CreatConditionProps) => {
+const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [isComposing, setIsComposing] = useState(false);
+  const { mutate: createCoptMutate } = useCreateCopyMutation();
+  const [showLimitModal, setShowLimitModal] = useState(false);
+  const [copyList, setCopyList] = useRecoilState(copyListState);
+
+  const disabledCondition = Object.values(condition).includes('') || condition.keyword.length < 1;
 
   const handleType = (value: string) => {
     conditionDispatch({ type: 'CHANGE_TYPE', value, key: 'type' });
@@ -55,6 +63,17 @@ const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: Cr
     const value = event.target.value.substring(0, limite - 1);
     const name = event.target.name;
     conditionDispatch({ type: 'CHANGE_INPUT', key: name, value });
+  };
+
+  const handleLimitModal = () => {
+    setShowLimitModal((prev) => !prev);
+  };
+
+  const handleSubmit = () => {
+    if (copyList.length + Number(condition.createCount) > 20) {
+      return handleLimitModal();
+    }
+    createCoptMutate(condition);
   };
 
   return (
@@ -127,8 +146,9 @@ const CreateCondition = ({ condition, conditionDispatch, disabledCondition }: Cr
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
-        <Button title="카피 추천 받기" isDisabled={disabledCondition} buttonSize="buttonL" buttonColor="black" />
+        <Button title="카피 추천 받기" isDisabled={disabledCondition} buttonSize="buttonL" buttonColor="black" onButtonClick={handleSubmit} />
       </S.CopySubmit>
+      <CopyCountLimitModal showLimitModal={showLimitModal} handleLimitModal={handleLimitModal} />
     </div>
   );
 };
