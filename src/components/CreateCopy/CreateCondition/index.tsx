@@ -12,6 +12,8 @@ import CopyCountLimitModal from '../LimitModal';
 
 const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = ['2', '3', '4', '5'];
+const LIMITE_MIN_LENGTH = '50';
+const LIMITE_MAX_LENGTH = '900';
 
 interface CreatConditionProps {
   condition: ConditionInit;
@@ -54,8 +56,8 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
 
   const handleCopyLength = (type: 'plus' | 'minus') => {
     const { copyLength } = condition;
-    if (type === 'minus' && copyLength === '50') return;
-    if (type === 'plus' && copyLength === '900') return;
+    if (type === 'minus' && copyLength === LIMITE_MIN_LENGTH) return;
+    if (type === 'plus' && copyLength === LIMITE_MAX_LENGTH) return;
     conditionDispatch({ type: 'CHANGE_LENGTH', key: 'copyLength', value: type });
   };
 

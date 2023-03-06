@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { PIN, POST_SVG } from '../../../assets';
+import { PIN, POST_SVG, SVG } from '../../../assets';
 import { copyListState } from '../../../store/copyListState';
 import { CopyListType } from '../../../types/copy';
 import Button from '../../common/Button';
@@ -31,6 +31,14 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
     setEditCopy(event.currentTarget.value);
   };
 
+  const deleteList = (id: number) => {
+    const target = copyList.filter((list) => list.id === id)[0];
+    const index = copyList.indexOf(target);
+    const data: CopyListType[] = JSON.parse(JSON.stringify(copyList));
+    data.splice(index, 1);
+    setCopyList([...data]);
+  };
+
   const handleEditWarnModal = () => {
     setShowEditWarnModal((prev) => !prev);
   };
@@ -55,8 +63,9 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
       ) : (
         <S.Container>
           <span>{data.content}</span>
+          <S.DeleteButton onClick={() => deleteList(data.id)}>{SVG.closeButton}</S.DeleteButton>
+          <S.TextCount>{data.content.length}/900</S.TextCount>
           <S.Footer>
-            <div>{POST_SVG.declation}</div>
             <div>
               <div onClick={() => handlePinned(data.id)}>{data.isPinned ? PIN.pinned : PIN.unpinned}</div>
               <div>{POST_SVG.copy}</div>
