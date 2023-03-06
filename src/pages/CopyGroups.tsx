@@ -15,7 +15,6 @@ const CopyGroups = () => {
   const navigate = useNavigate();
 
   const { data: groupList } = useCopyGroupsQuery(pageNum, listCount);
-  console.log(groupList);
 
   return (
     <Layout size="S">
@@ -28,7 +27,7 @@ const CopyGroups = () => {
       >
         카피그룹 리스트
       </PageHeader>
-      <ListCount listCount={listCount} setListCount={setListCount} />
+      <ListCount listCount={listCount} setListCount={setListCount} totalCopy={groupList?.totalCopy ?? 0} />
       <ListCategory>
         <div>즐겨찾기</div>
         <div>

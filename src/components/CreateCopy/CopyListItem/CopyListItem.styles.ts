@@ -7,6 +7,9 @@ export const Container = styled.div`
   border-radius: 30px;
   padding: 25px;
   margin-bottom: 25px;
+  span {
+    font-size: 16px;
+  }
 `;
 
 export const EditMode = styled.div`

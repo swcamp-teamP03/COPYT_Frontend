@@ -10,8 +10,7 @@ export const CopyListContainer = styled.div`
   padding: 40px;
   overflow-y: auto;
   overflow-x: hidden;
-  span {
-    margin-bottom: 10px;
+  p {
     font-size: 24px;
   }
 `;

@@ -7,9 +7,10 @@ const LIST_COUNT = [10, 30, 50];
 interface ListCountProps {
   listCount: number;
   setListCount: Dispatch<SetStateAction<number>>;
+  totalCopy: number;
 }
 
-const ListCount = ({ listCount, setListCount }: ListCountProps) => {
+const ListCount = ({ listCount, setListCount, totalCopy }: ListCountProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
 
   const handleCountDropDown = () => {
@@ -23,7 +24,7 @@ const ListCount = ({ listCount, setListCount }: ListCountProps) => {
 
   return (
     <S.FlexBox>
-      <span>전체 00개</span>
+      <span>전체 {totalCopy}개</span>
       <S.VerticalHr />
       <S.FlexBox>
         <span>목록 개수</span>
