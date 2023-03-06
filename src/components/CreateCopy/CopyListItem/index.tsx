@@ -1,34 +1,21 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { POST_SVG } from '../../../assets';
+import { PIN, POST_SVG } from '../../../assets';
+import { CopyListType } from '../../../types/copy';
 import * as S from './CopyListItem.styles';
 
 interface CopyListItemProps {
-  content: string;
+  data: CopyListType;
   isSelected: boolean;
-  setSelectedCopy: Dispatch<SetStateAction<string[]>>;
-  fullSelected: boolean;
-  setShowLimitedModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const CopyListItem = ({ content, isSelected, setSelectedCopy, fullSelected, setShowLimitedModal }: CopyListItemProps) => {
-  const removeSelected = () => {
-    setSelectedCopy((prev) => prev.filter((selected) => selected !== content));
-  };
-
-  const addSelected = () => {
-    if (fullSelected) {
-      return setShowLimitedModal(true);
-    } else {
-      setSelectedCopy((prev) => prev.concat(content));
-    }
-  };
-
+const CopyListItem = ({ data, isSelected }: CopyListItemProps) => {
   return (
-    <S.Container isSelected={isSelected} onClick={isSelected ? removeSelected : addSelected}>
-      {content}
+    <S.Container isSelected={isSelected}>
+      {data.content}
       <S.Footer>
         <div>{POST_SVG.declation}</div>
         <div>
+          <div>{data.isPinned ? PIN.pinned : PIN.unpinned}</div>
           <div>{POST_SVG.copy}</div>
           <div>{POST_SVG.edit}</div>
         </div>

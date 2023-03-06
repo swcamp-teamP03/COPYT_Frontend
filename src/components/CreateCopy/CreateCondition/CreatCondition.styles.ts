@@ -71,8 +71,8 @@ export const KeywordTag = styled.div`
   gap: 10px;
   overflow: hidden;
   border-radius: 10px;
-  padding: 14px 10px;
-  background-color: ${({ theme }) => theme.colors.gray40};
+  padding: 10px;
+  background-color: ${({ theme }) => theme.colors.gray0};
   margin-bottom: 10px;
   div {
     cursor: pointer;

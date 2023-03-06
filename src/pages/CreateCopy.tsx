@@ -5,26 +5,21 @@ import styled from 'styled-components';
 import CreateCondition from '../components/CreateCopy/CreateCondition';
 import { conditionInit, conditionReducer } from '../components/CreateCopy/CreateCondition/conditionReducer';
 import CopyList from '../components/CreateCopy/CopyList';
-
-const FakeData = [
-  {
-    content: '테스트 1번',
-  },
-  {
-    content: '테스트2번',
-  },
-  {
-    content: '테스트3번',
-  },
-];
+import useCreateCopyMutation from '../quries/Copy/useCreateCopyMutation';
+import { CopyListType } from '../types/copy';
+import { copyListState } from '../store/copyListState';
+import { useRecoilState } from 'recoil';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(conditionReducer, conditionInit);
   const [selectedCopy, setSelectedCopy] = useState<string[]>([]);
+  const { mutate: createCoptMutate } = useCreateCopyMutation();
 
   const disabledCondition = Object.values(condition).includes('') || condition.keyword.length < 1;
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    createCoptMutate(condition);
+  };
 
   return (
     <>
@@ -34,7 +29,7 @@ const CreateCopy = () => {
         </PageHeader>
         <GridLayout>
           <CreateCondition condition={condition} conditionDispatch={conditionDispatch} disabledCondition={disabledCondition} />
-          <CopyList data={FakeData} selectedCopy={selectedCopy} setSelectedCopy={setSelectedCopy} />
+          <CopyList selectedCopy={selectedCopy} setSelectedCopy={setSelectedCopy} />
         </GridLayout>
       </Layout>
     </>
