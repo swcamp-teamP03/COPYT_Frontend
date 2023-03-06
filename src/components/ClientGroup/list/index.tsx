@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { CLIENT_SVG } from '../../assets';
+import React, { useState, useEffect } from 'react';
+import { CLIENT_SVG } from '../../../assets';
 import * as S from './ClientGroupList';
-import Button from '../common/Button';
+import Button from '../../common/Button';
 import { useNavigate } from 'react-router-dom';
+import useClientGroupsQuery from '../../../quries/Auth/useClientGrupsMutation';
 
 interface ClientGroupListProps {
   totalGroup: number;
@@ -19,9 +20,11 @@ interface ClientGroupListProps {
 const LIST_COUNT = [10, 30, 50];
 
 const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList }) => {
+  const [groups, setGroups] = useState([]);
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [listCount, setListCount] = useState(10);
   const navigate = useNavigate();
+  const { data, isLoading, isError } = useClientGroupsQuery(1, 10);
 
   const handleCountDropDown = () => {
     setShowCountDropDown((prev) => !prev);
@@ -60,6 +63,7 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
           color: 'gray',
         }}
       />
+
       <S.TaxtContainer>
         <div>전체 {totalGroup}개</div>
         <S.VerticalHr />

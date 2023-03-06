@@ -6,6 +6,7 @@ export const HeaderLayout = styled.div`
   justify-content: space-between;
   padding: 0px 0px 0px 10px;
   gap: 5px;
+  display: flex;
 `;
 
 export const TaxtContainer = styled.div`
