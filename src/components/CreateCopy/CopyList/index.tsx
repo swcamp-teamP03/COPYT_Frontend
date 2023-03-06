@@ -13,16 +13,25 @@ interface CopyListProps {
 const CopyList = ({ selectedCopy, setSelectedCopy }: CopyListProps) => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
+  const handlePinned = (id: number) => {
+    const target = copyList.filter((list) => list.id === id)[0];
+    const index = copyList.indexOf(target);
+    const data: CopyListType[] = JSON.parse(JSON.stringify(copyList));
+    data[index].isPinned = data[index].isPinned ? false : true;
+    const pinned = data.filter((list) => list.isPinned).sort((a, b) => a.id - b.id);
+    const unPinned = data.filter((list) => !list.isPinned).sort((a, b) => a.id - b.id);
+    setCopyList([...pinned, ...unPinned]);
+  };
+
   const isSelectedCopy = (content: string) => {
     return selectedCopy.includes(content);
   };
-  console.log(copyList);
 
   return (
     <>
       <S.CopyListContainer>
         {copyList.length > 0 ? (
-          copyList?.map((data, id) => <CopyListItem data={data} key={id} isSelected={isSelectedCopy(data.content)} />)
+          copyList?.map((data, id) => <CopyListItem data={data} key={id} isSelected={isSelectedCopy(data.content)} handlePinned={handlePinned} />)
         ) : (
           <S.NonData>
             <span>조건을 작성하고 생성해주세요</span>
