@@ -70,7 +70,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-is", "npm:18.2.0"],\
             ["react-refresh", "npm:0.14.0"],\
             ["react-router-dom", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:6.8.2"],\
-            ["recoil", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:0.7.6"],\
+            ["recoil", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:0.7.7"],\
             ["style-loader", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:3.3.1"],\
             ["styled-components", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:5.3.6"],\
             ["ts-jest", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:29.0.5"],\
@@ -4943,7 +4943,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-is", "npm:18.2.0"],\
             ["react-refresh", "npm:0.14.0"],\
             ["react-router-dom", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:6.8.2"],\
-            ["recoil", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:0.7.6"],\
+            ["recoil", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:0.7.7"],\
             ["style-loader", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:3.3.1"],\
             ["styled-components", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:5.3.6"],\
             ["ts-jest", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:29.0.5"],\
@@ -12063,17 +12063,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["recoil", [\
-        ["npm:0.7.6", {\
-          "packageLocation": "./.yarn/cache/recoil-npm-0.7.6-6f8de04e3d-2b31dd29a7.zip/node_modules/recoil/",\
+        ["npm:0.7.7", {\
+          "packageLocation": "./.yarn/cache/recoil-npm-0.7.7-4452f58b67-65edecbcb8.zip/node_modules/recoil/",\
           "packageDependencies": [\
-            ["recoil", "npm:0.7.6"]\
+            ["recoil", "npm:0.7.7"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:0.7.6", {\
-          "packageLocation": "./.yarn/__virtual__/recoil-virtual-7f5624950e/0/cache/recoil-npm-0.7.6-6f8de04e3d-2b31dd29a7.zip/node_modules/recoil/",\
+        ["virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:0.7.7", {\
+          "packageLocation": "./.yarn/__virtual__/recoil-virtual-dba9702644/0/cache/recoil-npm-0.7.7-4452f58b67-65edecbcb8.zip/node_modules/recoil/",\
           "packageDependencies": [\
-            ["recoil", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:0.7.6"],\
+            ["recoil", "virtual:5a5670b02ffc196c89b7cd653f309e2cadb140b38196059cbd751f03658eb15e0cc3e9e4474ed1d7d418f58e37849322623a27f57e3351b70516f668fc717b37#npm:0.7.7"],\
             ["@types/react", "npm:18.0.28"],\
             ["@types/react-dom", "npm:18.0.11"],\
             ["@types/react-native", null],\

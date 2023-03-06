@@ -76,7 +76,6 @@ const NavItem = styled.div`
   color: ${({ theme }) => theme.colors.black};
   font-weight: bold;
   text-align: left;
-
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray90};
     border-radius: 10px;
