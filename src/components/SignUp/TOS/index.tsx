@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import SVG from '../../../assets';
 import * as S from './TOS.styles';
 
 export interface TOS {
