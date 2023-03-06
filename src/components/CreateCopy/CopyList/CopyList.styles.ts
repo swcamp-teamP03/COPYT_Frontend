@@ -20,6 +20,8 @@ export const CopyCount = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 22px;
 `;
 
 export const NonData = styled.div`
