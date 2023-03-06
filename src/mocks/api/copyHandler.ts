@@ -16,7 +16,7 @@ const FakeCopy = {
 };
 
 export const copyHandler = [
-  rest.post(`${BASE_URL}/gptcopy`, (req, res, ctx) => {
-    return res(ctx.json(FakeCopy));
-  }),
+  // rest.post(`${BASE_URL}/gptcopy`, (req, res, ctx) => {
+  //   return res(ctx.json(FakeCopy));
+  // }),
 ];
