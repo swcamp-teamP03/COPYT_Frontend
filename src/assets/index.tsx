@@ -11,6 +11,8 @@ import Plus from './plus.svg';
 import Minus from './minus.svg';
 import Pinned from './pinned.svg';
 import UnPinned from './unpinned.svg';
+import LeftChevron from './chevron_left.svg';
+import RightChevron from './chevron_right.svg';
 
 export const SVG = {
   closeButton: <CloseButton />,
@@ -34,6 +36,8 @@ export const ARITHMETIC = {
 export const CHEVRON = {
   down: <DownChevron />,
   verticalArrows: <VerticalArrows />,
+  left: <LeftChevron />,
+  right: <RightChevron />,
 };
 
 export const FAVORITES = {
