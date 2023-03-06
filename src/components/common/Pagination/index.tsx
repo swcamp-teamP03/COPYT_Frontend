@@ -25,13 +25,13 @@ const Pagination = ({ totalPage, setPageNum, pageNum }: PaginationProps) => {
     return pageNum + 1 === page;
   };
 
-  const canLeftClick = pageNum === 0;
-  const canRightClick = pageNum + 1 === totalPage;
+  const canNotLeftClick = pageNum === 0;
+  const canNotRightClick = pageNum + 1 === totalPage;
 
   return (
     <>
       <S.Layout>
-        <S.Button onClick={onClickLefrChevron} disabled={canLeftClick}>
+        <S.Button onClick={onClickLefrChevron} disabled={canNotLeftClick}>
           {CHEVRON.left}
         </S.Button>
         {pageArray.map((page) => (
@@ -39,7 +39,7 @@ const Pagination = ({ totalPage, setPageNum, pageNum }: PaginationProps) => {
             {page}
           </S.Button>
         ))}
-        <S.Button onClick={onClickRightChevron} disabled={canRightClick}>
+        <S.Button onClick={onClickRightChevron} disabled={canNotRightClick}>
           {CHEVRON.right}
         </S.Button>
       </S.Layout>
