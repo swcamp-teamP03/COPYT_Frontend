@@ -9,18 +9,20 @@ import { copyListState } from '../store/copyListState';
 import { useRecoilState } from 'recoil';
 import Modal from '../components/common/Modal';
 import Button from '../components/common/Button';
+import { COPY_MESSAGE } from '../constants/copyMessage';
+import ScantyModal from '../components/CreateCopy/ScantyModal';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(conditionReducer, conditionInit);
-  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [showScantyModal, setShowScantyModal] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
-  const handleErrorModal = () => {
-    setShowErrorModal((prev) => !prev);
+  const handleScantyModal = () => {
+    setShowScantyModal((prev) => !prev);
   };
 
   const onSubmit = () => {
-    if (copyList.length < 2) return handleErrorModal();
+    if (copyList.length < 2) return handleScantyModal();
   };
 
   return (
@@ -34,20 +36,7 @@ const CreateCopy = () => {
           <CopyList />
         </GridLayout>
       </Layout>
-      <Modal.Frame isOpen={showErrorModal} onClick={handleErrorModal} height="150px">
-        <Modal.Body>
-          최소 2개 이상의 카피를 남겨주세요!
-          <br />
-          원하는 카피가 없다면 [카피 추천 받기] 버튼을 눌러
-          <br />
-          새로운 카피를 추천 받아보세요.
-          <br />
-          <p>*기존에 생성한 카피 문구는 유지됩니다.</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button buttonColor="black" buttonSize="buttonS" onButtonClick={handleErrorModal} title="확인" />
-        </Modal.Footer>
-      </Modal.Frame>
+      <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
     </>
   );
 };
