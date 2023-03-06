@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { CHEVRON } from '../assets';
+import { CHEVRON } from '../assets/Chevron';
 import PageHeader from '../components/common/PageHeader';
 import CopyGroupList from '../components/CopyGroups/CopyGroupList';
 import ListCount from '../components/CopyGroups/ListCount';

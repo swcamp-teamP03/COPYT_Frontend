@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CHEVRON, FAVORITES } from '../../../assets';
+import { FAVORITES } from '../../../assets/Like';
 import { CopyGroup } from '../../../types/copy';
 import * as S from './CopyGroupList.styles';
 

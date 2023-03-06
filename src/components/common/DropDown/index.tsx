@@ -1,5 +1,5 @@
 import React from 'react';
-import { CHEVRON } from '../../../assets';
+import { CHEVRON } from '../../../assets/Chevron';
 import * as S from './DropDown.styles';
 
 interface DorpDownProps {

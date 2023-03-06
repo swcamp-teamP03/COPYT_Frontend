@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { CHEVRON } from '../../../assets';
+import { CHEVRON } from '../../../assets/Chevron';
 import * as S from './Pagination.styles';
 
 interface PaginationProps {

@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { CHEVRON } from '../../../assets';
+import { CHEVRON } from '../../../assets/Chevron';
 import DropDwown from '../../common/DropDown';
 import * as S from './ListCount.styles';
 

@@ -1,5 +1,5 @@
 import React, { Dispatch, useState } from 'react';
-import { ARITHMETIC, CHEVRON, SVG } from '../../../assets';
+
 import LabelInput from '../../common/LabelInput';
 import { ConditionAction, ConditionInit } from './conditionReducer';
 import * as S from './CreatCondition.styles';
@@ -9,6 +9,8 @@ import { useRecoilState } from 'recoil';
 import { copyListState } from '../../../store/copyListState';
 import CopyCountLimitModal from '../LimitModal';
 import DropDwown from '../../common/DropDown';
+import { ARITHMETIC, SVG } from '../../../assets';
+import { CHEVRON } from '../../../assets/Chevron';
 
 const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [1, 2, 3, 4, 5];
@@ -137,7 +139,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
           <S.DropDownBox onClick={handleCountDropDown}>
             <span>{condition.createCount}</span>
             <div>{CHEVRON.down}</div>
-            {!showCountDropDown && <DropDwown list={COPY_COUNT} base={condition.createCount} handler={handleDropDown} />}
+            {showCountDropDown && <DropDwown list={COPY_COUNT} base={condition.createCount} handler={handleDropDown} />}
           </S.DropDownBox>
         </div>
         <div>

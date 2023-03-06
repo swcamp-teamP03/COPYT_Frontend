@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   top: -1px;
-  left: 0;
+  left: -1px;
   border: 1px solid ${({ theme }) => theme.colors.gray30};
   z-index: 10;
 `;
