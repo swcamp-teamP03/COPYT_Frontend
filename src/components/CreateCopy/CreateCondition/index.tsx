@@ -12,7 +12,7 @@ import DropDwown from '../../common/DropDown';
 import { ARITHMETIC, SVG } from '../../../assets';
 import { CHEVRON } from '../../../assets/Chevron';
 
-const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
+export const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [1, 2, 3, 4, 5];
 const LIMITE_MIN_LENGTH = 50;
 const LIMITE_MAX_LENGTH = 900;
