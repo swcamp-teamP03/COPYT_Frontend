@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import PageHeader from '../components/common/PageHeader';
+import CopyList from '../components/CreateCopy/CopyList';
 import CopyDetails from '../components/DetailCopy/CopyDetails';
+import useCopyDetailQuery from '../quries/Copy/useCopyDetailQuery';
+import { copyListState } from '../store/copyListState';
 import { Layout } from './Layout.styles';
 
 const DetailCopy = () => {
+  const [copyList, setCopyList] = useRecoilState(copyListState);
+  const { id } = useParams();
+
+  const { data: copyDetail } = useCopyDetailQuery(id);
+
+  useEffect(() => {
+    if (copyDetail) {
+      setCopyList(copyDetail?.copyList);
+    }
+  }, []);
+
   return (
     <Layout size="M">
       <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={() => {}}>
@@ -13,7 +29,7 @@ const DetailCopy = () => {
       </PageHeader>
       <GridLayout>
         <CopyDetails />
-        <CopyDetails />
+        <CopyList copyList={copyList} setCopyList={setCopyList} />
       </GridLayout>
     </Layout>
   );

@@ -19,3 +19,15 @@ export interface CopyGroupsReturn {
 export interface CopyLikeReturn {
   favorite: boolean;
 }
+
+export interface CopyDetailReturn {
+  copyGroupName: string;
+  tag: string;
+  brandName: string;
+  productName: string;
+  keyword: string;
+  type: string;
+  createCount: number;
+  copyLength: number;
+  copyList: CopyListType[];
+}

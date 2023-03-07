@@ -33,7 +33,7 @@ const CreateCopy = () => {
         </PageHeader>
         <GridLayout>
           <CreateCondition condition={condition} conditionDispatch={conditionDispatch} />
-          <CopyList />
+          <CopyList copyList={copyList} setCopyList={setCopyList} />
         </GridLayout>
       </Layout>
       <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
