@@ -24,9 +24,21 @@ export const CheckBoxContent = styled.div`
   }
 `;
 
-export const ChevronButton = styled.div`
+export const MotionWrapper = styled.div`
+  overflow: hidden;
+  width: 100%;
+`;
+
+interface ChevronButtonProps {
+  open: boolean;
+}
+
+export const ChevronButton = styled.div<ChevronButtonProps>`
   cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
+
+  transform: rotate(${(props) => (props.open ? '180deg' : '0deg')});
+  transition: trasform 0.3s, -webkit-transform 0.3s;
 `;
