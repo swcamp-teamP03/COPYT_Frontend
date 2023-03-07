@@ -1,6 +1,5 @@
 import React, { Dispatch, useState } from 'react';
-import { ARITHMETIC, CHEVRON, SVG } from '../../../assets';
-import DropwDownList from '../DropDownList';
+
 import LabelInput from '../../common/LabelInput';
 import { ConditionAction, ConditionInit } from './conditionReducer';
 import * as S from './CreatCondition.styles';
@@ -9,9 +8,14 @@ import useCreateCopyMutation from '../../../quries/Copy/useCreateCopyMutation';
 import { useRecoilState } from 'recoil';
 import { copyListState } from '../../../store/copyListState';
 import CopyCountLimitModal from '../LimitModal';
+import DropDwown from '../../common/DropDown';
+import { ARITHMETIC, SVG } from '../../../assets';
+import { CHEVRON } from '../../../assets/Chevron';
 
-const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
-const COPY_COUNT = ['2', '3', '4', '5'];
+export const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
+const COPY_COUNT = [1, 2, 3, 4, 5];
+const LIMITE_MIN_LENGTH = 50;
+const LIMITE_MAX_LENGTH = 900;
 
 interface CreatConditionProps {
   condition: ConditionInit;
@@ -54,8 +58,8 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
 
   const handleCopyLength = (type: 'plus' | 'minus') => {
     const { copyLength } = condition;
-    if (type === 'minus' && copyLength === '50') return;
-    if (type === 'plus' && copyLength === '900') return;
+    if (type === 'minus' && copyLength === LIMITE_MIN_LENGTH) return;
+    if (type === 'plus' && copyLength === LIMITE_MAX_LENGTH) return;
     conditionDispatch({ type: 'CHANGE_LENGTH', key: 'copyLength', value: type });
   };
 
@@ -74,6 +78,10 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
       return handleLimitModal();
     }
     createCoptMutate(condition);
+  };
+  const handleDropDown = (value: number) => {
+    conditionDispatch({ type: 'CHANGE_COUNT', key: 'createCount', value });
+    handleCountDropDown;
   };
 
   return (
@@ -131,7 +139,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
           <S.DropDownBox onClick={handleCountDropDown}>
             <span>{condition.createCount}</span>
             <div>{CHEVRON.down}</div>
-            {showCountDropDown && <DropwDownList list={COPY_COUNT} dispatch={conditionDispatch} onClose={handleCountDropDown} type="CHANGE_COUNT" />}
+            {showCountDropDown && <DropDwown list={COPY_COUNT} base={condition.createCount} handler={handleDropDown} />}
           </S.DropDownBox>
         </div>
         <div>

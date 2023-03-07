@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   cursor: pointer;
+  position: relative;
   width: 100%;
   background-color: white;
   border-radius: 30px;
@@ -21,10 +22,30 @@ export const EditMode = styled.div`
   }
 `;
 
-export const Footer = styled.div`
-  margin-top: 20px;
+export const DeleteButton = styled.button`
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  top: -0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid ${({ theme }) => theme.colors.gray40};
+`;
+
+export const TextCount = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  color: ${({ theme }) => theme.colors.gray40};
+  margin-top: 20px;
+`;
+
+export const Footer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 
   div {
     display: flex;

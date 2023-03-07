@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { CHEVRON, FAVORITES } from '../../../assets';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FAVORITES } from '../../../assets/Like';
+import useCopyLikeMutation from '../../../quries/Copy/useCopyLikeMutation';
 import { CopyGroup } from '../../../types/copy';
 import * as S from './CopyGroupList.styles';
 
@@ -8,14 +10,26 @@ interface CopyGroupListProps {
 }
 
 const CopyGroupList = ({ copyList }: CopyGroupListProps) => {
+  const navigate = useNavigate();
+
+  const { mutate: copyLikeMutate } = useCopyLikeMutation();
+
+  const goDetail = (id: number) => {
+    navigate(`/copies/${id}`);
+  };
+
+  const handleLiked = (id: number) => {
+    copyLikeMutate(id);
+  };
+
   return (
     <>
       <S.ListContainer>
         {copyList.map((list) => (
           <S.GroupList key={list.copyId}>
-            <span>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span>
+            <span onClick={() => handleLiked(list.copyId)}>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span>
             <span>{list.createDate}</span>
-            <span>{list.copyName}</span>
+            <span onClick={() => goDetail(list.copyId)}>{list.copyName}</span>
           </S.GroupList>
         ))}
       </S.ListContainer>

@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { CHEVRON } from '../../../assets';
+import { CHEVRON } from '../../../assets/Chevron';
+import DropDwown from '../../common/DropDown';
 import * as S from './ListCount.styles';
 
 const LIST_COUNT = [10, 30, 50];
@@ -31,15 +32,7 @@ const ListCount = ({ listCount, setListCount, totalCopy }: ListCountProps) => {
         <S.ListCount>
           <span>{listCount} 개</span>
           <div onClick={handleCountDropDown}>{CHEVRON.down}</div>
-          {showCountDropDown && (
-            <S.DropDownContainer>
-              {LIST_COUNT.map((count) => (
-                <div key={count} onClick={() => handleCount(count)}>
-                  {count}
-                </div>
-              ))}
-            </S.DropDownContainer>
-          )}
+          {showCountDropDown && <DropDwown list={LIST_COUNT} base={listCount} handler={handleCount} />}
         </S.ListCount>
       </S.FlexBox>
     </S.FlexBox>
