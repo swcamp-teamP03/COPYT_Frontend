@@ -6,7 +6,7 @@ export const Fixed = styled.div`
   top: 0;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 30px;
+  padding: 40px 30px 20px;
   background: #f4f4f4;
   border: 1px solid #e8e8e8;
   border-bottom-left-radius: 20px;
