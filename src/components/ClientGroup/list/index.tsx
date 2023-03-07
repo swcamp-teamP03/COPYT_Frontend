@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { CLIENT_SVG } from '../../../assets';
 import * as S from './ClientGroupList';
-import Button from '../../common/Button';
+import PageHeader from '../../common/PageHeader';
 import { useNavigate } from 'react-router-dom';
-import useClientGroupsQuery from '../../../quries/Auth/useClientGrupsMutation';
-
-interface ClientGroupListProps {
-  totalGroup: number;
-  groupList: {
-    customerGroupId: number;
-    groupName: string;
-    customerCnt: number;
-    favorite: boolean;
-    csvUploadCheck: boolean;
-    date: string;
-  }[];
-}
+import useClientGroupsQuery from '../../../quries/useClientGrupsMutation';
+import Pagination from '../../common/Pagination';
+import ClientGroup from '../group';
 
 const LIST_COUNT = [10, 30, 50];
 
-const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList }) => {
-  const [groups, setGroups] = useState([]);
+const ClientGroupList = () => {
+  const [groupNum, setGroupNum] = useState(0);
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [listCount, setListCount] = useState(10);
+  const [totalPage, setTotalPage] = useState(0);
   const navigate = useNavigate();
-  const { data, isLoading, isError } = useClientGroupsQuery(1, 10);
+  const { data: groupList } = useClientGroupsQuery(groupNum, listCount);
+
+  useEffect(() => {
+    if (groupList?.totalgroup) {
+      const page = Math.ceil(groupList?.totalgroup / listCount);
+      setTotalPage(page);
+    }
+  }, [groupList?.totalgroup]);
+  console.log(groupList);
 
   const handleCountDropDown = () => {
     setShowCountDropDown((prev) => !prev);
@@ -35,16 +34,22 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
 
   return (
     <>
-      <S.HeaderLayout>
-        <h1>고객 그룹 설정</h1>
-        <Button title="그룹추가" buttonColor="black" borderRadius="10px" onButtonClick={onCreatehandler} />
-      </S.HeaderLayout>
+      <PageHeader
+        buttonTitle="고객 그룹 작성"
+        buttonSize="buttonL"
+        onClick={() => {
+          navigate('/clients/create');
+        }}
+      >
+        고객 그룹 리스트
+      </PageHeader>
+
       <S.HeaderLayout>
         <S.HeaderSection>
           {CLIENT_SVG.serch}
           <input
             type={'text'}
-            defaultValue={'고객 그룹 검색'}
+            placeholder={'고객 그룹 검색'}
             style={{
               border: 'none',
               fontSize: '17px',
@@ -65,7 +70,7 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
       />
 
       <S.TaxtContainer>
-        <div>전체 {totalGroup}개</div>
+        <div>전체 개</div>
         <S.VerticalHr />
         <div>목록 개수</div>
         <S.Footer>
@@ -90,19 +95,11 @@ const ClientGroupList: React.FC<ClientGroupListProps> = ({ totalGroup, groupList
           <span>생성일</span>
           <div>{CLIENT_SVG.verticalArrow}</div>
         </div>
-        <div>그룹명</div>
+        <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      <S.ListContainer>
-        {groupList.map((list) => (
-          <S.GroupList key={list.customerGroupId}>
-            <span>{list.favorite ? CLIENT_SVG.star : CLIENT_SVG.unStar}</span>
-            <span>{list.date}</span>
-            <span>{list.groupName}</span>
-            <span>{list.customerCnt}</span>
-          </S.GroupList>
-        ))}
-      </S.ListContainer>
+      {groupList ? <ClientGroup clientList={groupList.groupList} /> : CLIENT_SVG.noneList}
+      {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setGroupNum} pageNum={groupNum} />}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { CLIENT_SVG } from '../../assets';
 import * as S from './ClientGroupDetail';
 import Button from '../common/Button';
@@ -33,28 +33,44 @@ const ClientGroupDetail = () => {
     setModify(!modify);
   };
 
-  const [file, setFile] = useState<File | null>(null);
+  // const [file, setFile] = useState<File | null>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0];
-    if (selectedFile) {
-      if (file) {
-        const confirmed = window.confirm('기존 파일을 삭제하고 새 파일을 업로드하시겠습니까?');
-        if (confirmed) {
-          setFile(selectedFile);
-        }
-      } else {
-        setFile(selectedFile);
-      }
-    }
-  };
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const selectedFile = event.target.files?.[0];
+  //   if (selectedFile) {
+  //     if (file) {
+  //       const confirmed = window.confirm('기존 파일을 삭제하고 새 파일을 업로드하시겠습니까?');
+  //       if (confirmed) {
+  //         setFile(selectedFile);
+  //       }
+  //     } else {
+  //       setFile(selectedFile);
+  //     }
+  //   }
+  // };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (file) {
-      // 파일 업로드 로직을 수행합니다.
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   if (file) {
+  //     // 파일 업로드 로직을 수행합니다.
+  //   }
+  // };
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const onUploadFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
     }
-  };
+    console.log(e.target.files[0].name);
+  }, []);
+
+  const onUploadFileButtonClick = useCallback(() => {
+    if (!inputRef.current) {
+      return;
+    }
+    inputRef.current.click();
+  }, []);
 
   return (
     <>
@@ -95,20 +111,19 @@ const ClientGroupDetail = () => {
 
             <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" isDisabled={false}></Button>
 
-            <S.HeaderLayout>
-              <h2>고객 DB 업로드</h2>
+            <>
               <S.HeaderLayout>
-                <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" isDisabled={false}></Button>
-                <Button title="파일 재 업로드" buttonColor="black" borderRadius="10px" isDisabled={false}></Button>
+                <h2>고객 DB 업로드</h2>
+                <S.HeaderLayout>
+                  <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
+                  <Button title="파일 재 업로드" buttonColor="black" borderRadius="10px" isDisabled={false}></Button>
+                </S.HeaderLayout>
               </S.HeaderLayout>
-            </S.HeaderLayout>
-
-            <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
+              <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <input type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} />
                 <button type="submit">Upload</button>
-              </form>
-            </S.ClientProperty>
+              </S.ClientProperty>
+            </>
           </>
         ) : (
           <>

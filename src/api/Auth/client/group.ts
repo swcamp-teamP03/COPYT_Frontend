@@ -18,7 +18,7 @@ export interface ClientGroup {
 
 export interface ClientGroupsReturn {
   groupList: ClientGroup[];
-  totagroup: number;
+  totalgroup: number;
 }
 
 export const getClientGroupList = async ({ queryKey }: QueryFunctionContext<[string, number | undefined, number | undefined]>): Promise<ClientGroupsReturn> => {

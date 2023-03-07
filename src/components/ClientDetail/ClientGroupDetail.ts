@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Input } from '../common/LabelInput/LabelInput.styles';
 
 export const HeaderLayout = styled.div`
   display: block;
@@ -31,6 +32,9 @@ export const ClientProperty = styled.div`
   border-radius: 10px;
   border: solid 1px;
   border-color: ${({ theme }) => theme.colors.gray10};
+  .input {
+    display: none;
+  }
 `;
 
 export const ClientModifyProperty = styled.input`
