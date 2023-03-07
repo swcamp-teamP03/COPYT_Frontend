@@ -21,26 +21,22 @@ const SignIn = () => {
 
   const { mutate } = useSignInMutation(setError);
 
+  const isDisabled = !email || !password;
+
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     mutate({ email, password });
   };
 
-  const goFindAccount = (link: string) => {
-    navigate(`/auth/find/${link}`);
-  };
   return (
     <Container>
       <Title>로그인</Title>
       <form onSubmit={onSubmit}>
         <LabelInput labelTitle="이메일" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={handleChange} />
-        <LabelInput labelTitle="비밀번호" placeholder="비밀번호를 입력해주세요." name="password" value={password} onChange={handleChange} />
-        <Find>
-          <span onClick={() => goFindAccount('email')}>아이디</span>&nbsp;/&nbsp;<span onClick={() => goFindAccount('password')}>비밀번호 찾기</span>
-        </Find>
+        <LabelInput labelTitle="비밀번호" placeholder="비밀번호를 입력해주세요." name="password" value={password} onChange={handleChange} type="password" />
         {isError.signIn && <ErrorMessage>* {SIGNIN_MESSAGE.SIGN_IN}</ErrorMessage>}
         <Footer>
-          <Button buttonColor="black" buttonSize="buttonL" onButtonClick={() => {}} title="로그인" borderRadius="15px" type="submit" />
+          <Button buttonColor="black" buttonSize="buttonL" onButtonClick={() => {}} title="로그인" borderRadius="15px" type="submit" isDisabled={isDisabled} />
         </Footer>
       </form>
     </Container>
@@ -62,15 +58,6 @@ const Container = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 42px;
-`;
-
-const Find = styled.div`
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-end;
-  a:hover {
-    text-decoration: underline;
-  }
 `;
 
 const Footer = styled.div`
