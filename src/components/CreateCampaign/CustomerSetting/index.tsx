@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { SVG } from '../../../assets';
+import { campaignConditionState } from '../../../store/campaignConditionState';
 import Button from '../../common/Button';
 import CollapseContainer from '../../common/CollapseContainer';
 import * as S from './CustomerSetting.styles';
@@ -10,10 +12,21 @@ const WHETER_NOTICE = [
 ];
 
 const CustomerSetting = () => {
-  const [open, setOpen] = useState(false);
+  const [condition, setCondition] = useRecoilState(campaignConditionState);
+
+  console.log(condition);
+  const [open, setOpen] = useState(true);
 
   const handleCollapsed = () => {
     setOpen((prev) => !prev);
+  };
+
+  const onChangeABTest = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const result = event.target.value === 'yes' ? true : false;
+    setCondition((prev) => ({
+      ...prev,
+      ab_test: result,
+    }));
   };
 
   return (
@@ -41,11 +54,11 @@ const CustomerSetting = () => {
             <span>*</span>
           </S.Title>
           <S.RadioInput>
-            <input type="radio" name="whether" value="yes" />
+            <input type="radio" name="A/B_test" value="yes" onChange={onChangeABTest} checked={condition.ab_test} />
             <label>사용</label>
           </S.RadioInput>
           <S.RadioInput>
-            <input type="radio" name="whether" value="no" />
+            <input type="radio" name="A/B_test" value="no" onChange={onChangeABTest} checked={!condition.ab_test} />
             <label>사용 안함</label>
           </S.RadioInput>
         </S.FlexBox>

@@ -1,8 +1,8 @@
 import React, { Dispatch, useState } from 'react';
 
 import LabelInput from '../../common/LabelInput';
-import { ConditionAction, ConditionInit } from './conditionReducer';
-import * as S from './CreatCondition.styles';
+import { CopyConditionAction, CopyConditionInit } from './copyConditionReducer';
+import * as S from './CreateCopyCondition.styles';
 import Button from '../../common/Button';
 import useCreateCopyMutation from '../../../quries/Copy/useCreateCopyMutation';
 import { useRecoilState } from 'recoil';
@@ -18,8 +18,8 @@ const LIMITE_MIN_LENGTH = 50;
 const LIMITE_MAX_LENGTH = 900;
 
 interface CreatConditionProps {
-  condition: ConditionInit;
-  conditionDispatch: Dispatch<ConditionAction>;
+  condition: CopyConditionInit;
+  conditionDispatch: Dispatch<CopyConditionAction>;
 }
 
 const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) => {

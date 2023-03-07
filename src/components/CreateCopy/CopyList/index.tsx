@@ -1,15 +1,15 @@
 import React from 'react';
-import { SetterOrUpdater } from 'recoil';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
+import { copyListState } from '../../../store/copyListState';
 import { CopyListType } from '../../../types/copy';
 import CopyListItem from '../CopyListItem';
 import * as S from './CopyList.styles';
 
-interface CopyListProps {
-  copyList: CopyListType[];
-  setCopyList: SetterOrUpdater<CopyListType[]>;
-}
 
-const CopyList = ({ copyList, setCopyList }: CopyListProps) => {
+
+const CopyList = () => {
+  const [copyList, setCopyList] = useRecoilState(copyListState);
+
   const handlePinned = (id: number) => {
     const target = copyList.filter((list) => list.id === id)[0];
     const index = copyList.indexOf(target);

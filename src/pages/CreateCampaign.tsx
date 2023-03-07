@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from '../components/CreateCampaign/Header';
 import styled from 'styled-components';
-import Condition from '../components/CreateCampaign/Condition';
+import CreateCampaignCondition from '../components/CreateCampaign/CreateCampaignCondition';
 
 const CreateCampaign = () => {
   return (
     <>
       <Header />
       <GridLayout>
-        <Condition />
+        <CreateCampaignCondition />
       </GridLayout>
     </>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../common/Button';
-import { COPY_TYPE } from '../../CreateCopy/CreateCondition';
+import { COPY_TYPE } from '../../CreateCopy/CreateCopyCondition';
 import * as S from './CopyDetail.stlyes';
 
 const CopyDetails = () => {

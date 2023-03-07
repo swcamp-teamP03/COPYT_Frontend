@@ -28,6 +28,7 @@ export const RadioInput = styled.div`
   display: flex;
   gap: 10px;
   line-height: 30px;
+  margin-bottom: 6px;
   input {
     width: 20px;
     height: 20px;
