@@ -1,6 +1,7 @@
 import React, { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { VALIDATE } from '../assets/Validate';
 import Button from '../components/common/Button';
 import LabelInput from '../components/common/LabelInput';
 import { ErrorMessage } from '../components/common/LabelInput/LabelInput.styles';
@@ -34,9 +35,13 @@ const SignIn = () => {
       <form onSubmit={onSubmit}>
         <LabelInput labelTitle="이메일" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={handleChange} />
         <LabelInput labelTitle="비밀번호" placeholder="비밀번호를 입력해주세요." name="password" value={password} onChange={handleChange} type="password" />
-        {isError.signIn && <ErrorMessage>* {SIGNIN_MESSAGE.SIGN_IN}</ErrorMessage>}
+        {isError.signIn && (
+          <ErrorMessage>
+            {VALIDATE.false} {SIGNIN_MESSAGE.SIGN_IN}
+          </ErrorMessage>
+        )}
         <Footer>
-          <Button buttonColor="black" buttonSize="buttonL" onButtonClick={() => {}} title="로그인" borderRadius="15px" type="submit" isDisabled={isDisabled} />
+          <Button buttonColor="black" buttonSize="buttonL" title="로그인" borderRadius="15px" type="submit" isDisabled={isDisabled} />
         </Footer>
       </form>
     </Container>

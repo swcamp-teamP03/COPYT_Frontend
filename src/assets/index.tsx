@@ -1,7 +1,5 @@
 import React from 'react';
 import CloseButton from './closeButton.svg';
-import Checked from './liked.svg';
-import UnChecked from './unliked.svg';
 import Plus from './plus.svg';
 import Minus from './minus.svg';
 
