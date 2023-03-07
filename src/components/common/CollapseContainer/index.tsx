@@ -78,6 +78,6 @@ export const ChevronButton = styled.div<ChevronButtonProps>`
   height: 1rem;
   top: 0;
   right: 0;
-  transform: rotate(${(props) => (props.open ? '180deg' : '0deg')});
+  transform: rotate(${(props) => (props.open ? '0deg' : '180deg')});
   transition: trasform 0.3s, -webkit-transform 0.3s;
 `;

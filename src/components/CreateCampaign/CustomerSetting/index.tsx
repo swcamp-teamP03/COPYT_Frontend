@@ -10,7 +10,7 @@ const WHETER_NOTICE = [
 ];
 
 const CustomerSetting = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleCollapsed = () => {
     setOpen((prev) => !prev);
@@ -41,11 +41,11 @@ const CustomerSetting = () => {
             <span>*</span>
           </S.Title>
           <S.RadioInput>
-            <input type="radio" name="whether" />
+            <input type="radio" name="whether" value="yes" />
             <label>사용</label>
           </S.RadioInput>
           <S.RadioInput>
-            <input type="radio" name="whether" />
+            <input type="radio" name="whether" value="no" />
             <label>사용 안함</label>
           </S.RadioInput>
         </S.FlexBox>
