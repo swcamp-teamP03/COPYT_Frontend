@@ -1,13 +1,15 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { copyListState } from '../../../store/copyListState';
+import React from 'react';
+import { SetterOrUpdater } from 'recoil';
 import { CopyListType } from '../../../types/copy';
 import CopyListItem from '../CopyListItem';
 import * as S from './CopyList.styles';
 
-const CopyList = () => {
-  const [copyList, setCopyList] = useRecoilState(copyListState);
+interface CopyListProps {
+  copyList: CopyListType[];
+  setCopyList: SetterOrUpdater<CopyListType[]>;
+}
 
+const CopyList = ({ copyList, setCopyList }: CopyListProps) => {
   const handlePinned = (id: number) => {
     const target = copyList.filter((list) => list.id === id)[0];
     const index = copyList.indexOf(target);
@@ -22,7 +24,12 @@ const CopyList = () => {
     <>
       <S.CopyListContainer>
         {copyList.length > 0 ? (
-          copyList?.map((data, id) => <CopyListItem data={data} key={id} handlePinned={handlePinned} />)
+          <>
+            <S.CopyCount>생성된 카피 수 {copyList.length}개</S.CopyCount>
+            {copyList?.map((data, id) => (
+              <CopyListItem data={data} key={id} handlePinned={handlePinned} />
+            ))}
+          </>
         ) : (
           <S.NonData>
             <p>조건을 작성하고 생성해주세요</p>

@@ -10,9 +10,18 @@ export const CopyListContainer = styled.div`
   padding: 40px;
   overflow-y: auto;
   overflow-x: hidden;
+  border-radius: 30px;
   p {
     font-size: 24px;
   }
+`;
+export const CopyCount = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 22px;
 `;
 
 export const NonData = styled.div`

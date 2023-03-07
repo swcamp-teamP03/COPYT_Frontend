@@ -39,7 +39,7 @@ export const DropDownBox = styled.div`
   height: 30px;
   border: 1px solid #e1e1e1;
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -43,7 +43,9 @@ export const ModalHeader = styled.div`
   }
 `;
 
-export const ModalBody = styled.div``;
+export const ModalBody = styled.div`
+  white-space: pre-wrap;
+`;
 
 export const ModalFooter = styled.div`
   padding-top: 20px;

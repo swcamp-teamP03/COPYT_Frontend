@@ -19,7 +19,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 18px 20px;
-  border-radius: 4px;
+  border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.colors.gray30};
 `;
 
