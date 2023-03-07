@@ -14,7 +14,7 @@ const SENT_TYPE = [
 ];
 
 const MessageSetting = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleCollapsed = () => {
     setOpen((prev) => !prev);

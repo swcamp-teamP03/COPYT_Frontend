@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { CHEVRON } from '../../../assets/Chevron';
 import { POST_SVG } from '../../../assets/Post';
 import Button from '../../common/Button';
-import PageHeader from '../../common/PageHeader';
 import * as S from './Header.styles';
 
 interface HeaderProps {
