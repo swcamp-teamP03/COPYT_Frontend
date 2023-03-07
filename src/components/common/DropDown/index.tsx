@@ -3,9 +3,9 @@ import { CHEVRON } from '../../../assets/Chevron';
 import * as S from './DropDown.styles';
 
 interface DorpDownProps {
-  list: number[];
-  base: number;
-  handler: (count: number) => void;
+  list: number[] | string[];
+  base: number | string;
+  handler: (count: any) => void;
   padding?: string;
 }
 

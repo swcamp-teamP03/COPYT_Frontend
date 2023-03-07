@@ -15,3 +15,7 @@ export interface CopyGroupsReturn {
   groupList: CopyGroup[];
   totalCopy: number;
 }
+
+export interface CopyLikeReturn {
+  favorite: boolean;
+}

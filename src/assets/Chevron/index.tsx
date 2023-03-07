@@ -1,3 +1,4 @@
+import React from 'react';
 import LeftChevron from './chevron_left.svg';
 import RightChevron from './chevron_right.svg';
 import UpChevron from './chevron_up.svg';
