@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { SVG } from '../../../assets';
+import { campaignConditionState } from '../../../store/campaignConditionState';
 import CollapseContainer from '../../common/CollapseContainer';
 import * as S from './MessageSetting.styles';
 
@@ -14,10 +16,23 @@ const SENT_TYPE = [
 ];
 
 const MessageSetting = () => {
+  const [condition, setCondition] = useRecoilState(campaignConditionState);
   const [open, setOpen] = useState(true);
 
   const handleCollapsed = () => {
     setOpen((prev) => !prev);
+  };
+  const onChangeMessageType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCondition((prev) => ({
+      ...prev,
+      message_type: event.target.value,
+    }));
+  };
+  const onChangeSentType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCondition((prev) => ({
+      ...prev,
+      sent_type: event.target.value,
+    }));
   };
 
   return (
@@ -30,7 +45,7 @@ const MessageSetting = () => {
           </S.Title>
           {MESSAGE_TYPE.map((type) => (
             <S.RadioInput key={type.title}>
-              <input type="radio" name="message_type" value={type.title} />
+              <input type="radio" name="message_type" value={type.title} onChange={onChangeMessageType} checked={condition.message_type === type.title} />
               <label>{type.title}</label>
               <span>{type.desc}</span>
             </S.RadioInput>
@@ -43,7 +58,7 @@ const MessageSetting = () => {
           </S.Title>
           {SENT_TYPE.map((type) => (
             <S.RadioInput key={type.title}>
-              <input type="radio" name="sent_type" value={type.title} />
+              <input type="radio" name="sent_type" value={type.title} onChange={onChangeSentType} checked={condition.sent_type === type.title} />
               <label>{type.title}</label>
               <span>{type.desc}</span>
             </S.RadioInput>

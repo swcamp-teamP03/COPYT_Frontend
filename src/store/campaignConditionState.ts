@@ -16,9 +16,9 @@ export const campaignConditionState = atom<CampignConditionInit>({
   default: {
     group_name: '',
     ab_test: true,
-    message_type: '',
-    sent_type: '',
-    sent_cycle: '',
+    message_type: 'SMS',
+    sent_type: '정보성 문자',
+    sent_cycle: '일회성 발송',
     sent_date: '',
     sent_hour: '',
     sent_minute: '',
