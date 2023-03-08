@@ -24,11 +24,13 @@ const ClientGroupCreate = () => {
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const [fileName, setFileName] = useState('');
+
   const onUploadFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
-    console.log(e.target.files[0].name);
+    setFileName(e.target.files[0].name);
   }, []);
 
   const onUploadFileButtonClick = useCallback(() => {
@@ -67,9 +69,8 @@ const ClientGroupCreate = () => {
         <S.ClientModifyProperty type="text" />
 
         <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS"></Button>
-
+        <h2>고객 DB 업로드</h2>
         <S.HeaderLayout>
-          <h2>고객 DB 업로드</h2>
           <S.HeaderLayout>
             <ReactExcelDownload />
             <label>
@@ -77,9 +78,18 @@ const ClientGroupCreate = () => {
             </label>
           </S.HeaderLayout>
         </S.HeaderLayout>
-        <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <input type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
-        </S.ClientProperty>
+
+        {fileName ? (
+          <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+            <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+            {fileName}
+          </S.ClientProperty>
+        ) : (
+          <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+            고객 데이터 파일을 업로드 해주세요. *업로드 가능 확장자 : .xls
+          </S.ClientProperty>
+        )}
       </S.TaxtContainer>
     </>
   );

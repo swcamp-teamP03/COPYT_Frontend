@@ -1,4 +1,4 @@
-import { api } from '../../index';
+import { api } from '../index';
 import { QueryFunctionContext } from '@tanstack/react-query';
 
 export type ClientListType = { id: number; content: string; isPinned: boolean };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CLIENT_SVG } from '../../../assets';
-import { ClientGroup } from '../../../api/Auth/client/group';
+import { ClientGroup } from '../../../api/client/group';
 import * as S from './ClientGroup';
 
 interface ClientGroupListProps {

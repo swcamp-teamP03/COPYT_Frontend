@@ -41,6 +41,22 @@ export const ClientModifyProperty = styled.input`
   border-radius: 10px;
   border: solid 1px;
   border-color: ${({ theme }) => theme.colors.gray10};
+  #input-file {
+    display: none;
+  }
+
+  #input-file + label::before {
+    content: '파일 선택'; /* 파일 선택 글자 추가 */
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #ded6d6;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  #input-file:focus + label::before {
+    outline: 2px solid blue; /* 선택된 파일이 아닐 때는 포커스 표시 안 함 */
+  }
 `;
 
 export const PropertyHighlight = styled.div`
