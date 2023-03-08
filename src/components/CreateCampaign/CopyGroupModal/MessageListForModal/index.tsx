@@ -1,48 +1,71 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { SelecetedMessage } from '..';
 import { SVG } from '../../../../assets';
 import { campaignConditionState } from '../../../../store/campaignConditionState';
 import Button from '../../../common/Button';
 
 interface MessageListForModalProps {
-  setSelecetedMessage: Dispatch<SetStateAction<{ A: string; B: string }>>;
-  selectedMesssage: { A: string; B: string };
+  setSelecetedMessage: Dispatch<SetStateAction<SelecetedMessage[]>>;
+  selectedMesssage: SelecetedMessage[];
+  modalHandler: () => void;
 }
 
-const MessageListForModal = ({ selectedMesssage, setSelecetedMessage }: MessageListForModalProps) => {
+const MessageListForModal = ({ selectedMesssage, setSelecetedMessage, modalHandler }: MessageListForModalProps) => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
 
   const selectedMessageCount = Object.values(selectedMesssage).filter((str) => str).length;
-  console.log(selectedMessageCount);
+  const limitSelected = condition.abTest ? 2 : 1;
 
-  const deleteMessage = (idx: 'A' | 'B') => {
-    setSelecetedMessage((prev) => ({ ...prev, [`${idx}`]: '' }));
+  const deleteMessage = (id: number) => {
+    setSelecetedMessage((prev) => prev.filter((list) => list.id !== id));
   };
 
+  const onSubmit = () => {
+    if (condition.abTest) {
+      setCondition((prev) => ({
+        ...prev,
+        messageA: selectedMesssage[0].content,
+        messageB: selectedMesssage[1].content,
+      }));
+    } else {
+      setCondition((prev) => ({
+        ...prev,
+        messageA: selectedMesssage[0].content,
+      }));
+    }
+    modalHandler();
+  };
   return (
     <MessageList>
       <MessageContainer>
         <span>메세지 A</span>
         <Message>
-          <span>{selectedMesssage.A}</span>
+          <span>{selectedMesssage[0]?.content}</span>
         </Message>
         <DeleteButton>
-          <div onClick={() => deleteMessage('A')}>{SVG.closeButton}</div>
+          <div onClick={() => deleteMessage(selectedMesssage[0]?.id)}>{SVG.closeButton}</div>
         </DeleteButton>
       </MessageContainer>
       {condition.abTest && (
         <MessageContainer>
           <span>메세지 B</span>
           <Message>
-            <span>{selectedMesssage.B}</span>
+            <span>{selectedMesssage[1]?.content}</span>
           </Message>
           <DeleteButton>
-            <div onClick={() => deleteMessage('B')}>{SVG.closeButton}</div>
+            <div onClick={() => deleteMessage(selectedMesssage[1]?.id)}>{SVG.closeButton}</div>
           </DeleteButton>
         </MessageContainer>
       )}
-      <Button buttonColor="black" title={`카피 선택 (2개 중 / ${selectedMessageCount}개 선택)`} buttonSize="buttonL" />
+      <Button
+        buttonColor="black"
+        title={`카피 선택 (${limitSelected}개 중 / ${selectedMessageCount}개 선택)`}
+        buttonSize="buttonL"
+        isDisabled={selectedMessageCount !== limitSelected}
+        onButtonClick={onSubmit}
+      />
     </MessageList>
   );
 };
@@ -56,7 +79,7 @@ const MessageList = styled.div`
   background-color: ${({ theme }) => theme.colors.gray30};
   padding: 20px 20px 0 20px;
   position: sticky;
-  height: 80%;
+  height: 85%;
   top: 15px;
 `;
 
@@ -64,7 +87,6 @@ const MessageContainer = styled.div`
   gap: 10px;
   margin-bottom: 30px;
   position: relative;
-  overflow: auto;
 `;
 
 const Message = styled.div`

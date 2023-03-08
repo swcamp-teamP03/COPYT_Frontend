@@ -1,36 +1,31 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { SelecetedMessage } from '..';
 import { CHEVRON } from '../../../../assets/Chevron';
 import { PIN } from '../../../../assets/Like';
 import useCopyDetailQuery from '../../../../quries/Copy/useCopyDetailQuery';
 import { campaignConditionState } from '../../../../store/campaignConditionState';
 
 interface CopyListForModalProps {
-  setSelecetedMessage: Dispatch<SetStateAction<{ A: string; B: string }>>;
-  selectedMesssage: { A: string; B: string };
+  setSelecetedMessage: Dispatch<SetStateAction<SelecetedMessage[]>>;
+  selectedMesssage: SelecetedMessage[];
 }
 
 const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListForModalProps) => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
-  const { data: copyDetail } = useCopyDetailQuery(condition.copyGroupID.toString());
+  const { data: copyDetail } = useCopyDetailQuery(condition.copyGroupID?.toString());
 
   const isSelected = (id: number) => {
-    return condition.selectedCopyIds.includes(id);
+    return selectedMesssage.find((list) => list.id === id) ? true : false;
   };
 
+  const limiteSelect = condition.abTest ? 2 : 1;
+
   const handleSelectCopy = (id: number) => {
-    if (isSelected(id) || !copyDetail || (selectedMesssage.A && selectedMesssage.B)) return;
-    setCondition((prev) => ({
-      ...prev,
-      selectedCopyIds: condition.selectedCopyIds.concat(id),
-    }));
+    if (isSelected(id) || !copyDetail || selectedMesssage.length === limiteSelect) return;
     const targetContent = copyDetail.copyList.filter((list) => list.id === id)[0].content;
-    if (selectedMesssage.A) {
-      setSelecetedMessage((prev) => ({ ...prev, B: targetContent }));
-    } else {
-      setSelecetedMessage((prev) => ({ ...prev, A: targetContent }));
-    }
+    setSelecetedMessage((prev) => [...prev, { id, content: targetContent }]);
   };
 
   const goBack = () => {
@@ -39,7 +34,11 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
       group_name: '',
       copyGroupID: 0,
     }));
+    setSelecetedMessage([]);
   };
+
+  const isPinnedList = copyDetail?.copyList.filter((list) => list.isPinned);
+  const isNotPinnedList = copyDetail?.copyList.filter((list) => !list.isPinned);
 
   return (
     <div>
@@ -52,7 +51,16 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
         <div>생성된 카피 수 {copyDetail?.createCount}개</div>
       </Title>
       <ListContainer>
-        {copyDetail?.copyList.map((copy) => (
+        {isPinnedList?.map((copy) => (
+          <CopyItem onClick={() => handleSelectCopy(copy.id)} isSelected={isSelected(copy.id)} key={copy.id}>
+            {copy.content}
+            <CopyItemFooter>
+              <div>{copy.isPinned ? PIN.pinned : PIN.unpinned}</div>
+              <div>{copy.content.length} / 1,000</div>
+            </CopyItemFooter>
+          </CopyItem>
+        ))}
+        {isNotPinnedList?.map((copy) => (
           <CopyItem onClick={() => handleSelectCopy(copy.id)} isSelected={isSelected(copy.id)} key={copy.id}>
             {copy.content}
             <CopyItemFooter>
@@ -99,11 +107,13 @@ interface CopyItemProps {
 }
 
 const CopyItem = styled.div<CopyItemProps>`
+  cursor: pointer;
   padding: 12px 16px;
-  background-color: ${(props) => (props.isSelected ? '#eaeaea' : 'white')};
+  background-color: ${(props) => (props.isSelected ? '#F6F7FF' : 'white')};
+  border: 1px solid ${(props) => (props.isSelected ? '#5549ff' : props.theme.colors.gray20)};
   border-radius: 30px;
   :hover {
-    border: 2px solid #424242;
+    border: 1px solid #5549ff;
   }
 `;
 

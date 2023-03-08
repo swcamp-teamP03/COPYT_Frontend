@@ -52,7 +52,7 @@ const SentSetting = () => {
             selected={startDate}
             onChange={(date: Date) => setStartDate(date)}
             showTimeSelect
-            dateFormat="yyyy-MM-dd h:mm"
+            dateFormat="yyyy-MM-dd h:mm aa"
             timeIntervals={30}
             maxTime={new Date(1678275045880)}
             minTime={new Date(1678230617087)}

@@ -13,7 +13,6 @@ export interface CampignConditionInit {
   messageB: string;
   sendURL: string;
   customerCnt: number;
-  selectedCopyIds: number[];
 }
 
 export const campaignConditionState = atom<CampignConditionInit>({
@@ -31,6 +30,5 @@ export const campaignConditionState = atom<CampignConditionInit>({
     messageA: '',
     messageB: '',
     customerCnt: 0,
-    selectedCopyIds: [],
   },
 });

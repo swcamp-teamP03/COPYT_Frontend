@@ -5,7 +5,7 @@ export interface PostCopyList {
 }
 
 export interface CopyGroup {
-  copyId: number;
+  id: number;
   createDate: string;
   like: boolean;
   copyName: string;
