@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { campaignConditionState } from '../../../store/campaignConditionState';
-import CollapseContainer from '../../common/CollapseContainer';
+import { campaignConditionState } from '../../../../store/campaignConditionState';
+import CollapseContainer from '../../../common/CollapseContainer';
 import * as S from './SentSetting.styles';
 import dayjs from 'dayjs';
 import 'react-datepicker/dist/react-datepicker.css';

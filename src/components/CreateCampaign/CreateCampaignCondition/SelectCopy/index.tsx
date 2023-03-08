@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { campaignConditionState } from '../../../store/campaignConditionState';
-import Button from '../../common/Button';
+import { campaignConditionState } from '../../../../store/campaignConditionState';
+import Button from '../../../common/Button';
 import MessageContainer from '../MessageContainer';
 import * as S from './SelectCopy.stlyes';
 

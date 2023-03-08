@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { SVG } from '../../../assets';
-import { campaignConditionState } from '../../../store/campaignConditionState';
-import Button from '../../common/Button';
-import CollapseContainer from '../../common/CollapseContainer';
+import { SVG } from '../../../../assets';
+import { campaignConditionState } from '../../../../store/campaignConditionState';
+import Button from '../../../common/Button';
+import CollapseContainer from '../../../common/CollapseContainer';
+import CustomerGroupModal from '../../CustomerGroupModal';
 import * as S from './CustomerSetting.styles';
 
 const WHETER_NOTICE = [
@@ -13,8 +14,12 @@ const WHETER_NOTICE = [
 
 const CustomerSetting = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
+  const [showCustomerGroupModal, setShowCustomerGroupModal] = useState(true);
 
-  console.log(condition);
+  const handleCustomerGroupModal = () => {
+    setShowCustomerGroupModal((prev) => !prev);
+  };
+
   const [open, setOpen] = useState(true);
 
   const handleCollapsed = () => {
@@ -37,7 +42,7 @@ const CustomerSetting = () => {
             고객 그룹 선택
             <span>*</span>
           </S.Title>
-          <Button buttonColor="white" buttonSize="buttonM" title="고객 그룹 불러오기" />
+          <Button buttonColor="white" buttonSize="buttonM" title="고객 그룹 불러오기" onButtonClick={handleCustomerGroupModal} />
         </S.FlexBox>
         <S.GroupBox>아직 등록된 고객 그룹이 없습니다.</S.GroupBox>
         <S.Desc>
@@ -69,6 +74,7 @@ const CustomerSetting = () => {
           </S.Desc>
         ))}
       </CollapseContainer>
+      <CustomerGroupModal isOpen={showCustomerGroupModal} handler={handleCustomerGroupModal} />
     </>
   );
 };

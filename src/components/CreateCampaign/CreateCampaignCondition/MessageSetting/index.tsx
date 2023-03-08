@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { SVG } from '../../../assets';
-import { campaignConditionState } from '../../../store/campaignConditionState';
-import CollapseContainer from '../../common/CollapseContainer';
+import { SVG } from '../../../../assets';
+import { campaignConditionState } from '../../../../store/campaignConditionState';
+import CollapseContainer from '../../../common/CollapseContainer';
 import * as S from './MessageSetting.styles';
 
 const MESSAGE_TYPE = [

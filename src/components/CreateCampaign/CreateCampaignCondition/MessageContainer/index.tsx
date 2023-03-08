@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { SVG } from '../../../assets';
-import { campaignConditionState } from '../../../store/campaignConditionState';
+import { SVG } from '../../../../assets';
+import { campaignConditionState } from '../../../../store/campaignConditionState';
 import * as S from './MessageContainer.styles';
 
 const MessageContainer = () => {
