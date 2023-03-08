@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { CLIENT_SVG } from '../../assets';
 import * as S from './ClientGroupCreate';
 import Button from '../common/Button';
+import ReactExcelDownload from '../common/XLSX';
 
 interface ClientGroupDetailProps {
   groupName: string;
@@ -21,55 +22,21 @@ const ClientGroupCreate = () => {
     setModify(!modify);
   };
 
-  const [file, setFile] = useState<File | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0];
-    if (selectedFile) {
-      if (file) {
-        const confirmed = window.confirm('기존 파일을 삭제하고 새 파일을 업로드하시겠습니까?');
-        if (confirmed) {
-          setFile(selectedFile);
-        }
-      } else {
-        setFile(selectedFile);
-      }
-    }
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (file) {
-      // 파일 업로드 로직을 수행합니다.
-    }
-  };
-
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>): void => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const file = event.dataTransfer.files[0];
-    const extension = file.name.split('.').pop();
-
-    if (extension !== 'xls') {
-      alert('Only .xls files are allowed!');
+  const onUploadFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
       return;
     }
+    console.log(e.target.files[0].name);
+  }, []);
 
-    if (file) {
-      // 기존 파일이 있는 경우
-      if (window.confirm('Are you sure you want to replace the existing file?')) {
-        setFile(file);
-        alert('File uploaded successfully!');
-      } else {
-        alert('File upload cancelled.');
-      }
-    } else {
-      // 기존 파일이 없는 경우
-      setFile(file);
-      alert('File uploaded successfully!');
+  const onUploadFileButtonClick = useCallback(() => {
+    if (!inputRef.current) {
+      return;
     }
-  };
+    inputRef.current.click();
+  }, []);
 
   return (
     <>
@@ -101,34 +68,18 @@ const ClientGroupCreate = () => {
 
         <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS"></Button>
 
-        <h2>고객 DB 업로드</h2>
-        <form onSubmit={handleSubmit}>
+        <S.HeaderLayout>
+          <h2>고객 DB 업로드</h2>
           <S.HeaderLayout>
-            <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" />
-
-            <label htmlFor="file-input">
-              <Button title="파일 선택" buttonColor="black" borderRadius="10px" />
-              <input type="file" id="file-input" accept=".xls" onChange={handleFileChange} style={{ display: 'none' }} />
+            <ReactExcelDownload />
+            <label>
+              <Button title="파일 업로드" buttonColor="black" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
             </label>
           </S.HeaderLayout>
-          <div
-            onDrop={handleDrop}
-            onDragOver={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-            }}
-            style={{
-              height: '60px',
-              border: 'dashed 2px',
-              borderColor: '#ded6d6',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            {file ? <div>{file.name}</div> : <div>파일을 업로드해주세요.</div>}
-          </div>
-        </form>
+        </S.HeaderLayout>
+        <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <input type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+        </S.ClientProperty>
       </S.TaxtContainer>
     </>
   );
