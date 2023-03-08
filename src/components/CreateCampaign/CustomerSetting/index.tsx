@@ -25,7 +25,7 @@ const CustomerSetting = () => {
     const result = event.target.value === 'yes' ? true : false;
     setCondition((prev) => ({
       ...prev,
-      ab_test: result,
+      abTest: result,
     }));
   };
 

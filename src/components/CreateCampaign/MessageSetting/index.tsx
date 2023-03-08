@@ -11,8 +11,8 @@ const MESSAGE_TYPE = [
 ];
 
 const SENT_TYPE = [
-  { title: '정보성 문자', desc: '전송자 명칭 및 연락처 포함' },
-  { title: '광고성 문자', desc: '(광고) 접두어, 수신 거부 링크, 전송자 명칭 및 연락처 포함' },
+  { title: '정보성 문자', desc: '전송자 명칭 및 연락처 포함', type: 'COMM' },
+  { title: '광고성 문자', desc: '(광고) 접두어, 수신 거부 링크, 전송자 명칭 및 연락처 포함', type: 'AD' },
 ];
 
 const MessageSetting = () => {
@@ -23,15 +23,17 @@ const MessageSetting = () => {
     setOpen((prev) => !prev);
   };
   const onChangeMessageType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const result = event.target.value === 'SMS' ? 'SMS' : 'LMS';
     setCondition((prev) => ({
       ...prev,
-      message_type: event.target.value,
+      messageType: result,
     }));
   };
   const onChangeSentType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const result = event.target.value === '정보성 문자' ? 'COMM' : 'AD';
     setCondition((prev) => ({
       ...prev,
-      sent_type: event.target.value,
+      sentType: result,
     }));
   };
 
@@ -58,7 +60,7 @@ const MessageSetting = () => {
           </S.Title>
           {SENT_TYPE.map((type) => (
             <S.RadioInput key={type.title}>
-              <input type="radio" name="sent_type" value={type.title} onChange={onChangeSentType} checked={condition.sentType === type.title} />
+              <input type="radio" name="sent_type" value={type.title} onChange={onChangeSentType} checked={condition.sentType === type.type} />
               <label>{type.title}</label>
               <span>{type.desc}</span>
             </S.RadioInput>
