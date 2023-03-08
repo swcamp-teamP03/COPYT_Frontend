@@ -11,8 +11,6 @@ interface CopyGroupListProps {
 }
 
 const CopyGroupList = ({ copyList, onClick }: CopyGroupListProps) => {
-  const navigate = useNavigate();
-
   const { mutate: copyLikeMutate } = useCopyLikeMutation();
 
   const handleLiked = (id: number) => {

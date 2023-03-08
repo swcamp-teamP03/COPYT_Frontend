@@ -53,7 +53,7 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
       </Title>
       <ListContainer>
         {copyDetail?.copyList.map((copy) => (
-          <CopyItem onClick={() => handleSelectCopy(copy.id)} key={copy.id}>
+          <CopyItem onClick={() => handleSelectCopy(copy.id)} isSelected={isSelected(copy.id)} key={copy.id}>
             {copy.content}
             <CopyItemFooter>
               <div>{copy.isPinned ? PIN.pinned : PIN.unpinned}</div>
@@ -94,11 +94,17 @@ const ListContainer = styled.div`
   overflow: auto;
 `;
 
-const CopyItem = styled.div`
+interface CopyItemProps {
+  isSelected: boolean;
+}
+
+const CopyItem = styled.div<CopyItemProps>`
   padding: 12px 16px;
-  background-color: #eaeaea;
-  border: 2px solid #424242;
+  background-color: ${(props) => (props.isSelected ? '#eaeaea' : 'white')};
   border-radius: 30px;
+  :hover {
+    border: 2px solid #424242;
+  }
 `;
 
 const CopyItemFooter = styled.div`
