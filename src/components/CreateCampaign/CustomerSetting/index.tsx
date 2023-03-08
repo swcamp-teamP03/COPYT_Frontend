@@ -15,7 +15,7 @@ const CustomerSetting = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
 
   console.log(condition);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleCollapsed = () => {
     setOpen((prev) => !prev);

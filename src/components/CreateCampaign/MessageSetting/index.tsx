@@ -17,7 +17,7 @@ const SENT_TYPE = [
 
 const MessageSetting = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleCollapsed = () => {
     setOpen((prev) => !prev);

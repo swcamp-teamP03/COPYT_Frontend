@@ -8,20 +8,27 @@ const MessageContainer = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
 
   const deleteCopyMessages = (target: 'A' | 'B') => {
-    setCondition((prev) => ({
-      ...prev,
-      messages: { ...condition.messages, [`${target}`]: '' },
-    }));
+    if (target === 'A') {
+      setCondition((prev) => ({
+        ...prev,
+        messageA: '',
+      }));
+    } else {
+      setCondition((prev) => ({
+        ...prev,
+        messageB: '',
+      }));
+    }
   };
 
   return (
     <>
       <S.FlexBox>
         <S.Label>메시지 A</S.Label>
-        <S.MessageContainer hasMessage={condition.messages.A ? true : false}>
-          {condition.messages.A ? (
+        <S.MessageContainer hasMessage={condition.messageA ? true : false}>
+          {condition.messageA ? (
             <>
-              <span>{condition.messages.A}</span>
+              <span>{condition.messageA}</span>
               <S.CloseButton onClick={() => deleteCopyMessages('A')}>{SVG.closeButton}</S.CloseButton>
             </>
           ) : (
@@ -32,10 +39,10 @@ const MessageContainer = () => {
       {condition.abTest && (
         <S.FlexBox>
           <S.Label>메시지 B</S.Label>
-          <S.MessageContainer hasMessage={condition.messages.B ? true : false}>
-            {condition.messages.B ? (
+          <S.MessageContainer hasMessage={condition.messageB ? true : false}>
+            {condition.messageB ? (
               <>
-                <span>{condition.messages.B}</span>
+                <span>{condition.messageB}</span>
                 <S.CloseButton onClick={() => deleteCopyMessages('B')}>{SVG.closeButton}</S.CloseButton>
               </>
             ) : (

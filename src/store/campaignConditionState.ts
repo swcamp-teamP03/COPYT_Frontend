@@ -9,8 +9,10 @@ export interface CampignConditionInit {
   sentType: 'AD' | 'COMM';
   sentCycle: string;
   sendingDate: string;
-  messages: { A: string; B: string };
+  messageA: string;
+  messageB: string;
   sendURL: string;
+  customerCnt: number;
 }
 
 export const campaignConditionState = atom<CampignConditionInit>({
@@ -25,9 +27,8 @@ export const campaignConditionState = atom<CampignConditionInit>({
     sentCycle: '일회성 발송',
     sendingDate: '',
     sendURL: '',
-    messages: {
-      A: '',
-      B: '',
-    },
+    messageA: '',
+    messageB: '',
+    customerCnt: 0,
   },
 });

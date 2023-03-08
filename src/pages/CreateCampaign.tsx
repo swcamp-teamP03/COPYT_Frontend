@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/CreateCampaign/Header';
 import styled from 'styled-components';
 import CreateCampaignCondition from '../components/CreateCampaign/CreateCampaignCondition';
+import MessageList from '../components/CreateCampaign/MessageList';
 
 const CreateCampaign = () => {
   return (
@@ -9,6 +10,7 @@ const CreateCampaign = () => {
       <Header />
       <GridLayout>
         <CreateCampaignCondition />
+        <MessageList />
       </GridLayout>
     </>
   );
