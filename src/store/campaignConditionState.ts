@@ -13,6 +13,7 @@ export interface CampignConditionInit {
   messageB: string;
   sendURL: string;
   customerCnt: number;
+  campaignName: string;
 }
 
 export const campaignConditionState = atom<CampignConditionInit>({
@@ -30,5 +31,6 @@ export const campaignConditionState = atom<CampignConditionInit>({
     messageA: '',
     messageB: '',
     customerCnt: 0,
+    campaignName: '',
   },
 });

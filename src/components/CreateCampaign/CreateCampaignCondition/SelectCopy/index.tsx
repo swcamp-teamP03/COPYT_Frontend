@@ -8,7 +8,7 @@ import * as S from './SelectCopy.stlyes';
 
 const SelectCopy = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
-  const [showCopyGroupModal, setShowCopyGroupModal] = useState(true);
+  const [showCopyGroupModal, setShowCopyGroupModal] = useState(false);
   const [URL, setURL] = useState('');
 
   const handleCopyGroupModal = () => {
