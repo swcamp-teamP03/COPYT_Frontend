@@ -1,3 +1,4 @@
+import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
 
 export const FlexBox = styled.div`
@@ -43,27 +44,23 @@ export const RadioInput = styled.div`
   }
 `;
 
-const DropwDownWrapper = styled.div`
-  cursor: pointer;
+export const TimeWrapper = styled.div`
   display: flex;
   align-items: center;
-  position: relative;
   padding: 0 20px;
-  border: 2px solid ${({ theme }) => theme.colors.gray30};
-  border-radius: 12px;
-  height: 50px;
-`;
-
-export const CalendarWrapper = styled(DropwDownWrapper)`
   justify-content: space-between;
-  margin-left: 30px;
-
-  width: 150px;
-`;
-
-export const TimeWrapper = styled(DropwDownWrapper)`
   border: 2px solid ${({ theme }) => theme.colors.gray30};
-  width: 100px;
+  width: 200px;
   height: 50px;
   border-radius: 12px;
+  padding-left: 20px;
+`;
+
+export const SDatePicker = styled(DatePicker)`
+  padding-left: 25px;
+  cursor: pointer;
+  border: none;
+  width: 180px;
+  height: 40px;
+  font-size: 18px;
 `;

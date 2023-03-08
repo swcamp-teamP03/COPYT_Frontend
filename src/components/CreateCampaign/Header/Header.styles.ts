@@ -7,10 +7,11 @@ export const Fixed = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 40px 30px 20px;
-  background: #f4f4f4;
+  background-color: #f4f4f4;
   border: 1px solid #e8e8e8;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  z-index: 20;
 `;
 
 export const Flex = styled.div`

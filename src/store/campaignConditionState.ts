@@ -20,7 +20,7 @@ export const campaignConditionState = atom<CampignConditionInit>({
     sent_type: '정보성 문자',
     sent_cycle: '일회성 발송',
     sent_date: '',
-    sent_hour: '',
-    sent_minute: '',
+    sent_hour: '13',
+    sent_minute: '00',
   },
 });
