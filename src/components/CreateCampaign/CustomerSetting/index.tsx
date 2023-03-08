@@ -54,11 +54,11 @@ const CustomerSetting = () => {
             <span>*</span>
           </S.Title>
           <S.RadioInput>
-            <input type="radio" name="A/B_test" value="yes" onChange={onChangeABTest} checked={condition.ab_test} />
+            <input type="radio" name="A/B_test" value="yes" onChange={onChangeABTest} checked={condition.abTest} />
             <label>사용</label>
           </S.RadioInput>
           <S.RadioInput>
-            <input type="radio" name="A/B_test" value="no" onChange={onChangeABTest} checked={!condition.ab_test} />
+            <input type="radio" name="A/B_test" value="no" onChange={onChangeABTest} checked={!condition.abTest} />
             <label>사용 안함</label>
           </S.RadioInput>
         </S.FlexBox>

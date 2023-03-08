@@ -3,8 +3,8 @@ import { useRecoilState } from 'recoil';
 import { campaignConditionState } from '../../../store/campaignConditionState';
 import CollapseContainer from '../../common/CollapseContainer';
 import * as S from './SentSetting.styles';
+import dayjs from 'dayjs';
 import 'react-datepicker/dist/react-datepicker.css';
-import { SVG } from '../../../assets';
 
 const SENT_CYCLE = [{ title: '일회성 발송', desc: '지정된 시간에 일회성으로 발송합니다.' }];
 
@@ -25,7 +25,11 @@ const SentSetting = () => {
   };
 
   useEffect(() => {
-    //TODO : condition 변경하기
+    const time = dayjs(startDate).format('YYYY-MM-DDThh:mm:ss');
+    setCondition((prev) => ({
+      ...prev,
+      sentTime: time,
+    }));
   }, [startDate]);
 
   return (
@@ -36,7 +40,7 @@ const SentSetting = () => {
       </S.Title>
       {SENT_CYCLE.map((cycle) => (
         <S.RadioInput key={cycle.title}>
-          <input type="radio" name="sent_time" value={cycle.title} onChange={onChangeSentCycle} checked={condition.sent_cycle === cycle.title} />
+          <input type="radio" name="sent_time" value={cycle.title} onChange={onChangeSentCycle} checked={condition.sentCycle === cycle.title} />
           <label>{cycle.title}</label>
           <span>{cycle.desc}</span>
         </S.RadioInput>

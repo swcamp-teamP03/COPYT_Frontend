@@ -45,7 +45,7 @@ const MessageSetting = () => {
           </S.Title>
           {MESSAGE_TYPE.map((type) => (
             <S.RadioInput key={type.title}>
-              <input type="radio" name="message_type" value={type.title} onChange={onChangeMessageType} checked={condition.message_type === type.title} />
+              <input type="radio" name="message_type" value={type.title} onChange={onChangeMessageType} checked={condition.messageType === type.title} />
               <label>{type.title}</label>
               <span>{type.desc}</span>
             </S.RadioInput>
@@ -58,7 +58,7 @@ const MessageSetting = () => {
           </S.Title>
           {SENT_TYPE.map((type) => (
             <S.RadioInput key={type.title}>
-              <input type="radio" name="sent_type" value={type.title} onChange={onChangeSentType} checked={condition.sent_type === type.title} />
+              <input type="radio" name="sent_type" value={type.title} onChange={onChangeSentType} checked={condition.sentType === type.title} />
               <label>{type.title}</label>
               <span>{type.desc}</span>
             </S.RadioInput>
