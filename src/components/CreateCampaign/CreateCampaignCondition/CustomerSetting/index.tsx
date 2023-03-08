@@ -14,7 +14,7 @@ const WHETER_NOTICE = [
 
 const CustomerSetting = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
-  const [showCustomerGroupModal, setShowCustomerGroupModal] = useState(true);
+  const [showCustomerGroupModal, setShowCustomerGroupModal] = useState(false);
 
   const handleCustomerGroupModal = () => {
     setShowCustomerGroupModal((prev) => !prev);

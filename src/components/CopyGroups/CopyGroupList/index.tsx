@@ -7,16 +7,13 @@ import * as S from './CopyGroupList.styles';
 
 interface CopyGroupListProps {
   copyList: CopyGroup[];
+  onClick: (id: number) => void;
 }
 
-const CopyGroupList = ({ copyList }: CopyGroupListProps) => {
+const CopyGroupList = ({ copyList, onClick }: CopyGroupListProps) => {
   const navigate = useNavigate();
 
   const { mutate: copyLikeMutate } = useCopyLikeMutation();
-
-  const goDetail = (id: number) => {
-    navigate(`/copies/${id}`);
-  };
 
   const handleLiked = (id: number) => {
     copyLikeMutate(id);
@@ -29,7 +26,7 @@ const CopyGroupList = ({ copyList }: CopyGroupListProps) => {
           <S.GroupList key={list.copyId}>
             <span onClick={() => handleLiked(list.copyId)}>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span>
             <span>{list.createDate}</span>
-            <span onClick={() => goDetail(list.copyId)}>{list.copyName}</span>
+            <span onClick={() => onClick(list.copyId)}>{list.copyName}</span>
           </S.GroupList>
         ))}
       </S.ListContainer>

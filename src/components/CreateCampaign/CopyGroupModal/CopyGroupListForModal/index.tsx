@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { CHEVRON } from '../assets/Chevron';
-import PageHeader from '../components/common/PageHeader';
-import CopyGroupList from '../components/CopyGroups/CopyGroupList';
-import ListCount from '../components/CopyGroups/ListCount';
-import NonCopyGroupList from '../components/CopyGroups/NonCopyGroupList';
-import Pagination from '../components/common/Pagination';
-import useCopyGroupsQuery from '../quries/Copy/useCopyGroupsQuery';
-import { Layout } from './Layout.styles';
+import { CHEVRON } from '../../../../assets/Chevron';
+import useCopyGroupsQuery from '../../../../quries/Copy/useCopyGroupsQuery';
+import { campaignConditionState } from '../../../../store/campaignConditionState';
+import Pagination from '../../../common/Pagination';
+import CopyGroupList from '../../../CopyGroups/CopyGroupList';
+import ListCount from '../../../CopyGroups/ListCount';
 
-const CopyGroups = () => {
+const CopyGroupListForModal = () => {
+  const [condition, setCondition] = useRecoilState(campaignConditionState);
+
   const [listCount, setListCount] = useState(10);
   const [pageNum, setPageNum] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
-  const navigate = useNavigate();
 
   const { data: groupList } = useCopyGroupsQuery(pageNum, listCount);
 
-  const goDetail = (id: number) => {
-    navigate(`/copies/${id}`);
+  const onClickGroup = (id: number) => {
+    setCondition((prev) => ({
+      ...prev,
+      copyGroupID: id,
+      group_name: groupList?.groupList.filter((list) => list.copyId === id)[0].copyName!,
+    }));
   };
 
   useEffect(() => {
@@ -30,16 +33,8 @@ const CopyGroups = () => {
   }, [groupList?.totalCopy]);
 
   return (
-    <Layout size="S">
-      <PageHeader
-        buttonTitle="카피 추천 받기"
-        buttonSize="buttonL"
-        onClick={() => {
-          navigate('/copies/create');
-        }}
-      >
-        카피그룹 리스트
-      </PageHeader>
+    <div>
+      <h4>카피 그룹 선택</h4>
       <ListCount listCount={listCount} setListCount={setListCount} totalCopy={groupList?.totalCopy ?? 0} />
       <ListCategory>
         <div>즐겨찾기</div>
@@ -49,13 +44,12 @@ const CopyGroups = () => {
         </div>
         <div>카피그룹명</div>
       </ListCategory>
-      {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NonCopyGroupList />}
+      {groupList && <CopyGroupList copyList={groupList.groupList} onClick={onClickGroup} />}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
-    </Layout>
+    </div>
   );
 };
-
-export default CopyGroups;
+export default CopyGroupListForModal;
 
 const ListCategory = styled.div`
   margin-top: 1.5rem;
