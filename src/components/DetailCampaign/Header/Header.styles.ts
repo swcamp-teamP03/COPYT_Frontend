@@ -5,7 +5,7 @@ export const Fixed = styled.div`
   position: sticky;
   top: 0;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 40px 30px 20px;
   background-color: #f4f4f4;
   border: 1px solid #e8e8e8;
@@ -14,8 +14,16 @@ export const Fixed = styled.div`
   z-index: 10;
 `;
 
-export const Flex = styled.div`
+export const Layout = styled.div`
+  width: 50%;
   display: flex;
+  justify-content: space-between;
+`;
+
+export const Flex = styled.div`
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
   gap: 30px;
 `;
 
@@ -34,15 +42,10 @@ export const LeftChevron = styled.div`
   cursor: pointer;
 `;
 
-export const SVG = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-`;
-
-export const TitleInput = styled.input`
-  width: 250px;
+export const Tag = styled.div`
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #eeedff;
+  color: #5549ff;
 `;
