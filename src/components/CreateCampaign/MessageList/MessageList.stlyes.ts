@@ -14,17 +14,17 @@ export const MessageContainer = styled.div`
   position: sticky;
   position: -webkit-sticky;
   z-index: 10;
-  top: 200px;
+  top: 150px;
   height: 500px;
   width: 100%;
   max-width: 350px;
 `;
 
-export const MessageHeader = styled.div`
+export const MessageMember = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
   font-weight: 700;
 `;
 
@@ -33,4 +33,28 @@ export const MessageBody = styled.div`
   height: 432px;
   background: #f4f4f4;
   border-radius: 30px;
+  margin-bottom: 15px;
+`;
+
+export const MessageHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const MessageFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+`;
+
+export const EditIcon = styled.div`
+  cursor: pointer;
+`;
+
+export const EditText = styled.textarea`
+  white-space: pre;
+  width: 100%;
+  height: 70%;
+  resize: none;
+  border-radius: 10px;
 `;
