@@ -50,6 +50,10 @@ export const Desc = styled.div`
   }
 `;
 
+export const Red = styled.span`
+  color: ${({ theme }) => theme.colors.red};
+`;
+
 export const RadioInput = styled.div`
   font-size: 20px;
   display: flex;

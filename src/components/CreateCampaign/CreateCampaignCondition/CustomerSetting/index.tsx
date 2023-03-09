@@ -63,7 +63,11 @@ const CustomerSetting = () => {
         )}
         <S.Desc>
           {SVG.exclamation}
-          <span>전화번호가 식별된 0명을 대상으로 캠페인 발송을 시도합니다.</span>
+          <span>
+            전화번호가 식별된
+            <S.Red> {condition.customerCnt}</S.Red>
+            명을 대상으로 캠페인 발송을 시도합니다.
+          </span>
         </S.Desc>
         <S.Desc>
           {SVG.exclamation}
