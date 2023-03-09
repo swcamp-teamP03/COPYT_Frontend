@@ -33,11 +33,17 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
   };
 
   const maxByte = condition.messageType === 'SMS' ? 140 : 20000;
-  const isOver = message.length * 2 > maxByte;
+  const isOver = message.length * 2 + 56 > maxByte;
 
   useEffect(() => {
     setMessage(initMessage);
   }, [initMessage]);
+  useEffect(() => {
+    setCondition((prev) => ({
+      ...prev,
+      messageOver: isOver,
+    }));
+  }, [isOver]);
 
   return (
     <S.MessageLayout>
@@ -59,7 +65,7 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
           <div>[무료수신거부]</div>
           <span>copyt.li/ABCDEFGH</span>
           <S.Byte isOver={isOver}>
-            <span>{message.length * 2}</span>/{maxByte}
+            <span>{message.length * 2 + 56}</span>/{maxByte}
           </S.Byte>
         </S.MessageFooter>
       </S.MessageContainer>

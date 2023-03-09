@@ -8,10 +8,6 @@ import { campaignConditionState } from '../../../store/campaignConditionState';
 import Button from '../../common/Button';
 import * as S from './Header.styles';
 
-interface HeaderProps {
-  editMode: boolean;
-}
-
 const Header = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
   const [title, setTitle] = useState('새 캠페인' + `${dayjs().format('YYMMDD')}`);
@@ -59,7 +55,7 @@ const Header = () => {
         </S.Flex>
       </S.Flex>
       <div>
-        <Button title="캠페인 실행" buttonColor="black" buttonSize="buttonM" />
+        <Button title="캠페인 실행" buttonColor="black" buttonSize="buttonM" isDisabled={condition.messageOver} />
       </div>
     </S.Fixed>
   );

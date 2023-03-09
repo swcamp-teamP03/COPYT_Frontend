@@ -15,6 +15,7 @@ export interface CampignConditionInit {
   sendURL: string;
   customerCnt: number;
   campaignName: string;
+  messageOver: boolean;
 }
 
 export const campaignConditionState = atom<CampignConditionInit>({
@@ -25,7 +26,7 @@ export const campaignConditionState = atom<CampignConditionInit>({
     copyGroupID: 0,
     copyGroupName: '',
     abTest: true,
-    messageType: 'SMS',
+    messageType: 'LMS',
     sentType: 'COMM',
     sentCycle: '일회성 발송',
     sendingDate: '',
@@ -34,5 +35,6 @@ export const campaignConditionState = atom<CampignConditionInit>({
     messageB: '',
     customerCnt: 0,
     campaignName: '',
+    messageOver: false,
   },
 });
