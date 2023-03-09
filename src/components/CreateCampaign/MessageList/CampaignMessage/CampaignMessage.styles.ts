@@ -43,10 +43,18 @@ export const MessageFooter = styled.div`
     text-decoration: underline;
   }
 `;
-export const Byte = styled.div`
+interface ByteProps {
+  isOver: boolean;
+}
+
+export const Byte = styled.div<ByteProps>`
   display: flex;
   justify-content: flex-end;
   color: ${({ theme }) => theme.colors.gray20};
+  span {
+    color: ${(props) => (props.isOver ? props.theme.colors.red : props.theme.colors.gray20)};
+    text-decoration: none;
+  }
 `;
 
 export const EditButtons = styled.div`

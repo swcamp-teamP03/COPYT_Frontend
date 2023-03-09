@@ -17,6 +17,7 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
   const [editMode, setEditMode] = useState(false);
 
   const handleEditMode = () => {
+    setMessage(initMessage);
     setEditMode((prev) => !prev);
   };
   const onChangeMessage = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -32,6 +33,7 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
   };
 
   const maxByte = condition.messageType === 'SMS' ? 140 : 20000;
+  const isOver = message.length * 2 > maxByte;
 
   useEffect(() => {
     setMessage(initMessage);
@@ -56,15 +58,15 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
           <span>copyt.bz/LABzD</span>
           <div>[무료수신거부]</div>
           <span>copyt.li/ABCDEFGH</span>
-          <S.Byte>
-            {message.length * 2} /{maxByte}
+          <S.Byte isOver={isOver}>
+            <span>{message.length * 2}</span>/{maxByte}
           </S.Byte>
         </S.MessageFooter>
       </S.MessageContainer>
       {editMode && (
         <S.EditButtons>
           <Button title="취소" buttonColor="white" buttonSize="buttonS" onButtonClick={handleEditMode} />
-          <Button title="저장" buttonColor="black" buttonSize="buttonS" onButtonClick={() => onSaveMessage(type)} />
+          <Button title="저장" buttonColor="black" buttonSize="buttonS" onButtonClick={() => onSaveMessage(type)} isDisabled={isOver} />
         </S.EditButtons>
       )}
     </S.MessageLayout>
