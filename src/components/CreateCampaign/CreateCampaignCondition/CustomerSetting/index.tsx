@@ -25,6 +25,13 @@ const CustomerSetting = () => {
   const handleCollapsed = () => {
     setOpen((prev) => !prev);
   };
+  const deleteCustmomerGroup = () => {
+    setCondition((prev) => ({
+      ...prev,
+      customerGroupID: 0,
+      customerGroupName: '',
+    }));
+  };
 
   const onChangeABTest = (event: React.ChangeEvent<HTMLInputElement>) => {
     const result = event.target.value === 'yes' ? true : false;
@@ -44,7 +51,16 @@ const CustomerSetting = () => {
           </S.Title>
           <Button buttonColor="white" buttonSize="buttonM" title="고객 그룹 불러오기" onButtonClick={handleCustomerGroupModal} />
         </S.FlexBox>
-        <S.GroupBox>아직 등록된 고객 그룹이 없습니다.</S.GroupBox>
+        {condition.customerGroupName ? (
+          <S.GroupBox>
+            <span>{condition.customerGroupName}</span>
+            <div onClick={deleteCustmomerGroup}>{SVG.closeButton}</div>
+          </S.GroupBox>
+        ) : (
+          <S.NonGroupBox>
+            <span>아직 등록된 고객 그룹이 없습니다.</span>
+          </S.NonGroupBox>
+        )}
         <S.Desc>
           {SVG.exclamation}
           <span>전화번호가 식별된 0명을 대상으로 캠페인 발송을 시도합니다.</span>

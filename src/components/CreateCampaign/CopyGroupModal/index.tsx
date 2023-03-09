@@ -25,7 +25,7 @@ const CopyGroupModal = ({ isOpen, handler }: CopyGroupModalProps) => {
       <Modal.Header onClick={handler}>카피 불러오기</Modal.Header>
       <Modal.Body>
         <S.GridLayout>
-          {!condition.group_name ? <CopyGroupListForModal /> : <CopyListForModal setSelecetedMessage={setSelecetedMessage} selectedMesssage={selectedMesssage} />}
+          {!condition.copyGroupName ? <CopyGroupListForModal /> : <CopyListForModal setSelecetedMessage={setSelecetedMessage} selectedMesssage={selectedMesssage} />}
           <MessageListForModal selectedMesssage={selectedMesssage} setSelecetedMessage={setSelecetedMessage} modalHandler={handler} />
         </S.GridLayout>
       </Modal.Body>

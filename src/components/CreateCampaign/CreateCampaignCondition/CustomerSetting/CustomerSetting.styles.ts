@@ -18,6 +18,21 @@ export const Title = styled.div`
 export const GroupBox = styled.div`
   margin: 30px 0;
   display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: ${({ theme }) => theme.colors.gray40};
+  color: #606060;
+  div {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+  }
+`;
+
+export const NonGroupBox = styled.div`
+  margin: 30px 0;
+  display: flex;
   justify-content: center;
   border: 1px dotted #dadada;
   border-radius: 10px;

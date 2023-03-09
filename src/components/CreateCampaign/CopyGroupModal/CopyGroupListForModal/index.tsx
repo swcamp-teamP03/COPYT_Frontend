@@ -21,7 +21,7 @@ const CopyGroupListForModal = () => {
     setCondition((prev) => ({
       ...prev,
       copyGroupID: id,
-      group_name: groupList?.groupList.filter((list) => list.id === id)[0].copyName ?? '',
+      copyGroupName: groupList?.groupList.filter((list) => list.id === id)[0].copyName ?? '',
     }));
   };
 

@@ -31,7 +31,7 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
   const goBack = () => {
     setCondition((prev) => ({
       ...prev,
-      group_name: '',
+      copyGroupName: '',
       copyGroupID: 0,
     }));
     setSelecetedMessage([]);
