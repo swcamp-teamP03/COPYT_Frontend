@@ -2,10 +2,17 @@ import styled from 'styled-components';
 
 export const HeaderLayout = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 0px 0px 10px;
-  gap: 5px;
+  justify-content: flex-end;
+  padding: 10px 0px 0px 10px;
+  gap: 10px;
+`;
+
+export const PlusButtonLayout = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0px 0px 10px;
+  gap: 10px;
+  margin: 2rem;
 `;
 
 export const TaxtContainer = styled.div`
@@ -15,29 +22,32 @@ export const TaxtContainer = styled.div`
   margin: 1rem 0 1.5rem 1rem;
   flex-direction: column;
 `;
+
 export const TaxtInnerContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 50%;
   gap: 10px;
+  margin: 1rem 0 1.5rem 1rem;
+  flex-direction: column;
 `;
 
 export const ClientProperty = styled.div`
   background-color: ${({ theme }) => theme.colors.gray0};
   color: ${({ theme }) => theme.colors.gray70};
-  padding: 10px;
-  margin: 2px;
+  padding: 10px 30px 10px 10px;
   height: 20px;
   border-radius: 10px;
   border: solid 1px;
   border-color: ${({ theme }) => theme.colors.gray10};
+  justify-content: space-between;
 `;
 
 export const ClientModifyProperty = styled.input`
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
-  padding: 10px;
-  margin: 2px;
+  padding: 12px;
   height: 20px;
+  width: 98%;
   border-radius: 10px;
   border: solid 1px;
   border-color: ${({ theme }) => theme.colors.gray10};

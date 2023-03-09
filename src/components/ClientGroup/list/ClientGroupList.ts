@@ -105,3 +105,9 @@ export const DropDownContainer = styled.div`
     border-top: 1px solid #dfdfdf;
   }
 `;
+
+export const NoneSvg = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px 0px 0px;
+`;

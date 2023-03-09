@@ -44,7 +44,7 @@ const ClientGroupList = () => {
         고객 그룹 리스트
       </PageHeader>
 
-      <S.HeaderLayout>
+      {/* <S.HeaderLayout>
         <S.HeaderSection>
           {CLIENT_SVG.serch}
           <input
@@ -62,7 +62,7 @@ const ClientGroupList = () => {
             <input type={'date'} style={{ border: 'none' }} /> ~ <input type={'date'} style={{ border: 'none' }} />
           </div>
         </S.HeaderSection>
-      </S.HeaderLayout>
+      </S.HeaderLayout> */}
       <hr
         style={{
           color: 'gray',
@@ -98,7 +98,7 @@ const ClientGroupList = () => {
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      {groupList ? <ClientGroup clientList={groupList.groupList} /> : CLIENT_SVG.noneList}
+      {groupList ? <ClientGroup clientList={groupList.groupList} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setGroupNum} pageNum={groupNum} />}
     </>
   );

@@ -2,6 +2,8 @@ import React, { useState, useCallback, useRef } from 'react';
 import { CLIENT_SVG } from '../../assets';
 import * as S from './ClientGroupDetail';
 import Button from '../common/Button';
+import DeleteFileModal from '../ClientCreate/FileModal';
+import ReactExcelDownload from '../common/XLSX';
 
 interface ClientGroupDetailProps {
   groupName: string;
@@ -14,32 +16,30 @@ interface ClientGroupDetailProps {
   fileOrgName: string;
 }
 
-const LIST_COUNT = [10, 30, 50];
-
 const ClientGroupDetail = () => {
-  // : React.FC<ClientGroupDetailProps>
-
-  // ({ groupName, extractStart, extractEnd, property, fileOrgName })
-
-  const [showCountDropDown, setShowCountDropDown] = useState(false);
-  const [listCount, setListCount] = useState(10);
   const [modify, setModify] = useState(false);
-
-  const handleCountDropDown = () => {
-    setShowCountDropDown((prev) => !prev);
-  };
+  const [fileName, setFileName] = useState('');
+  const [properties, setProperties] = useState(['속성 1', '속성 2']);
+  const [propertyCount, setPropertyCount] = useState(2);
+  const [showModal, setShowModal] = useState(false);
 
   const ModifyHandler = () => {
     setModify(!modify);
   };
 
+  const addProperty = () => {
+    setPropertyCount((prevCount) => prevCount + 1);
+    setProperties((prevProperties) => [...prevProperties, `속성 ${propertyCount + 1}`]);
+  };
+
+  //파일 업로드
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const onUploadFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
       return;
     }
-    console.log(e.target.files[0].name);
+    setFileName(e.target.files[0].name);
   }, []);
 
   const onUploadFileButtonClick = useCallback(() => {
@@ -48,6 +48,19 @@ const ClientGroupDetail = () => {
     }
     inputRef.current.click();
   }, []);
+
+  //파일 삭제
+  const deleteFile = () => {
+    if (fileName && inputRef.current) {
+      inputRef.current.value = '';
+      setFileName('');
+      setShowModal(false); // 파일 삭제 후 모달을 닫기
+    }
+  };
+
+  const handleDeleteModal = () => {
+    setShowModal(true); // 모달을 띄웁니다.
+  };
 
   return (
     <>
@@ -80,45 +93,60 @@ const ClientGroupDetail = () => {
           {CLIENT_SVG.highlight} &nbsp; &nbsp;고객 DB의 데이터 속성(목표)을 입력해주세요. 입력한 속성은 고객 DB에 영향을 미치지 않으며, 데이터 정보 확인용으로만 활용됩니다.
         </S.PropertyHighlight>
         {modify ? (
+          //수정되는 부분
           <>
-            <div>속성 1 </div>
-            <S.ClientModifyProperty type="text" />
-            <div>속성 2 </div>
-            <S.ClientModifyProperty type="text" />
-
-            <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" isDisabled={false}></Button>
+            <>
+              {properties.map((property, index) => (
+                <div key={index}>
+                  <div> {property}</div>
+                  <S.ClientModifyProperty key={`${index}-prop`} type="text" />
+                </div>
+              ))}
+              <S.PlusButtonLayout>
+                <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" onButtonClick={addProperty}></Button>
+              </S.PlusButtonLayout>
+            </>
 
             <>
-              <S.HeaderLayout>
-                <h2>고객 DB 업로드</h2>
-                <S.HeaderLayout>
-                  <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" isDisabled={false}></Button>
-                  <Button title="파일 재 업로드" buttonColor="black" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
-                </S.HeaderLayout>
-              </S.HeaderLayout>
-              <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <input type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} />
+              <h2>고객 DB 업로드</h2>
+              <S.PlusButtonLayout>
+                <ReactExcelDownload />
+                <label>
+                  <Button title="파일 재업로드" buttonColor="black" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
+                </label>
+              </S.PlusButtonLayout>
+
+              <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+                <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+                {fileName}
+                <div onClick={handleDeleteModal}>x</div>
+                {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={handleDeleteModal} />}
               </S.ClientProperty>
             </>
           </>
         ) : (
+          //수정 안되는 부분
           <>
             <div>속성 1 </div>
-            <S.ClientProperty>230202 이후 가입한 사용자 </S.ClientProperty>
+            <S.ClientProperty>propertyValue :230202 이후 가입한 사용자 </S.ClientProperty>
             <div>속성 2 </div>
-            <S.ClientProperty> </S.ClientProperty>
+            <S.ClientProperty>propertyValue :230202 이후 가입한 사용자 </S.ClientProperty>
 
-            <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>
-            <S.HeaderLayout>
-              <h2>고객 DB 업로드</h2>
-              <S.HeaderLayout>
-                <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" isDisabled={true}></Button>
-                <Button title="파일 재 업로드" buttonColor="black" borderRadius="10px" isDisabled={true}></Button>
-              </S.HeaderLayout>
-            </S.HeaderLayout>
+            <S.PlusButtonLayout>
+              <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>
+            </S.PlusButtonLayout>
 
-            <S.ClientProperty style={{ height: '60px', border: 'solid 2px', borderColor: '#D3D3D3', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              230225고객모수SQL.xls{' '}
+            <h2>고객 DB 업로드</h2>
+            <S.PlusButtonLayout>
+              <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" isDisabled={true}></Button>
+              <Button title="파일 재 업로드" buttonColor="black" borderRadius="10px" isDisabled={true}></Button>
+            </S.PlusButtonLayout>
+
+            <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+              <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+              {fileName}
+              <div onClick={handleDeleteModal}>x</div>
+              {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={deleteFile} />}
             </S.ClientProperty>
           </>
         )}
