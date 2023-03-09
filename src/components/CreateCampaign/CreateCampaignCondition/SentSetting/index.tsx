@@ -8,10 +8,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const SENT_CYCLE = [{ title: '일회성 발송', desc: '지정된 시간에 일회성으로 발송합니다.' }];
 
+const today = new Date();
+const tommrrow = new Date(today.setDate(today.getDate() + 1));
 const SentSetting = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
   const [open, setOpen] = useState(true);
-  const [startDate, setStartDate] = useState(new Date(1678249833931));
+  const [startDate, setStartDate] = useState(tommrrow);
 
   const handleCollapsed = () => {
     setOpen((prev) => !prev);
@@ -50,6 +52,7 @@ const SentSetting = () => {
         <S.TimeWrapper>
           <S.SDatePicker
             selected={startDate}
+            minDate={startDate}
             onChange={(date: Date) => setStartDate(date)}
             showTimeSelect
             dateFormat="yyyy-MM-dd h:mm aa"
