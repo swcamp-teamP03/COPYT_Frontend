@@ -20,7 +20,7 @@ export const ModalFrame = styled.div<Partial<ModalFrameProps>>`
   height: ${(props) => props.height};
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   right: 0;
   left: 0;
   top: 0;
@@ -39,12 +39,15 @@ export const ModalHeader = styled.div`
     font-size: 24px;
   }
   div {
+    width: 24px;
     cursor: pointer;
   }
 `;
 
 export const ModalBody = styled.div`
   white-space: pre-wrap;
+  height: 100%;
+  overflow: auto;
 `;
 
 export const ModalFooter = styled.div`

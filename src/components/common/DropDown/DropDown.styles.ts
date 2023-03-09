@@ -7,10 +7,11 @@ export const Container = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  height: fit-content;
   top: -1px;
   left: -1px;
   border: 1px solid ${({ theme }) => theme.colors.gray30};
-  z-index: 10;
+  z-index: 100;
 `;
 
 interface PaddingProps {

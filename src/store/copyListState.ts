@@ -1,5 +1,5 @@
 import { CopyListType } from './../types/copy.d';
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 
 type CopyListState = CopyListType[];
 

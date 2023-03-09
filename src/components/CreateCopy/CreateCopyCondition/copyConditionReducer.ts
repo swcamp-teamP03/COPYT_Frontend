@@ -1,10 +1,10 @@
-export interface ConditionAction {
+export interface CopyConditionAction {
   type: 'CHANGE_INPUT' | 'CHANGE_TYPE' | 'CHANGE_LENGTH' | 'CHANGE_COUNT' | 'ADD_KEYWORD' | 'REMOVE_KEYWORD';
   key: string;
   value: string | number;
 }
 
-export interface ConditionInit {
+export interface CopyConditionInit {
   copyGroupName: string;
   brandName: string;
   sector: string;
@@ -14,7 +14,7 @@ export interface ConditionInit {
   copyLength: number;
   type: string;
 }
-export const conditionReducer: React.Reducer<ConditionInit, ConditionAction> = (state, action) => {
+export const copyConditionReducer: React.Reducer<CopyConditionInit, CopyConditionAction> = (state, action) => {
   switch (action.type) {
     case 'CHANGE_INPUT':
       return { ...state, [action.key]: action.value };
@@ -35,7 +35,7 @@ export const conditionReducer: React.Reducer<ConditionInit, ConditionAction> = (
   }
 };
 
-export const conditionInit = {
+export const copyConditionInit = {
   copyGroupName: '',
   brandName: '',
   sector: '',

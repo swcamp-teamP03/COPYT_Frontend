@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { SVG } from '../../../assets';
 import * as S from './Modal.styles';
 
@@ -14,6 +14,18 @@ export interface ModalFrameProps extends PropsWithChild {
 }
 
 const ModalFrame = ({ isOpen, height = '180px', width = '520px', onClick, children }: ModalFrameProps) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.cssText = `
+        position: fixed; 
+        overflow-y: hidden;
+        height:100%;
+        width: 100%;`;
+    } else {
+      document.body.style.cssText = '';
+    }
+  }, [isOpen]);
+
   return (
     <>
       <S.Overlay isOpen={isOpen} onClick={onClick} />
@@ -30,10 +42,13 @@ export interface ModalHeaderProps extends PropsWithChild {
 
 const ModalHeader = ({ children, onClick }: ModalHeaderProps) => {
   return (
-    <S.ModalHeader>
-      <h2>{children}</h2>
-      <div onClick={onClick}>{SVG.closeButton}</div>
-    </S.ModalHeader>
+    <>
+      <S.ModalHeader>
+        <h2>{children}</h2>
+        <div onClick={onClick}>{SVG.closeButton}</div>
+      </S.ModalHeader>
+      <hr />
+    </>
   );
 };
 
