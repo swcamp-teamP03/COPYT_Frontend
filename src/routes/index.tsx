@@ -17,8 +17,8 @@ const Router = () => {
         <Route path="/clients" element={<Layout router={<ClientGroups />} />} />
         <Route path="/copies/create" element={<CreateCopy />} />
         <Route path="/copies/:id/*" element={<DetailCopy />} />
-        <Route path="/campaign/create" element={<CreateCampaign />} />
-        <Route path="/campaign/:campaignID" element={<DetailCampaign />} />
+        <Route path="/campaigns/create" element={<CreateCampaign />} />
+        <Route path="/campaigns/:campaignID" element={<DetailCampaign />} />
         <Route path="auth/*" element={<AuthRouter />} />
       </Routes>
     </BrowserRouter>
