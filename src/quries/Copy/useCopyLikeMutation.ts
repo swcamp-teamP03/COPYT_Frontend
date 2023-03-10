@@ -7,7 +7,6 @@ const useCopyLikeMutation = () => {
     onMutate: async (like) => {
       await queryClient.cancelQueries({ queryKey: ['copyGroups'] });
       const previous = queryClient.getQueriesData(['copyGroups']);
-      console.log(previous);
     },
   });
 };

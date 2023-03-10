@@ -47,6 +47,7 @@ export const ModalHeader = styled.div`
 export const ModalBody = styled.div`
   white-space: pre-wrap;
   height: 100%;
+  width: 100%;
   overflow: auto;
 `;
 
