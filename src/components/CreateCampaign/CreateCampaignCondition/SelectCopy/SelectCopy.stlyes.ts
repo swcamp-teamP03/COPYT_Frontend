@@ -31,3 +31,20 @@ export const URLInput = styled.input`
   border-radius: 12px;
   width: 100%;
 `;
+
+export const URLContaienr = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f0f0f0;
+  border-radius: 10px;
+  padding: 0 16px;
+  max-width: 507px;
+  height: 50px;
+`;
+
+export const CloseButton = styled.div`
+  width: 12px;
+  cursor: pointer;
+`;
