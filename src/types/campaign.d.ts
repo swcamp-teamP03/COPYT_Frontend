@@ -23,6 +23,10 @@ export interface DetailCampaignResult {
   customerProperties: { propertyValue: string }[];
   copyGroupName: string;
   copyList: { copyType: 'A' | 'B'; content: string }[];
+  copyWriteAB: {
+    copyType: 'A' | 'B';
+    content: string;
+  }[];
   messageA: {
     messageACnt: number;
     messageSuccessCnt: number;

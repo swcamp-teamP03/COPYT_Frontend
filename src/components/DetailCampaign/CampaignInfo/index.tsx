@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { SVG } from '../../../assets';
 import useDetailCampaignQuery from '../../../quries/Campaign/useDetailCampaignQuery';
-import CollapseContainer from '../../common/CollapseContainer';
+
 import * as S from './CampaignInfo.styles';
 
 const CampaignInfo = () => {
-  const [open, setOpen] = useState(true);
   const { campaignID } = useParams();
   const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
 
-  const handleCollapsed = () => {
-    setOpen((prev) => !prev);
-  };
-
   return (
-    <CollapseContainer title="캠페인 정보" open={open} handleCollapsed={handleCollapsed}>
+    <>
       <S.EventText>
         카피티 베타버전에 한여 차감 크딧 없이&nbsp; <span>무료</span>로 전송됩니다.
       </S.EventText>
@@ -49,7 +44,7 @@ const CampaignInfo = () => {
           <span>{detailCampaign?.messageType}</span>
         </div>
       </S.Flex>
-    </CollapseContainer>
+    </>
   );
 };
 

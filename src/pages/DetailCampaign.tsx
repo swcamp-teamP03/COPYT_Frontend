@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import useDetailCampaignQuery from '../quries/Campaign/useDetailCampaignQuery';
 import { useParams } from 'react-router-dom';
 import CustomerGroupInfo from '../components/DetailCampaign/CustomerGroupInfo';
+import SendMessage from '../components/DetailCampaign/SendMessage';
+import WithCollapse from '../components/common/WithCollapse';
 
 const DetailCampaign = () => {
   const { campaignID } = useParams();
@@ -18,8 +20,15 @@ const DetailCampaign = () => {
     <Suspense fallback={<div>...isLoading</div>}>
       <Header />
       <Layout>
-        <CampaignInfo />
-        <CustomerGroupInfo />
+        <WithCollapse title="캠페인 정보">
+          <CampaignInfo />
+        </WithCollapse>
+        <WithCollapse title="고객 그룹 정보">
+          <CustomerGroupInfo />
+        </WithCollapse>
+        <WithCollapse title="보낸 메시지">
+          <SendMessage />
+        </WithCollapse>
       </Layout>
     </Suspense>
   );

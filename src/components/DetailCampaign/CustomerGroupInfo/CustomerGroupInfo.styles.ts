@@ -17,7 +17,7 @@ export const InfoTitle = styled.div`
   font-size: 24px;
   color: #555555;
   white-space: nowrap;
-  min-width: 110px;
+  min-width: 150px;
 `;
 
 export const InfoDesc = styled.span`
