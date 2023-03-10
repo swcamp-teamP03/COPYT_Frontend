@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { CHEVRON } from '../../../assets/Chevron';
 import { POST_SVG } from '../../../assets/Post';
+import useCreateCampaignMutation from '../../../quries/Campaign/useCreateCampaignMutation';
 import { campaignConditionState } from '../../../store/campaignConditionState';
 import Button from '../../common/Button';
 import * as S from './Header.styles';
@@ -14,6 +15,7 @@ const Header = () => {
   const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();
 
+  const { mutate: createMutate } = useCreateCampaignMutation();
   const handleEditMode = () => {
     setEditMode((prev) => !prev);
   };
@@ -30,11 +32,18 @@ const Header = () => {
     handleEditMode();
   };
 
+  const onSubmit = () => {
+    createMutate(condition);
+  };
+
   const goBack = () => {
     navigate(-1);
   };
 
-  const titleText = condition.campaignName ? condition.campaignName : title;
+  const isDisabledSumbit = Object.values(condition).includes('') || condition.messageOver;
+  console.log(isDisabledSumbit);
+
+  console.log(condition);
 
   return (
     <S.Fixed>
@@ -43,7 +52,7 @@ const Header = () => {
         <S.Flex>
           {!editMode ? (
             <>
-              <S.Title>{titleText}</S.Title>
+              <S.Title>{condition.campaignName}</S.Title>
               <S.SVG onClick={handleEditMode}>{POST_SVG.edit}</S.SVG>
             </>
           ) : (
@@ -55,7 +64,7 @@ const Header = () => {
         </S.Flex>
       </S.Flex>
       <div>
-        <Button title="캠페인 실행" buttonColor="black" buttonSize="buttonM" isDisabled={condition.messageOver} />
+        <Button title="캠페인 실행" buttonColor="black" buttonSize="buttonM" isDisabled={isDisabledSumbit} onButtonClick={onSubmit} />
       </div>
     </S.Fixed>
   );

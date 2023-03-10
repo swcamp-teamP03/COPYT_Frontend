@@ -91,4 +91,17 @@ export const detailCampaignHandler = [
       }),
     );
   }),
+
+  rest.post(`${BASE_URL}/campaign`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        success: true,
+        data: {
+          campaignId: 1,
+          result: 'success',
+        },
+        error: null,
+      }),
+    );
+  }),
 ];

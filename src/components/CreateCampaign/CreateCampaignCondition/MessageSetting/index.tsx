@@ -17,11 +17,7 @@ const SENT_TYPE = [
 
 const MessageSetting = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
-  const [open, setOpen] = useState(true);
 
-  const handleCollapsed = () => {
-    setOpen((prev) => !prev);
-  };
   const onChangeMessageType = (event: React.ChangeEvent<HTMLInputElement>) => {
     const result = event.target.value === 'SMS' ? 'SMS' : 'LMS';
     setCondition((prev) => ({
@@ -38,7 +34,7 @@ const MessageSetting = () => {
   };
 
   return (
-    <CollapseContainer open={open} handleCollapsed={handleCollapsed} numbering={2} title="메시지 설정">
+    <>
       <S.Gap>
         <div>
           <S.Title>
@@ -71,7 +67,7 @@ const MessageSetting = () => {
           </S.Desc>
         </div>
       </S.Gap>
-    </CollapseContainer>
+    </>
   );
 };
 

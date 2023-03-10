@@ -43,3 +43,8 @@ export interface DetailCampaignResult {
 export interface CommentResult {
   comment: string;
 }
+
+export interface CreateCampaignResult {
+  campaignId: number;
+  result: string;
+}

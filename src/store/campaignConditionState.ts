@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { atom } from 'recoil';
 
 export interface CampignConditionInit {
@@ -18,6 +19,9 @@ export interface CampignConditionInit {
   messageOver: boolean;
 }
 
+const today = new Date(new Date().setHours(8, 0));
+const tommrrow = new Date(today.setDate(today.getDate() + 1));
+
 export const campaignConditionState = atom<CampignConditionInit>({
   key: 'campaignConditionState',
   default: {
@@ -29,12 +33,12 @@ export const campaignConditionState = atom<CampignConditionInit>({
     messageType: 'LMS',
     sentType: 'COMM',
     sentCycle: '일회성 발송',
-    sendingDate: '',
+    sendingDate: tommrrow.toString(),
     sendURL: '',
     messageA: '',
     messageB: '',
     customerCnt: 0,
-    campaignName: '',
+    campaignName: '새 캠페인' + `${dayjs().format('YYMMDD')}`,
     messageOver: false,
   },
 });

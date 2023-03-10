@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const SENT_CYCLE = [{ title: '일회성 발송', desc: '지정된 시간에 일회성으로 발송합니다.' }];
 
-const today = new Date();
+const today = new Date(new Date().setHours(8, 0));
 const tommrrow = new Date(today.setDate(today.getDate() + 1));
 const SentSetting = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
@@ -30,12 +30,12 @@ const SentSetting = () => {
     const time = dayjs(startDate).format('YYYY-MM-DDThh:mm:ss');
     setCondition((prev) => ({
       ...prev,
-      sentTime: time,
+      sendingDate: time,
     }));
   }, [startDate]);
 
   return (
-    <CollapseContainer open={open} handleCollapsed={handleCollapsed} numbering={3} title="발송 설정">
+    <>
       <S.Title>
         발송 타이밍 설정
         <span>*</span>
@@ -62,7 +62,7 @@ const SentSetting = () => {
           ></S.SDatePicker>
         </S.TimeWrapper>
       </S.FlexBox>
-    </CollapseContainer>
+    </>
   );
 };
 

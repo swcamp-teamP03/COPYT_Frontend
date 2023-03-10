@@ -9,8 +9,8 @@ import * as S from './MessageList.stlyes';
 const MessageList = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
 
-  const memberA = condition.abTest ? Math.floor(condition.customerCnt / 2) : condition.customerCnt;
-  const memberB = Math.ceil(condition.customerCnt / 2);
+  const memberA = condition.abTest ? Math.ceil(condition.customerCnt / 2) : condition.customerCnt;
+  const memberB = Math.floor(condition.customerCnt / 2);
 
   return (
     <>

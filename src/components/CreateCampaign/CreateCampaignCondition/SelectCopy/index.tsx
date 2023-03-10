@@ -18,6 +18,20 @@ const SelectCopy = () => {
     setShowCopyGroupModal((prev) => !prev);
   };
 
+  const onSubmitURL = () => {
+    setCondition((prev) => ({
+      ...prev,
+      sendURL: URL,
+    }));
+  };
+
+  const onDeleteURL = () => {
+    setCondition((prev) => ({
+      ...prev,
+      sendURL: '',
+    }));
+  };
+
   const handleURLInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setURL(event.target.value);
   };
@@ -37,8 +51,15 @@ const SelectCopy = () => {
         <span>*</span>
       </S.Title>
       <S.FlexBox>
-        <S.URLInput placeholder="링크를 입력해 주세요." onChange={handleURLInput} value={URL} name="URL" />
-        <Button title="단축 URL 생성" buttonColor="black" buttonSize="buttonM" />
+        {condition.sendURL ? (
+          <S.URLContaienr>
+            <span>{condition.sendURL}</span>
+            <S.CloseButton onClick={onDeleteURL}>{SVG.closeButton}</S.CloseButton>
+          </S.URLContaienr>
+        ) : (
+          <S.URLInput placeholder="링크를 입력해 주세요." onChange={handleURLInput} value={URL} name="URL" />
+        )}
+        <Button title="단축 URL 생성" buttonColor="black" buttonSize="buttonM" onButtonClick={onSubmitURL} />
       </S.FlexBox>
       {EXCLAMATION.map((text, idx) => (
         <S.Desc key={idx}>
