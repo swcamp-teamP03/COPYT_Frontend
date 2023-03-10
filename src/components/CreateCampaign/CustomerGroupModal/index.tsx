@@ -8,7 +8,7 @@ import { campaignConditionState } from '../../../store/campaignConditionState';
 import Button from '../../common/Button';
 import Modal from '../../common/Modal';
 import Pagination from '../../common/Pagination';
-import ListCount from '../../CopyGroups/ListCount';
+import ListCount from '../../common/ListCount';
 
 interface CustomerGroupModalProps {
   isOpen: boolean;
@@ -71,7 +71,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
         <ListContainer>
           {groupList?.groupList.map((list) => (
             <GroupList key={list.copyId} isSelected={isSelected(list.copyId)} onClick={() => onClickGroup(list.copyId)}>
-              <span onClick={() => handleLiked(list.copyId)}>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span>
+              <span onClick={() => handleLiked(list.copyId)}>{list.isPinned ? FAVORITES.checked : FAVORITES.unChecked}</span>
               <span>{list.createDate}</span>
               <span>{list.copyName}</span>
             </GroupList>

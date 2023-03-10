@@ -7,7 +7,7 @@ export interface PostCopyList {
 export interface CopyGroup {
   copyId: number;
   createDate: string;
-  like: boolean;
+  isPinned: boolean;
   copyName: string;
   tag: string;
 }
