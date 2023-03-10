@@ -4,9 +4,10 @@ import CollapseContainer from '../CollapseContainer';
 interface CollapseHOCProps {
   title: string;
   children: ReactNode;
+  numbering?: number;
 }
 
-const WithCollapse = ({ title, children }: CollapseHOCProps) => {
+const WithCollapse = ({ title, children, numbering }: CollapseHOCProps) => {
   const [open, setOpen] = useState(true);
 
   const handleCollapsed = () => {
@@ -15,7 +16,7 @@ const WithCollapse = ({ title, children }: CollapseHOCProps) => {
 
   return (
     <>
-      <CollapseContainer title={title} open={open} handleCollapsed={handleCollapsed}>
+      <CollapseContainer title={title} open={open} handleCollapsed={handleCollapsed} numbering={numbering}>
         {children}
       </CollapseContainer>
     </>

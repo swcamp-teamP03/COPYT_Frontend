@@ -35,7 +35,7 @@ const SentSetting = () => {
   }, [startDate]);
 
   return (
-    <CollapseContainer open={open} handleCollapsed={handleCollapsed} numbering={3} title="발송 설정">
+    <>
       <S.Title>
         발송 타이밍 설정
         <span>*</span>
@@ -62,7 +62,7 @@ const SentSetting = () => {
           ></S.SDatePicker>
         </S.TimeWrapper>
       </S.FlexBox>
-    </CollapseContainer>
+    </>
   );
 };
 

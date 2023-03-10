@@ -20,11 +20,6 @@ const CustomerSetting = () => {
     setShowCustomerGroupModal((prev) => !prev);
   };
 
-  const [open, setOpen] = useState(true);
-
-  const handleCollapsed = () => {
-    setOpen((prev) => !prev);
-  };
   const deleteCustmomerGroup = () => {
     setCondition((prev) => ({
       ...prev,
@@ -43,57 +38,56 @@ const CustomerSetting = () => {
 
   return (
     <>
-      <CollapseContainer open={open} handleCollapsed={handleCollapsed} numbering={1} title="타겟 고객 설정">
-        <S.FlexBox>
-          <S.Title>
-            고객 그룹 선택
-            <span>*</span>
-          </S.Title>
-          <Button buttonColor="white" buttonSize="buttonM" title="고객 그룹 불러오기" onButtonClick={handleCustomerGroupModal} />
-        </S.FlexBox>
-        {condition.customerGroupName ? (
-          <S.GroupBox>
-            <span>{condition.customerGroupName}</span>
-            <div onClick={deleteCustmomerGroup}>{SVG.closeButton}</div>
-          </S.GroupBox>
-        ) : (
-          <S.NonGroupBox>
-            <span>아직 등록된 고객 그룹이 없습니다.</span>
-          </S.NonGroupBox>
-        )}
-        <S.Desc>
+      <S.FlexBox>
+        <S.Title>
+          고객 그룹 선택
+          <span>*</span>
+        </S.Title>
+        <Button buttonColor="white" buttonSize="buttonM" title="고객 그룹 불러오기" onButtonClick={handleCustomerGroupModal} />
+      </S.FlexBox>
+      {condition.customerGroupName ? (
+        <S.GroupBox>
+          <span>{condition.customerGroupName}</span>
+          <div onClick={deleteCustmomerGroup}>{SVG.closeButton}</div>
+        </S.GroupBox>
+      ) : (
+        <S.NonGroupBox>
+          <span>아직 등록된 고객 그룹이 없습니다.</span>
+        </S.NonGroupBox>
+      )}
+      <S.Desc>
+        {SVG.exclamation}
+        <span>
+          전화번호가 식별된
+          <S.Red> {condition.customerCnt}</S.Red>
+          명을 대상으로 캠페인 발송을 시도합니다.
+        </span>
+      </S.Desc>
+      <S.Desc>
+        {SVG.exclamation}
+        <span>SMS 수신 동의하지 않은 고객에게는 발송되지 않도록 확인해주세요.</span>
+      </S.Desc>
+      <S.FlexBox>
+        <S.Title>
+          A/B 테스트 기능 사용 여부
+          <span>*</span>
+        </S.Title>
+        <S.RadioInput>
+          <input type="radio" name="A/B_test" value="yes" onChange={onChangeABTest} checked={condition.abTest} />
+          <label>사용</label>
+        </S.RadioInput>
+        <S.RadioInput>
+          <input type="radio" name="A/B_test" value="no" onChange={onChangeABTest} checked={!condition.abTest} />
+          <label>사용 안함</label>
+        </S.RadioInput>
+      </S.FlexBox>
+      {WHETER_NOTICE.map((notice, idx) => (
+        <S.Desc key={idx}>
           {SVG.exclamation}
-          <span>
-            전화번호가 식별된
-            <S.Red> {condition.customerCnt}</S.Red>
-            명을 대상으로 캠페인 발송을 시도합니다.
-          </span>
+          <span>{notice}</span>
         </S.Desc>
-        <S.Desc>
-          {SVG.exclamation}
-          <span>SMS 수신 동의하지 않은 고객에게는 발송되지 않도록 확인해주세요.</span>
-        </S.Desc>
-        <S.FlexBox>
-          <S.Title>
-            A/B 테스트 기능 사용 여부
-            <span>*</span>
-          </S.Title>
-          <S.RadioInput>
-            <input type="radio" name="A/B_test" value="yes" onChange={onChangeABTest} checked={condition.abTest} />
-            <label>사용</label>
-          </S.RadioInput>
-          <S.RadioInput>
-            <input type="radio" name="A/B_test" value="no" onChange={onChangeABTest} checked={!condition.abTest} />
-            <label>사용 안함</label>
-          </S.RadioInput>
-        </S.FlexBox>
-        {WHETER_NOTICE.map((notice, idx) => (
-          <S.Desc key={idx}>
-            {SVG.exclamation}
-            <span>{notice}</span>
-          </S.Desc>
-        ))}
-      </CollapseContainer>
+      ))}
+
       <CustomerGroupModal isOpen={showCustomerGroupModal} handler={handleCustomerGroupModal} />
     </>
   );

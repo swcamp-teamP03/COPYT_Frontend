@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getCampaignDetail } from '../../api/Campaign/DetailCampaign';
+import { getCampaignDetail } from '../../api/Campaign/detailCampaign';
 
 const useDetailCampaignQuery = (id: string | undefined) => {
   return useQuery(['detailCampaign', id], getCampaignDetail, {
