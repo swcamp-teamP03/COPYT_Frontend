@@ -1,31 +1,43 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import useCopyDetailQuery from '../../../quries/Copy/useCopyDetailQuery';
+import useCreateCopyMutation from '../../../quries/Copy/useCreateCopyMutation';
+import { CopyDetailResult, CopyListType } from '../../../types/copy';
 import Button from '../../common/Button';
 import { COPY_TYPE } from '../../CreateCopy/CreateCopyCondition';
 import * as S from './CopyDetail.stlyes';
 
 const CopyDetails = () => {
+  const { id } = useParams();
+  const { data: copyDetail } = useCopyDetailQuery(id);
+  const { mutate: createCopytMutate } = useCreateCopyMutation();
+
   const isSelected = (title: string) => {
     return title === title;
+  };
+
+  const recommendCopy = () => {
+    if (!copyDetail) return;
+    createCopytMutate(copyDetail as CopyDetailResult);
   };
 
   return (
     <div>
       <S.Label>카피그룹명</S.Label>
-      <S.GroupName>코카콜라 할인</S.GroupName>
+      <S.GroupName>{copyDetail?.copyGroupName}</S.GroupName>
       <S.Label>브랜드 이름</S.Label>
       <S.TextBox>
-        <span>브랜드 이름</span>
+        <span>{copyDetail?.brandName}</span>
       </S.TextBox>
       <S.Label>상품명</S.Label>
       <S.TextBox>
-        <span>상품명</span>
+        <span>{copyDetail?.productName}</span>
       </S.TextBox>
       <S.Label>필수로 포함할 키워드</S.Label>
       <S.TextBox>
-        <S.Keyword>키워드1</S.Keyword>
-        <S.Keyword>키워드1</S.Keyword>
-        <S.Keyword>키워드1</S.Keyword>
-        <S.Keyword>키워드1</S.Keyword>
+        {copyDetail?.keyword?.split(',').map((keyword) => (
+          <S.Keyword key={keyword}>{keyword}</S.Keyword>
+        ))}
       </S.TextBox>
       <S.Label>유형</S.Label>
       <S.CopyTypeContainer>
@@ -50,7 +62,7 @@ const CopyDetails = () => {
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
-        <Button title="카피 추천 받기" buttonSize="buttonL" buttonColor="black" />
+        <Button title="카피 추천 받기" buttonSize="buttonL" buttonColor="black" onButtonClick={recommendCopy} />
       </S.CopySubmit>
     </div>
   );

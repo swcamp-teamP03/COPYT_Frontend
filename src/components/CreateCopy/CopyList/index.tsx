@@ -5,6 +5,10 @@ import { CopyListType } from '../../../types/copy';
 import CopyListItem from '../CopyListItem';
 import * as S from './CopyList.styles';
 
+interface CopyListProps {
+  list: CopyListType[] | [];
+}
+
 const CopyList = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
 

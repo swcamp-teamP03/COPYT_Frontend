@@ -25,7 +25,7 @@ interface CreatConditionProps {
 const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [isComposing, setIsComposing] = useState(false);
-  const { mutate: createCoptMutate } = useCreateCopyMutation();
+  const { mutate: createCopytMutate } = useCreateCopyMutation();
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
@@ -77,9 +77,11 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
     if (copyList.length + Number(condition.createCount) > 20) {
       return handleLimitModal();
     }
-    createCoptMutate(condition);
+    const { brandName, productName, keyword, type, copyLength, createCount, sector } = condition;
+    const keywordStr = keyword.join();
+    createCopytMutate({ brandName, productName, keyword: keywordStr, type, copyLength, createCount, sector });
   };
-  
+
   const handleDropDown = (value: number) => {
     conditionDispatch({ type: 'CHANGE_COUNT', key: 'createCount', value });
     handleCountDropDown;

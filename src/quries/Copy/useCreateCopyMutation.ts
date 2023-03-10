@@ -10,7 +10,10 @@ const useCreateCopyMutation = () => {
       const totalData = copyList.concat(data).map((list, idx) => {
         return { ...list, copyId: idx + 1 };
       });
-      setCopyList(totalData);
+      const pinnedList = totalData.filter((list) => list.isPinned) ?? [];
+      const unPinnedList = totalData.filter((list) => !list.isPinned) ?? [];
+
+      setCopyList([...pinnedList, ...unPinnedList]);
     },
   });
 };

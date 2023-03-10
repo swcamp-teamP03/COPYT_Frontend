@@ -19,7 +19,7 @@ const DetailCopy = () => {
     if (copyDetail) {
       setCopyList(copyDetail?.copyList);
     }
-  }, []);
+  }, [copyDetail?.copyList]);
 
   return (
     <Layout size="M">

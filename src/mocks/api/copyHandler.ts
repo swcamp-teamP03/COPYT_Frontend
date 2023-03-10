@@ -18,13 +18,13 @@ const copyGroupDetail = {
   success: true,
   data: {
     copyGroupName: '나이키 할인 행사',
-    tag: '태그1',
     brandName: '브랜드이름',
     productName: '상품명',
     keyword: '키워드1,키워드2,키워드3',
     type: '카피 유형',
-    createCount: '3',
-    copyLength: '200',
+    createCount: 3,
+    copyLength: 200,
+    sector: '업종',
     copyList: [
       {
         copyId: 1,
