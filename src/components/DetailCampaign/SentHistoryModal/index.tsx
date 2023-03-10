@@ -14,7 +14,6 @@ const SentHistoryModal = ({ isOpen, handleModal }: SentHistoryModalProps) => {
 
   const { data: sentHistory } = useSenHisoryQuery(campaignID);
 
-  console.log(sentHistory);
   return (
     <Modal.Frame isOpen={isOpen} onClick={handleModal} width="70%" height="50%">
       <Modal.Header onClick={handleModal}>발송 내역 상세보기</Modal.Header>
@@ -29,8 +28,9 @@ const SentHistoryModal = ({ isOpen, handleModal }: SentHistoryModalProps) => {
           <div>실패사유</div>
         </S.CategoryLayout>
         <S.ListLayout>
-          {sentHistory?.sendList.map((list) => (
-            <S.CategoryLayout>
+          {/* TODO : key 값 name으로 변경하기 */}
+          {sentHistory?.sendList.map((list, idx) => (
+            <S.CategoryLayout key={idx}>
               <div>{list.sendMessageId}</div>
               <div>A</div>
               <div>{list.sendDate.replace('T', ' ')}</div>

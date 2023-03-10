@@ -31,8 +31,56 @@ const FakeSentHistory = {
   ],
 };
 
+const FakeCampaignDetail = {
+  success: true,
+  data: {
+    campaignCreatedAt: '2023/02/20',
+    sendingDateTime: '2023/02/20 13:00',
+    messageCount: 3000,
+    messageType: 'LMS',
+    groupName: '멤버십 가입 고객',
+    customerCnt: 3000,
+    excelOrgFileName: '멤버십 가입 고객 리스트.xls',
+    customerProperties: [
+      {
+        propertyValue: '이벤트값',
+      },
+      {
+        propertyValue: '광고값',
+      },
+    ],
+    copyGroupName: '브랜드 멤버십 데이 할인 커피',
+    copyList: [
+      {
+        copyType: 'A',
+        content: '광고문자내용 1',
+      },
+      {
+        copyType: 'B',
+        content: '광고문자내용 2',
+      },
+    ],
+    messageA: {
+      messageACnt: 1500,
+      messageSuccessCnt: 1499,
+      uniqueCTR: 5.48,
+    },
+    messageB: {
+      messageBCnt: 1500,
+      messageSuccessCnt: 1300,
+      uniqueCTR: 15.84,
+    },
+    comment: '블라블라',
+  },
+  error: null,
+};
+
 export const detailCampaignHandler = [
   rest.get(`${BASE_URL}/campaigns/1/sendmessages`, (req, res, ctx) => {
     return res(ctx.json(FakeSentHistory));
+  }),
+
+  rest.get(`${BASE_URL}/campaigns/1`, (req, res, ctx) => {
+    return res(ctx.json(FakeCampaignDetail));
   }),
 ];

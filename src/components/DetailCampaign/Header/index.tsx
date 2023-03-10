@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CHEVRON } from '../../../assets/Chevron';
+import useDetailCampaignQuery from '../../../quries/Campaign/useDetailCampaignQuery';
 import Button from '../../common/Button';
 import SentHistoryModal from '../SentHistoryModal';
 import * as S from './Header.styles';
 
 const Header = () => {
-  const [showSentHistoryModal, setShowSentHistoryModal] = useState(true);
+  const [showSentHistoryModal, setShowSentHistoryModal] = useState(false);
+  const { campaignID } = useParams();
+  const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
 
   const handleShowSentHistoyModal = () => {
     setShowSentHistoryModal((prev) => !prev);
@@ -23,8 +26,8 @@ const Header = () => {
         <S.Layout>
           <S.Flex>
             <S.LeftChevron onClick={goBack}>{CHEVRON.left}</S.LeftChevron>
-            <S.Title>브랜드 맴버십 데이 할인</S.Title>
-            <S.Tag>LMS</S.Tag>
+            <S.Title>{detailCampaign?.copyGroupName}</S.Title>
+            <S.Tag>{detailCampaign?.messageType}</S.Tag>
           </S.Flex>
           <S.Flex>
             <Button title="발송 내역" buttonColor="black" buttonSize="buttonM" onButtonClick={handleShowSentHistoyModal} />

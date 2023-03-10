@@ -15,7 +15,7 @@ export const Fixed = styled.div`
 `;
 
 export const Layout = styled.div`
-  width: 50%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
 `;

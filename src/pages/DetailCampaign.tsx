@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import CampaignInfo from '../components/DetailCampaign/CampaignInfo';
 import Header from '../components/DetailCampaign/Header';
+import styled from 'styled-components';
+import useDetailCampaignQuery from '../quries/Campaign/useDetailCampaignQuery';
+import { useParams } from 'react-router-dom';
 
 const DetailCampaign = () => {
-  return <Header />;
+  const { campaignID } = useParams();
+  const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
+
+  if (!detailCampaign) {
+    return null;
+  }
+
+  return (
+    <Suspense fallback={<div>...isLoading</div>}>
+      <Header />
+      <Layout>
+        <CampaignInfo />
+      </Layout>
+    </Suspense>
+  );
 };
 
 export default DetailCampaign;
+
+const Layout = styled.div`
+  max-width: 70%;
+  margin: 0 auto;
+`;
