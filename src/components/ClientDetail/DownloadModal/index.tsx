@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Button from '../../common/Button';
+import NoticeModal from './NoticeModal';
 
 interface DownloadModalProps {
   show: boolean;
@@ -24,8 +26,10 @@ const CloseButton = styled.button`
 
 const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
   const [downloadReason, setDownloadReason] = useState('');
+  const [step, setStep] = useState(1);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState(false);
 
   const handleDownloadReasonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDownloadReason(e.target.value);
@@ -37,8 +41,12 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
       return;
     }
 
-    setPassword('');
+    setStep(step + 1);
     setError('');
+  };
+
+  const noticeHandler = () => {
+    setNotice(!notice);
   };
 
   const handleConfirmPassword = async () => {
@@ -57,33 +65,34 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
     <ModalWrapper className={show ? 'show' : ''}>
       <ModalContent>
         <ModalHeader>
-          <ModalTitle>다운로드</ModalTitle>
+          <ModalTitle>
+            {step === 1 && <h2>고객 파일 다운로드 사유</h2>}
+            {step === 2 && <h2>관리자 인증</h2>}
+            {step === 3 && <h2>다운로드 완료</h2>}
+          </ModalTitle>
           <CloseButton onClick={onClose}>&times;</CloseButton>
         </ModalHeader>
         <ModalBody>
-          <div className="form-group">
-            <label htmlFor="download-reason">다운로드 사유</label>
-            <input type="text" className="form-control" id="download-reason" value={downloadReason} onChange={handleDownloadReasonChange} />
-          </div>
-          {error && <div className="alert alert-danger">{error}</div>}
-          {password !== '' && (
-            <div className="form-group">
-              <label htmlFor="password">비밀번호</label>
-              <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
+          {step === 1 && (
+            <label>
+              개인정보의 안정성 확보조치 기준(고시)에 따라 개인정보를 다운로드할 경우 사유 확인이 필요합니다.{' '}
+              <UnderLine onClick={noticeHandler}>관련법령 {notice === true && <NoticeModal notice={notice} noticeHandler={noticeHandler} />}</UnderLine>
+              <input type="text" value={downloadReason} onChange={(e) => setDownloadReason(e.target.value)} />
+              {error && <div>{error}</div>}
+            </label>
           )}
+          {step === 2 && (
+            <label>
+              비밀번호
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </label>
+          )}
+          {step === 3 && <p>파일 다운로드가 완료되었습니다. 다운로드 내역은 [마이페이지 - 고객 DB 다운로드 내역] 에서 확인 가능합니다.</p>}
         </ModalBody>
         <ModalFooter>
-          {password === '' ? (
-            <>
-              <ConfirmButton onClick={handleConfirmDownload}>다음</ConfirmButton>
-            </>
-          ) : (
-            <>
-              <CancelButton onClick={() => setPassword('')}>이전</CancelButton>
-              <ConfirmButton onClick={handleConfirmPassword}>인증</ConfirmButton>
-            </>
-          )}
+          {step === 1 && <Button onButtonClick={handleConfirmDownload} title="다음" buttonColor="black"></Button>}
+          {step === 2 && <Button onButtonClick={handleConfirmDownload} title="인증" buttonColor="black"></Button>}
+          {step === 3 && <Button onButtonClick={handleConfirmDownload} title="완료" buttonColor="black"></Button>}
         </ModalFooter>
       </ModalContent>
     </ModalWrapper>
@@ -111,8 +120,8 @@ const ModalWrapper = styled.div`
 
 const ModalContent = styled.div`
   position: relative;
-  width: 500px;
-  max-height: 90vh;
+  width: 630px;
+  height: fit-content;
   overflow-y: auto;
   border-radius: 5px;
   background-color: #fff;
@@ -128,19 +137,13 @@ const ModalBody = styled.div`
   margin-bottom: 15px;
 `;
 
+const UnderLine = styled.div`
+  text-decoration: underline;
+`;
+
 const ModalFooter = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
-
-const CancelButton = styled.button`
-  margin-right: 10px;
-`;
-
-const ConfirmButton = styled.button`
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #16477c;
 `;
 
 export default DownloadModal;
