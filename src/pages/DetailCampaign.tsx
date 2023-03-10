@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import CustomerGroupInfo from '../components/DetailCampaign/CustomerGroupInfo';
 import SendMessage from '../components/DetailCampaign/SendMessage';
 import WithCollapse from '../components/common/WithCollapse';
+import Analysis from '../components/DetailCampaign/Analysis';
 
 const DetailCampaign = () => {
   const { campaignID } = useParams();
@@ -29,6 +30,7 @@ const DetailCampaign = () => {
         <WithCollapse title="보낸 메시지">
           <SendMessage />
         </WithCollapse>
+        <Analysis />
       </Layout>
     </Suspense>
   );
