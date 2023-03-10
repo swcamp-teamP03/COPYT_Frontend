@@ -27,17 +27,17 @@ const copyGroupDetail = {
     copyLength: '200',
     copyList: [
       {
-        id: 1,
+        copyId: 1,
         content: '광고문자내용 1',
         isPinned: false,
       },
       {
-        id: 2,
+        copyId: 2,
         content: '광고문자내용 2',
         isPinned: false,
       },
       {
-        id: 3,
+        copyId: 3,
         content: '광고문자내용 3',
         isPinned: true,
       },
@@ -51,13 +51,13 @@ const groupList = {
     totalCopy: 2,
     groupList: [
       {
-        id: 1,
+        copyId: 1,
         createDate: '2023-02-25',
         isPinned: true,
         copyName: '나이키 할인 행사',
       },
       {
-        id: 2,
+        copyId: 2,
         createDate: '2023-02-25',
         isPinned: false,
         copyName: '룰루레몬 이벤트',

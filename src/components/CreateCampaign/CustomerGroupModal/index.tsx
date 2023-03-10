@@ -35,7 +35,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
   };
 
   const onClickGroup = (id: number) => {
-    setSelctedGroup({ id, name: groupList?.groupList.filter((list) => list.id === id)[0].copyName ?? '' });
+    setSelctedGroup({ id, name: groupList?.groupList.filter((list) => list.copyId === id)[0].copyName ?? '' });
   };
 
   const onSave = () => {
@@ -70,8 +70,8 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
         </ListCategory>
         <ListContainer>
           {groupList?.groupList.map((list) => (
-            <GroupList key={list.id} isSelected={isSelected(list.id)} onClick={() => onClickGroup(list.id)}>
-              <span onClick={() => handleLiked(list.id)}>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span>
+            <GroupList key={list.copyId} isSelected={isSelected(list.copyId)} onClick={() => onClickGroup(list.copyId)}>
+              <span onClick={() => handleLiked(list.copyId)}>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span>
               <span>{list.createDate}</span>
               <span>{list.copyName}</span>
             </GroupList>
