@@ -60,6 +60,7 @@ const ListCategory = styled.div`
   gap: 10px;
   grid-template-columns: 0.5fr 1fr 4fr;
   margin-bottom: 20px;
+  white-space: nowrap;
   div {
     display: flex;
     justify-content: center;

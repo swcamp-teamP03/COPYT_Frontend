@@ -9,6 +9,7 @@ export const TagContainer = styled.div`
 
 export const ListContainer = styled.div`
   display: flex;
+  white-space: nowrap;
   flex-direction: column;
   gap: 24px;
 `;
