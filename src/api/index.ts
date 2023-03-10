@@ -3,4 +3,5 @@ import { BASE_URL } from '../constants/api';
 
 export const api = axios.create({
   baseURL: BASE_URL,
+  withCredentials: true,
 });

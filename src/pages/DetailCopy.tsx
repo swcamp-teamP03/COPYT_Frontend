@@ -29,7 +29,7 @@ const DetailCopy = () => {
       </PageHeader>
       <GridLayout>
         <CopyDetails />
-        <CopyList copyList={copyList} setCopyList={setCopyList} />
+        <CopyList />
       </GridLayout>
     </Layout>
   );

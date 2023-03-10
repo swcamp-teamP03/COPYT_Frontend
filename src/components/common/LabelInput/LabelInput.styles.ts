@@ -31,6 +31,9 @@ export const TextCount = styled.div`
 `;
 
 export const ErrorMessage = styled.div`
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
   font-size: ${({ theme }) => theme.fontSize.xs};
   color: ${({ theme }) => theme.colors.red};
 `;

@@ -1,5 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import * as S from './TOS.styles';
+import { motion } from 'framer-motion';
+import { CHEVRON } from '../../../assets/Chevron';
 
 export interface TOS {
   id: number;
@@ -20,6 +22,16 @@ const AllOfTOs = {
   dsec: '카피티 개인정보 처리방침 및 이용약관, 이메일 수집 동의, 제 3자 제공 동의, 프로모션 정보 수신(선택)에 모두 동의합니다.',
 };
 
+const variants = {
+  open: { height: 'auto' },
+  collapsed: { height: 0 },
+};
+
+const transition = {
+  duration: 0.8,
+  ease: [0.04, 0.62, 0.23, 0.98],
+};
+
 interface SignUPTOSProps {
   selectedTOS: TOS[];
   setSelectedTOS: Dispatch<SetStateAction<TOS[]>>;
@@ -27,6 +39,8 @@ interface SignUPTOSProps {
 }
 
 const SignUpTOS = ({ selectedTOS, setSelectedTOS, isAllChecked }: SignUPTOSProps) => {
+  const [open, setOpen] = useState(false);
+
   const checkedItemHandler = (tos: TOS, isChecked: boolean) => {
     if (isChecked) {
       return setSelectedTOS((prev) => [...prev, tos]);
@@ -36,6 +50,10 @@ const SignUpTOS = ({ selectedTOS, setSelectedTOS, isAllChecked }: SignUPTOSProps
 
   const checkHandler = (e: React.ChangeEvent<HTMLInputElement>, tos: TOS) => {
     checkedItemHandler(tos, e.target.checked);
+  };
+
+  const handleCollapsed = () => {
+    setOpen((prev) => !prev);
   };
 
   const allCheckHandler = () => {
@@ -53,18 +71,24 @@ const SignUpTOS = ({ selectedTOS, setSelectedTOS, isAllChecked }: SignUPTOSProps
         <S.CheckBoxContent>
           <h3>{AllOfTOs.title}</h3>
           <span>{AllOfTOs.dsec}</span>
-          {/* <S.ChevronButton>{SVG.closeButton}</S.ChevronButton> */}
+          <S.ChevronButton onClick={handleCollapsed} open={open}>
+            {CHEVRON.up}
+          </S.ChevronButton>
         </S.CheckBoxContent>
       </S.CheckBoxContainer>
-      {TOS_LIST.map((list) => (
-        <S.CheckBoxContainer key={list.title}>
-          <S.CheckBox type="checkbox" checked={selectedTOS.includes(list)} onChange={(event) => checkHandler(event, list)} />
-          <S.CheckBoxContent>
-            <h3>{list.title}</h3>
-            <span>{list.desc}</span>
-          </S.CheckBoxContent>
-        </S.CheckBoxContainer>
-      ))}
+      <S.MotionWrapper>
+        <motion.div variants={variants} transition={transition} initial="collapsed" animate={open ? 'open' : 'collapsed'}>
+          {TOS_LIST.map((list) => (
+            <S.CheckBoxContainer key={list.title}>
+              <S.CheckBox type="checkbox" checked={selectedTOS.includes(list)} onChange={(event) => checkHandler(event, list)} />
+              <S.CheckBoxContent>
+                <h3>{list.title}</h3>
+                <span>{list.desc}</span>
+              </S.CheckBoxContent>
+            </S.CheckBoxContainer>
+          ))}
+        </motion.div>
+      </S.MotionWrapper>
     </>
   );
 };

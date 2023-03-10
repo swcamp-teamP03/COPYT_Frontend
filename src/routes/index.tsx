@@ -6,6 +6,8 @@ import Layout from '../components/Layout';
 import CreateCopy from '../pages/CreateCopy';
 import AuthRouter from './AuthRouter';
 import DetailCopy from '../pages/DetailCopy';
+import CreateCampaign from '../pages/CreateCampaign';
+import DetailCampaign from '../pages/DetailCampaign';
 
 const Router = () => {
   return (
@@ -15,6 +17,8 @@ const Router = () => {
         <Route path="/clients" element={<Layout router={<ClientGroups />} />} />
         <Route path="/copies/create" element={<CreateCopy />} />
         <Route path="/copies/:id/*" element={<DetailCopy />} />
+        <Route path="/campaign/create" element={<CreateCampaign />} />
+        <Route path="/campaign/:campaignID" element={<DetailCampaign />} />
         <Route path="auth/*" element={<AuthRouter />} />
       </Routes>
     </BrowserRouter>

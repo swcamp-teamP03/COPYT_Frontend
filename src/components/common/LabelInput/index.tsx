@@ -1,5 +1,5 @@
-
 import React, { InputHTMLAttributes, useRef } from 'react';
+import { VALIDATE } from '../../../assets/Validate';
 import * as S from './LabelInput.styles';
 
 interface LabelInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -26,7 +26,11 @@ const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, er
           {textCount}/ {limit}
         </S.TextCount>
       )}
-      {errorMessage && <S.ErrorMessage>* {errorMessage}</S.ErrorMessage>}
+      {errorMessage && (
+        <S.ErrorMessage>
+          {VALIDATE.false} {errorMessage}
+        </S.ErrorMessage>
+      )}
     </S.Layout>
   );
 };

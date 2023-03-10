@@ -18,6 +18,10 @@ const CopyGroups = () => {
 
   const { data: groupList } = useCopyGroupsQuery(pageNum, listCount);
 
+  const goDetail = (id: number) => {
+    navigate(`/copies/${id}`);
+  };
+
   useEffect(() => {
     if (groupList?.totalCopy) {
       const page = Math.ceil(groupList?.totalCopy / listCount);
@@ -45,7 +49,7 @@ const CopyGroups = () => {
         </div>
         <div>카피그룹명</div>
       </ListCategory>
-      {groupList ? <CopyGroupList copyList={groupList.groupList} /> : <NonCopyGroupList />}
+      {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NonCopyGroupList />}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </Layout>
   );
