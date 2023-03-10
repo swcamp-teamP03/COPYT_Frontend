@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { CHEVRON } from '../assets';
+import { CHEVRON } from '../assets/Chevron';
 import PageHeader from '../components/common/PageHeader';
 import CopyGroupList from '../components/CopyGroups/CopyGroupList';
 import ListCount from '../components/CopyGroups/ListCount';
@@ -17,6 +17,10 @@ const CopyGroups = () => {
   const navigate = useNavigate();
 
   const { data: groupList } = useCopyGroupsQuery(pageNum, listCount);
+
+  const goDetail = (id: number) => {
+    navigate(`/copies/${id}`);
+  };
 
   useEffect(() => {
     if (groupList?.totalCopy) {
@@ -45,7 +49,7 @@ const CopyGroups = () => {
         </div>
         <div>카피그룹명</div>
       </ListCategory>
-      {groupList ? <CopyGroupList copyList={groupList.groupList} /> : <NonCopyGroupList />}
+      {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NonCopyGroupList />}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </Layout>
   );

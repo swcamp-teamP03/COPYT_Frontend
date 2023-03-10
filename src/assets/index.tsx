@@ -21,9 +21,18 @@ import LeftChevron from './chevron_left.svg';
 import RightChevron from './chevron_right.svg';
 import NoneList from './none_list.svg';
 import Download from './download.svg';
+import Exclamation from './exclamation.svg';
+import Credit from './credit.svg';
+import Question from './question.svg';
+import QuestionBox from './questionBox.svg';
 
 export const SVG = {
   closeButton: <CloseButton />,
+  exclamation: <Exclamation />,
+  calendar: <Calendar />,
+  credit: <Credit />,
+  question: <Question />,
+  questionBox: <QuestionBox />,
 };
 
 export const CLIENT_SVG = {

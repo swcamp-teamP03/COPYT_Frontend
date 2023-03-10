@@ -36,6 +36,9 @@ export const GroupList = styled.div`
     font-size: 21px;
     color: #444444;
   }
+  :hover {
+    border: 2px solid #424242;
+  }
 `;
 
 interface TagButtonProps {

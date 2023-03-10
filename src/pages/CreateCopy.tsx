@@ -2,30 +2,38 @@ import React, { useReducer, useState } from 'react';
 import PageHeader from '../components/common/PageHeader';
 import { Layout } from './Layout.styles';
 import styled from 'styled-components';
-import CreateCondition from '../components/CreateCopy/CreateCondition';
-import { conditionInit, conditionReducer } from '../components/CreateCopy/CreateCondition/conditionReducer';
+import CreateCopyCondition from '../components/CreateCopy/CreateCopyCondition';
+import { copyConditionInit, copyConditionReducer } from '../components/CreateCopy/CreateCopyCondition/copyConditionReducer';
 import CopyList from '../components/CreateCopy/CopyList';
 import { copyListState } from '../store/copyListState';
 import { useRecoilState } from 'recoil';
+import ScantyModal from '../components/CreateCopy/ScantyModal';
 
 const CreateCopy = () => {
-  const [condition, conditionDispatch] = useReducer(conditionReducer, conditionInit);
-
+  const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
+  const [showScantyModal, setShowScantyModal] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
-  const isDisabeldSave = copyList.length === 0;
+  const handleScantyModal = () => {
+    setShowScantyModal((prev) => !prev);
+  };
+
+  const onSubmit = () => {
+    if (copyList.length < 2) return handleScantyModal();
+  };
 
   return (
     <>
       <Layout size="M">
-        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={() => {}} buttonColor="black" isDisabled={isDisabeldSave}>
+        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={onSubmit} buttonColor="black">
           카피 추천 받기
         </PageHeader>
         <GridLayout>
-          <CreateCondition condition={condition} conditionDispatch={conditionDispatch} />
+          <CreateCopyCondition condition={condition} conditionDispatch={conditionDispatch} />
           <CopyList />
         </GridLayout>
       </Layout>
+      <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
     </>
   );
 };

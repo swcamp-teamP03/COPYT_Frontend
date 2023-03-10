@@ -19,7 +19,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 18px 20px;
-  border-radius: 4px;
+  border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.colors.gray30};
 `;
 
@@ -31,6 +31,9 @@ export const TextCount = styled.div`
 `;
 
 export const ErrorMessage = styled.div`
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
   font-size: ${({ theme }) => theme.fontSize.xs};
   color: ${({ theme }) => theme.colors.red};
 `;
