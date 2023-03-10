@@ -18,7 +18,7 @@ export const Categories = styled.div`
 `;
 
 export const CategoryTitle = styled.div`
-  text-align: center;
+  align-items: center;
   width: 100%;
   font-size: 20px;
   color: #555555;

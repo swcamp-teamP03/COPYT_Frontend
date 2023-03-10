@@ -16,7 +16,7 @@ const CustomerGroupInfo = () => {
         </S.Info>
         <S.Info>
           <S.InfoTitle>총 고객 수</S.InfoTitle>
-          <S.InfoDesc>{detailCampaign?.customerCnt}명</S.InfoDesc>
+          <S.InfoDesc>{detailCampaign?.customerCnt.toLocaleString()}명</S.InfoDesc>
         </S.Info>
       </S.Flex>
       <S.Info>

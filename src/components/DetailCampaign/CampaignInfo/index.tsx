@@ -37,7 +37,7 @@ const CampaignInfo = () => {
         </div>
         <div>
           <S.InfoTitle>메시지 발송 수</S.InfoTitle>
-          <span>총 {detailCampaign?.customerCnt}건</span>
+          <span>총 {detailCampaign?.customerCnt.toLocaleString()}건</span>
         </div>
         <div>
           <S.InfoTitle>메시지 유형</S.InfoTitle>

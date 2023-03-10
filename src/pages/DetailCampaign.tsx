@@ -11,13 +11,6 @@ import Analysis from '../components/DetailCampaign/Analysis';
 import Comment from '../components/DetailCampaign/Comment';
 
 const DetailCampaign = () => {
-  const { campaignID } = useParams();
-  const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
-
-  if (!detailCampaign) {
-    return null;
-  }
-
   return (
     <Suspense fallback={<div>...isLoading</div>}>
       <Header />
