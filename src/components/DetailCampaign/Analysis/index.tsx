@@ -15,8 +15,8 @@ const Analysis = () => {
 
   const ctrGap = detailCampaign?.messageA?.uniqueCTR - (detailCampaign?.messageB?.uniqueCTR ?? 0);
 
-  const memberA = (detailCampaign.messageB ? Math.floor(detailCampaign.customerCnt / 2) : detailCampaign.customerCnt).toLocaleString();
-  const memberB = Math.ceil(detailCampaign.customerCnt / 2).toLocaleString();
+  const memberA = (detailCampaign.messageB ? Math.ceil(detailCampaign.customerCnt / 2) : detailCampaign.customerCnt).toLocaleString();
+  const memberB = Math.floor(detailCampaign.customerCnt / 2).toLocaleString();
 
   return (
     <>
