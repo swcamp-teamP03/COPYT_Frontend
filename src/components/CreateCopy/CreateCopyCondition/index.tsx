@@ -79,6 +79,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
     }
     createCoptMutate(condition);
   };
+  
   const handleDropDown = (value: number) => {
     conditionDispatch({ type: 'CHANGE_COUNT', key: 'createCount', value });
     handleCountDropDown;

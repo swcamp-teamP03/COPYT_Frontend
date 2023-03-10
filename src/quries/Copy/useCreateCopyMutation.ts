@@ -8,7 +8,7 @@ const useCreateCopyMutation = () => {
   return useMutation(postCopies, {
     onSuccess: (data) => {
       const totalData = copyList.concat(data).map((list, idx) => {
-        return { ...list, id: idx + 1 };
+        return { ...list, copyId: idx + 1 };
       });
       setCopyList(totalData);
     },

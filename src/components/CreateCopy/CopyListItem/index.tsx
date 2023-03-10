@@ -24,7 +24,7 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
   const [showClipboardModal, setShowClipboardModal] = useState(false);
 
   const editCopyHandler = (id: number) => {
-    const target = copyList.filter((list) => list.id === id)[0];
+    const target = copyList.filter((list) => list.copyId === id)[0];
     const index = copyList.indexOf(target);
     const data: CopyListType[] = JSON.parse(JSON.stringify(copyList));
     data[index].content = editCopy;
@@ -37,7 +37,7 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
   };
 
   const deleteList = (id: number) => {
-    const target = copyList.filter((list) => list.id === id)[0];
+    const target = copyList.filter((list) => list.copyId === id)[0];
     const index = copyList.indexOf(target);
     const data: CopyListType[] = JSON.parse(JSON.stringify(copyList));
     data.splice(index, 1);
@@ -71,7 +71,7 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
               <div></div>
               <div>
                 <Button title="취소" buttonColor="white" buttonSize="buttonS" onButtonClick={() => setIsEditMode(false)} />
-                <Button title="수정하기" buttonColor="black" onButtonClick={() => editCopyHandler(data.id)} />
+                <Button title="수정하기" buttonColor="black" onButtonClick={() => editCopyHandler(data.copyId)} />
               </div>
             </>
           </S.Footer>
@@ -79,11 +79,11 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
       ) : (
         <S.Container>
           <span>{data.content}</span>
-          <S.DeleteButton onClick={() => deleteList(data.id)}>{SVG.closeButton}</S.DeleteButton>
+          <S.DeleteButton onClick={() => deleteList(data.copyId)}>{SVG.closeButton}</S.DeleteButton>
           <S.TextCount>{data.content.length}/900</S.TextCount>
           <S.Footer>
             <div>
-              <div onClick={() => handlePinned(data.id)}>{data.isPinned ? PIN.pinned : PIN.unpinned}</div>
+              <div onClick={() => handlePinned(data.copyId)}>{data.isPinned ? PIN.pinned : PIN.unpinned}</div>
               <div onClick={() => copyText(data.content)}>{POST_SVG.copy}</div>
               <div onClick={handleEditWarnModal}>{POST_SVG.edit}</div>
             </div>

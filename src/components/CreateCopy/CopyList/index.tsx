@@ -9,12 +9,12 @@ const CopyList = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
   const handlePinned = (id: number) => {
-    const target = copyList.filter((list) => list.id === id)[0];
+    const target = copyList.filter((list) => list.copyId === id)[0];
     const index = copyList.indexOf(target);
     const data: CopyListType[] = JSON.parse(JSON.stringify(copyList));
     data[index].isPinned = data[index].isPinned ? false : true;
-    const pinned = data.filter((list) => list.isPinned).sort((a, b) => a.id - b.id);
-    const unPinned = data.filter((list) => !list.isPinned).sort((a, b) => a.id - b.id);
+    const pinned = data.filter((list) => list.isPinned).sort((a, b) => a.copyId - b.copyId);
+    const unPinned = data.filter((list) => !list.isPinned).sort((a, b) => a.copyId - b.copyId);
     setCopyList([...pinned, ...unPinned]);
   };
 
