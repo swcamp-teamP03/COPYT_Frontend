@@ -39,3 +39,7 @@ export interface DetailCampaignResult {
   };
   comment: string;
 }
+
+export interface CommentResult {
+  comment: string;
+}

@@ -8,6 +8,7 @@ import CustomerGroupInfo from '../components/DetailCampaign/CustomerGroupInfo';
 import SendMessage from '../components/DetailCampaign/SendMessage';
 import WithCollapse from '../components/common/WithCollapse';
 import Analysis from '../components/DetailCampaign/Analysis';
+import Comment from '../components/DetailCampaign/Comment';
 
 const DetailCampaign = () => {
   const { campaignID } = useParams();
@@ -31,6 +32,9 @@ const DetailCampaign = () => {
           <SendMessage />
         </WithCollapse>
         <Analysis />
+        <WithCollapse title="코멘트">
+          <Comment />
+        </WithCollapse>
       </Layout>
     </Suspense>
   );

@@ -83,4 +83,12 @@ export const detailCampaignHandler = [
   rest.get(`${BASE_URL}/campaigns/1`, (req, res, ctx) => {
     return res(ctx.json(FakeCampaignDetail));
   }),
+
+  rest.post(`${BASE_URL}/campaigns/1/comment`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        coment: '코멘트 수정',
+      }),
+    );
+  }),
 ];
