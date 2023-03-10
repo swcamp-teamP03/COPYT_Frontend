@@ -4,6 +4,7 @@ import Header from '../components/DetailCampaign/Header';
 import styled from 'styled-components';
 import useDetailCampaignQuery from '../quries/Campaign/useDetailCampaignQuery';
 import { useParams } from 'react-router-dom';
+import CustomerGroupInfo from '../components/DetailCampaign/CustomerGroupInfo';
 
 const DetailCampaign = () => {
   const { campaignID } = useParams();
@@ -18,6 +19,7 @@ const DetailCampaign = () => {
       <Header />
       <Layout>
         <CampaignInfo />
+        <CustomerGroupInfo />
       </Layout>
     </Suspense>
   );
