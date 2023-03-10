@@ -20,6 +20,7 @@ import UnPinned from './unpinned.svg';
 import LeftChevron from './chevron_left.svg';
 import RightChevron from './chevron_right.svg';
 import NoneList from './none_list.svg';
+import Download from './download.svg';
 
 export const SVG = {
   closeButton: <CloseButton />,
@@ -34,6 +35,7 @@ export const CLIENT_SVG = {
   verticalArrow: <VerticalArrow />,
   highlight: <Highlight />,
   noneList: <NoneList />,
+  download: <Download />,
 };
 
 export default SVG;

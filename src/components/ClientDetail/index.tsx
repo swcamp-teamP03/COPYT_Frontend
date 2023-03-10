@@ -2,8 +2,8 @@ import React, { useState, useCallback, useRef } from 'react';
 import { CLIENT_SVG } from '../../assets';
 import * as S from './ClientGroupDetail';
 import Button from '../common/Button';
-import DeleteFileModal from '../ClientCreate/FileModal';
 import ReactExcelDownload from '../common/XLSX';
+import DownloadModal from './DownloadModal';
 
 interface ClientGroupDetailProps {
   groupName: string;
@@ -32,6 +32,11 @@ const ClientGroupDetail = () => {
     setProperties((prevProperties) => [...prevProperties, `속성 ${propertyCount + 1}`]);
   };
 
+  //파일 다운로드
+  const handleDownloadClick = () => {
+    setShowModal(true);
+  };
+
   //파일 업로드
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -48,19 +53,6 @@ const ClientGroupDetail = () => {
     }
     inputRef.current.click();
   }, []);
-
-  //파일 삭제
-  const deleteFile = () => {
-    if (fileName && inputRef.current) {
-      inputRef.current.value = '';
-      setFileName('');
-      setShowModal(false); // 파일 삭제 후 모달을 닫기
-    }
-  };
-
-  const handleDeleteModal = () => {
-    setShowModal(true); // 모달을 띄웁니다.
-  };
 
   return (
     <>
@@ -119,8 +111,7 @@ const ClientGroupDetail = () => {
               <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
                 <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
                 {fileName}
-                <div onClick={handleDeleteModal}>x</div>
-                {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={handleDeleteModal} />}
+                <span>{CLIENT_SVG.download}</span>
               </S.ClientProperty>
             </>
           </>
@@ -145,8 +136,9 @@ const ClientGroupDetail = () => {
             <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
               <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
               {fileName}
-              <div onClick={handleDeleteModal}>x</div>
-              {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={deleteFile} />}
+
+              <span onClick={handleDownloadClick}>{CLIENT_SVG.download}</span>
+              {showModal && <DownloadModal show={showModal} onClose={() => setShowModal(false)} />}
             </S.ClientProperty>
           </>
         )}
