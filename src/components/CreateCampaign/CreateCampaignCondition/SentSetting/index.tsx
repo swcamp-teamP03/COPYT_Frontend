@@ -30,7 +30,7 @@ const SentSetting = () => {
     const time = dayjs(startDate).format('YYYY-MM-DDThh:mm:ss');
     setCondition((prev) => ({
       ...prev,
-      sentTime: time,
+      sendingDate: time,
     }));
   }, [startDate]);
 
