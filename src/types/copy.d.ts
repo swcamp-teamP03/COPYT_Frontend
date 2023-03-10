@@ -11,16 +11,16 @@ export interface CopyGroup {
   copyName: string;
   tag: string;
 }
-export interface CopyGroupsReturn {
+export interface CopyGroupsResult {
   groupList: CopyGroup[];
   totalCopy: number;
 }
 
-export interface CopyLikeReturn {
+export interface CopyLikeResult {
   favorite: boolean;
 }
 
-export interface CopyDetailReturn {
+export interface CopyDetailResult {
   copyGroupName: string;
   tag: string;
   brandName: string;
