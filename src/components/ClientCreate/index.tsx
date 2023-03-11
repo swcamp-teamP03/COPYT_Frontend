@@ -8,17 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import DeleteFileModal from './FileModal';
 import LabelInput from '../common/LabelInput';
 
-interface ClientGroupDetailProps {
-  groupName: string;
-  extractStart: string;
-  extractEnd: string;
-  property: {
-    propertyName: string;
-    propertyValue: string;
-  }[];
-  fileOrgName: string;
-}
-
 const ClientGroupCreate = () => {
   const [fileName, setFileName] = useState('');
   const [properties, setProperties] = useState(['속성 1', '속성 2']);

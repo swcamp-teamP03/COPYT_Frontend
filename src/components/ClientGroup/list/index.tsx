@@ -3,27 +3,28 @@ import { CLIENT_SVG } from '../../../assets';
 import * as S from './ClientGroupList';
 import PageHeader from '../../common/PageHeader';
 import { useNavigate } from 'react-router-dom';
-import useClientGroupsQuery from '../../../quries/useClientGrupsMutation';
+import useClientGroupsQuery from '../../../quries/Client/useClientGrupsMutation';
 import Pagination from '../../common/Pagination';
-import ClientGroup from '../group';
+import Group from '../group';
 
 const LIST_COUNT = [10, 30, 50];
 
 const ClientGroupList = () => {
-  const [groupNum, setGroupNum] = useState(0);
+  const [pageNum, setPageNum] = useState(0);
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [listCount, setListCount] = useState(10);
   const [totalPage, setTotalPage] = useState(0);
   const navigate = useNavigate();
-  const { data: groupList } = useClientGroupsQuery(groupNum, listCount);
 
+  const { data: groupList, error } = useClientGroupsQuery(pageNum, listCount);
+
+  console.log(groupList?.groupList);
   useEffect(() => {
-    if (groupList?.totalgroup) {
-      const page = Math.ceil(groupList?.totalgroup / listCount);
+    if (groupList?.groupList) {
+      const page = Math.ceil(groupList?.groupList.length / listCount);
       setTotalPage(page);
     }
-  }, [groupList?.totalgroup]);
-  console.log(groupList);
+  }, [groupList?.groupList]);
 
   const handleCountDropDown = () => {
     setShowCountDropDown((prev) => !prev);
@@ -63,14 +64,14 @@ const ClientGroupList = () => {
           </div>
         </S.HeaderSection>
       </S.HeaderLayout> */}
-      <hr
+      {/* <hr
         style={{
           color: 'gray',
         }}
-      />
+      /> */}
 
       <S.TaxtContainer>
-        <div>전체 개</div>
+        {/* <div>전체 {groupList?.groupList?.length}개</div> */}
         <S.VerticalHr />
         <div>목록 개수</div>
         <S.Footer>
@@ -98,8 +99,8 @@ const ClientGroupList = () => {
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      {groupList ? <ClientGroup clientList={groupList.groupList} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>}
-      {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setGroupNum} pageNum={groupNum} />}
+      {/* {groupList ? <Group clientList={groupList?.groupList} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>} */}
+      {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );
 };
