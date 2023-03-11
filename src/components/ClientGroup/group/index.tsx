@@ -8,14 +8,14 @@ const Group = ({ clientList }: { clientList: ClientGroup[] }) => {
     <div>
       {' '}
       <S.ListContainer>
-        {/* {clientList.map((list) => (
+        {clientList.map((list) => (
           <S.GroupList key={list.customerGroupId}>
             <span>{list.favorite ? CLIENT_SVG.star : CLIENT_SVG.unStar}</span>
             <span>{list.date}</span>
             <span>{list.groupName}</span>
             <span>{list.customerCnt}</span>
           </S.GroupList>
-        ))} */}
+        ))}
       </S.ListContainer>
     </div>
   );

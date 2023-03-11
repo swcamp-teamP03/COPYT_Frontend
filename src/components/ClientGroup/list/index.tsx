@@ -18,7 +18,7 @@ const ClientGroupList = () => {
 
   const { data: groupList, error } = useClientGroupsQuery(pageNum, listCount);
 
-  console.log(groupList?.groupList);
+  console.log(groupList);
   useEffect(() => {
     if (groupList?.groupList) {
       const page = Math.ceil(groupList?.groupList.length / listCount);
@@ -99,7 +99,7 @@ const ClientGroupList = () => {
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      {/* {groupList ? <Group clientList={groupList?.groupList} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>} */}
+      {groupList?.totalGroupCount === 0 ? <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg> : <Group clientList={groupList?.groupList || []} />}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );

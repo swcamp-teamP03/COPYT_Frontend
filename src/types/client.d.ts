@@ -9,7 +9,8 @@ export type ClientGroup = {
 
 export interface ClientGroupsResult {
   groupList: ClientGroup[];
-  totalCopy: number;
+  totalGroupCount: number;
+  totalGroupPage: number;
 }
 
 //고객 그룹 상세
