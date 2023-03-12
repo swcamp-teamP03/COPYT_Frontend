@@ -3,7 +3,7 @@ import { CLIENT_SVG } from '../../../assets';
 import * as S from './ClientGroupList';
 import PageHeader from '../../common/PageHeader';
 import { useNavigate } from 'react-router-dom';
-import useClientGroupsQuery from '../../../quries/Client/useClientGrupsMutation';
+import useClientGroupsQuery from '../../../quries/Client/useClientGroupsQuery';
 import Pagination from '../../common/Pagination';
 import Group from '../group';
 
@@ -16,13 +16,12 @@ const ClientGroupList = () => {
   const [totalPage, setTotalPage] = useState(0);
   const navigate = useNavigate();
 
-  const { data: groupList, error } = useClientGroupsQuery(pageNum, listCount);
+  const { data: groupList } = useClientGroupsQuery(pageNum, listCount);
 
   const goDetail = (id: number) => {
-    navigate(`/campaign/${id}`);
+    navigate(`/clients/${id}`);
   };
 
-  console.log(groupList);
   useEffect(() => {
     if (groupList?.totalGroupCount) {
       const page = Math.ceil(groupList?.totalGroupCount / listCount);
@@ -100,7 +99,7 @@ const ClientGroupList = () => {
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      {groupList?.totalGroupCount ? <Group clientList={groupList?.groupList || []} onClick={goDetail} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>}
+      {groupList?.totalGroupCount ? <Group clientList={groupList?.groupList} onClick={goDetail} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );

@@ -60,7 +60,6 @@ const ClientGroupCreate = ({}) => {
   const propertiesArray = properties.map((property, index) => {
     return { [`properties[${index}].propertyValue`]: property };
   });
-  console.log(propertiesArray);
 
   const submitForm = async () => {
     //파일
@@ -72,7 +71,7 @@ const ClientGroupCreate = ({}) => {
     //그룹이름
     formData.append('groupName', groupName);
 
-    //파일이름 O
+    //파일이름
     formData.append('fileOrgName', fileName);
 
     //속성 값
@@ -83,7 +82,6 @@ const ClientGroupCreate = ({}) => {
 
     try {
       const { data }: any = await postClientCreate(formData);
-      console.log('새로운 고객 데이터 생성', data);
     } catch (err) {
       console.log('고객 그룹 동작 에러', err);
     }

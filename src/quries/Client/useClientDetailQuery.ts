@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { getClientGroups } from '../../api/client/group';
+import { getClientGroupDetail } from '../../api/client/group';
 
-const useClientDetailQuery = (pageNum: number, count: number) => {
-  return useQuery(['copyGroups', pageNum, count], () => getClientGroups(pageNum, count));
+const useClientDetailQuery = (id: string | undefined) => {
+  return useQuery(['clientDetails', id], getClientGroupDetail, {
+    enabled: !!id,
+  });
 };
 
 export default useClientDetailQuery;

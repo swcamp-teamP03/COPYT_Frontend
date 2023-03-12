@@ -4,17 +4,8 @@ import * as S from './ClientGroupDetail';
 import Button from '../common/Button';
 import ReactExcelDownload from '../common/XLSX';
 import DownloadModal from './DownloadModal';
-
-interface ClientGroupDetailProps {
-  groupName: string;
-  extractStart: string;
-  extractEnd: string;
-  property: {
-    propertyName: string;
-    propertyValue: string;
-  }[];
-  fileOrgName: string;
-}
+import useClientDetailQuery from '../../quries/Client/useClientDetailQuery';
+import { useParams } from 'react-router-dom';
 
 const ClientGroupDetail = () => {
   const [modify, setModify] = useState(false);
@@ -22,6 +13,11 @@ const ClientGroupDetail = () => {
   const [properties, setProperties] = useState(['속성 1', '속성 2']);
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
+
+  const { id } = useParams();
+
+  const { data: clientDetail } = useClientDetailQuery(id);
+  console.log(clientDetail);
 
   const ModifyHandler = () => {
     setModify(!modify);
@@ -71,11 +67,11 @@ const ClientGroupDetail = () => {
       <S.TaxtInnerContainer>
         <S.TaxtContainer>
           <h3>고객 그룹명</h3>
-          {modify ? <S.ClientModifyProperty type="text" /> : <S.ClientProperty>첫구매 고객 웰컴 이벤트 </S.ClientProperty>}
+          {modify ? <S.ClientModifyProperty type="text" /> : <S.ClientProperty>{clientDetail?.groupName} </S.ClientProperty>}
         </S.TaxtContainer>
         <S.TaxtContainer>
           <h3>그룹 생성일</h3>
-          <div>2023/날짜 </div>
+          <div>{clientDetail?.createdAt} </div>
         </S.TaxtContainer>
       </S.TaxtInnerContainer>
 
@@ -119,9 +115,9 @@ const ClientGroupDetail = () => {
           //수정 안되는 부분
           <>
             <div>속성 1 </div>
-            <S.ClientProperty>propertyValue :230202 이후 가입한 사용자 </S.ClientProperty>
+            <S.ClientProperty>{clientDetail?.customerProperties[0].propertyValue} </S.ClientProperty>
             <div>속성 2 </div>
-            <S.ClientProperty>propertyValue :230202 이후 가입한 사용자 </S.ClientProperty>
+            <S.ClientProperty>{clientDetail?.customerProperties[1].propertyValue} </S.ClientProperty>
 
             <S.PlusButtonLayout>
               <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>
@@ -135,8 +131,10 @@ const ClientGroupDetail = () => {
 
             <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
               <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
-              {fileName}
-
+              <span>{clientDetail?.excelFile.excelFileName}</span>
+              <span>{clientDetail?.excelFile.excelUploadTime}</span>
+              <span>{clientDetail?.excelFile.customerCnt}</span>
+              <span>{clientDetail?.excelFile.excelFileSize}</span>
               <span onClick={handleDownloadClick}>{CLIENT_SVG.download}</span>
               {showModal && <DownloadModal show={showModal} onClose={() => setShowModal(false)} />}
             </S.ClientProperty>
@@ -147,13 +145,16 @@ const ClientGroupDetail = () => {
       {modify ? (
         <></>
       ) : (
-        <S.TaxtContainer>
-          <h2>연결된 캠페인</h2>
-          <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            첫구매 고객 웰컴 이벤트
-            <Button title="캠페인 바로가기" buttonColor="black" borderRadius="10px"></Button>
-          </S.ClientProperty>
-        </S.TaxtContainer>
+        clientDetail?.campaigns &&
+        clientDetail.campaigns.length > 0 && (
+          <S.TaxtContainer>
+            <h2>연결된 캠페인</h2>
+            <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              첫구매 고객 웰컴 이벤트
+              <Button title="캠페인 바로가기" buttonColor="black" borderRadius="10px"></Button>
+            </S.ClientProperty>
+          </S.TaxtContainer>
+        )
       )}
     </>
   );

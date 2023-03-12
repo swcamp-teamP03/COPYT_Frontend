@@ -2,6 +2,7 @@ import React from 'react';
 import { CLIENT_SVG } from '../../../assets';
 import * as S from './Group';
 import { ClientGroup } from '../../../types/client';
+import useClientLikeMutation from '../../../quries/Client/useClientLikeMutation';
 
 interface GroupListProps {
   clientList: ClientGroup[];
@@ -9,13 +10,19 @@ interface GroupListProps {
 }
 
 const Group = ({ clientList, onClick }: GroupListProps) => {
+  const { mutate: clientLikeMutate } = useClientLikeMutation();
+
+  const handleParams = (id: number) => {
+    clientLikeMutate(id);
+  };
+
   return (
     <div>
       {' '}
       <S.ListContainer>
         {clientList.map((list) => (
           <S.GroupList key={list.customerGroupId}>
-            <span>{list.favorite ? CLIENT_SVG.star : CLIENT_SVG.unStar}</span>
+            <span onClick={() => handleParams}>{list.favorite ? CLIENT_SVG.star : CLIENT_SVG.unStar}</span>
             <span>{list.date}</span>
             <span>{list.groupName}</span>
             <span onClick={() => onClick(list.customerGroupId)}>{list.customerCnt}</span>

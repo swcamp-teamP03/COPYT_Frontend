@@ -25,6 +25,7 @@ export type ExcelFileType = {
 
 export type CustomerGroup = {
   groupName: string;
+  createdAt: string;
   customerProperties: { propertyValue: string }[];
   excelFile: ExcelFileType;
   campaigns: campaignsType[];
@@ -40,4 +41,9 @@ export type ClientGroupCreateType = {
 //고객 엑셀 다운로드
 export type ExcelDownloadType = {
   message: string;
+};
+
+//고객 그룹 즐겨찾기
+export type ClientFavoritType = {
+  likeCheck: boolean;
 };
