@@ -13,7 +13,8 @@ interface CopyCondition {
 
 export const postCopies = async (condtion: CopyCondition): Promise<CopyListType[]> => {
   const res = await api.post('/gptcopy', { ...condtion });
-  const data: PostCopyList = res.data;
+  const data: PostCopyList = res.data.data;
+  console.log(data);
   return data.resultList.map((list, idx) => {
     return { ...list, copyId: idx + 1, isPinned: false };
   });

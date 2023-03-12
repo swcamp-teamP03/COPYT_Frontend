@@ -79,7 +79,6 @@ const MessageList = styled.div`
   background-color: ${({ theme }) => theme.colors.gray30};
   padding: 20px 20px 0 20px;
   position: sticky;
-  height: 85%;
   top: 15px;
 `;
 

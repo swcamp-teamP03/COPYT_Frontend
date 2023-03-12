@@ -3,7 +3,6 @@ import { useRecoilState } from 'recoil';
 import { SVG } from '../../../assets';
 import { PIN } from '../../../assets/Like';
 import { POST_SVG } from '../../../assets/Post';
-
 import { copyListState } from '../../../store/copyListState';
 import { CopyListType } from '../../../types/copy';
 import Button from '../../common/Button';

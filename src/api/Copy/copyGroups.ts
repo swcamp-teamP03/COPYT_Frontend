@@ -5,7 +5,7 @@ import { CopyGroupsResult } from '../../types/copy';
 
 export const getCopyGroups = async (pageNum: number, count: number): Promise<CopyGroupsResult | null> => {
   const res = await api.get(`/copies?page=${pageNum}&size=${count}`);
-  if (res.statusText === 'OK') {
+  if (res.data.success) {
     return res.data.data;
   }
   return null;
@@ -13,7 +13,7 @@ export const getCopyGroups = async (pageNum: number, count: number): Promise<Cop
 
 export const likedCopy = async (id: number): Promise<CopyLikeResult | null> => {
   const res = await api.post(`/copy/${id}/like`);
-  if (res.statusText === 'OK') {
+  if (res.data.success) {
     return res.data.data;
   }
   return null;
@@ -22,7 +22,7 @@ export const likedCopy = async (id: number): Promise<CopyLikeResult | null> => {
 export const getCopyGroupDetail = async ({ queryKey }: QueryFunctionContext<[string, string | undefined]>): Promise<CopyDetailResult | null> => {
   const [_, id] = queryKey;
   const res = await api.get(`/copy/${id}`);
-  if (res.statusText === 'OK') {
+  if (res.data.success) {
     return res.data.data;
   }
   return null;
