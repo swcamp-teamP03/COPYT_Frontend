@@ -10,7 +10,7 @@ export type ClientGroup = {
 export interface ClientGroupsResult {
   groupList: ClientGroup[];
   totalGroupCount: number;
-  totalGroupPage: number;
+  totalGroupPage: number | undefined;
 }
 
 //고객 그룹 상세
@@ -28,6 +28,13 @@ export type CustomerGroup = {
   customerProperties: { propertyValue: string }[];
   excelFile: ExcelFileType;
   campaigns: campaignsType[];
+};
+
+//고객 그룹 작성
+export type ClientGroupCreateType = {
+  groupName: string;
+  fileOrgName: string;
+  properties: { propertyValue: string }[];
 };
 
 //고객 엑셀 다운로드

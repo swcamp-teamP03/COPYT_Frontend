@@ -18,19 +18,20 @@ const ClientGroupList = () => {
 
   const { data: groupList, error } = useClientGroupsQuery(pageNum, listCount);
 
+  const goDetail = (id: number) => {
+    navigate(`/campaign/${id}`);
+  };
+
   console.log(groupList);
   useEffect(() => {
-    if (groupList?.groupList) {
-      const page = Math.ceil(groupList?.groupList.length / listCount);
+    if (groupList?.totalGroupCount) {
+      const page = Math.ceil(groupList?.totalGroupCount / listCount);
       setTotalPage(page);
     }
-  }, [groupList?.groupList]);
+  }, [groupList?.totalGroupCount]);
 
   const handleCountDropDown = () => {
     setShowCountDropDown((prev) => !prev);
-  };
-  const onCreatehandler = () => {
-    navigate('/clients/create');
   };
 
   return (
@@ -71,7 +72,7 @@ const ClientGroupList = () => {
       /> */}
 
       <S.TaxtContainer>
-        {/* <div>전체 {groupList?.groupList?.length}개</div> */}
+        <div>전체 {groupList?.totalGroupCount}개</div>
         <S.VerticalHr />
         <div>목록 개수</div>
         <S.Footer>
@@ -99,7 +100,7 @@ const ClientGroupList = () => {
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      {groupList?.totalGroupCount === 0 ? <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg> : <Group clientList={groupList?.groupList || []} />}
+      {groupList?.totalGroupCount ? <Group clientList={groupList?.groupList || []} onClick={goDetail} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );

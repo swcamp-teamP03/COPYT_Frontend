@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CLIENT_SVG } from '../../../assets';
 import * as S from './Group';
 import { ClientGroup } from '../../../types/client';
 
-const Group = ({ clientList }: { clientList: ClientGroup[] }) => {
+interface GroupListProps {
+  clientList: ClientGroup[];
+  onClick: (id: number) => void;
+}
+
+const Group = ({ clientList, onClick }: GroupListProps) => {
   return (
     <div>
       {' '}
@@ -13,7 +18,7 @@ const Group = ({ clientList }: { clientList: ClientGroup[] }) => {
             <span>{list.favorite ? CLIENT_SVG.star : CLIENT_SVG.unStar}</span>
             <span>{list.date}</span>
             <span>{list.groupName}</span>
-            <span>{list.customerCnt}</span>
+            <span onClick={() => onClick(list.customerGroupId)}>{list.customerCnt}</span>
           </S.GroupList>
         ))}
       </S.ListContainer>

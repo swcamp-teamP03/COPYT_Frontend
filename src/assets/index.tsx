@@ -7,11 +7,6 @@ import Star from './star.svg';
 import UnStar from './un_star.svg';
 import VerticalArrow from './vertical_arrow.svg';
 import Highlight from './highlight.svg';
-import DownChevron from './chevron_down.svg';
-import Edit from './edit.svg';
-import Copy from './copy.svg';
-import Checked from './liked.svg';
-import UnChecked from './unliked.svg';
 import Plus from './plus.svg';
 import Minus from './minus.svg';
 import NoneList from './none_list.svg';
@@ -20,6 +15,7 @@ import Exclamation from './exclamation.svg';
 import Credit from './credit.svg';
 import Question from './question.svg';
 import QuestionBox from './questionBox.svg';
+import NoneCampaign from './none_campaign.svg';
 
 export const CLIENT_SVG = {
   arrowFlutter: <ArrowFlutter />,
@@ -31,6 +27,10 @@ export const CLIENT_SVG = {
   highlight: <Highlight />,
   noneList: <NoneList />,
   download: <Download />,
+};
+
+export const CAMPAIGN_SVG = {
+  campaigNone: <NoneCampaign />,
 };
 
 export const SVG = {

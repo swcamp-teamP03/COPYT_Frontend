@@ -10,7 +10,7 @@ interface DeleteFileModalProps {
 const DeleteFileModal = ({ showModal, handleDeleteModal }: DeleteFileModalProps) => {
   return (
     <Modal.Frame isOpen={showModal} onClick={handleDeleteModal} height="80px">
-      <Modal.Body>파일 재업로드 시, 기존 파일은 삭제됩니다. 삭제하시겠습니까?</Modal.Body>
+      <Modal.Body>파일이 삭제되었습니다.</Modal.Body>
       <Modal.Footer>
         <Button title="확인" buttonColor="black" onButtonClick={handleDeleteModal} />
       </Modal.Footer>

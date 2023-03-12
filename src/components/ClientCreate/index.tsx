@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, Dispatch } from 'react';
 import { CLIENT_SVG } from '../../assets';
 import * as S from './ClientGroupCreate';
 import Button from '../common/Button';
@@ -7,12 +7,14 @@ import PageHeader from '../common/PageHeader';
 import { useNavigate } from 'react-router-dom';
 import DeleteFileModal from './FileModal';
 import LabelInput from '../common/LabelInput';
+import { postClientCreate } from '../../api/client/create';
 
-const ClientGroupCreate = () => {
+const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
   const [properties, setProperties] = useState(['속성 1', '속성 2']);
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
+  const [groupName, setGroupName] = useState('');
   const navigate = useNavigate();
 
   const addProperty = () => {
@@ -27,7 +29,8 @@ const ClientGroupCreate = () => {
     if (!e.target.files) {
       return;
     }
-    setFileName(e.target.files[0].name);
+    const file = e.target.files[0];
+    setFileName(file.name);
   }, []);
 
   const onUploadFileButtonClick = useCallback(() => {
@@ -39,15 +42,51 @@ const ClientGroupCreate = () => {
 
   //파일 삭제
   const deleteFile = () => {
-    if (fileName && inputRef.current) {
-      inputRef.current.value = '';
-      setFileName('');
-      setShowModal(false); // 파일 삭제 후 모달을 닫기
-    }
+    formData.delete('file');
+    setFileName('');
+    setShowModal(false);
   };
 
   const handleDeleteModal = () => {
-    setShowModal(true); // 모달을 띄웁니다.
+    setShowModal(true);
+  };
+  //작성 등록
+  const formData = new FormData();
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setGroupName(e.target.value);
+  }, []);
+
+  const propertiesArray = properties.map((property, index) => {
+    return { [`properties[${index}].propertyValue`]: property };
+  });
+  console.log(propertiesArray);
+
+  const submitForm = async () => {
+    //파일
+    const file = inputRef.current?.files?.[0];
+    if (file) {
+      formData.append('file', file);
+    }
+
+    //그룹이름
+    formData.append('groupName', groupName);
+
+    //파일이름 O
+    formData.append('fileOrgName', fileName);
+
+    //속성 값
+    properties.forEach((property, index) => {
+      formData.append(`properties[${index}].propertyValue`, property);
+      console.log(property);
+    });
+
+    try {
+      const { data }: any = await postClientCreate(formData);
+      console.log('새로운 고객 데이터 생성', data);
+    } catch (err) {
+      console.log('고객 그룹 동작 에러', err);
+    }
   };
 
   return (
@@ -56,14 +95,14 @@ const ClientGroupCreate = () => {
         buttonTitle="등록"
         buttonSize="buttonM"
         onClick={() => {
+          submitForm();
           navigate('/clients');
         }}
       >
         고객 그룹 리스트
       </PageHeader>
-
       <S.TaxtInnerContainer>
-        <LabelInput labelTitle="고객 그룹명" limit={24} name="clientGroupName" placeholder="고객 그룹을 입력해 주세요" />
+        <LabelInput labelTitle="고객 그룹명" limit={24} name="clientGroupName" placeholder="고객 그룹을 입력해 주세요" onChange={handleChange} />
       </S.TaxtInnerContainer>
 
       <S.TaxtContainer>
@@ -74,8 +113,15 @@ const ClientGroupCreate = () => {
         <>
           {properties.map((property, index) => (
             <div key={index}>
-              {property}
-              <S.ClientModifyProperty key={`${index}-prop`} type="text" />
+              <span>속성 {index + 1} </span>
+              <S.ClientModifyProperty
+                type="text"
+                placeholder={property}
+                onChange={(event) => {
+                  const newValue = event.target.value;
+                  setProperties((prevProperties) => [...prevProperties.slice(0, index), newValue, ...prevProperties.slice(index + 1)]);
+                }}
+              />
             </div>
           ))}
           <S.HeaderLayout>
@@ -84,7 +130,7 @@ const ClientGroupCreate = () => {
         </>
 
         <div>
-          고객 DB 업로드
+          고객 DB 업로드 <span style={{ color: 'red' }}>*</span>
           <S.HeaderLayout>
             <ReactExcelDownload />
             <label>
