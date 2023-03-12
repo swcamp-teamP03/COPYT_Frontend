@@ -4,13 +4,14 @@ import useCopyDetailQuery from '../../../quries/Copy/useCopyDetailQuery';
 import useCreateCopyMutation from '../../../quries/Copy/useCreateCopyMutation';
 import { CopyDetailResult, CopyListType } from '../../../types/copy';
 import Button from '../../common/Button';
+import Loading from '../../common/Loading';
 import { COPY_TYPE } from '../../CreateCopy/CreateCopyCondition';
 import * as S from './CopyDetail.stlyes';
 
 const CopyDetails = () => {
   const { id } = useParams();
   const { data: copyDetail } = useCopyDetailQuery(id);
-  const { mutate: createCopytMutate } = useCreateCopyMutation();
+  const { mutate: createCopytMutate, isLoading } = useCreateCopyMutation();
 
   const isSelected = (title: string) => {
     return title === title;
@@ -23,6 +24,7 @@ const CopyDetails = () => {
 
   return (
     <div>
+      {isLoading && <Loading />}
       <S.Label>카피그룹명</S.Label>
       <S.GroupName>{copyDetail?.copyGroupName}</S.GroupName>
       <S.Label>브랜드 이름</S.Label>
