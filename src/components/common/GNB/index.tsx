@@ -25,7 +25,7 @@ const GNB = () => {
         <NavItem onClick={() => handleNavigation('/')}>홈</NavItem>
         <NavItem onClick={() => handleNavigation('/clients')}>고객그룹</NavItem>
         <NavItem onClick={() => handleNavigation('/copies')}>카피생성</NavItem>
-        <NavItem onClick={() => handleNavigation('/campain')}>캠페인</NavItem>
+        <NavItem onClick={() => handleNavigation('/campaign')}>캠페인</NavItem>
       </NavWrapper>
       <ButtonWrapper>
         <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button>
