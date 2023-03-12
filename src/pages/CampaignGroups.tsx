@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CHEVRON } from '../assets/Chevron';
 import PageHeader from '../components/common/PageHeader';
-import CampaginGroupList from '../components/CampaginGroupList';
+import CampaginGroupList from '../components/CampaignGroupList';
 import ListCount from '../components/CopyGroups/ListCount';
-import NonCopyGroupList from '../components/CopyGroups/NonCopyGroupList';
 import Pagination from '../components/common/Pagination';
 import useCampaignsQuery from '../quries/Campaign/useCampaignsQuery';
 import { CAMPAIGN_SVG } from '../assets';
@@ -23,12 +22,12 @@ const CapaignGroups = () => {
     navigate(`/campaign/${id}`);
   };
 
-  // useEffect(() => {
-  //   if (groupList?.totalCopy) {
-  //     const page = Math.ceil(groupList?.totalCopy / listCount);
-  //     setTotalPage(page);
-  //   }
-  // }, [groupList?.totalCopy]);
+  useEffect(() => {
+    if (listData?.totalCampaign) {
+      const page = Math.ceil(listData?.totalCampaign / listCount);
+      setTotalPage(page);
+    }
+  }, [listData?.totalCampaign]);
 
   return (
     <>
@@ -41,7 +40,7 @@ const CapaignGroups = () => {
       >
         캠페인 리스트
       </PageHeader>
-      {/* <ListCount listCount={listCount} setListCount={setListCount} totalCopy={groupList?.totalCopy ?? 0} /> */}
+      {/* <ListCount listCount={listCount} setListCount={setListCount} totalClient={listData?.totalCampaign ?? 0} /> */}
       <ListCategory>
         <div>즐겨찾기</div>
         <div>
@@ -59,7 +58,8 @@ const CapaignGroups = () => {
         </div>
         <div>발송상태</div>
       </ListCategory>
-      {/* {listData ? <CampaginGroupList campaignList={listData.campaignList} onClick={goDetail} /> : {CAMPAIGN_SVG} } */}
+      <NoneSvg>{CAMPAIGN_SVG.campaigNone}</NoneSvg>
+      {/* {listData ? <CampaginGroupList campaignList={listData.campaignList} onClick={goDetail} /> : { CAMPAIGN_SVG.campaigNone }} */}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );
@@ -83,4 +83,10 @@ const ListCategory = styled.div`
   div:nth-child(3) {
     justify-content: flex-start;
   }
+`;
+
+const NoneSvg = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px 0px 0px;
 `;

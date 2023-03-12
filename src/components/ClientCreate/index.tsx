@@ -60,6 +60,7 @@ const ClientGroupCreate = ({}) => {
   const propertiesArray = properties.map((property, index) => {
     return { [`properties[${index}].propertyValue`]: property };
   });
+  console.log(propertiesArray);
 
   const submitForm = async () => {
     //파일

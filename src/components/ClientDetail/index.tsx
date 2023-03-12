@@ -6,6 +6,7 @@ import ReactExcelDownload from '../common/XLSX';
 import DownloadModal from './DownloadModal';
 import useClientDetailQuery from '../../quries/Client/useClientDetailQuery';
 import { useParams } from 'react-router-dom';
+import { putClientEdit } from '../../api/client/create';
 
 const ClientGroupDetail = () => {
   const [modify, setModify] = useState(false);
@@ -13,14 +14,17 @@ const ClientGroupDetail = () => {
   const [properties, setProperties] = useState(['속성 1', '속성 2']);
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
+  const [groupName, setGroupName] = useState('');
 
   const { id } = useParams();
 
   const { data: clientDetail } = useClientDetailQuery(id);
-  console.log(clientDetail);
 
   const ModifyHandler = () => {
     setModify(!modify);
+    if (modify) {
+      submitForm();
+    }
   };
 
   const addProperty = () => {
@@ -50,6 +54,33 @@ const ClientGroupDetail = () => {
     inputRef.current.click();
   }, []);
 
+  //전송 데이터
+  const formData = new FormData();
+
+  const handlNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setGroupName(e.target.value);
+  }, []);
+
+  const submitForm = async () => {
+    //그룹이름
+    formData.append('groupName', groupName);
+
+    //파일이름
+    formData.append('fileOrgName', fileName);
+
+    //속성 값
+    properties.forEach((property, index) => {
+      formData.append(`properties[${index}].propertyValue`, property);
+      console.log(property);
+    });
+
+    try {
+      const { data }: any = await putClientEdit(formData);
+    } catch (err) {
+      console.log('고객 그룹 동작 에러', err);
+    }
+  };
+
   return (
     <>
       <S.HeaderLayout>
@@ -67,7 +98,7 @@ const ClientGroupDetail = () => {
       <S.TaxtInnerContainer>
         <S.TaxtContainer>
           <h3>고객 그룹명</h3>
-          {modify ? <S.ClientModifyProperty type="text" /> : <S.ClientProperty>{clientDetail?.groupName} </S.ClientProperty>}
+          {modify ? <S.ClientModifyProperty onChange={handlNameChange} type="text" /> : <S.ClientProperty>{clientDetail?.groupName} </S.ClientProperty>}
         </S.TaxtContainer>
         <S.TaxtContainer>
           <h3>그룹 생성일</h3>
@@ -86,8 +117,15 @@ const ClientGroupDetail = () => {
             <>
               {properties.map((property, index) => (
                 <div key={index}>
-                  <div> {property}</div>
-                  <S.ClientModifyProperty key={`${index}-prop`} type="text" />
+                  <span>속성 {index + 1} </span>
+                  <S.ClientModifyProperty
+                    type="text"
+                    placeholder={property}
+                    onChange={(event) => {
+                      const newValue = event.target.value;
+                      setProperties((prevProperties) => [...prevProperties.slice(0, index), newValue, ...prevProperties.slice(index + 1)]);
+                    }}
+                  />
                 </div>
               ))}
               <S.PlusButtonLayout>
@@ -115,9 +153,9 @@ const ClientGroupDetail = () => {
           //수정 안되는 부분
           <>
             <div>속성 1 </div>
-            <S.ClientProperty>{clientDetail?.customerProperties[0].propertyValue} </S.ClientProperty>
+            <S.ClientProperty>{clientDetail?.customerProperties[0]?.propertyValue} </S.ClientProperty>
             <div>속성 2 </div>
-            <S.ClientProperty>{clientDetail?.customerProperties[1].propertyValue} </S.ClientProperty>
+            <S.ClientProperty>{clientDetail?.customerProperties[1]?.propertyValue} </S.ClientProperty>
 
             <S.PlusButtonLayout>
               <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>

@@ -31,7 +31,7 @@ export type CustomerGroup = {
   campaigns: campaignsType[];
 };
 
-//고객 그룹 작성
+//고객 그룹 작성 ,고객그룹 수정
 export type ClientGroupCreateType = {
   groupName: string;
   fileOrgName: string;
@@ -40,7 +40,8 @@ export type ClientGroupCreateType = {
 
 //고객 엑셀 다운로드
 export type ExcelDownloadType = {
-  message: string;
+  downloadReason: string;
+  password: string;
 };
 
 //고객 그룹 즐겨찾기
