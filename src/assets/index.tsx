@@ -1,7 +1,7 @@
 import React from 'react';
 import CloseButton from './closeButton.svg';
-import Calendar from './Calendar.svg';
-import Serch from './serch.svg';
+import Calendar from './calendar.svg';
+import Serch from './search.svg';
 import Highlight from './highlight.svg';
 import Plus from './plus.svg';
 import Minus from './minus.svg';
@@ -15,7 +15,7 @@ import NoneCampaign from './none_campaign.svg';
 
 export const CLIENT_SVG = {
   calender: <Calendar />,
-  serch: <Serch />,
+  search: <Serch />,
   highlight: <Highlight />,
   noneList: <NoneList />,
   download: <Download />,
