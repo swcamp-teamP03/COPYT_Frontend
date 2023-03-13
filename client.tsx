@@ -3,9 +3,9 @@ import React from 'react';
 import App from './App';
 import { worker } from './src/mocks/worker';
 
-if (process.env.NODE_ENV === 'development') {
-  worker.start();
-}
+// if (process.env.NODE_ENV === 'development') {
+//   worker.start();
+// }
 
 const container = document.getElementById('app');
 const root = createRoot(container as Element);
