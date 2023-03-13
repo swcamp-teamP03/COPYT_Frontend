@@ -24,11 +24,11 @@ const Router = () => {
           <Route path="/clients/:id" element={<Layout router={<ClientGroupDetail />} />} />
           <Route path="/clients/create" element={<Layout router={<ClientGroupCreate />} />} />
           <Route path="/copies" element={<Layout router={<CopyGroups />} />} />
-          <Route path="/copies/create" element={<CreateCopy />} />
-          <Route path="/copies/:id/*" element={<DetailCopy />} />
+          <Route path="/copies/create" element={<Layout router={<CreateCopy />} />} />
+          <Route path="/copies/:id/*" element={<Layout router={<DetailCopy />} />} />
           <Route path="/campaign" element={<Layout router={<CampaignGroups />} />} />
-          <Route path="/campaign/create" element={<CreateCampaign />} />
-          <Route path="/campaign/:campaignID" element={<DetailCampaign />} />
+          <Route path="/campaign/create" element={<Layout router={<CreateCampaign />} />} />
+          <Route path="/campaign/:campaignID" element={<Layout router={<DetailCampaign />} />} />
         </Route>
         <Route element={<AuthenticateRoute isAuthenticated={false} />}>
           <Route path="auth/*" element={<AuthRouter />} />

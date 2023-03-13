@@ -2,6 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
+import { GNB_SVG } from '../../../assets/GNB';
+
+const NAV_ITEM = [
+  { title: '홈', svg: GNB_SVG.home, url: '/' },
+  { title: '고객 그룹', svg: GNB_SVG.client, url: '/clients' },
+  { title: '카피 생성', svg: GNB_SVG.copy, url: '/copies' },
+  { title: '캠페인', svg: GNB_SVG.campaign, url: '/campaign' },
+];
 
 const GNB = () => {
   const navigate = useNavigate();
@@ -19,18 +27,20 @@ const GNB = () => {
 
   return (
     <GNBContainer>
-      <Logo>카피티</Logo>
+      <Logo>{GNB_SVG.logo}</Logo>
       <Gap />
       <NavWrapper>
-        <NavItem onClick={() => handleNavigation('/')}>홈</NavItem>
-        <NavItem onClick={() => handleNavigation('/clients')}>고객그룹</NavItem>
-        <NavItem onClick={() => handleNavigation('/copies')}>카피생성</NavItem>
-        <NavItem onClick={() => handleNavigation('/campaign')}>캠페인</NavItem>
+        {NAV_ITEM.map((item) => (
+          <NavItem key={item.title} onClick={() => handleNavigation(item.url)}>
+            {item.svg}
+            {item.title}
+          </NavItem>
+        ))}
       </NavWrapper>
-      <ButtonWrapper>
+      {/* <ButtonWrapper>
         <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button>
         <Button title="로그아웃" buttonSize="buttonM" buttonColor="blue" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={true}></Button>
-      </ButtonWrapper>
+      </ButtonWrapper> */}
     </GNBContainer>
   );
 };
@@ -52,10 +62,9 @@ const GNBContainer = styled.div`
 
 const Logo = styled.div`
   margin: 15px 15px 5px;
-  font-weight: bold;
-  text-align: center;
-  font-size: 18px;
-  color: ${({ theme }) => theme.colors.gray10};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Gap = styled.p`
@@ -69,17 +78,19 @@ const NavWrapper = styled.nav`
 `;
 
 const NavItem = styled.div`
+  cursor: pointer;
   padding: 16px 18px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: black;
+  color: ${({ theme }) => theme.colors.blue30};
   font-weight: bold;
   text-align: left;
+  gap: 15px;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray50};
+    background-color: ${({ theme }) => theme.colors.gray30};
     border-radius: 10px;
-    color: white;
+    color: ${({ theme }) => theme.colors.blue50};
   }
 `;
 
