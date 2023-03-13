@@ -6,7 +6,6 @@ import CopyList from '../components/CreateCopy/CopyList';
 import CopyDetails from '../components/DetailCopy/CopyDetails';
 import useCopyDetailQuery from '../quries/Copy/useCopyDetailQuery';
 import { CopyListType } from '../types/copy';
-import { Layout } from './Layout.styles';
 
 const DetailCopy = () => {
   const [copyList, setCopyList] = useState<CopyListType[]>([]);
@@ -21,7 +20,7 @@ const DetailCopy = () => {
   }, [copyDetail?.copyList]);
 
   return (
-    <Layout size="M">
+    <>
       <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={() => {}}>
         카피그룹 상세
         <Date>2023/02/25</Date>
@@ -30,7 +29,7 @@ const DetailCopy = () => {
         <CopyDetails copyList={copyList} setCopyList={setCopyList} />
         <CopyList copyList={copyList} setCopyList={setCopyList} />
       </GridLayout>
-    </Layout>
+    </>
   );
 };
 

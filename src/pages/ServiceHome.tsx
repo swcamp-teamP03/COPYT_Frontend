@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
-import { Layout } from './Layout.styles';
 
 const LINKS = [
   { title: '간단하게 여러개 카피 먼저 받아보세요', button: '카피 생성하기', url: '/copies/create' },
@@ -18,7 +17,7 @@ const ServiceHome = () => {
   };
 
   return (
-    <Layout size="M">
+    <>
       <TitleContainer>
         <h3>
           처음오셨나요?
@@ -35,7 +34,7 @@ const ServiceHome = () => {
           </LinkBox>
         ))}
       </LinkContainer>
-    </Layout>
+    </>
   );
 };
 

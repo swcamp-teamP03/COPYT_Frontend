@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Button from '../Button';
 import { GNB_SVG } from '../../../assets/GNB';
 
 const NAV_ITEM = [
@@ -14,16 +13,16 @@ const NAV_ITEM = [
 const GNB = () => {
   const navigate = useNavigate();
 
-  const handleNavigation = (path: any) => {
+  const handleNavigation = (path: string) => {
     navigate(path);
   };
 
-  const handleMyClick = () => {
-    handleNavigation('/my');
-  };
-  const handleLogoutClick = () => {
-    handleNavigation('/');
-  };
+  // const handleMyClick = () => {
+  //   handleNavigation('/my');
+  // };
+  // const handleLogoutClick = () => {
+  //   handleNavigation('/');
+  // };
 
   return (
     <GNBContainer>
@@ -48,16 +47,13 @@ const GNB = () => {
 export default GNB;
 
 const GNBContainer = styled.div`
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   height: 100%;
   width: 200px;
-  background-color: ${({ theme }) => theme.colors.gray20};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 1;
+  border-right: 1px solid ${({ theme }) => theme.colors.gray30};
+  z-index: 5;
 `;
 
 const Logo = styled.div`

@@ -1,6 +1,5 @@
 import React, { useReducer, useState } from 'react';
 import PageHeader from '../components/common/PageHeader';
-import { Layout } from './Layout.styles';
 import styled from 'styled-components';
 import CreateCopyCondition from '../components/CreateCopy/CreateCopyCondition';
 import { copyConditionInit, copyConditionReducer } from '../components/CreateCopy/CreateCopyCondition/copyConditionReducer';
@@ -31,15 +30,14 @@ const CreateCopy = () => {
 
   return (
     <>
-      <Layout size="M">
-        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={onSubmit} buttonColor="blue">
-          카피 추천 받기
-        </PageHeader>
-        <GridLayout>
-          <CreateCopyCondition condition={condition} conditionDispatch={conditionDispatch} copyList={copyList} setCopyList={setCopyList} />
-          <CopyList copyList={copyList} setCopyList={setCopyList} />
-        </GridLayout>
-      </Layout>
+      <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={onSubmit} buttonColor="blue">
+        카피 추천 받기
+      </PageHeader>
+      <GridLayout>
+        <CreateCopyCondition condition={condition} conditionDispatch={conditionDispatch} copyList={copyList} setCopyList={setCopyList} />
+        <CopyList copyList={copyList} setCopyList={setCopyList} />
+      </GridLayout>
+
       <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
     </>
   );
