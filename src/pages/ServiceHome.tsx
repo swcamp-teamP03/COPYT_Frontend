@@ -67,6 +67,9 @@ const LinkBox = styled.div`
 `;
 
 const LinkTitle = styled.div`
+  margin-top: 10px;
   width: 100%;
   height: 100px;
+  font-weight: 700;
+  font-size: 20px;
 `;
