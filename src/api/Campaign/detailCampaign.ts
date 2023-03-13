@@ -1,7 +1,7 @@
-import { BASE_URL } from './../../constants/api';
-import { api } from '..';
 import { CommentResult, DetailCampaignResult, SentHistoryResult } from '../../types/campaign';
 import { QueryFunctionContext } from '@tanstack/react-query';
+import { api } from '..';
+import { BASE_URL } from '../../constants/api';
 
 export const getSentHistory = async ({ queryKey }: QueryFunctionContext<[string, string | undefined]>): Promise<SentHistoryResult | null> => {
   const [_, id] = queryKey;
