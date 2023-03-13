@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { getAccessToken } from '../api';
 import Layout from '../components/Layout';
+import { getAccessToken } from '../api/index';
 
 const AuthenticateRoute = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
   const token = getAccessToken();
