@@ -7,8 +7,6 @@ interface PostSignInProps {
 
 export const postSignIn = async ({ email, password }: PostSignInProps) => {
   const res = await api.post('/login', { email, password });
-
-  console.log(document.cookie);
-
+  localStorage.setItem('accessToken', res.data.token);
   return res.data;
 };

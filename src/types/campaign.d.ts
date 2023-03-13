@@ -45,11 +45,13 @@ export interface DetailCampaignResult {
     messageACnt: number;
     messageSuccessCnt: number;
     uniqueCTR: number;
+    clickCnt: number;
   };
   messageB?: {
     messageBCnt: number;
     messageSuccessCnt: number;
     uniqueCTR: number;
+    clickCnt: number;
   };
   comment: string;
 }

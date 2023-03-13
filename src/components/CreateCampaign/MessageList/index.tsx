@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRecoilState } from 'recoil';
-import { POST_SVG } from '../../../assets/Post';
 import { campaignConditionState } from '../../../store/campaignConditionState';
-import Button from '../../common/Button';
 import CampaignMessage from './CampaignMessage';
 import * as S from './MessageList.stlyes';
 

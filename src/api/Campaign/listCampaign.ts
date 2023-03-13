@@ -1,4 +1,4 @@
-import { api } from '../index';
+import { api } from '..';
 import { CampaignsListType } from '../../types/campaign';
 
 export const getCampaignsCreate = async (pageNum: number, count: number): Promise<CampaignsListType> => {
