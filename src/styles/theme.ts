@@ -11,7 +11,7 @@ const colors = {
   blue10: '#3f7f6ff',
   blue20: '#eeedff',
   blue30: '#5549ff',
-  blue40: '#417f6',
+  blue40: '#4417f6',
   blue50: '#1C076D',
   black: 'black',
 };
