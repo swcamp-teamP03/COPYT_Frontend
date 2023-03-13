@@ -7,7 +7,7 @@ import { Layout } from './Layout.styles';
 const LINKS = [
   { title: '간단하게 여러개 카피 먼저 받아보세요', button: '카피 생성하기', url: '/copies/create' },
   { title: '기존에 관리하던 고객을 업데이트하고 메시지를 보내세요.', button: '고객 그룹 추가', url: '/clients/create' },
-  { title: '생성한 카피로 \n 메시지 A/B테스트를 진행하세요.', button: '새 캠페인 생성', url: '/campaigns/create' },
+  { title: '생성한 카피로 \n 메시지 A/B테스트를 진행하세요.', button: '새 캠페인 생성', url: '/campaign/create' },
 ];
 
 const ServiceHome = () => {
