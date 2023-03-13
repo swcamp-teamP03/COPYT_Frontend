@@ -6,7 +6,7 @@ const useSignInMutation = (setError: <P extends 'signIn'>(target: P, bool: boole
   const navigate = useNavigate();
   return useMutation(postSignIn, {
     onSuccess: ({ data }) => {
-      // navigate('/');
+      navigate('/');
     },
     onError: (error) => {
       setError('signIn', true);
