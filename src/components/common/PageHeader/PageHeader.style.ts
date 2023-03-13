@@ -12,7 +12,7 @@ export const HeadTitle = styled.h2``;
 
 interface HaederButtonProps {
   buttonSize: 'buttonS' | 'buttonM' | 'buttonL';
-  buttonColor: 'red' | 'white' | 'black' | 'disabled';
+  buttonColor: 'red' | 'white' | 'blue' | 'disabled';
   disabled: boolean;
 }
 
@@ -23,18 +23,18 @@ export const HeaderButton = styled.button<HaederButtonProps>`
     const colors = {
       red: theme.colors.white,
       white: theme.colors.white,
-      black: theme.colors.black,
+      blue: theme.colors.blue30,
       disabled: theme.colors.gray30,
     };
-    return colors[buttonColor ?? 'black'];
+    return colors[buttonColor ?? 'blue'];
   }};
   color: ${({ theme, buttonColor }) => {
     const colors = {
       red: theme.colors.red,
       white: theme.colors.gray50,
-      black: theme.colors.white,
+      blue: theme.colors.white,
       disabled: theme.colors.gray20,
     };
-    return colors[buttonColor ?? 'black'];
+    return colors[buttonColor ?? 'blue'];
   }};
 `;

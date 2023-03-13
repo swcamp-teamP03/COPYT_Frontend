@@ -32,8 +32,8 @@ export const TaxtInnerContainer = styled.div`
 `;
 
 export const ClientProperty = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray0};
-  color: ${({ theme }) => theme.colors.gray70};
+  background-color: ${({ theme }) => theme.colors.gray10};
+  color: ${({ theme }) => theme.colors.gray50};
   padding: 10px 30px 10px 10px;
   height: 20px;
   border-radius: 10px;
@@ -70,7 +70,7 @@ export const ClientModifyProperty = styled.input`
 `;
 
 export const PropertyHighlight = styled.div`
-  color: ${({ theme }) => theme.colors.gray70};
+  color: ${({ theme }) => theme.colors.gray50};
   padding: 10px;
   margin: 2px;
   height: 20px;

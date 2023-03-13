@@ -43,7 +43,7 @@ const GNBContainer = styled.div`
   left: 0;
   height: 100%;
   width: 200px;
-  background-color: ${({ theme }) => theme.colors.gray0};
+  background-color: ${({ theme }) => theme.colors.gray20};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -73,11 +73,11 @@ const NavItem = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: ${({ theme }) => theme.colors.black};
+  color: black;
   font-weight: bold;
   text-align: left;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray90};
+    background-color: ${({ theme }) => theme.colors.gray50};
     border-radius: 10px;
     color: white;
   }

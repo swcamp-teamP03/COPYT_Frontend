@@ -51,7 +51,7 @@ export const TagButton = styled.button<TagButtonProps>`
   height: 38px;
   border-radius: 10px;
   border: none;
-  background-color: ${(props) => (props.isSelectedTag ? props.theme.colors.gray60 : props.theme.colors.gray40)};
+  background-color: ${(props) => (props.isSelectedTag ? props.theme.colors.gray20 : props.theme.colors.gray40)};
 `;
 
 export const VerticalHr = styled.div`

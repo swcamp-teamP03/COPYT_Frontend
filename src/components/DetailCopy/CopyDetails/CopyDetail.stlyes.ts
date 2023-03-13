@@ -20,7 +20,7 @@ export const TextBox = styled.div`
 export const Keyword = styled.div`
   border-radius: 10px;
   padding: 8px;
-  background-color: ${({ theme }) => theme.colors.gray0};
+  background-color: ${({ theme }) => theme.colors.gray20};
 `;
 
 export const CopyTypeContainer = styled.div`
