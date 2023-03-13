@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import PageHeader from '../components/common/PageHeader';
 import CopyList from '../components/CreateCopy/CopyList';
 import CopyDetails from '../components/DetailCopy/CopyDetails';
 import useCopyDetailQuery from '../quries/Copy/useCopyDetailQuery';
-import { copyListState } from '../store/copyListState';
-import { Layout } from './Layout.styles';
+import { CopyListType } from '../types/copy';
 
 const DetailCopy = () => {
-  const [copyList, setCopyList] = useRecoilState(copyListState);
+  const [copyList, setCopyList] = useState<CopyListType[]>([]);
   const { id } = useParams();
 
   const { data: copyDetail } = useCopyDetailQuery(id);
@@ -22,16 +20,16 @@ const DetailCopy = () => {
   }, [copyDetail?.copyList]);
 
   return (
-    <Layout size="M">
+    <>
       <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={() => {}}>
         카피그룹 상세
         <Date>2023/02/25</Date>
       </PageHeader>
       <GridLayout>
-        <CopyDetails />
-        <CopyList />
+        <CopyDetails copyList={copyList} setCopyList={setCopyList} />
+        <CopyList copyList={copyList} setCopyList={setCopyList} />
       </GridLayout>
-    </Layout>
+    </>
   );
 };
 

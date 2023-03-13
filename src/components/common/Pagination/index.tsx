@@ -32,7 +32,7 @@ const Pagination = ({ totalPage, setPageNum, pageNum }: PaginationProps) => {
     <>
       <S.Layout>
         <S.Button onClick={onClickLefrChevron} disabled={canNotLeftClick}>
-          {CHEVRON.left}
+          <S.SVGContainer>{CHEVRON.left}</S.SVGContainer>
         </S.Button>
         {pageArray.map((page) => (
           <S.Button key={page} onClick={() => hadlePageNum(page)} isSelected={isSelected(page)}>
@@ -40,7 +40,7 @@ const Pagination = ({ totalPage, setPageNum, pageNum }: PaginationProps) => {
           </S.Button>
         ))}
         <S.Button onClick={onClickRightChevron} disabled={canNotRightClick}>
-          {CHEVRON.right}
+          <S.SVGContainer>{CHEVRON.right}</S.SVGContainer>
         </S.Button>
       </S.Layout>
     </>

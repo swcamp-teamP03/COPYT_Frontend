@@ -3,17 +3,17 @@ import { DefaultTheme } from 'styled-components';
 const colors = {
   red: '#EB1F20',
   white: '#FFFFFF',
-  black: '#232323',
-  gray0: '#F5F5F5',
-  gray10: '#D3D3D3',
-  gray20: '#B7B7B7',
-  gray30: '#DFDFDF',
-  gray40: '#D0D0D0',
-  gray50: '#B8B8B8',
-  gray60: '#4E4E4E',
-  gray70: '#5F5F5F',
-  gray80: '#555555',
-  gray90: '#424242',
+  gray10: '#f4f4f4',
+  gray20: '#f9f9fa',
+  gray30: '#f0f0f0',
+  gray40: '#d3d3d3',
+  gray50: '#333333',
+  blue10: '#f6f7ff',
+  blue20: '#eeedff',
+  blue30: '#5549ff',
+  blue40: '#4417f6',
+  blue50: '#1C076D',
+  black: 'black',
 };
 
 const fontSize = {

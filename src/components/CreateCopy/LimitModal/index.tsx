@@ -13,7 +13,7 @@ const CopyCountLimitModal = ({ showLimitModal, handleLimitModal }: CopyCountLimi
     <Modal.Frame isOpen={showLimitModal} onClick={handleLimitModal} height="120px">
       <Modal.Body>{COPY_MESSAGE.LIMITE_OVER}</Modal.Body>
       <Modal.Footer>
-        <Button title="확인" buttonColor="black" onButtonClick={handleLimitModal} />
+        <Button title="확인" buttonColor="blue" onButtonClick={handleLimitModal} />
       </Modal.Footer>
     </Modal.Frame>
   );

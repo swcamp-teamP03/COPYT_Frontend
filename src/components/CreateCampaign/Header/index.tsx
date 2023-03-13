@@ -55,13 +55,13 @@ const Header = () => {
           ) : (
             <>
               <S.TitleInput value={title} onChange={(e) => handleTitleInput(e)} />
-              <Button buttonColor="black" title="저장" buttonSize="buttonS" onButtonClick={onSaveCampaignName} />
+              <Button buttonColor="blue" title="저장" buttonSize="buttonS" onButtonClick={onSaveCampaignName} />
             </>
           )}
         </S.Flex>
       </S.Flex>
       <div>
-        <Button title="캠페인 실행" buttonColor="black" buttonSize="buttonM" isDisabled={isDisabledSumbit} onButtonClick={onSubmit} />
+        <Button title="캠페인 실행" buttonColor="blue" buttonSize="buttonM" isDisabled={isDisabledSumbit} onButtonClick={onSubmit} />
       </div>
     </S.Fixed>
   );

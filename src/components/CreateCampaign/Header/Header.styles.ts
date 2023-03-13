@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const Fixed = styled.div`
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 190px;
+  right: 0;
   align-items: center;
   justify-content: space-between;
   padding: 40px 30px 20px;

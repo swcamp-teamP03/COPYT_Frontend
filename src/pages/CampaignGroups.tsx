@@ -14,7 +14,6 @@ const CapaignGroups = () => {
   const navigate = useNavigate();
 
   const { data: listData } = useCampaignsQuery(pageNum, listCount);
-  console.log(listData);
 
   const goDetail = (id: number) => {
     navigate(`/campaign/${id}`);

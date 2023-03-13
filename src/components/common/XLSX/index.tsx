@@ -42,7 +42,7 @@ const ReactExcelDownload = () => {
 
   return (
     <div>
-      <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" isDisabled={false} onButtonClick={ExcelDownload}></Button>
+      <Button title="양식 파일 다운로드" buttonColor="blue" borderRadius="10px" isDisabled={false} onButtonClick={ExcelDownload}></Button>
     </div>
   );
 };

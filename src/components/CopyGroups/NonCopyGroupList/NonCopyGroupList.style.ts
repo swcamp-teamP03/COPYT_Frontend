@@ -6,7 +6,7 @@ export const Layout = styled.div`
   align-items: center;
   border: ${({ theme }) => `1px solid ${theme.colors.gray10}`};
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.colors.gray0};
+  background-color: ${({ theme }) => theme.colors.gray20};
   height: 300px;
 `;
 

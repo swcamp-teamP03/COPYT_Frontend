@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useParams } from 'react-router-dom';
 import useCopyDetailQuery from '../../../quries/Copy/useCopyDetailQuery';
 import useCreateCopyMutation from '../../../quries/Copy/useCreateCopyMutation';
@@ -7,11 +7,16 @@ import Button from '../../common/Button';
 import Loading from '../../common/Loading';
 import { COPY_TYPE } from '../../CreateCopy/CreateCopyCondition';
 import * as S from './CopyDetail.stlyes';
+interface CopyDetailsProps {
+  setCopyList: Dispatch<SetStateAction<CopyListType[]>>;
+  copyList: CopyListType[];
+}
 
-const CopyDetails = () => {
+const CopyDetails = ({ setCopyList, copyList }: CopyDetailsProps) => {
   const { id } = useParams();
+
   const { data: copyDetail } = useCopyDetailQuery(id);
-  const { mutate: createCopytMutate, isLoading } = useCreateCopyMutation();
+  const { mutate: createCopytMutate, isLoading } = useCreateCopyMutation({ setCopyList, copyList });
 
   const isSelected = (title: string) => {
     return title === title;
@@ -64,7 +69,7 @@ const CopyDetails = () => {
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
-        <Button title="카피 추천 받기" buttonSize="buttonL" buttonColor="black" onButtonClick={recommendCopy} />
+        <Button title="카피 추천 받기" buttonSize="buttonL" buttonColor="blue" onButtonClick={recommendCopy} />
       </S.CopySubmit>
     </div>
   );

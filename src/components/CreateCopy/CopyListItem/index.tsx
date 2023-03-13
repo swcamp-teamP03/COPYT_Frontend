@@ -70,7 +70,7 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
               <div></div>
               <div>
                 <Button title="취소" buttonColor="white" buttonSize="buttonS" onButtonClick={() => setIsEditMode(false)} />
-                <Button title="수정하기" buttonColor="black" onButtonClick={() => editCopyHandler(data.copyId)} />
+                <Button title="수정하기" buttonColor="blue" onButtonClick={() => editCopyHandler(data.copyId)} />
               </div>
             </>
           </S.Footer>

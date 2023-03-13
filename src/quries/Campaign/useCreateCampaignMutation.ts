@@ -7,7 +7,7 @@ const useCreateCampaignMutation = () => {
 
   return useMutation(createCamapign, {
     onSuccess: () => {
-      navigate('/campaigns');
+      navigate('/campaign');
     },
   });
 };

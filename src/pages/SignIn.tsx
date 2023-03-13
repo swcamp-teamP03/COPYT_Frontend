@@ -41,7 +41,7 @@ const SignIn = () => {
           </ErrorMessage>
         )}
         <Footer>
-          <Button buttonColor="black" buttonSize="buttonL" title="로그인" borderRadius="15px" type="submit" isDisabled={isDisabled} />
+          <Button buttonColor="blue" buttonSize="buttonL" title="로그인" borderRadius="15px" type="submit" isDisabled={isDisabled} />
         </Footer>
       </form>
     </Container>
