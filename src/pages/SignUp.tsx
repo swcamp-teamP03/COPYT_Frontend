@@ -47,7 +47,7 @@ const SignUp = () => {
     <Container onSubmit={onSubmit}>
       <SignUpForm userInputDispatch={userInputDispatch} isError={isError} />
       <SignUpTOS selectedTOS={selectedTOS} setSelectedTOS={setSelectedTOS} isAllChecked={isAllChecked} />
-      <Button title="회원가입" buttonSize="buttonL" buttonColor="black" isDisabled={isDisabledSubmit} type="submit" />
+      <Button title="회원가입" buttonSize="buttonL" buttonColor="blue" isDisabled={isDisabledSubmit} type="submit" />
     </Container>
   );
 };

@@ -72,7 +72,7 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
       {editMode && (
         <S.EditButtons>
           <Button title="취소" buttonColor="white" buttonSize="buttonS" onButtonClick={handleEditMode} />
-          <Button title="저장" buttonColor="black" buttonSize="buttonS" onButtonClick={() => onSaveMessage(type)} isDisabled={isOver} />
+          <Button title="저장" buttonColor="blue" buttonSize="buttonS" onButtonClick={() => onSaveMessage(type)} isDisabled={isOver} />
         </S.EditButtons>
       )}
     </S.MessageLayout>

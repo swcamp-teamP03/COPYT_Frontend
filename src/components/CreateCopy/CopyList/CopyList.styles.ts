@@ -6,7 +6,7 @@ export const CopyListContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.gray0};
+  background-color: ${({ theme }) => theme.colors.gray20};
   padding: 40px;
   overflow-y: auto;
   overflow-x: hidden;

@@ -11,21 +11,28 @@ import DetailCopy from '../pages/DetailCopy';
 import CreateCampaign from '../pages/CreateCampaign';
 import DetailCampaign from '../pages/DetailCampaign';
 import CampaignGroups from '../pages/CampaignGroups';
+import ServiceHome from '../pages/ServiceHome';
+import AuthenticateRoute from './AuthenticateRoute';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/copies" element={<Layout router={<CopyGroups />} />} />
-        <Route path="/clients" element={<Layout router={<ClientGroups />} />} />
-        <Route path="/clients/:id" element={<Layout router={<ClientGroupDetail />} />} />
-        <Route path="/clients/create" element={<Layout router={<ClientGroupCreate />} />} />
-        <Route path="/copies/create" element={<CreateCopy />} />
-        <Route path="/copies/:id/*" element={<DetailCopy />} />
-        <Route path="/campaign" element={<Layout router={<CampaignGroups />} />} />
-        <Route path="/campaign/create" element={<CreateCampaign />} />
-        <Route path="/campaign/:campaignID" element={<DetailCampaign />} />
-        <Route path="auth/*" element={<AuthRouter />} />
+        <Route element={<AuthenticateRoute isAuthenticated={true} />}>
+          <Route path="/" element={<ServiceHome />} />
+          <Route path="/clients" element={<ClientGroups />} />
+          <Route path="/clients/:id" element={<ClientGroupDetail />} />
+          <Route path="/clients/create" element={<ClientGroupCreate />} />
+          <Route path="/copies" element={<CopyGroups />} />
+          <Route path="/copies/create" element={<CreateCopy />} />
+          <Route path="/copies/:id/*" element={<DetailCopy />} />
+          <Route path="/campaign" element={<CampaignGroups />} />
+          <Route path="/campaign/create" element={<CreateCampaign />} />
+          <Route path="/campaign/:campaignID" element={<DetailCampaign />} />
+        </Route>
+        <Route element={<AuthenticateRoute isAuthenticated={false} />}>
+          <Route path="auth/*" element={<AuthRouter />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

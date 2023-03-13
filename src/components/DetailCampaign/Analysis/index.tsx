@@ -56,7 +56,9 @@ const Analysis = () => {
           <S.CategoryTitle>
             {type.messageSuccessCnt} / {idx === 0 ? memberA : memberB}
           </S.CategoryTitle>
-          <S.CategoryTitle>{type.uniqueCTR}%</S.CategoryTitle>
+          <S.CategoryTitle>
+            {type.uniqueCTR}% ({type.clickCnt})
+          </S.CategoryTitle>
           <S.CategoryTitle>{idx === 0 ? '기준' : ctrGap + '%'}</S.CategoryTitle>
         </S.Categories>
       ))}

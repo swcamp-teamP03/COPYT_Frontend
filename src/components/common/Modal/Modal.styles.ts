@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Overlay = styled.div<Pick<ModalFrameProps, 'isOpen'>>`
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   position: fixed;
-  background-color: ${({ theme }) => theme.colors.gray60};
+  background-color: ${({ theme }) => theme.colors.gray50};
   opacity: 0.3;
   z-index: 10;
   width: 100%;
@@ -46,7 +46,6 @@ export const ModalHeader = styled.div`
 
 export const ModalBody = styled.div`
   white-space: pre-wrap;
-  height: 100%;
   width: 100%;
   overflow: auto;
 `;

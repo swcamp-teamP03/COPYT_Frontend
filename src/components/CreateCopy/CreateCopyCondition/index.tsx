@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import LabelInput from '../../common/LabelInput';
 import { CopyConditionAction, CopyConditionInit } from './copyConditionReducer';
@@ -11,6 +11,8 @@ import CopyCountLimitModal from '../LimitModal';
 import DropDwown from '../../common/DropDown';
 import { ARITHMETIC, SVG } from '../../../assets';
 import { CHEVRON } from '../../../assets/Chevron';
+import Loading from '../../common/Loading';
+import { CopyListType } from '../../../types/copy';
 
 export const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [1, 2, 3, 4, 5];
@@ -20,14 +22,15 @@ const LIMITE_MAX_LENGTH = 900;
 interface CreatConditionProps {
   condition: CopyConditionInit;
   conditionDispatch: Dispatch<CopyConditionAction>;
+  setCopyList: Dispatch<SetStateAction<CopyListType[]>>;
+  copyList: CopyListType[];
 }
 
-const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) => {
+const CreateCondition = ({ condition, conditionDispatch, copyList, setCopyList }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [isComposing, setIsComposing] = useState(false);
-  const { mutate: createCoptMutate } = useCreateCopyMutation();
   const [showLimitModal, setShowLimitModal] = useState(false);
-  const [copyList, setCopyList] = useRecoilState(copyListState);
+  const { mutate: createCopytMutate, isLoading } = useCreateCopyMutation({ copyList, setCopyList });
 
   const disabledCondition = Object.values(condition).includes('') || condition.keyword.length < 1;
 
@@ -77,8 +80,11 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
     if (copyList.length + Number(condition.createCount) > 20) {
       return handleLimitModal();
     }
-    createCoptMutate(condition);
+    const { brandName, productName, keyword, type, copyLength, createCount, sector } = condition;
+    const keywordStr = keyword.join();
+    createCopytMutate({ brandName, productName, keyword: keywordStr, type, copyLength, createCount, sector });
   };
+
   const handleDropDown = (value: number) => {
     conditionDispatch({ type: 'CHANGE_COUNT', key: 'createCount', value });
     handleCountDropDown;
@@ -86,6 +92,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
 
   return (
     <div>
+      {isLoading && <Loading />}
       <LabelInput
         labelTitle="카피그룹명"
         limit={24}
@@ -154,7 +161,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
-        <Button title="카피 추천 받기" isDisabled={disabledCondition} buttonSize="buttonL" buttonColor="black" onButtonClick={handleSubmit} />
+        <Button title="카피 추천 받기" isDisabled={disabledCondition} buttonSize="buttonL" buttonColor="blue" onButtonClick={handleSubmit} />
       </S.CopySubmit>
       <CopyCountLimitModal showLimitModal={showLimitModal} handleLimitModal={handleLimitModal} />
     </div>

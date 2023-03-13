@@ -16,13 +16,17 @@ export const MessageMember = styled.div`
   align-items: center;
   margin-bottom: 15px;
   font-weight: 700;
+  span:nth-child(2) {
+    color: ${({ theme }) => theme.colors.blue30};
+  }
 `;
 
 export const MessageContainer = styled.div`
   padding: 30px;
   height: 432px;
-  background: #f4f4f4;
+  background-color: white;
   border-radius: 30px;
+  border: 1px solid #bebebe;
   margin-bottom: 15px;
 `;
 

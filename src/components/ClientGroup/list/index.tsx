@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import useClientGroupsQuery from '../../../quries/Client/useClientGroupsQuery';
 import Pagination from '../../common/Pagination';
 import Group from '../group';
+import { CHEVRON } from '../../../assets/Chevron';
+import DropDwown from '../../common/DropDown';
 
 const LIST_COUNT = [10, 30, 50];
 
@@ -17,6 +19,11 @@ const ClientGroupList = () => {
   const navigate = useNavigate();
 
   const { data: groupList } = useClientGroupsQuery(pageNum, listCount);
+
+  const handleListCount = (count: number) => {
+    setListCount(count);
+    handleCountDropDown;
+  };
 
   const goDetail = (id: number) => {
     navigate(`/clients/${id}`);
@@ -77,16 +84,8 @@ const ClientGroupList = () => {
         <S.Footer>
           <S.ListCount onClick={handleCountDropDown}>
             <span>{listCount}개</span>
-            {CLIENT_SVG.arrowFlutter}
-            {showCountDropDown && (
-              <S.DropDownContainer>
-                {LIST_COUNT.map((count) => (
-                  <div key={count} onClick={() => setListCount(count)}>
-                    {count}
-                  </div>
-                ))}
-              </S.DropDownContainer>
-            )}
+            {CHEVRON.down}
+            {showCountDropDown && <DropDwown list={LIST_COUNT} base={listCount} handler={handleListCount} />}
           </S.ListCount>
         </S.Footer>
       </S.TaxtContainer>
@@ -94,7 +93,7 @@ const ClientGroupList = () => {
         <div>즐겨찾기</div>
         <div>
           <span>생성일</span>
-          <div>{CLIENT_SVG.verticalArrow}</div>
+          <div>{CHEVRON.verticalArrows}</div>
         </div>
         <div>그룹명 </div>
         <div>고객수</div>

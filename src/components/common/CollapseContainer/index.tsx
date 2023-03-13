@@ -61,7 +61,7 @@ export const Circle = styled.div`
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.gray10};
+  background-color: ${({ theme }) => theme.colors.blue30};
   color: white;
   display: flex;
   align-items: center;

@@ -6,12 +6,12 @@ export interface PageHeaderProps {
   children: string | ReactNode;
   buttonTitle?: string;
   buttonSize?: 'buttonS' | 'buttonM' | 'buttonL';
-  buttonColor?: 'white' | 'black';
+  buttonColor?: 'white' | 'blue';
   isDisabled?: boolean;
   onClick?: () => void;
 }
 
-const PageHeader = ({ children, buttonTitle, buttonSize = 'buttonS', buttonColor = 'black', onClick, isDisabled = false }: PageHeaderProps) => {
+const PageHeader = ({ children, buttonTitle, buttonSize = 'buttonS', buttonColor = 'blue', onClick, isDisabled = false }: PageHeaderProps) => {
   return (
     <>
       <S.Container>

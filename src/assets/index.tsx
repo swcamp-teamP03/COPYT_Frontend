@@ -1,11 +1,7 @@
 import React from 'react';
 import CloseButton from './closeButton.svg';
-import ArrowFlutter from './arrow_flutter.svg';
 import Calendar from './Calendar.svg';
 import Serch from './serch.svg';
-import Star from './star.svg';
-import UnStar from './un_star.svg';
-import VerticalArrow from './vertical_arrow.svg';
 import Highlight from './highlight.svg';
 import Plus from './plus.svg';
 import Minus from './minus.svg';
@@ -18,12 +14,8 @@ import QuestionBox from './questionBox.svg';
 import NoneCampaign from './none_campaign.svg';
 
 export const CLIENT_SVG = {
-  arrowFlutter: <ArrowFlutter />,
   calender: <Calendar />,
-  serch: <Serch />,
-  star: <Star />,
-  unStar: <UnStar />,
-  verticalArrow: <VerticalArrow />,
+  search: <Serch />,
   highlight: <Highlight />,
   noneList: <NoneList />,
   download: <Download />,

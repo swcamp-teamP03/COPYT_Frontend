@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CHEVRON } from '../assets/Chevron';
 import PageHeader from '../components/common/PageHeader';
-import CampaginGroupList from '../components/CampaignGroupList';
-import ListCount from '../components/CopyGroups/ListCount';
 import Pagination from '../components/common/Pagination';
 import useCampaignsQuery from '../quries/Campaign/useCampaignsQuery';
 import { CAMPAIGN_SVG } from '../assets';
@@ -16,7 +14,6 @@ const CapaignGroups = () => {
   const navigate = useNavigate();
 
   const { data: listData } = useCampaignsQuery(pageNum, listCount);
-  console.log(listData);
 
   const goDetail = (id: number) => {
     navigate(`/campaign/${id}`);

@@ -8,7 +8,7 @@ import { campaignConditionState } from '../../../store/campaignConditionState';
 import Button from '../../common/Button';
 import Modal from '../../common/Modal';
 import Pagination from '../../common/Pagination';
-import ListCount from '../../CopyGroups/ListCount';
+import ListCount from '../../common/ListCount';
 
 interface CustomerGroupModalProps {
   isOpen: boolean;
@@ -35,7 +35,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
   };
 
   const onClickGroup = (id: number) => {
-    setSelctedGroup({ id, name: groupList?.groupList.filter((list) => list.id === id)[0].copyName ?? '' });
+    setSelctedGroup({ id, name: groupList?.groupList.filter((list) => list.copyId === id)[0].copyName ?? '' });
   };
 
   const onSave = () => {
@@ -70,8 +70,8 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
         </ListCategory>
         <ListContainer>
           {groupList?.groupList.map((list) => (
-            <GroupList key={list.id} isSelected={isSelected(list.id)} onClick={() => onClickGroup(list.id)}>
-              <span onClick={() => handleLiked(list.id)}>{list.like ? FAVORITES.checked : FAVORITES.unChecked}</span>
+            <GroupList key={list.copyId} isSelected={isSelected(list.copyId)} onClick={() => onClickGroup(list.copyId)}>
+              <span onClick={() => handleLiked(list.copyId)}>{list.isPinned ? FAVORITES.checked : FAVORITES.unChecked}</span>
               <span>{list.createDate}</span>
               <span>{list.copyName}</span>
             </GroupList>
@@ -80,7 +80,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
 
         {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
         <ButtonWrapper>
-          <Button title="선택 그룹 적용" buttonColor="black" buttonSize="buttonM" onButtonClick={onSave} isDisabled={!selectedGroup.id} />
+          <Button title="선택 그룹 적용" buttonColor="blue" buttonSize="buttonM" onButtonClick={onSave} isDisabled={!selectedGroup.id} />
         </ButtonWrapper>
       </Modal.Body>
     </Modal.Frame>
@@ -126,7 +126,7 @@ export const GroupList = styled.div<GroupListProps>`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #f6f7ff;
+  background-color: ${({ theme }) => theme.colors.blue10};
   font-size: 18px;
   border: ${(props) => (props.isSelected ? '1px solid #5549FF' : 'none')};
   span,

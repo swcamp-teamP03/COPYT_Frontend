@@ -6,7 +6,7 @@ import useCopyGroupsQuery from '../../../../quries/Copy/useCopyGroupsQuery';
 import { campaignConditionState } from '../../../../store/campaignConditionState';
 import Pagination from '../../../common/Pagination';
 import CopyGroupList from '../../../CopyGroups/CopyGroupList';
-import ListCount from '../../../CopyGroups/ListCount';
+import ListCount from '../../../common/ListCount';
 
 const CopyGroupListForModal = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
@@ -21,7 +21,7 @@ const CopyGroupListForModal = () => {
     setCondition((prev) => ({
       ...prev,
       copyGroupID: id,
-      copyGroupName: groupList?.groupList.filter((list) => list.id === id)[0].copyName ?? '',
+      copyGroupName: groupList?.groupList.filter((list) => list.copyId === id)[0].copyName ?? '',
     }));
   };
 

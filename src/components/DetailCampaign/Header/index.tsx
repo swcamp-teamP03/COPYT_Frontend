@@ -30,8 +30,8 @@ const Header = () => {
             <S.Tag>{detailCampaign?.messageType}</S.Tag>
           </S.Flex>
           <S.Flex>
-            <Button title="발송 내역" buttonColor="black" buttonSize="buttonM" onButtonClick={handleShowSentHistoyModal} />
-            {/* <Button title="PDF 다운로드" buttonColor="black" buttonSize="buttonM" /> */}
+            <Button title="발송 내역" buttonColor="blue" buttonSize="buttonM" onButtonClick={handleShowSentHistoyModal} />
+            {/* <Button title="PDF 다운로드" buttonColor="blue" buttonSize="buttonM" /> */}
           </S.Flex>
         </S.Layout>
       </S.Fixed>

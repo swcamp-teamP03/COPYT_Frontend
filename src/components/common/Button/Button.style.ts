@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface ButtonProps {
   buttonSize: 'buttonS' | 'buttonM' | 'buttonL';
-  buttonColor: 'black' | 'white';
+  buttonColor: 'blue' | 'white';
   disabled: boolean;
   borderRadius: string;
 }
@@ -10,16 +10,16 @@ interface ButtonProps {
 export const HeaderButton = styled.button<ButtonProps>`
   ${(props) => props.theme.button[`${props.buttonSize}`]}
   cursor: pointer;
-  background-color: ${(props) => (props.buttonColor === 'black' ? props.theme.colors.gray90 : props.theme.colors.white)};
-  color: ${(props) => (props.buttonColor === 'black' ? props.theme.colors.white : props.theme.colors.gray60)};
+  background-color: ${(props) => (props.buttonColor === 'blue' ? props.theme.colors.blue30 : props.theme.colors.white)};
+  color: ${(props) => (props.buttonColor === 'blue' ? props.theme.colors.white : props.theme.colors.blue30)};
   border: ${(props) => (props.buttonColor === 'white' ? 'solid 1px' : 'none')};
   border-radius: ${(props) => props.borderRadius};
   :hover {
-    background-color: ${(props) => (props.buttonColor === 'black' ? props.theme.colors.black : props.theme.colors.gray0)};
+    background-color: ${(props) => (props.buttonColor === 'white' ? props.theme.colors.blue20 : props.theme.colors.blue40)};
   }
   :disabled {
     cursor: default;
-    background-color: ${({ theme, buttonColor }) => (buttonColor === 'black' ? theme.colors.gray10 : theme.colors.white)};
-    color: ${({ theme, buttonColor }) => (buttonColor === 'black' ? theme.colors.white : theme.colors.gray40)};
+    background-color: ${({ theme, buttonColor }) => (buttonColor === 'blue' ? theme.colors.gray40 : theme.colors.white)};
+    color: ${({ theme, buttonColor }) => (buttonColor === 'blue' ? theme.colors.white : theme.colors.gray40)};
   }
 `;

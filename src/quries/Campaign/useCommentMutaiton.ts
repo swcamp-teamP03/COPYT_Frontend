@@ -1,22 +1,18 @@
 import { DetailCampaignResult } from './../../types/campaign.d';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postComment } from '../../api/Campaign/DetailCampaign';
-import { AxiosResponse } from 'axios';
+import { postComment } from '../../api/Campaign/detailCampaign';
 
 const useCommentMutaion = () => {
   const queryClient = useQueryClient();
   return useMutation(postComment, {
     onMutate: async ({ id, comment }: { id: string | undefined; comment: string }) => {
-      const previous = queryClient.getQueryData<AxiosResponse<DetailCampaignResult>>(['detailCampaign', id]);
+      const previous = queryClient.getQueryData<DetailCampaignResult>(['detailCampaign', id]);
       await queryClient.cancelQueries({ queryKey: ['detailCampaign', id] });
 
       if (previous) {
-        queryClient.setQueryData<AxiosResponse<DetailCampaignResult>>(['detialCampaign', id], {
+        queryClient.setQueryData<DetailCampaignResult>(['detialCampaign', id], {
           ...previous,
-          data: {
-            ...previous.data,
-            comment,
-          },
+          comment,
         });
       }
       return { previous };
@@ -26,6 +22,7 @@ const useCommentMutaion = () => {
         queryClient.setQueryData(['detailCampaign', id], context.previous);
       }
     },
+    onSettled: (data, error, { id, comment }, context) => queryClient.invalidateQueries(['detailCampaign', id]),
   });
 };
 

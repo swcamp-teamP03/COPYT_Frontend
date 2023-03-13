@@ -64,11 +64,13 @@ const FakeCampaignDetail = {
       messageACnt: 1500,
       messageSuccessCnt: 1499,
       uniqueCTR: 5.48,
+      clickCnt: 2,
     },
     messageB: {
       messageBCnt: 1500,
       messageSuccessCnt: 1300,
       uniqueCTR: 15.84,
+      clickCnt: 2,
     },
     comment: '블라블라',
   },

@@ -1,9 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import CampaignInfo from '../components/DetailCampaign/CampaignInfo';
 import Header from '../components/DetailCampaign/Header';
 import styled from 'styled-components';
-import useDetailCampaignQuery from '../quries/Campaign/useDetailCampaignQuery';
-import { useParams } from 'react-router-dom';
 import CustomerGroupInfo from '../components/DetailCampaign/CustomerGroupInfo';
 import SendMessage from '../components/DetailCampaign/SendMessage';
 import WithCollapse from '../components/common/WithCollapse';
@@ -12,7 +10,7 @@ import Comment from '../components/DetailCampaign/Comment';
 
 const DetailCampaign = () => {
   return (
-    <Suspense fallback={<div>...isLoading</div>}>
+    <>
       <Header />
       <Layout>
         <WithCollapse title="캠페인 정보">
@@ -29,7 +27,7 @@ const DetailCampaign = () => {
           <Comment />
         </WithCollapse>
       </Layout>
-    </Suspense>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import { CreateCampaignResult } from '../../types/campaign';
 
 export const createCamapign = async (condition: CampignConditionInit): Promise<CreateCampaignResult | null> => {
   const res = await api.post(`${BASE_URL}/campaign`, { ...condition });
-  if (res.statusText === 'OK') {
+  if (res.data.success) {
     return res.data;
   }
   return null;
