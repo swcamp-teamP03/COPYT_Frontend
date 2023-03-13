@@ -159,7 +159,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
-        <Button title="카피 추천 받기" isDisabled={disabledCondition} buttonSize="buttonL" buttonColor="black" onButtonClick={handleSubmit} />
+        <Button title="카피 추천 받기" isDisabled={disabledCondition} buttonSize="buttonL" buttonColor="blue" onButtonClick={handleSubmit} />
       </S.CopySubmit>
       <CopyCountLimitModal showLimitModal={showLimitModal} handleLimitModal={handleLimitModal} />
     </div>

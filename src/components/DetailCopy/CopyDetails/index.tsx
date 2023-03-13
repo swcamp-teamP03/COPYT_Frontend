@@ -64,7 +64,7 @@ const CopyDetails = () => {
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
-        <Button title="카피 추천 받기" buttonSize="buttonL" buttonColor="black" onButtonClick={recommendCopy} />
+        <Button title="카피 추천 받기" buttonSize="buttonL" buttonColor="blue" onButtonClick={recommendCopy} />
       </S.CopySubmit>
     </div>
   );

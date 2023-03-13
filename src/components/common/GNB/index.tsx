@@ -29,7 +29,7 @@ const GNB = () => {
       </NavWrapper>
       <ButtonWrapper>
         <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button>
-        <Button title="로그아웃" buttonSize="buttonM" buttonColor="black" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={true}></Button>
+        <Button title="로그아웃" buttonSize="buttonM" buttonColor="blue" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={true}></Button>
       </ButtonWrapper>
     </GNBContainer>
   );

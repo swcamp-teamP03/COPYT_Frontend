@@ -13,7 +13,7 @@ const ClipboardModal = ({ showClipboardModal, handleClipboardModal }: ClipboardM
     <Modal.Frame isOpen={showClipboardModal} onClick={handleClipboardModal} height="150px">
       <Modal.Body>{COPY_MESSAGE.CLIPBOARD}</Modal.Body>
       <Modal.Footer>
-        <Button buttonColor="black" buttonSize="buttonS" onButtonClick={handleClipboardModal} title="확인" />
+        <Button buttonColor="blue" buttonSize="buttonS" onButtonClick={handleClipboardModal} title="확인" />
       </Modal.Footer>
     </Modal.Frame>
   );

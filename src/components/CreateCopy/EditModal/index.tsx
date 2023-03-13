@@ -23,7 +23,7 @@ const EditWarningModal = ({ showEditWarnModal, handleEditWarnModal, setIsEditMod
       <Modal.Body>{COPY_MESSAGE.EDIT}</Modal.Body>
       <Modal.Footer>
         <Button title="취소" buttonColor="white" buttonSize="buttonS" onButtonClick={onClickNo} />
-        <Button title="수정하기" buttonColor="black" onButtonClick={onClickYes} />
+        <Button title="수정하기" buttonColor="blue" onButtonClick={onClickYes} />
       </Modal.Footer>
     </Modal.Frame>
   );

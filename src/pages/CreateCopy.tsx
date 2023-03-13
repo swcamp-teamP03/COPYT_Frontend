@@ -25,7 +25,7 @@ const CreateCopy = () => {
   return (
     <>
       <Layout size="M">
-        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={onSubmit} buttonColor="black">
+        <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={onSubmit} buttonColor="blue">
           카피 추천 받기
         </PageHeader>
         <GridLayout>

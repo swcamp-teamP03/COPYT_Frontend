@@ -60,7 +60,7 @@ const MessageListForModal = ({ selectedMesssage, setSelecetedMessage, modalHandl
         </MessageContainer>
       )}
       <Button
-        buttonColor="black"
+        buttonColor="blue"
         title={`카피 선택 (${limitSelected}개 중 / ${selectedMessageCount}개 선택)`}
         buttonSize="buttonL"
         isDisabled={selectedMessageCount !== limitSelected}

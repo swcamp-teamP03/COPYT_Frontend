@@ -124,7 +124,7 @@ const ClientGroupCreate = ({}) => {
             </div>
           ))}
           <S.HeaderLayout>
-            <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" onButtonClick={addProperty}></Button>
+            <Button title="+" buttonColor="blue" borderRadius="10px" buttonSize="buttonS" onButtonClick={addProperty}></Button>
           </S.HeaderLayout>
         </>
 
@@ -133,7 +133,7 @@ const ClientGroupCreate = ({}) => {
           <S.HeaderLayout>
             <ReactExcelDownload />
             <label>
-              <Button title="고객 DB 업로드" buttonColor="black" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
+              <Button title="고객 DB 업로드" buttonColor="blue" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
             </label>
           </S.HeaderLayout>
         </div>

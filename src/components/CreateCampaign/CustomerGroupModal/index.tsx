@@ -80,7 +80,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
 
         {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
         <ButtonWrapper>
-          <Button title="선택 그룹 적용" buttonColor="black" buttonSize="buttonM" onButtonClick={onSave} isDisabled={!selectedGroup.id} />
+          <Button title="선택 그룹 적용" buttonColor="blue" buttonSize="buttonM" onButtonClick={onSave} isDisabled={!selectedGroup.id} />
         </ButtonWrapper>
       </Modal.Body>
     </Modal.Frame>

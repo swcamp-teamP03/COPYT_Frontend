@@ -43,7 +43,7 @@ const SelectCopy = () => {
           카피 선택
           <span>*</span>
         </S.Title>
-        <Button buttonColor="black" buttonSize="buttonM" title="카피 불러오기" onButtonClick={handleCopyGroupModal} />
+        <Button buttonColor="blue" buttonSize="buttonM" title="카피 불러오기" onButtonClick={handleCopyGroupModal} />
       </S.FlexBox>
       <MessageContainer />
       <S.Title>
@@ -59,7 +59,7 @@ const SelectCopy = () => {
         ) : (
           <S.URLInput placeholder="링크를 입력해 주세요." onChange={handleURLInput} value={URL} name="URL" />
         )}
-        <Button title="단축 URL 생성" buttonColor="black" buttonSize="buttonM" onButtonClick={onSubmitURL} />
+        <Button title="단축 URL 생성" buttonColor="blue" buttonSize="buttonM" onButtonClick={onSubmitURL} />
       </S.FlexBox>
       {EXCLAMATION.map((text, idx) => (
         <S.Desc key={idx}>

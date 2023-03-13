@@ -90,9 +90,9 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
           {step === 3 && <p>파일 다운로드가 완료되었습니다. 다운로드 내역은 [마이페이지 - 고객 DB 다운로드 내역] 에서 확인 가능합니다.</p>}
         </ModalBody>
         <ModalFooter>
-          {step === 1 && <Button onButtonClick={handleConfirmDownload} title="다음" buttonColor="black"></Button>}
-          {step === 2 && <Button onButtonClick={handleConfirmDownload} title="인증" buttonColor="black"></Button>}
-          {step === 3 && <Button onButtonClick={handleConfirmDownload} title="완료" buttonColor="black"></Button>}
+          {step === 1 && <Button onButtonClick={handleConfirmDownload} title="다음" buttonColor="blue"></Button>}
+          {step === 2 && <Button onButtonClick={handleConfirmDownload} title="인증" buttonColor="blue"></Button>}
+          {step === 3 && <Button onButtonClick={handleConfirmDownload} title="완료" buttonColor="blue"></Button>}
         </ModalFooter>
       </ModalContent>
     </ModalWrapper>

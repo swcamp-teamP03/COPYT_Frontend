@@ -31,7 +31,7 @@ const ServiceHome = () => {
         {LINKS.map((link) => (
           <LinkBox key={link.button}>
             <LinkTitle>{link.title}</LinkTitle>
-            <Button buttonColor="black" buttonSize="buttonM" title={link.button} onButtonClick={() => onMovePage(link.url)} />
+            <Button buttonColor="blue" buttonSize="buttonM" title={link.button} onButtonClick={() => onMovePage(link.url)} />
           </LinkBox>
         ))}
       </LinkContainer>

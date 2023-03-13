@@ -86,9 +86,9 @@ const ClientGroupDetail = () => {
       <S.HeaderLayout>
         <h1>고객 그룹 상세</h1>
         {modify ? (
-          <Button title="저장" buttonColor="black" borderRadius="10px" onButtonClick={ModifyHandler} />
+          <Button title="저장" buttonColor="blue" borderRadius="10px" onButtonClick={ModifyHandler} />
         ) : (
-          <Button title="수정" buttonColor="black" borderRadius="10px" onButtonClick={ModifyHandler} />
+          <Button title="수정" buttonColor="blue" borderRadius="10px" onButtonClick={ModifyHandler} />
         )}
       </S.HeaderLayout>
       <S.HeaderLayout>
@@ -129,7 +129,7 @@ const ClientGroupDetail = () => {
                 </div>
               ))}
               <S.PlusButtonLayout>
-                <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" onButtonClick={addProperty}></Button>
+                <Button title="+" buttonColor="blue" borderRadius="10px" buttonSize="buttonS" onButtonClick={addProperty}></Button>
               </S.PlusButtonLayout>
             </>
 
@@ -138,7 +138,7 @@ const ClientGroupDetail = () => {
               <S.PlusButtonLayout>
                 <ReactExcelDownload />
                 <label>
-                  <Button title="파일 재업로드" buttonColor="black" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
+                  <Button title="파일 재업로드" buttonColor="blue" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
                 </label>
               </S.PlusButtonLayout>
 
@@ -158,13 +158,13 @@ const ClientGroupDetail = () => {
             <S.ClientProperty>{clientDetail?.customerProperties[1]?.propertyValue} </S.ClientProperty>
 
             <S.PlusButtonLayout>
-              <Button title="+" buttonColor="black" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>
+              <Button title="+" buttonColor="blue" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>
             </S.PlusButtonLayout>
 
             <h2>고객 DB 업로드</h2>
             <S.PlusButtonLayout>
-              <Button title="양식 파일 다운로드" buttonColor="black" borderRadius="10px" isDisabled={true}></Button>
-              <Button title="파일 재 업로드" buttonColor="black" borderRadius="10px" isDisabled={true}></Button>
+              <Button title="양식 파일 다운로드" buttonColor="blue" borderRadius="10px" isDisabled={true}></Button>
+              <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={true}></Button>
             </S.PlusButtonLayout>
 
             <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
@@ -189,7 +189,7 @@ const ClientGroupDetail = () => {
             <h2>연결된 캠페인</h2>
             <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               첫구매 고객 웰컴 이벤트
-              <Button title="캠페인 바로가기" buttonColor="black" borderRadius="10px"></Button>
+              <Button title="캠페인 바로가기" buttonColor="blue" borderRadius="10px"></Button>
             </S.ClientProperty>
           </S.TaxtContainer>
         )
