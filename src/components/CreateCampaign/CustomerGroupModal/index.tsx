@@ -126,7 +126,7 @@ export const GroupList = styled.div<GroupListProps>`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #f6f7ff;
+  background-color: ${({ theme }) => theme.colors.blue10};
   font-size: 18px;
   border: ${(props) => (props.isSelected ? '1px solid #5549FF' : 'none')};
   span,

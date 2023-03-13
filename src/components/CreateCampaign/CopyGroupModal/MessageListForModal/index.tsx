@@ -76,7 +76,7 @@ const MessageList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.gray30};
+  background-color: ${({ theme }) => theme.colors.blue20};
   padding: 20px 20px 0 20px;
   position: sticky;
   top: 15px;
@@ -90,7 +90,7 @@ const MessageContainer = styled.div`
 
 const Message = styled.div`
   padding: 15px;
-  background: #ffffff;
+  background-color: ${({ theme }) => theme.colors.blue20};
   border: 1px solid #bebebe;
   border-radius: 30px;
   height: 120px;

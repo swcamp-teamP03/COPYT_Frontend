@@ -7,5 +7,5 @@ export const Layout = styled.div`
   gap: 120px;
   padding: 30px;
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.gray40};
+  background-color: ${({ theme }) => theme.colors.blue20};
 `;

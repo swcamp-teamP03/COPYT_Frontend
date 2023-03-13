@@ -8,7 +8,7 @@ const colors = {
   gray30: '#f0f0f0',
   gray40: '#d3d3d3',
   gray50: '#333333',
-  blue10: '#3f7f6ff',
+  blue10: '#f6f7ff',
   blue20: '#eeedff',
   blue30: '#5549ff',
   blue40: '#4417f6',
