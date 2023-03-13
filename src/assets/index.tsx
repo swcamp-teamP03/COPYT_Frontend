@@ -15,7 +15,7 @@ import NoneCampaign from './none_campaign.svg';
 
 export const CLIENT_SVG = {
   calender: <Calendar />,
-  serch: <Serch />,
+  search: <Serch />,
   highlight: <Highlight />,
   noneList: <NoneList />,
   download: <Download />,
