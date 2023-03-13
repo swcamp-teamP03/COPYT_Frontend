@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "webpack serve --env development",
     "build": "cross-env NODE_ENV=production webpack",
-    "test": "jest"
+    "test": "jest",
+    "vercel-deploy": "next build && next export"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.24.10",
