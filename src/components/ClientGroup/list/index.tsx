@@ -7,6 +7,7 @@ import useClientGroupsQuery from '../../../quries/Client/useClientGroupsQuery';
 import Pagination from '../../common/Pagination';
 import Group from '../group';
 import { CHEVRON } from '../../../assets/Chevron';
+import DropDwown from '../../common/DropDown';
 
 const LIST_COUNT = [10, 30, 50];
 
@@ -18,6 +19,11 @@ const ClientGroupList = () => {
   const navigate = useNavigate();
 
   const { data: groupList } = useClientGroupsQuery(pageNum, listCount);
+
+  const handleListCount = (count: number) => {
+    setListCount(count);
+    handleCountDropDown;
+  };
 
   const goDetail = (id: number) => {
     navigate(`/clients/${id}`);
@@ -79,15 +85,7 @@ const ClientGroupList = () => {
           <S.ListCount onClick={handleCountDropDown}>
             <span>{listCount}개</span>
             {CHEVRON.down}
-            {showCountDropDown && (
-              <S.DropDownContainer>
-                {LIST_COUNT.map((count) => (
-                  <div key={count} onClick={() => setListCount(count)}>
-                    {count}
-                  </div>
-                ))}
-              </S.DropDownContainer>
-            )}
+            {showCountDropDown && <DropDwown list={LIST_COUNT} base={listCount} handler={handleListCount} />}
           </S.ListCount>
         </S.Footer>
       </S.TaxtContainer>

@@ -24,3 +24,10 @@ export const Button = styled.button<ButtonProps>`
     color: ${({ theme }) => theme.colors.gray10};
   }
 `;
+
+export const SVGContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+`;
