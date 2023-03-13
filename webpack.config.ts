@@ -3,6 +3,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack, { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 
 interface Configuration extends WebpackConfiguration {
@@ -73,9 +74,8 @@ const config: Configuration = {
       verbose: true,
       cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'build/**/*')],
     }),
-    new Dotenv({
-      path: '.env',
-    }),
+    new HtmlWebpackPlugin(),
+    new Dotenv(),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
