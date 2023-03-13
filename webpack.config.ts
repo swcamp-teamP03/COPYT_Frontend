@@ -1,3 +1,4 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack, { Configuration as WebpackConfiguration } from 'webpack';
@@ -21,7 +22,7 @@ const config: Configuration = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   entry: {
-    app: './client',
+    app: './client.tsx',
   },
   module: {
     rules: [
@@ -68,14 +69,14 @@ const config: Configuration = {
     }),
     new CleanWebpackPlugin({
       verbose: true,
-      cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'build/**/*')],
+      cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'dist/**/*')],
     }),
     new Dotenv(),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist/',
+    publicPath: '/',
   },
   devServer: {
     historyApiFallback: true, // react router
@@ -90,6 +91,7 @@ if (isDevelopment && config.plugins) {
   config.plugins.push(new ReactRefreshWebpackPlugin());
 }
 if (!isDevelopment && config.plugins) {
+  config.plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
 }
 
 export default config;
