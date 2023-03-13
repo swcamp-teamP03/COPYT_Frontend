@@ -31,7 +31,7 @@ const CopyGroups = () => {
   }, [groupList?.totalCopy]);
 
   return (
-    <Layout size="S">
+    <>
       <PageHeader
         buttonTitle="카피 추천 받기"
         buttonSize="buttonL"
@@ -49,7 +49,7 @@ const CopyGroups = () => {
       </ListCategory>
       {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NonCopyGroupList />}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
-    </Layout>
+    </>
   );
 };
 
