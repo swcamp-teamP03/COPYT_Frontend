@@ -4,6 +4,7 @@ export const FlexBox = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  white-space: nowrap;
 `;
 
 export const VerticalHr = styled.div`

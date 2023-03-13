@@ -41,9 +41,6 @@ const Header = () => {
   };
 
   const isDisabledSumbit = Object.values(condition).includes('') || condition.messageOver;
-  console.log(isDisabledSumbit);
-
-  console.log(condition);
 
   return (
     <S.Fixed>

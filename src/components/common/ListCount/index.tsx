@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { CHEVRON } from '../../../assets/Chevron';
-import DropDwown from '../../common/DropDown';
+import DropDwown from '../DropDown';
 import * as S from './ListCount.styles';
 
 const LIST_COUNT = [10, 30, 50];

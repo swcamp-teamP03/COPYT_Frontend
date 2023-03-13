@@ -11,11 +11,13 @@ import DetailCopy from '../pages/DetailCopy';
 import CreateCampaign from '../pages/CreateCampaign';
 import DetailCampaign from '../pages/DetailCampaign';
 import CampaignGroups from '../pages/CampaignGroups';
+import ServiceHome from '../pages/ServiceHome';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Layout router={<ServiceHome />} />} />
         <Route path="/copies" element={<Layout router={<CopyGroups />} />} />
         <Route path="/clients" element={<Layout router={<ClientGroups />} />} />
         <Route path="/clients/:id" element={<Layout router={<ClientGroupDetail />} />} />

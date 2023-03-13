@@ -7,16 +7,14 @@ const useCommentMutaion = () => {
   const queryClient = useQueryClient();
   return useMutation(postComment, {
     onMutate: async ({ id, comment }: { id: string | undefined; comment: string }) => {
-      const previous = queryClient.getQueryData<AxiosResponse<DetailCampaignResult>>(['detailCampaign', id]);
+      const previous = queryClient.getQueryData<DetailCampaignResult>(['detailCampaign', id]);
       await queryClient.cancelQueries({ queryKey: ['detailCampaign', id] });
 
       if (previous) {
-        queryClient.setQueryData<AxiosResponse<DetailCampaignResult>>(['detialCampaign', id], {
+        console.log(previous);
+        queryClient.setQueryData<DetailCampaignResult>(['detialCampaign', id], {
           ...previous,
-          data: {
-            ...previous.data,
-            comment,
-          },
+          comment,
         });
       }
       return { previous };
@@ -26,6 +24,7 @@ const useCommentMutaion = () => {
         queryClient.setQueryData(['detailCampaign', id], context.previous);
       }
     },
+    onSettled: (data, error, { id, comment }, context) => queryClient.invalidateQueries(['detailCampaign', id]),
   });
 };
 

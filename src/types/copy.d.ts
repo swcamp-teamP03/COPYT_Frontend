@@ -1,15 +1,14 @@
-export type CopyListType = { id: number; content: string; isPinned: boolean };
+export type CopyListType = { copyId: number; content: string; isPinned: boolean };
 
 export interface PostCopyList {
   resultList: { content: string }[];
 }
 
 export interface CopyGroup {
-  id: number;
+  copyId: number;
   createDate: string;
-  like: boolean;
+  isPinned: boolean;
   copyName: string;
-  tag: string;
 }
 export interface CopyGroupsResult {
   groupList: CopyGroup[];
@@ -22,12 +21,12 @@ export interface CopyLikeResult {
 
 export interface CopyDetailResult {
   copyGroupName: string;
-  tag: string;
   brandName: string;
   productName: string;
   keyword: string;
   type: string;
   createCount: number;
   copyLength: number;
+  sector: string;
   copyList: CopyListType[];
 }

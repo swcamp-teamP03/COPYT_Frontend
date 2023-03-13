@@ -1,11 +1,28 @@
-import { CopyConditionInit } from '../../components/CreateCopy/CreateCopyCondition/copyConditionReducer';
 import { api } from '..';
 import { PostCopyList, CopyListType } from '../../types/copy';
 
-export const postCopies = async (condtion: CopyConditionInit): Promise<CopyListType[]> => {
+interface CopyCondition {
+  brandName: string;
+  copyLength: number;
+  createCount: number;
+  keyword: string;
+  productName: string;
+  type: string;
+  sector: string;
+}
+
+export const postCopies = async (condtion: CopyCondition): Promise<CopyListType[]> => {
   const res = await api.post('/gptcopy', { ...condtion });
   const data: PostCopyList = res.data.data;
+  console.log(data);
   return data.resultList.map((list, idx) => {
-    return { ...list, id: idx + 1, isPinned: false };
+    return { ...list, copyId: idx + 1, isPinned: false };
   });
+};
+
+export const updateCopy = async ({ id, list }: { id: string; list: CopyListType[] }) => {
+  const res = await api.put(`/copy/${id}`, { ...list });
+  if (res.statusText === 'OK') {
+    return res.data.data;
+  }
 };

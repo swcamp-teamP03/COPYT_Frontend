@@ -24,7 +24,7 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
 
   const handleSelectCopy = (id: number) => {
     if (isSelected(id) || !copyDetail || selectedMesssage.length === limiteSelect) return;
-    const targetContent = copyDetail.copyList.filter((list) => list.id === id)[0].content;
+    const targetContent = copyDetail.copyList.filter((list) => list.copyId === id)[0].content;
     setSelecetedMessage((prev) => [...prev, { id, content: targetContent }]);
   };
 
@@ -52,7 +52,7 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
       </Title>
       <ListContainer>
         {isPinnedList?.map((copy) => (
-          <CopyItem onClick={() => handleSelectCopy(copy.id)} isSelected={isSelected(copy.id)} key={copy.id}>
+          <CopyItem onClick={() => handleSelectCopy(copy.copyId)} isSelected={isSelected(copy.copyId)} key={copy.copyId}>
             {copy.content}
             <CopyItemFooter>
               <div>{copy.isPinned ? PIN.pinned : PIN.unpinned}</div>
@@ -61,7 +61,7 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
           </CopyItem>
         ))}
         {isNotPinnedList?.map((copy) => (
-          <CopyItem onClick={() => handleSelectCopy(copy.id)} isSelected={isSelected(copy.id)} key={copy.id}>
+          <CopyItem onClick={() => handleSelectCopy(copy.copyId)} isSelected={isSelected(copy.copyId)} key={copy.copyId}>
             {copy.content}
             <CopyItemFooter>
               <div>{copy.isPinned ? PIN.pinned : PIN.unpinned}</div>

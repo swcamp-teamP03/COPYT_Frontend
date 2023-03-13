@@ -11,6 +11,7 @@ import CopyCountLimitModal from '../LimitModal';
 import DropDwown from '../../common/DropDown';
 import { ARITHMETIC, SVG } from '../../../assets';
 import { CHEVRON } from '../../../assets/Chevron';
+import Loading from '../../common/Loading';
 
 export const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [1, 2, 3, 4, 5];
@@ -25,7 +26,7 @@ interface CreatConditionProps {
 const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [isComposing, setIsComposing] = useState(false);
-  const { mutate: createCoptMutate } = useCreateCopyMutation();
+  const { mutate: createCopytMutate, isLoading } = useCreateCopyMutation();
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
@@ -77,8 +78,11 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
     if (copyList.length + Number(condition.createCount) > 20) {
       return handleLimitModal();
     }
-    createCoptMutate(condition);
+    const { brandName, productName, keyword, type, copyLength, createCount, sector } = condition;
+    const keywordStr = keyword.join();
+    createCopytMutate({ brandName, productName, keyword: keywordStr, type, copyLength, createCount, sector });
   };
+
   const handleDropDown = (value: number) => {
     conditionDispatch({ type: 'CHANGE_COUNT', key: 'createCount', value });
     handleCountDropDown;
@@ -86,6 +90,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
 
   return (
     <div>
+      {isLoading && <Loading />}
       <LabelInput
         labelTitle="카피그룹명"
         limit={24}
