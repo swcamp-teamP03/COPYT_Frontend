@@ -14,7 +14,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config: Configuration = {
-  name: 'sosim_front',
+  name: 'COPYT',
   mode: isDevelopment ? 'development' : 'production',
   devtool: !isDevelopment ? 'hidden-source-map' : 'inline-source-map',
   resolve: {
@@ -73,7 +73,9 @@ const config: Configuration = {
       verbose: true,
       cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'build/**/*')],
     }),
-    new Dotenv(),
+    new Dotenv({
+      path: '.env',
+    }),
   ],
   output: {
     path: path.join(__dirname, 'dist'),

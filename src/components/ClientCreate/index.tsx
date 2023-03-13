@@ -60,8 +60,6 @@ const ClientGroupCreate = ({}) => {
   const propertiesArray = properties.map((property, index) => {
     return { [`properties[${index}].propertyValue`]: property };
   });
-  console.log(propertiesArray);
-
   const submitForm = async () => {
     //파일
     const file = inputRef.current?.files?.[0];
@@ -78,14 +76,11 @@ const ClientGroupCreate = ({}) => {
     //속성 값
     properties.forEach((property, index) => {
       formData.append(`properties[${index}].propertyValue`, property);
-      console.log(property);
     });
 
     try {
       const { data }: any = await postClientCreate(formData);
-    } catch (err) {
-      console.log('고객 그룹 동작 에러', err);
-    }
+    } catch (err) {}
   };
 
   return (

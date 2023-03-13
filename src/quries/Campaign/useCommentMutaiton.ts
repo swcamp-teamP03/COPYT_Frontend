@@ -10,7 +10,6 @@ const useCommentMutaion = () => {
       await queryClient.cancelQueries({ queryKey: ['detailCampaign', id] });
 
       if (previous) {
-        console.log(previous);
         queryClient.setQueryData<DetailCampaignResult>(['detialCampaign', id], {
           ...previous,
           comment,

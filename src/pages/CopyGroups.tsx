@@ -15,7 +15,6 @@ const CopyGroups = () => {
   const navigate = useNavigate();
 
   const { data: groupList } = useCopyGroupsQuery(pageNum, listCount);
-  console.log(groupList);
 
   const goDetail = (id: number) => {
     navigate(`/copies/${id}`);

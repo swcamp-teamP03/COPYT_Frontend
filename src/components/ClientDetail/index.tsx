@@ -71,14 +71,11 @@ const ClientGroupDetail = () => {
     //속성 값
     properties.forEach((property, index) => {
       formData.append(`properties[${index}].propertyValue`, property);
-      console.log(property);
     });
 
     try {
       const { data }: any = await putClientEdit(formData);
-    } catch (err) {
-      console.log('고객 그룹 동작 에러', err);
-    }
+    } catch (err) {}
   };
 
   return (
