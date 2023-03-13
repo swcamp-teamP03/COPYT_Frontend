@@ -20,7 +20,7 @@ export const postCopies = async (condtion: CopyCondition): Promise<CopyListType[
   });
 };
 
-export const updateCopy = async ({ id, list }: { id: string; list: CopyListType[] }) => {
+export const updateCopy = async ({ id, list }: { id: string | undefined; list: CopyListType[] }) => {
   const res = await api.put(`/copy/${id}`, { ...list });
   if (res.statusText === 'OK') {
     return res.data.data;

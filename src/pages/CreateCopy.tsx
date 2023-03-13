@@ -7,11 +7,17 @@ import { copyConditionInit, copyConditionReducer } from '../components/CreateCop
 import CopyList from '../components/CreateCopy/CopyList';
 import ScantyModal from '../components/CreateCopy/ScantyModal';
 import { CopyListType } from '../types/copy';
+import useUpdateCopyMutation from '../quries/Copy/useUpdateCopyMutation';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
   const [showScantyModal, setShowScantyModal] = useState(false);
   const [copyList, setCopyList] = useState<CopyListType[]>([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const { mutate: updateCopyMutate } = useUpdateCopyMutation();
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
@@ -19,6 +25,8 @@ const CreateCopy = () => {
 
   const onSubmit = () => {
     if (copyList.length < 2) return handleScantyModal();
+    updateCopyMutate({ id, list: copyList });
+    navigate(-1);
   };
 
   return (
