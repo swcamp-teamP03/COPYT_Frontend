@@ -45,7 +45,7 @@ const CopyGroups = () => {
         <div>카피그룹명</div>
       </ListCategory>
       {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NonCopyGroupList />}
-      {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
+      {groupList?.totalCopy && groupList.totalCopy > 1 && <Pagination totalPage={groupList.totalCopy} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );
 };

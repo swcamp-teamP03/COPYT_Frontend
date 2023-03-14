@@ -3,12 +3,12 @@ import { atom } from 'recoil';
 
 export interface CampignConditionInit {
   customerGroupName: string;
-  customerGroupID: number;
-  copyGroupID: number;
+  customerGroupId: number;
+  copyGroupId: number;
   copyGroupName: string;
   abTest: boolean;
   messageType: 'LMS' | 'SMS';
-  sentType: 'AD' | 'COMM';
+  sendType: 'AD' | 'COMM';
   sentCycle: string;
   sendingDate: string;
   messageA: string;
@@ -26,12 +26,12 @@ export const campaignConditionState = atom<CampignConditionInit>({
   key: 'campaignConditionState',
   default: {
     customerGroupName: '',
-    customerGroupID: 0,
-    copyGroupID: 0,
+    customerGroupId: 0,
+    copyGroupId: 0,
     copyGroupName: '',
     abTest: true,
     messageType: 'LMS',
-    sentType: 'COMM',
+    sendType: 'COMM',
     sentCycle: '일회성 발송',
     sendingDate: tommrrow.toString(),
     sendURL: '',

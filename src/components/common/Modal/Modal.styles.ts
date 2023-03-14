@@ -46,13 +46,14 @@ export const ModalHeader = styled.div`
 
 export const ModalBody = styled.div`
   white-space: pre-wrap;
-  width: 100%;
+  height: 80%;
   overflow: auto;
 `;
 
 export const ModalFooter = styled.div`
   padding-top: 20px;
   width: 100%;
+  height: 20%;
   display: flex;
   justify-content: flex-end;
   gap: 10px;

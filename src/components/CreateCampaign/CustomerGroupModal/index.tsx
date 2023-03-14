@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { FAVORITES } from '../../../assets/Like';
-import useCopyGroupsQuery from '../../../quries/Copy/useCopyGroupsQuery';
 import useCopyLikeMutation from '../../../quries/Copy/useCopyLikeMutation';
 import { campaignConditionState } from '../../../store/campaignConditionState';
 import Button from '../../common/Button';
 import Modal from '../../common/Modal';
 import Pagination from '../../common/Pagination';
 import ListCount from '../../common/ListCount';
+import useClientGroupsQuery from '../../../quries/Client/useClientGroupsQuery';
 
 interface CustomerGroupModalProps {
   isOpen: boolean;
@@ -22,7 +22,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
   const [pageNum, setPageNum] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
 
-  const { data: groupList } = useCopyGroupsQuery(pageNum, listCount);
+  const { data: groupList } = useClientGroupsQuery(pageNum, listCount);
 
   const { mutate: copyLikeMutate } = useCopyLikeMutation();
 
@@ -35,31 +35,31 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
   };
 
   const onClickGroup = (id: number) => {
-    setSelctedGroup({ id, name: groupList?.groupList.filter((list) => list.copyId === id)[0].copyName ?? '' });
+    setSelctedGroup({ id, name: groupList?.groupList.filter((list) => list.customerGroupId === id)[0].groupName ?? '' });
   };
 
   const onSave = () => {
     setCondition((prev) => ({
       ...prev,
-      customerGroupID: selectedGroup.id,
+      customerGroupId: selectedGroup.id,
       customerGroupName: selectedGroup.name,
     }));
     handler();
   };
 
   useEffect(() => {
-    if (groupList?.totalCopy) {
-      const page = Math.ceil(groupList?.totalCopy / listCount);
+    if (groupList?.totalGroupCount) {
+      const page = Math.ceil(groupList?.totalGroupCount / listCount);
       setTotalPage(page);
     }
-  }, [groupList?.totalCopy]);
+  }, [groupList?.totalGroupCount]);
 
   return (
     <Modal.Frame isOpen={isOpen} onClick={handler} height="70%" width="50%">
       <Modal.Header onClick={handler}>고객 그룹 불러오기</Modal.Header>
       <Modal.Body>
         <h4>고객 그룹 선택</h4>
-        <ListCount listCount={listCount} setListCount={setListCount} totalCopy={groupList?.totalCopy ?? 0} />
+        <ListCount listCount={listCount} setListCount={setListCount} totalCopy={groupList?.totalGroupPage ?? 0} />
         <ListCategory>
           <div>즐겨찾기</div>
           <div>
@@ -70,19 +70,20 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
         </ListCategory>
         <ListContainer>
           {groupList?.groupList.map((list) => (
-            <GroupList key={list.copyId} isSelected={isSelected(list.copyId)} onClick={() => onClickGroup(list.copyId)}>
-              <span onClick={() => handleLiked(list.copyId)}>{list.isPinned ? FAVORITES.checked : FAVORITES.unChecked}</span>
-              <span>{list.createDate}</span>
-              <span>{list.copyName}</span>
+            <GroupList key={list.customerGroupId} isSelected={isSelected(list.customerGroupId)} onClick={() => onClickGroup(list.customerGroupId)}>
+              <span onClick={() => handleLiked(list.customerGroupId)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
+              <span>{list.date.substring(0, 10)}</span>
+              <span>{list.groupName}</span>
             </GroupList>
           ))}
         </ListContainer>
-
         {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
+      </Modal.Body>
+      <Modal.Footer>
         <ButtonWrapper>
           <Button title="선택 그룹 적용" buttonColor="blue" buttonSize="buttonM" onButtonClick={onSave} isDisabled={!selectedGroup.id} />
         </ButtonWrapper>
-      </Modal.Body>
+      </Modal.Footer>
     </Modal.Frame>
   );
 };
@@ -111,6 +112,7 @@ export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow: auto;
 `;
 
 interface GroupListProps {
@@ -149,7 +151,5 @@ export const GroupList = styled.div<GroupListProps>`
 export const ButtonWrapper = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-top: 45px;
 `;

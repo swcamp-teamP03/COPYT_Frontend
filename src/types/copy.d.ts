@@ -30,3 +30,13 @@ export interface CopyDetailResult {
   sector: string;
   copyList: CopyListType[];
 }
+
+export interface CopyCondition {
+  brandName: string;
+  copyLength: number;
+  createCount: number;
+  keyword: string;
+  productName: string;
+  type: string;
+  sector: string;
+}

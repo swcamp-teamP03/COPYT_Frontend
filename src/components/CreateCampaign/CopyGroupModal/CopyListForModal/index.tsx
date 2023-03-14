@@ -14,7 +14,7 @@ interface CopyListForModalProps {
 
 const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListForModalProps) => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
-  const { data: copyDetail } = useCopyDetailQuery(condition.copyGroupID?.toString());
+  const { data: copyDetail } = useCopyDetailQuery(condition.copyGroupId?.toString());
 
   const isSelected = (id: number) => {
     return selectedMesssage.find((list) => list.id === id) ? true : false;
@@ -32,7 +32,7 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
     setCondition((prev) => ({
       ...prev,
       copyGroupName: '',
-      copyGroupID: 0,
+      copyGroupId: 0,
     }));
     setSelecetedMessage([]);
   };

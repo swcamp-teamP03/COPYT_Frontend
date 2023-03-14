@@ -55,7 +55,7 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
         <S.MessageHeader>
           <div>
             <div>[Web발신]</div>
-            {condition.sentType === 'AD' && <span>(광고)</span>}
+            {condition.sendType === 'AD' && <span>(광고)</span>}
           </div>
           {!editMode && <S.EditIcon onClick={handleEditMode}>{POST_SVG.edit}</S.EditIcon>}
         </S.MessageHeader>
