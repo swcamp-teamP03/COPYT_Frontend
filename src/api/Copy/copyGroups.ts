@@ -11,9 +11,9 @@ export const getCopyGroups = async (pageNum: number, count: number): Promise<Cop
   return null;
 };
 
-export const likedCopy = async (id: number): Promise<CopyLikeResult | null> => {
+export const likedCopy = async ({ id, favorite }: { id: number; favorite: boolean }): Promise<CopyLikeResult | null> => {
   const res = await api.post(`/copy/${id}/like`, {
-    favorite: true,
+    favorite: !favorite,
   });
   if (res.data.success) {
     return res.data.data;
