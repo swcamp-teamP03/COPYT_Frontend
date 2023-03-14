@@ -92,5 +92,6 @@ export const TextCount = styled.div`
   padding: 10px 20px;
   div {
     cursor: pointer;
+    width: 10px;
   }
 `;
