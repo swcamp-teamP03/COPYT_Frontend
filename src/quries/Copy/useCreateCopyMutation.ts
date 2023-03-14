@@ -1,8 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { Dispatch, SetStateAction } from 'react';
-import { useRecoilState } from 'recoil';
-import { postCopies } from '../../api/Copy/createCopy';
-import { copyListState } from '../../store/copyListState';
+import { postCopyList } from '../../api/Copy/createCopy';
 import { CopyListType } from '../../types/copy';
 
 interface useCreateCopyMutationProps {
@@ -10,9 +8,8 @@ interface useCreateCopyMutationProps {
   copyList: CopyListType[];
 }
 
-const useCreateCopyMutation = ({ copyList, setCopyList }: useCreateCopyMutationProps) => {
-  // const [copyList, setCopyList] = useRecoilState(copyListState);
-  return useMutation(postCopies, {
+const useCreateCopyListMutation = ({ copyList, setCopyList }: useCreateCopyMutationProps) => {
+  return useMutation(postCopyList, {
     onSuccess: (data) => {
       const totalData = copyList.concat(data).map((list, idx) => {
         return { ...list, copyId: idx + 1 };
@@ -25,4 +22,4 @@ const useCreateCopyMutation = ({ copyList, setCopyList }: useCreateCopyMutationP
   });
 };
 
-export default useCreateCopyMutation;
+export default useCreateCopyListMutation;

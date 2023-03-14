@@ -6,9 +6,8 @@ import { copyConditionInit, copyConditionReducer } from '../components/CreateCop
 import CopyList from '../components/CreateCopy/CopyList';
 import ScantyModal from '../components/CreateCopy/ScantyModal';
 import { CopyListType } from '../types/copy';
-import useUpdateCopyMutation from '../quries/Copy/useUpdateCopyMutation';
-import { useNavigate, useParams } from 'react-router-dom';
-import useCreateCopyMutation from '../quries/Copy/useCreateCopyMutation';
+import { useNavigate } from 'react-router-dom';
+import useCreateCopyGroupMutation from '../quries/Copy/useCreateCopyGroupMutation';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
@@ -16,7 +15,7 @@ const CreateCopy = () => {
   const [copyList, setCopyList] = useState<CopyListType[]>([]);
   const navigate = useNavigate();
 
-  const { mutate: createCopyMutate } = useCreateCopyMutation({ copyList, setCopyList });
+  const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation();
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
@@ -24,8 +23,9 @@ const CreateCopy = () => {
 
   const onSubmit = () => {
     if (copyList.length < 2) return handleScantyModal();
-    createCopyMutate({ ...condition, keyword: condition.keyword.join('') });
-    navigate(-1);
+    const { brandName, copyGroupName, createCount, copyLength, productName, type, sector } = condition;
+    const result = { brandName, copyGroupName, createCount, copyLength, productName, type, sector, keyword: condition.keyword.join('') };
+    createCopyGroupMutate({ condition: result, copyList });
   };
 
   return (
