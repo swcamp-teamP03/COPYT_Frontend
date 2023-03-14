@@ -3,8 +3,8 @@ import { atom } from 'recoil';
 
 export interface CampignConditionInit {
   customerGroupName: string;
-  customerGroupID: number;
-  copyGroupID: number;
+  customerGroupId: number;
+  copyGroupId: number;
   copyGroupName: string;
   abTest: boolean;
   messageType: 'LMS' | 'SMS';
@@ -26,8 +26,8 @@ export const campaignConditionState = atom<CampignConditionInit>({
   key: 'campaignConditionState',
   default: {
     customerGroupName: '',
-    customerGroupID: 0,
-    copyGroupID: 0,
+    customerGroupId: 0,
+    copyGroupId: 0,
     copyGroupName: '',
     abTest: true,
     messageType: 'LMS',

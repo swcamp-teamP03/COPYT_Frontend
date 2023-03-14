@@ -41,7 +41,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
   const onSave = () => {
     setCondition((prev) => ({
       ...prev,
-      customerGroupID: selectedGroup.id,
+      customerGroupId: selectedGroup.id,
       customerGroupName: selectedGroup.name,
     }));
     handler();

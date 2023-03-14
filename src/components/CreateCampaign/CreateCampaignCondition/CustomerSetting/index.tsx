@@ -23,7 +23,7 @@ const CustomerSetting = () => {
   const deleteCustmomerGroup = () => {
     setCondition((prev) => ({
       ...prev,
-      customerGroupID: 0,
+      customerGroupId: 0,
       customerGroupName: '',
     }));
   };
