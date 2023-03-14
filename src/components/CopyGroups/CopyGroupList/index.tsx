@@ -12,8 +12,8 @@ interface CopyGroupListProps {
 const CopyGroupList = ({ copyList, onClick }: CopyGroupListProps) => {
   const { mutate: copyLikeMutate } = useCopyLikeMutation();
 
-  const handleLiked = (id: number) => {
-    copyLikeMutate(id);
+  const handleLiked = (id: number, favorite: boolean) => {
+    copyLikeMutate({ id, favorite });
   };
 
   return (
@@ -21,7 +21,7 @@ const CopyGroupList = ({ copyList, onClick }: CopyGroupListProps) => {
       <S.ListContainer>
         {copyList.map((list) => (
           <S.GroupList key={list.copyId}>
-            <div onClick={() => handleLiked(list.copyId)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</div>
+            <div onClick={() => handleLiked(list.copyId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</div>
             <div>{list.createDate}</div>
             <div onClick={() => onClick(list.copyId)}>{list.copyName}</div>
           </S.GroupList>

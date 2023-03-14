@@ -1,6 +1,6 @@
 import { DetailCampaignResult } from './../../types/campaign.d';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postComment } from '../../api/Campaign/detailCampaign';
+import { postComment } from '../../api/Campaign';
 
 const useCommentMutaion = () => {
   const queryClient = useQueryClient();

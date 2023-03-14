@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import { getAccessToken } from '../api/index';
 
 const AuthenticateRoute = ({ isAuthenticated }: { isAuthenticated: boolean }) => {

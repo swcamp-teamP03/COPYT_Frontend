@@ -3,8 +3,7 @@ import CloseButton from './closeButton.svg';
 import Calendar from './Calendar.svg';
 import Serch from './Serch.svg';
 import Highlight from './highlight.svg';
-import Plus from './plus.svg';
-import Minus from './minus.svg';
+
 import NoneList from './none_list.svg';
 import Download from './download.svg';
 import Exclamation from './exclamation.svg';
@@ -32,9 +31,4 @@ export const SVG = {
   credit: <Credit />,
   question: <Question />,
   questionBox: <QuestionBox />,
-};
-
-export const ARITHMETIC = {
-  plus: <Plus />,
-  minus: <Minus />,
 };
