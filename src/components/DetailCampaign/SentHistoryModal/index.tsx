@@ -28,7 +28,6 @@ const SentHistoryModal = ({ isOpen, handleModal }: SentHistoryModalProps) => {
           <div>실패사유</div>
         </S.CategoryLayout>
         <S.ListLayout>
-          {/* TODO : key 값 name으로 변경하기 */}
           {sentHistory?.sendList.map((list, idx) => (
             <S.CategoryLayout key={idx}>
               <div>{list.sendMessageId}</div>

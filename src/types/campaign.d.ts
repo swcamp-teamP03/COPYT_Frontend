@@ -34,11 +34,10 @@ export interface DetailCampaignResult {
   messageCount: number;
   messageType: 'LMS' | 'SMS';
   groupName: string;
-  customerCnt: number;
+  customerCount: number;
   excelOrgFileName: string;
   customerProperties: { propertyValue: string }[];
   copyGroupName: string;
-  copyList: { copyType: 'A' | 'B'; content: string }[];
   copyWriteAB: {
     copyType: 'A' | 'B';
     content: string;

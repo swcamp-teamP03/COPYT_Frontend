@@ -15,8 +15,8 @@ const Analysis = () => {
 
   const ctrGap = detailCampaign?.messageA?.uniqueCTR - (detailCampaign?.messageB?.uniqueCTR ?? 0);
 
-  const memberA = (detailCampaign.messageB ? Math.ceil(detailCampaign.customerCnt / 2) : detailCampaign.customerCnt).toLocaleString();
-  const memberB = Math.floor(detailCampaign.customerCnt / 2).toLocaleString();
+  const memberA = detailCampaign.messageB ? Math.ceil(detailCampaign.customerCount / 2) : detailCampaign.customerCount;
+  const memberB = Math.floor(detailCampaign.customerCount / 2);
 
   return (
     <>
@@ -51,7 +51,7 @@ const Analysis = () => {
         <S.Categories key={idx}>
           <S.CategoryTitle>메시지 {idx === 0 ? 'A' : 'B'}</S.CategoryTitle>
           <S.CategoryTitle>
-            {idx === 0 ? memberA : memberB} / {detailCampaign?.customerCnt.toLocaleString()}
+            {idx === 0 ? memberA : memberB} / {detailCampaign?.customerCount}
           </S.CategoryTitle>
           <S.CategoryTitle>
             {type.messageSuccessCnt} / {idx === 0 ? memberA : memberB}

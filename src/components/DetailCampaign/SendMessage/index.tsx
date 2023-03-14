@@ -7,6 +7,8 @@ const SendMessage = () => {
   const { campaignID } = useParams();
   const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
 
+  console.log(detailCampaign);
+
   return (
     <>
       <S.Flex>
@@ -25,7 +27,7 @@ const SendMessage = () => {
         </S.Info>
       </S.Flex>
       <S.MessageContainer>
-        {detailCampaign?.copyList.map((copy) => (
+        {detailCampaign?.copyWriteAB.map((copy) => (
           <S.Message key={copy.copyType}>{copy.content}</S.Message>
         ))}
       </S.MessageContainer>
