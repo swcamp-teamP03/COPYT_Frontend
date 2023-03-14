@@ -40,10 +40,6 @@ export const GroupList = styled.div`
   :hover {
     border: 2px solid rgba(85, 73, 255, 0.4);
   }
-  span:nth-child(1) {
-    position: relative;
-    z-index: 10;
-  }
 `;
 
 interface TagButtonProps {
