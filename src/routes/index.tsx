@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CopyGroups from '../pages/CopyGroups';
 import ClientGroups from '../pages/ClientGroups';
 import React from 'react';
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout';
 import CreateCopy from '../pages/CreateCopy';
 import AuthRouter from './AuthRouter';
 import ClientGroupDetail from '../components/ClientDetail';
