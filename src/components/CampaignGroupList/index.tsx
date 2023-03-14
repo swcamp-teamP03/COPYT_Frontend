@@ -1,23 +1,26 @@
 import React from 'react';
 import { FAVORITES } from '../../assets/Like';
-// import useCopyLikeMutation from '../../../quries/Copy/useCopyLikeMutation';
 import { CampaignsListType } from '../../types/campaign';
 import * as S from './CampaginGroupList';
 
 interface CampaginGroupListProps {
   campaignList: CampaignsListType[];
-  onClick: (id: number) => void;
+  onClickHandler: (id: number) => void;
 }
 
-const CampaginGroupList = ({ campaignList, onClick }: CampaginGroupListProps) => {
+const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListProps) => {
   return (
     <>
       <S.ListContainer>
-        {campaignList.map((list, i) => (
-          <S.GroupList key={i}>
-            <span>{list.campaignList ? FAVORITES.checked : FAVORITES.unChecked}</span>
-            {/* <span>{list.createDate}</span> */}
-            {/* <span onClick={() => onClick(list.id)}>{list.dsf}</span> */}
+        {campaignList.map((list) => (
+          <S.GroupList key={list.campaignId} onClick={() => onClickHandler(list.campaignId)}>
+            <span>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
+            <span>{list.messageType}</span>
+            <span>{list.campaignName}</span>
+            <span>{list.ClickThroughRate}</span>
+            <span>{list.createdAt}</span>
+            <span>{list.sendingDate}</span>
+            <span>{list.sendingState}</span>
           </S.GroupList>
         ))}
       </S.ListContainer>

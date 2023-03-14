@@ -17,7 +17,7 @@ export const GroupList = styled.div`
   display: grid;
   cursor: pointer;
   gap: 10px;
-  grid-template-columns: 1fr 1fr 4fr;
+  grid-template-columns: 1fr 2fr 2fr 1fr 1.5fr 1.5fr 1fr;
   height: 82px;
   justify-content: center;
   align-items: center;
