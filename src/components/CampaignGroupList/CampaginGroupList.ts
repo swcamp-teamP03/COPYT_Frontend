@@ -22,7 +22,7 @@ export const GroupList = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #f8f8f8;
+  background-color: ${({ theme }) => theme.colors.blue10};
   font-size: 18px;
   span,
   div {
@@ -38,7 +38,7 @@ export const GroupList = styled.div`
     color: #444444;
   }
   :hover {
-    border: 2px solid #424242;
+    border: 2px solid rgba(85, 73, 255, 0.4);
   }
 `;
 
