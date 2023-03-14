@@ -22,3 +22,10 @@ export const createCopyGroup = async ({ condition, copyList }: { condition: Copy
     return res.data.data;
   }
 };
+
+export const createCopyGroup = async ({ condition, copyList }: { condition: CopyCondition; copyList: CopyListType[] }) => {
+  const res = await api.post('/copy', { ...condition, copyList });
+  if (res.statusText === 'OK') {
+    return res.data.data;
+  }
+};

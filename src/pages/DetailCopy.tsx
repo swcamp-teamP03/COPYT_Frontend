@@ -20,9 +20,8 @@ const DetailCopy = () => {
 
   const onSubmit = () => {
     updateCopyMutate({ id, list: copyList });
-    console.log(id, copyList);
   };
-
+  
   useEffect(() => {
     if (copyDetail) {
       setCopyList(copyDetail?.copyList);
@@ -30,6 +29,7 @@ const DetailCopy = () => {
       setCopyList([]);
     }
   }, [copyDetail?.copyList]);
+
 
   return (
     <>
