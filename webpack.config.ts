@@ -67,11 +67,15 @@ const config: Configuration = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
+    new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
     new CleanWebpackPlugin({
       verbose: true,
       cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'dist/**/*')],
     }),
     new Dotenv(),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
