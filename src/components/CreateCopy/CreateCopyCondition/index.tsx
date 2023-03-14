@@ -112,7 +112,7 @@ const CreateCondition = ({ condition, conditionDispatch, copyList, setCopyList }
       <LabelInput labelTitle="업종" limit={24} name="sector" onChange={(e) => handleInput(e, 24)} value={condition.sector} placeholder="업종을 입력해 주세요." />
       <LabelInput labelTitle="상품명" limit={30} name="productName" onChange={(e) => handleInput(e, 30)} value={condition.productName} placeholder="상품명을 입력해 주세요." />
       <LabelInput
-        labelTitle="필수로 포함할 키워드"
+        labelTitle="필수로 포함할 키워드 태그"
         limit={30}
         name="keyword"
         onKeyUp={addKeyword}

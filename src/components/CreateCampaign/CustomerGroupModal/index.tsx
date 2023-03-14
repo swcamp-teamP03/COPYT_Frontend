@@ -151,7 +151,5 @@ export const GroupList = styled.div<GroupListProps>`
 export const ButtonWrapper = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-top: 45px;
 `;
