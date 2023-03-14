@@ -8,6 +8,7 @@ import ScantyModal from '../components/CreateCopy/ScantyModal';
 import { CopyListType } from '../types/copy';
 import useUpdateCopyMutation from '../quries/Copy/useUpdateCopyMutation';
 import { useNavigate, useParams } from 'react-router-dom';
+import useCreateCopyMutation from '../quries/Copy/useCreateCopyMutation';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
@@ -16,7 +17,7 @@ const CreateCopy = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { mutate: updateCopyMutate } = useUpdateCopyMutation();
+  const { mutate: createCopyMutate } = useCreateCopyMutation({ copyList, setCopyList });
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
@@ -24,7 +25,7 @@ const CreateCopy = () => {
 
   const onSubmit = () => {
     if (copyList.length < 2) return handleScantyModal();
-    updateCopyMutate({ id, list: copyList });
+    createCopyMutate({ ...condition, keyword: condition.keyword.join('') });
     navigate(-1);
   };
 
@@ -37,7 +38,6 @@ const CreateCopy = () => {
         <CreateCopyCondition condition={condition} conditionDispatch={conditionDispatch} copyList={copyList} setCopyList={setCopyList} />
         <CopyList copyList={copyList} setCopyList={setCopyList} />
       </GridLayout>
-
       <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
     </>
   );
