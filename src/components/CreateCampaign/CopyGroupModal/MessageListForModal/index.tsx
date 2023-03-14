@@ -39,33 +39,35 @@ const MessageListForModal = ({ selectedMesssage, setSelecetedMessage, modalHandl
   };
   return (
     <MessageList>
-      <MessageContainer>
-        <span>메세지 A</span>
-        <Message>
-          <span>{selectedMesssage[0]?.content}</span>
-        </Message>
-        <DeleteButton>
-          <div onClick={() => deleteMessage(selectedMesssage[0]?.id)}>{SVG.closeButton}</div>
-        </DeleteButton>
-      </MessageContainer>
-      {condition.abTest && (
+      <Sticky>
         <MessageContainer>
-          <span>메세지 B</span>
+          <span>메세지 A</span>
           <Message>
-            <span>{selectedMesssage[1]?.content}</span>
+            <span>{selectedMesssage[0]?.content}</span>
           </Message>
           <DeleteButton>
-            <div onClick={() => deleteMessage(selectedMesssage[1]?.id)}>{SVG.closeButton}</div>
+            <div onClick={() => deleteMessage(selectedMesssage[0]?.id)}>{SVG.closeButton}</div>
           </DeleteButton>
         </MessageContainer>
-      )}
-      <Button
-        buttonColor="blue"
-        title={`카피 선택 (${limitSelected}개 중 / ${selectedMessageCount}개 선택)`}
-        buttonSize="buttonL"
-        isDisabled={selectedMessageCount !== limitSelected}
-        onButtonClick={onSubmit}
-      />
+        {condition.abTest && (
+          <MessageContainer>
+            <span>메세지 B</span>
+            <Message>
+              <span>{selectedMesssage[1]?.content}</span>
+            </Message>
+            <DeleteButton>
+              <div onClick={() => deleteMessage(selectedMesssage[1]?.id)}>{SVG.closeButton}</div>
+            </DeleteButton>
+          </MessageContainer>
+        )}
+        <Button
+          buttonColor="blue"
+          title={`카피 선택 (${limitSelected}개 중 / ${selectedMessageCount}개 선택)`}
+          buttonSize="buttonL"
+          isDisabled={selectedMessageCount !== limitSelected}
+          onButtonClick={onSubmit}
+        />
+      </Sticky>
     </MessageList>
   );
 };
@@ -78,8 +80,15 @@ const MessageList = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.blue20};
   padding: 20px 20px 0 20px;
+`;
+
+const Sticky = styled.div`
   position: sticky;
   top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MessageContainer = styled.div`
