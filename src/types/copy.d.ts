@@ -15,7 +15,7 @@ export interface CopyGroupsResult {
   totalCopy: number;
 }
 
-export interface CopyLikeResult {
+export interface LikeResult {
   favorite: boolean;
 }
 

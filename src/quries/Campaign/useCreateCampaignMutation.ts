@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { createCamapign } from '../../api/Campaign/createCampaign';
+import { createCamapign } from '../../api/Campaign';
 
 const useCreateCampaignMutation = () => {
   const navigate = useNavigate();

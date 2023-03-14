@@ -1,5 +1,6 @@
 import React from 'react';
 import { FAVORITES } from '../../assets/Like';
+import useCampaignLikeMutation from '../../quries/Campaign/useCampaignLikeMutation';
 import { CampaignsListType } from '../../types/campaign';
 import * as S from './CampaginGroupList';
 
@@ -9,8 +10,10 @@ interface CampaginGroupListProps {
 }
 
 const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListProps) => {
-  const hadleClick = () => {
-    console.log('click');
+  const { mutate: campaginLikeMutate } = useCampaignLikeMutation();
+
+  const hadleLike = (id: number, favorite: boolean) => {
+    campaginLikeMutate({ id, favorite });
   };
 
   return (
@@ -18,7 +21,7 @@ const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListPr
       <S.ListContainer>
         {campaignList.map((list) => (
           <S.GroupList key={list.campaignId}>
-            <span onClick={hadleClick}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
+            <span onClick={() => hadleLike(list.campaignId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.messageType}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.campaignName}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.clickRate}</span>
