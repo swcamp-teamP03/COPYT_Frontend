@@ -4,7 +4,7 @@ export const Fixed = styled.div`
   display: flex;
   position: fixed;
   top: 0;
-  left: 190px;
+  left: 210px;
   right: 0;
   align-items: center;
   justify-content: space-between;

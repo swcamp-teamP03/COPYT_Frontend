@@ -20,7 +20,6 @@ const Layout = ({ router }: LayoutProps) => {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
   height: 100vh;
 `;
 
