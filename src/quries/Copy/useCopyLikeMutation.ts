@@ -12,7 +12,7 @@ const useCopyLikeMutation = () => {
 
       if (previousData) {
         const target = previousData.groupList.filter((list) => list.copyId === id)[0];
-        target.isPinned = !target.isPinned;
+        target.favorite = !target.favorite;
 
         queryClient.setQueryData<CopyGroupsResult>(['copyGroups'], () => {
           return { ...previousData };
