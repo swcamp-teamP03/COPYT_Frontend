@@ -19,11 +19,11 @@ const ServiceHome = () => {
   return (
     <>
       <TitleContainer>
-        <h3>
+        <h1>
           처음오셨나요?
           <br />
           상황에 따른 문자 메시지 카피를 AI를 통해 생성 해보세요
-        </h3>
+        </h1>
         <img src="../../public/example.png" />
       </TitleContainer>
       <LinkContainer>
@@ -51,6 +51,7 @@ const TitleContainer = styled.div`
 const LinkContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 30px;
 `;
 
@@ -61,6 +62,7 @@ const LinkBox = styled.div`
   align-items: center;
   width: 100%;
   padding: 30px;
+  padding-top: 60px;
   background-color: #f9f9fa;
   border-radius: 10px;
 `;
