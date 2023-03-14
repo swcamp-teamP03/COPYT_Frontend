@@ -27,7 +27,7 @@ const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListPr
             <span onClick={() => hadleLike(list.campaignId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.messageType}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.campaignName}</span>
-            <span onClick={() => onClickHandler(list.campaignId)}>{list.clickRate}</span>
+            <span onClick={() => onClickHandler(list.campaignId)}>{list.clickRate}%</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.createdAt}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.sendingDate}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.sendState === '발송완료' ? CHECK.check : CHECK.unCheck}</span>

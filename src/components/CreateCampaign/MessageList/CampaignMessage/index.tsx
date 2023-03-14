@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { POST_SVG } from '../../../../assets/Post';
 import { campaignConditionState } from '../../../../store/campaignConditionState';
+import numberWithCommas from '../../../../utils/numberWithComma';
 import Button from '../../../common/Button';
 import * as S from './CampaignMessage.styles';
 
@@ -32,7 +33,7 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
     handleEditMode();
   };
 
-  const maxByte = condition.messageType === 'SMS' ? 140 : 20000;
+  const maxByte = condition.messageType === 'SMS' ? 140 : 2000;
   const isOver = message.length * 2 + 56 > maxByte;
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
           <div>[무료수신거부]</div>
           <span>copyt.li/ABCDEFGH</span>
           <S.Byte isOver={isOver}>
-            <span>{message.length * 2 + 56}</span>/{maxByte}
+            <span>{message.length * 2 + 56}</span>/{numberWithCommas(maxByte)}
           </S.Byte>
         </S.MessageFooter>
       </S.MessageContainer>
