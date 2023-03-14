@@ -19,11 +19,11 @@ const ServiceHome = () => {
   return (
     <>
       <TitleContainer>
-        <h1>
+        <h2>
           처음오셨나요?
           <br />
           상황에 따른 문자 메시지 카피를 AI를 통해 생성 해보세요
-        </h1>
+        </h2>
         <img src="../../public/example.png" />
       </TitleContainer>
       <LinkContainer>

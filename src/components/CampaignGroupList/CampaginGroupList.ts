@@ -17,16 +17,17 @@ export const GroupList = styled.div`
   display: grid;
   cursor: pointer;
   gap: 10px;
-  grid-template-columns: 1fr 1fr 4fr;
+  grid-template-columns: 1fr 2fr 2fr 1fr 1.5fr 1.5fr 1fr;
   height: 82px;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #f8f8f8;
+  background-color: ${({ theme }) => theme.colors.blue10};
   font-size: 18px;
   span,
   div {
     display: flex;
+    white-space: nowrap;
     justify-content: center;
     color: #777777;
   }
@@ -37,7 +38,7 @@ export const GroupList = styled.div`
     color: #444444;
   }
   :hover {
-    border: 2px solid #424242;
+    border: 2px solid rgba(85, 73, 255, 0.4);
   }
 `;
 

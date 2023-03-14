@@ -36,12 +36,15 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
   };
 
   const deleteList = (id: number) => {
+    console.log(id);
     const target = copyList.filter((list) => list.copyId === id)[0];
     const index = copyList.indexOf(target);
     const data: CopyListType[] = JSON.parse(JSON.stringify(copyList));
     data.splice(index, 1);
     setCopyList([...data]);
   };
+
+  console.log(copyList);
 
   const handleClipboardModal = () => {
     setShowClipboardModal((prev) => !prev);

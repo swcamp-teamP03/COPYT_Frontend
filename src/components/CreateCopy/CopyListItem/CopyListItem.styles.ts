@@ -14,11 +14,12 @@ export const Container = styled.div`
 `;
 
 export const EditMode = styled.div`
+  height: 100%;
   textarea {
     border-radius: 10px;
     width: 100%;
     resize: none;
-    height: 100%;
+    height: 150px;
   }
 `;
 
