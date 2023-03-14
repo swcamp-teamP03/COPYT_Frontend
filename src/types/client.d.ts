@@ -14,7 +14,7 @@ export interface ClientGroupsResult {
 }
 
 //고객 그룹 상세
-export type campaignsType = { campaignName: string | null; createdAt: string };
+export type CampaignsType = { campaignName: string | null; createdAt: string };
 
 export type ExcelFileType = {
   excelFileName: string;
@@ -28,7 +28,7 @@ export type CustomerGroup = {
   createdAt: string;
   customerProperties: { propertyValue: string }[];
   excelFile: ExcelFileType;
-  campaigns: campaignsType[];
+  campaigns: CampaignsType[];
 };
 
 //고객 그룹 작성 ,고객그룹 수정
