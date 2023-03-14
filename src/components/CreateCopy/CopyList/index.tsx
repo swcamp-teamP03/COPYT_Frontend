@@ -1,17 +1,13 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { useRecoilState } from 'recoil';
 import { copyListState } from '../../../store/copyListState';
 import { CopyListType } from '../../../types/copy';
 import CopyListItem from '../CopyListItem';
 import * as S from './CopyList.styles';
 
-interface CopyDetailsProps {
-  setCopyList: Dispatch<SetStateAction<CopyListType[]>>;
-  copyList: CopyListType[];
-}
+const CopyList = () => {
+  const [copyList, setCopyList] = useRecoilState(copyListState);
 
-const CopyList = ({ copyList, setCopyList }: CopyDetailsProps) => {
-  
   const handlePinned = (id: number) => {
     const target = copyList.filter((list) => list.copyId === id)[0];
     const index = copyList.indexOf(target);
