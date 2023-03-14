@@ -1,15 +1,17 @@
 export interface CampaignsListType {
+  campaignId: number;
+  campaignName: string;
+  messageType: 'LMS' | 'SMS';
+  clickRate: number;
+  favorite: boolean;
+  createdAt: string;
+  sendingDate: string;
+  sendState: boolean;
+}
+
+export interface CamapaignListResult {
   totalCampaign: number;
-  campaignList: {
-    campaignId: number;
-    campaignName: string;
-    messageType: 'LMS' | 'SMS';
-    ClickThroughRate: number;
-    favorite: boolean;
-    createdAt: string;
-    sendingDate: string;
-    sendingState: boolean;
-  }[];
+  campaignList: CampaignsListType[];
 }
 
 export interface SentHisory {

@@ -10,7 +10,14 @@ export const postCopyList = async (condtion: CopyCondition): Promise<CopyListTyp
 };
 
 export const updateCopy = async ({ id, list }: { id: string | undefined; list: CopyListType[] }) => {
-  const res = await api.put(`/copy/${id}`, { ...list });
+  const res = await api.put(`/copy/${id}`, { copyList: list });
+  if (res.statusText === 'OK') {
+    return res.data.data;
+  }
+};
+
+export const createCopyGroup = async ({ condition, copyList }: { condition: CopyCondition; copyList: CopyListType[] }) => {
+  const res = await api.post('/copy', { ...condition, copyList });
   if (res.statusText === 'OK') {
     return res.data.data;
   }

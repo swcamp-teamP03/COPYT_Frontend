@@ -21,7 +21,7 @@ const CopyGroupList = ({ copyList, onClick }: CopyGroupListProps) => {
       <S.ListContainer>
         {copyList.map((list) => (
           <S.GroupList key={list.copyId}>
-            <div onClick={() => handleLiked(list.copyId)}>{list.isPinned ? FAVORITES.checked : FAVORITES.unChecked}</div>
+            <div onClick={() => handleLiked(list.copyId)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</div>
             <div>{list.createDate}</div>
             <div onClick={() => onClick(list.copyId)}>{list.copyName}</div>
           </S.GroupList>

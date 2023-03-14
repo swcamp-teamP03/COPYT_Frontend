@@ -22,13 +22,12 @@ const LIMITE_MAX_LENGTH = 900;
 interface CreatConditionProps {
   condition: CopyConditionInit;
   conditionDispatch: Dispatch<CopyConditionAction>;
-  setCopyList: Dispatch<SetStateAction<CopyListType[]>>;
-  copyList: CopyListType[];
 }
 
-const CreateCondition = ({ condition, conditionDispatch, copyList, setCopyList }: CreatConditionProps) => {
+const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [isComposing, setIsComposing] = useState(false);
+  const [copyList, setCopyList] = useRecoilState(copyListState);
   const [showLimitModal, setShowLimitModal] = useState(false);
   const { mutate: createCopytMutate, isLoading } = useCreateCopyMutation({ copyList, setCopyList });
 

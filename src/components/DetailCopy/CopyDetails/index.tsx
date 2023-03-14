@@ -1,18 +1,17 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import useCopyDetailQuery from '../../../quries/Copy/useCopyDetailQuery';
 import useCreateCopyMutation from '../../../quries/Copy/useCreateCopyMutation';
-import { CopyDetailResult, CopyListType } from '../../../types/copy';
+import { copyListState } from '../../../store/copyListState';
+import { CopyDetailResult } from '../../../types/copy';
 import Button from '../../common/Button';
 import Loading from '../../common/Loading';
 import { COPY_TYPE } from '../../CreateCopy/CreateCopyCondition';
 import * as S from './CopyDetail.stlyes';
-interface CopyDetailsProps {
-  setCopyList: Dispatch<SetStateAction<CopyListType[]>>;
-  copyList: CopyListType[];
-}
 
-const CopyDetails = ({ setCopyList, copyList }: CopyDetailsProps) => {
+const CopyDetails = () => {
+  const [copyList, setCopyList] = useRecoilState(copyListState);
   const { id } = useParams();
 
   const { data: copyDetail } = useCopyDetailQuery(id);
