@@ -33,7 +33,4 @@ const DetailCampaign = () => {
 
 export default DetailCampaign;
 
-const Layout = styled.div`
-  max-width: 70%;
-  margin: 0 auto;
-`;
+const Layout = styled.div``;

@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export const Fixed = styled.div`
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 190px;
+  right: 0;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 40px 30px 20px;
   background-color: #f4f4f4;
   border: 1px solid #e8e8e8;
@@ -14,14 +16,7 @@ export const Fixed = styled.div`
   z-index: 10;
 `;
 
-export const Layout = styled.div`
-  width: 70%;
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const Flex = styled.div`
-  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 30px;
