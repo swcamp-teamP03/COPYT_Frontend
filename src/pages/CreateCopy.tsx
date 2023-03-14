@@ -14,7 +14,6 @@ const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
   const [showScantyModal, setShowScantyModal] = useState(false);
   const [copyList, setCopyList] = useState<CopyListType[]>([]);
-  const { id } = useParams();
   const navigate = useNavigate();
 
   const { mutate: createCopyMutate } = useCreateCopyMutation({ copyList, setCopyList });
