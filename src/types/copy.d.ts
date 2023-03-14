@@ -7,7 +7,7 @@ export interface PostCopyList {
 export interface CopyGroup {
   copyId: number;
   createDate: string;
-  isPinned: boolean;
+  favorite: boolean;
   copyName: string;
 }
 export interface CopyGroupsResult {
@@ -29,4 +29,14 @@ export interface CopyDetailResult {
   copyLength: number;
   sector: string;
   copyList: CopyListType[];
+}
+
+export interface CopyCondition {
+  brandName: string;
+  copyLength: number;
+  createCount: number;
+  keyword: string;
+  productName: string;
+  type: string;
+  sector: string;
 }

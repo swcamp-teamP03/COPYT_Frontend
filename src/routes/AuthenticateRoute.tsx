@@ -9,7 +9,7 @@ const AuthenticateRoute = ({ isAuthenticated }: { isAuthenticated: boolean }) =>
   if (isAuthenticated) {
     return token ? <Layout router={<Outlet />} /> : <Navigate to="/auth" />;
   } else {
-    return token ? <Navigate to="/" /> : <Layout router={<Outlet />} />;
+    return token ? <Navigate to="/" /> : <Outlet />;
   }
 };
 

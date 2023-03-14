@@ -1,7 +1,7 @@
 import { api } from '..';
-import { CampaignsListType } from '../../types/campaign';
+import { CamapaignListResult } from '../../types/campaign';
 
-export const getCampaignsCreate = async (pageNum: number, count: number): Promise<CampaignsListType> => {
+export const getCampaignsCreate = async (pageNum: number, count: number): Promise<CamapaignListResult> => {
   const res = await api.get('/campaigns', {
     params: {
       page: pageNum,

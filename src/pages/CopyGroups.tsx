@@ -38,14 +38,14 @@ const CopyGroups = () => {
       >
         카피그룹 리스트
       </PageHeader>
-      <ListCount listCount={listCount} setListCount={setListCount} totalCopy={groupList?.totalCopy ?? 0} />
+      <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList?.totalCopy ?? 0} />
       <ListCategory>
         <div>즐겨찾기</div>
         <div>생성일</div>
         <div>카피그룹명</div>
       </ListCategory>
       {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NonCopyGroupList />}
-      {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
+      {groupList?.totalCopy && groupList.totalCopy > 1 && <Pagination totalPage={groupList.totalCopy} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );
 };

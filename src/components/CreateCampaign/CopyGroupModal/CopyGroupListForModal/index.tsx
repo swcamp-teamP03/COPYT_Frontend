@@ -20,7 +20,7 @@ const CopyGroupListForModal = () => {
   const onClickGroup = (id: number) => {
     setCondition((prev) => ({
       ...prev,
-      copyGroupID: id,
+      copyGroupId: id,
       copyGroupName: groupList?.groupList.filter((list) => list.copyId === id)[0].copyName ?? '',
     }));
   };
@@ -35,7 +35,7 @@ const CopyGroupListForModal = () => {
   return (
     <div>
       <h4>카피 그룹 선택</h4>
-      <ListCount listCount={listCount} setListCount={setListCount} totalCopy={groupList?.totalCopy ?? 0} />
+      <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList?.totalCopy ?? 0} />
       <ListCategory>
         <div>즐겨찾기</div>
         <div>

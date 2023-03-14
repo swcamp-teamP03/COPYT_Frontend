@@ -16,8 +16,9 @@ export const Title = styled.div`
 export const Desc = styled.div`
   display: flex;
   gap: 10px;
-  color: #606060;
+
   span {
+    color: ${({ theme }) => theme.colors.gray50};
     width: 100%;
     white-space: wrap;
   }
@@ -37,7 +38,7 @@ export const RadioInput = styled.div`
     }
   }
   span {
-    color: ${({ theme }) => theme.colors.gray20};
+    color: ${({ theme }) => theme.colors.gray50};
     font-size: 16px;
   }
 `;

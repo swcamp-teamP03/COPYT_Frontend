@@ -1,22 +1,20 @@
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import PageHeader from '../components/common/PageHeader';
 import styled from 'styled-components';
 import CreateCopyCondition from '../components/CreateCopy/CreateCopyCondition';
 import { copyConditionInit, copyConditionReducer } from '../components/CreateCopy/CreateCopyCondition/copyConditionReducer';
 import CopyList from '../components/CreateCopy/CopyList';
 import ScantyModal from '../components/CreateCopy/ScantyModal';
-import { CopyListType } from '../types/copy';
-import useUpdateCopyMutation from '../quries/Copy/useUpdateCopyMutation';
-import { useNavigate, useParams } from 'react-router-dom';
+import useCreateCopyGroupMutation from '../quries/Copy/useCreateCopyGroupMutation';
+import { useRecoilState } from 'recoil';
+import { copyListState } from '../store/copyListState';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
   const [showScantyModal, setShowScantyModal] = useState(false);
-  const [copyList, setCopyList] = useState<CopyListType[]>([]);
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const [copyList, setCopyList] = useRecoilState(copyListState);
 
-  const { mutate: updateCopyMutate } = useUpdateCopyMutation();
+  const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation();
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
@@ -24,9 +22,13 @@ const CreateCopy = () => {
 
   const onSubmit = () => {
     if (copyList.length < 2) return handleScantyModal();
-    updateCopyMutate({ id, list: copyList });
-    navigate(-1);
+    const result = { ...condition, keyword: condition.keyword.join('') };
+    createCopyGroupMutate({ condition: result, copyList });
   };
+
+  useEffect(() => {
+    setCopyList([]);
+  }, []);
 
   return (
     <>
@@ -34,10 +36,9 @@ const CreateCopy = () => {
         카피 추천 받기
       </PageHeader>
       <GridLayout>
-        <CreateCopyCondition condition={condition} conditionDispatch={conditionDispatch} copyList={copyList} setCopyList={setCopyList} />
-        <CopyList copyList={copyList} setCopyList={setCopyList} />
+        <CreateCopyCondition condition={condition} conditionDispatch={conditionDispatch} />
+        <CopyList />
       </GridLayout>
-
       <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
     </>
   );

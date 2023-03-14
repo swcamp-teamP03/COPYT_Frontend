@@ -8,6 +8,6 @@ import { worker } from './src/mocks/worker';
 // }
 
 const container = document.getElementById('app');
-const root = createRoot(container as Element);
+const root = createRoot(container as HTMLElement);
 
 root.render(<App />);

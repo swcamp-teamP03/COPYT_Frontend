@@ -6,12 +6,17 @@ export const postClientCreate = async (formData: FormData): Promise<ClientGroupC
   return res.data.data;
 };
 
-export const putClientEdit = async (formData: FormData): Promise<ClientGroupCreateType> => {
-  const res = await api.put('/groups/${id}', formData);
+export const putClientEdit = async ({ id, formData }: { id: string | undefined; formData: FormData }): Promise<ClientGroupCreateType> => {
+  const res = await api.put(`/groups/${id}`, formData);
   return res.data.data;
 };
 
-export const postExcelDown = async (downloadReason: string): Promise<ExcelDownloadType> => {
-  const res = await api.post('/groups/${id}/file/download');
+export const postExcelDown = async ({ id, downloadReason, password }: { id: string | undefined; downloadReason: string; password: string }): Promise<ExcelDownloadType> => {
+  const res = await api.post(`/groups/${id}/file/download`, {
+    data: {
+      downloadReason,
+      password,
+    },
+  });
   return res.data.data;
 };
