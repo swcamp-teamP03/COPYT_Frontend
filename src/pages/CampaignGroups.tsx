@@ -21,6 +21,8 @@ const CapaignGroups = () => {
     navigate(`/campaign/${id}`);
   };
 
+  console.log(campaignData);
+
   useEffect(() => {
     if (campaignData?.totalCampaign) {
       const page = Math.ceil(campaignData?.totalCampaign / listCount);
@@ -42,22 +44,13 @@ const CapaignGroups = () => {
       <ListCount listCount={listCount} setListCount={setListCount} totalList={campaignData?.totalCampaign ?? 0} />
       <ListCategory>
         <div>즐겨찾기</div>
-        <div>
-          메세지 유형 <span>{CHEVRON.verticalArrows}</span>
-        </div>
+        <div>메세지 유형</div>
         <div>캠페인명</div>
-        <div>
-          전체 클릭률 <span>{CHEVRON.verticalArrows}</span>
-        </div>
-        <div>
-          생성일 <span>{CHEVRON.verticalArrows}</span>
-        </div>
-        <div>
-          발송일시 <span>{CHEVRON.verticalArrows}</span>
-        </div>
+        <div>전체 클릭률</div>
+        <div>생성일</div>
+        <div>발송일시</div>
         <div>발송상태</div>
       </ListCategory>
-      <NoneSvg>{CAMPAIGN_SVG.campaigNone}</NoneSvg>
       {campaignData ? <CampaginGroupList campaignList={campaignData.campaignList} onClickHandler={goDetail} /> : <>{CAMPAIGN_SVG.campaigNone}</>}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>

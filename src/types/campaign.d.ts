@@ -2,11 +2,11 @@ export interface CampaignsListType {
   campaignId: number;
   campaignName: string;
   messageType: 'LMS' | 'SMS';
-  ClickThroughRate: number;
+  clickRate: number;
   favorite: boolean;
   createdAt: string;
   sendingDate: string;
-  sendingState: boolean;
+  sendState: boolean;
 }
 
 export interface CamapaignListResult {

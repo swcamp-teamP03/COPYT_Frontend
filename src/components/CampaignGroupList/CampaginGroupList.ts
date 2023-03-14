@@ -27,6 +27,7 @@ export const GroupList = styled.div`
   span,
   div {
     display: flex;
+    white-space: nowrap;
     justify-content: center;
     color: #777777;
   }

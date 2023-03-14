@@ -17,10 +17,10 @@ const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListPr
             <span>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
             <span>{list.messageType}</span>
             <span>{list.campaignName}</span>
-            <span>{list.ClickThroughRate}</span>
+            <span>{list.clickRate}</span>
             <span>{list.createdAt}</span>
             <span>{list.sendingDate}</span>
-            <span>{list.sendingState}</span>
+            <span>{list.sendState}</span>
           </S.GroupList>
         ))}
       </S.ListContainer>
