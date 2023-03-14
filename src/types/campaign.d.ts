@@ -6,7 +6,7 @@ export interface CampaignsListType {
   favorite: boolean;
   createdAt: string;
   sendingDate: string;
-  sendState: boolean;
+  sendState: string;
 }
 
 export interface CamapaignListResult {

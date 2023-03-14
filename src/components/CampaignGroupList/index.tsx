@@ -1,4 +1,5 @@
 import React from 'react';
+import { CHECK } from '../../assets/Check';
 import { FAVORITES } from '../../assets/Like';
 import useCampaignLikeMutation from '../../quries/Campaign/useCampaignLikeMutation';
 import { CampaignsListType } from '../../types/campaign';
@@ -16,6 +17,8 @@ const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListPr
     campaginLikeMutate({ id, favorite });
   };
 
+  console.log(campaignList);
+
   return (
     <>
       <S.ListContainer>
@@ -27,7 +30,7 @@ const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListPr
             <span onClick={() => onClickHandler(list.campaignId)}>{list.clickRate}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.createdAt}</span>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.sendingDate}</span>
-            <span onClick={() => onClickHandler(list.campaignId)}>{list.sendState}</span>
+            <span onClick={() => onClickHandler(list.campaignId)}>{list.sendState === '발송완료' ? CHECK.check : CHECK.unCheck}</span>
           </S.GroupList>
         ))}
       </S.ListContainer>
