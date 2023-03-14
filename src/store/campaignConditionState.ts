@@ -8,7 +8,7 @@ export interface CampignConditionInit {
   copyGroupName: string;
   abTest: boolean;
   messageType: 'LMS' | 'SMS';
-  sentType: 'AD' | 'COMM';
+  sendType: 'AD' | 'COMM';
   sentCycle: string;
   sendingDate: string;
   messageA: string;
@@ -31,7 +31,7 @@ export const campaignConditionState = atom<CampignConditionInit>({
     copyGroupName: '',
     abTest: true,
     messageType: 'LMS',
-    sentType: 'COMM',
+    sendType: 'COMM',
     sentCycle: '일회성 발송',
     sendingDate: tommrrow.toString(),
     sendURL: '',

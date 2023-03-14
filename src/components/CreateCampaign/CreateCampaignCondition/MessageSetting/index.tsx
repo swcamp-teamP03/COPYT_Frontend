@@ -25,11 +25,11 @@ const MessageSetting = () => {
       messageType: result,
     }));
   };
-  const onChangeSentType = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangesendType = (event: React.ChangeEvent<HTMLInputElement>) => {
     const result = event.target.value === '정보성 문자' ? 'COMM' : 'AD';
     setCondition((prev) => ({
       ...prev,
-      sentType: result,
+      sendType: result,
     }));
   };
 
@@ -56,7 +56,7 @@ const MessageSetting = () => {
           </S.Title>
           {SENT_TYPE.map((type) => (
             <S.RadioInput key={type.title}>
-              <input type="radio" name="sent_type" value={type.title} onChange={onChangeSentType} checked={condition.sentType === type.type} />
+              <input type="radio" name="sent_type" value={type.title} onChange={onChangesendType} checked={condition.sendType === type.type} />
               <label>{type.title}</label>
               <span>{type.desc}</span>
             </S.RadioInput>

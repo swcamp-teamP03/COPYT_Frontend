@@ -16,6 +16,8 @@ const DetailCopy = () => {
 
   const { mutate: updateCopyMutate } = useUpdateCopyMutation();
 
+  console.log(copyDetail);
+
   useEffect(() => {
     if (copyDetail) {
       setCopyList(copyDetail?.copyList);
