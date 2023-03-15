@@ -54,9 +54,9 @@ interface ByteProps {
 export const Byte = styled.div<ByteProps>`
   display: flex;
   justify-content: flex-end;
-  color: ${({ theme }) => theme.colors.gray20};
+  color: ${({ theme }) => theme.colors.gray50};
   span {
-    color: ${(props) => (props.isOver ? props.theme.colors.red : props.theme.colors.gray20)};
+    color: ${(props) => (props.isOver ? props.theme.colors.red : props.theme.colors.gray50)};
     text-decoration: none;
   }
 `;

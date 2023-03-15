@@ -9,6 +9,8 @@ const CampaignInfo = () => {
   const { campaignID } = useParams();
   const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
 
+  console.log(detailCampaign);
+
   return (
     <>
       <S.EventText>
@@ -37,7 +39,7 @@ const CampaignInfo = () => {
         </div>
         <div>
           <S.InfoTitle>메시지 발송 수</S.InfoTitle>
-          <span>총 {detailCampaign?.customerCnt.toLocaleString()}건</span>
+          <span>총 {detailCampaign?.messageCount}건</span>
         </div>
         <div>
           <S.InfoTitle>메시지 유형</S.InfoTitle>

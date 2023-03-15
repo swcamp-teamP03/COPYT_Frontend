@@ -6,7 +6,7 @@ import { CopyGroupsResult } from '../../types/copy';
 const useCopyLikeMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(likedCopy, {
-    onMutate: async (id) => {
+    onMutate: async ({ id }) => {
       await queryClient.cancelQueries({ queryKey: ['copyGroups'] });
       const previousData = queryClient.getQueryData<CopyGroupsResult>(['copyGroups']);
 

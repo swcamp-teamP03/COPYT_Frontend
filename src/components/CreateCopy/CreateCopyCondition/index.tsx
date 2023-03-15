@@ -9,10 +9,10 @@ import { useRecoilState } from 'recoil';
 import { copyListState } from '../../../store/copyListState';
 import CopyCountLimitModal from '../LimitModal';
 import DropDwown from '../../common/DropDown';
-import { ARITHMETIC, SVG } from '../../../assets';
+import { SVG } from '../../../assets';
 import { CHEVRON } from '../../../assets/Chevron';
 import Loading from '../../common/Loading';
-import { CopyListType } from '../../../types/copy';
+import { ARITHMETIC } from '../../../assets/Arithmetic';
 
 export const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [1, 2, 3, 4, 5];

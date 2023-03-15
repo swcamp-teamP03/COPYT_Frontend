@@ -26,8 +26,8 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
 
   const { mutate: copyLikeMutate } = useCopyLikeMutation();
 
-  const handleLiked = (id: number) => {
-    copyLikeMutate(id);
+  const handleLiked = (id: number, favorite: boolean) => {
+    copyLikeMutate({ id, favorite });
   };
 
   const isSelected = (id: number) => {
@@ -71,7 +71,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
         <ListContainer>
           {groupList?.groupList.map((list) => (
             <GroupList key={list.customerGroupId} isSelected={isSelected(list.customerGroupId)} onClick={() => onClickGroup(list.customerGroupId)}>
-              <span onClick={() => handleLiked(list.customerGroupId)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
+              <span onClick={() => handleLiked(list.customerGroupId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
               <span>{list.date.substring(0, 10)}</span>
               <span>{list.groupName}</span>
             </GroupList>
