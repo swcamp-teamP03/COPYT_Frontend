@@ -15,6 +15,7 @@ export const postExcelDown = async ({ id, downloadReason, password }: { id: stri
   const res = await api.post(`/groups/${id}/file/download`, {
     downloadReason,
     password,
+    responseType: 'blob',
   });
   return res.data.data;
 };
