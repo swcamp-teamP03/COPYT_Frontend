@@ -57,20 +57,20 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
         downloadReason: downloadReason,
         password: password,
       });
-      const blob = await data.blob();
-      const filename = data.headers.get('Content-Disposition').split('filename=')[1];
-      const url = window.URL.createObjectURL(new Blob([blob]));
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const filename = decodeURIComponent(data.headers['content-disposition'].split('filename=')[1]);
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', decodeURIComponent(filename));
+      link.setAttribute('download', filename);
       document.body.appendChild(link);
       link.click();
       if (link.parentNode) {
         link.parentNode.removeChild(link);
       }
+
       onClose();
       setStep(step + 1);
-      console.log(data);
       alert('파일이 다운로드되었습니다.');
     } catch (err) {
       setError('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
