@@ -57,9 +57,21 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
         downloadReason: downloadReason,
         password: password,
       });
+      const blob = await data.blob();
+      const filename = data.headers.get('Content-Disposition').split('filename=')[1];
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', decodeURIComponent(filename));
+      document.body.appendChild(link);
+      link.click();
+      if (link.parentNode) {
+        link.parentNode.removeChild(link);
+      }
       onClose();
       setStep(step + 1);
       console.log(data);
+      alert('파일이 다운로드되었습니다.');
     } catch (err) {
       setError('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
     }
@@ -70,9 +82,9 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
       <S.ModalContent>
         <ModalHeader>
           <S.ModalTitle>
-            {step === 1 && <h2>고객 파일 다운로드 사유</h2>}
-            {step === 2 && <h2>관리자 인증</h2>}
-            {step === 3 && <h2>다운로드 완료</h2>}
+            {step === 1 && <p>고객 파일 다운로드 사유</p>}
+            {step === 2 && <p>관리자 인증</p>}
+            {step === 3 && <p>다운로드 완료</p>}
           </S.ModalTitle>
           <CloseButton onClick={onClose}>&times;</CloseButton>
         </ModalHeader>

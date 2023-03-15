@@ -60,6 +60,33 @@ const ClientGroupDetail = () => {
     setProperties((prevProperties) => [...prevProperties, `속성 ${propertyCount + 1}`]);
   };
 
+  //파일 재 업로드
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const onUploadFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    const file = e.target.files[0];
+    const extension = file.name.split('.').pop()?.toLowerCase();
+
+    if (extension === 'xls' || extension === 'xlsx') {
+      setFileName(file.name);
+      // 파일 업로드 처리 로직
+    } else {
+      alert('파일이 xls 또는 xlsx 인지 확인해 주세요');
+    }
+  }, []);
+
+  const onUploadFileButtonClick = useCallback(() => {
+    if (!inputRef.current) {
+      return;
+    }
+    inputRef.current.value = '';
+    setFileName('');
+    inputRef.current.click();
+  }, []);
+
   //파일 다운로드
   const handleDownloadClick = () => {
     setShowModal(true);
@@ -93,15 +120,12 @@ const ClientGroupDetail = () => {
     <>
       <S.HeaderLayout>
         <h1>고객 그룹 상세</h1>
-        {!clientDetail?.campaigns && (
-          <>
-            {modify ? (
-              <Button title="저장" buttonColor="blue" borderRadius="10px" onButtonClick={ModifyHandler} />
-            ) : (
-              <Button title="수정" buttonColor="blue" borderRadius="10px" onButtonClick={ModifyHandler} />
-            )}
-          </>
-        )}
+
+        <>
+          {clientDetail && clientDetail.campaigns && clientDetail.campaigns.length > 0 ? null : (
+            <Button title={modify ? '저장' : '수정'} buttonColor="blue" borderRadius="10px" onButtonClick={ModifyHandler} />
+          )}
+        </>
       </S.HeaderLayout>
       <S.HeaderLayout>
         <h2>고객 그룹 정보</h2>
@@ -139,7 +163,7 @@ const ClientGroupDetail = () => {
                 </div>
               ))}
               <S.PlusButtonLayout>
-                <Button title="+" buttonColor="blue" borderRadius="10px" buttonSize="buttonS" onButtonClick={addProperty}></Button>
+                <Button title="+" buttonColor="blue" borderRadius="10px" buttonSize="buttonS" onButtonClick={addProperty} />
               </S.PlusButtonLayout>
             </>
 
@@ -147,7 +171,7 @@ const ClientGroupDetail = () => {
               <h2>고객 DB 업로드</h2>
               <S.PlusButtonLayout>
                 <ReactExcelDownload />
-                <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={false}></Button>
+                <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick} />
               </S.PlusButtonLayout>
 
               <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
@@ -174,8 +198,8 @@ const ClientGroupDetail = () => {
 
             <h2>고객 DB 업로드</h2>
             <S.PlusButtonLayout>
-              <Button title="양식 파일 다운로드" buttonColor="blue" borderRadius="10px" isDisabled={true}></Button>
-              <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={true}></Button>
+              <ReactExcelDownload />
+              <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={true} onButtonClick={onUploadFileButtonClick} />
             </S.PlusButtonLayout>
 
             <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
@@ -191,14 +215,14 @@ const ClientGroupDetail = () => {
       </S.TaxtContainer>
       <S.TaxtContainer>
         <h2>연결된 캠페인</h2>
-        {clientDetail?.campaigns ? (
+        {clientDetail && clientDetail.campaigns && clientDetail.campaigns.length > 0 ? (
           <>
-            {/* {clientDetail.campaigns.map((list) => (
-              <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} key={list.campaignName}>
+            {clientDetail.campaigns.map((list) => (
+              <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} key={list.createdAt}>
                 {list.campaignName}
                 <Button title="캠페인 바로가기" buttonColor="blue" borderRadius="10px"></Button>
               </S.ClientProperty>
-            ))} */}
+            ))}
           </>
         ) : (
           <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

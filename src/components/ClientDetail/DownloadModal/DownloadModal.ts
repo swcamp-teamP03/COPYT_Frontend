@@ -31,6 +31,7 @@ export const ModalContent = styled.div`
 
 export const ModalTitle = styled.h5`
   margin-bottom: 0;
+  font-size: ${({ theme }) => theme.fontSize.lg};
 `;
 
 export const ModalBody = styled.div`
