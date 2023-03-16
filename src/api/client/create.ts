@@ -13,10 +13,9 @@ export const putClientEdit = async ({ id, formData }: { id: string | undefined; 
 
 export const postExcelDown = async ({ id, downloadReason, password }: { id: string | undefined; downloadReason: string; password: string }): Promise<ExcelDownloadType> => {
   const res = await api.post(`/groups/${id}/file/download`, {
-    data: {
-      downloadReason,
-      password,
-    },
+    downloadReason,
+    password,
+    responseType: 'blob',
   });
   return res.data.data;
 };
