@@ -29,6 +29,7 @@ export interface SentHistoryResult {
 }
 
 export interface DetailCampaignResult {
+  campaignName: string;
   campaignCreatedAt: string;
   sendingDateTime: string;
   messageCount: number;

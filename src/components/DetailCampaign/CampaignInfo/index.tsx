@@ -2,14 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { SVG } from '../../../assets';
 import useDetailCampaignQuery from '../../../quries/Campaign/useDetailCampaignQuery';
+import numberWithCommas from '../../../utils/numberWithComma';
 
 import * as S from './CampaignInfo.styles';
 
 const CampaignInfo = () => {
   const { campaignID } = useParams();
   const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
-
-  console.log(detailCampaign);
 
   return (
     <>
@@ -39,7 +38,7 @@ const CampaignInfo = () => {
         </div>
         <div>
           <S.InfoTitle>메시지 발송 수</S.InfoTitle>
-          <span>총 {detailCampaign?.messageCount}건</span>
+          <span>총 {numberWithCommas(detailCampaign?.messageCount)}건</span>
         </div>
         <div>
           <S.InfoTitle>메시지 유형</S.InfoTitle>

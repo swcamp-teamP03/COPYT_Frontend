@@ -4,12 +4,11 @@ import BudgetSetting from './BudgetSetting';
 import CustomerSetting from './CustomerSetting';
 import MessageSetting from './MessageSetting';
 import SentSetting from './SentSetting';
-import * as S from './CreateCampaignCondition.styles';
 import WithCollapse from '../../common/WithCollapse';
 
 const CreateCampaignCondition = () => {
   return (
-    <S.Layout>
+    <div>
       <WithCollapse title="타겟 고객 설정" numbering={1}>
         <CustomerSetting />
       </WithCollapse>
@@ -21,7 +20,7 @@ const CreateCampaignCondition = () => {
         <SentSetting />
       </WithCollapse>
       <BudgetSetting />
-    </S.Layout>
+    </div>
   );
 };
 

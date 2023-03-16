@@ -23,17 +23,15 @@ const Header = () => {
   return (
     <>
       <S.Fixed>
-        <S.Layout>
-          <S.Flex>
-            <S.LeftChevron onClick={goBack}>{CHEVRON.left}</S.LeftChevron>
-            <S.Title>{detailCampaign?.copyGroupName}</S.Title>
-            <S.Tag>{detailCampaign?.messageType}</S.Tag>
-          </S.Flex>
-          <S.Flex>
-            <Button title="발송 내역" buttonColor="blue" buttonSize="buttonM" onButtonClick={handleShowSentHistoyModal} />
-            {/* <Button title="PDF 다운로드" buttonColor="blue" buttonSize="buttonM" /> */}
-          </S.Flex>
-        </S.Layout>
+        <S.Flex>
+          <S.LeftChevron onClick={goBack}>{CHEVRON.left}</S.LeftChevron>
+          <S.Title>{detailCampaign?.campaignName}</S.Title>
+          <S.Tag>{detailCampaign?.messageType}</S.Tag>
+        </S.Flex>
+        <S.Flex>
+          <Button title="발송 내역" buttonColor="blue" buttonSize="buttonM" onButtonClick={handleShowSentHistoyModal} />
+          {/* <Button title="PDF 다운로드" buttonColor="blue" buttonSize="buttonM" /> */}
+        </S.Flex>
       </S.Fixed>
       <SentHistoryModal isOpen={showSentHistoryModal} handleModal={handleShowSentHistoyModal} />
     </>

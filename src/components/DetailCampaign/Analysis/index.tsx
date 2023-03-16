@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import useDetailCampaignQuery from '../../../quries/Campaign/useDetailCampaignQuery';
 import * as S from './Analysis.styles';
 import HoverQuestion from './HoverQuestion';
+import numberWithCommas from '../../../utils/numberWithComma';
 
 const Analysis = () => {
   const { campaignID } = useParams();
@@ -14,9 +15,6 @@ const Analysis = () => {
   }
 
   const ctrGap = detailCampaign?.messageA?.uniqueCTR - (detailCampaign?.messageB?.uniqueCTR ?? 0);
-
-  const memberA = detailCampaign.messageB ? Math.ceil(detailCampaign.customerCount / 2) : detailCampaign.customerCount;
-  const memberB = Math.floor(detailCampaign.customerCount / 2);
 
   return (
     <>
@@ -51,10 +49,10 @@ const Analysis = () => {
         <S.Categories key={idx}>
           <S.CategoryTitle>메시지 {idx === 0 ? 'A' : 'B'}</S.CategoryTitle>
           <S.CategoryTitle>
-            {idx === 0 ? memberA : memberB} / {detailCampaign?.customerCount}
+            {idx === 0 ? numberWithCommas(detailCampaign.messageA.messageACnt) : numberWithCommas(detailCampaign.messageB?.messageBCnt)} / {detailCampaign?.customerCount}
           </S.CategoryTitle>
           <S.CategoryTitle>
-            {type.messageSuccessCnt} / {idx === 0 ? memberA : memberB}
+            {type.messageSuccessCnt} / {idx === 0 ? detailCampaign.messageA.messageACnt : detailCampaign.messageB?.messageBCnt}
           </S.CategoryTitle>
           <S.CategoryTitle>
             {type.uniqueCTR}% ({type.clickCnt})

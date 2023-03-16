@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import useDetailCampaignQuery from '../../../quries/Campaign/useDetailCampaignQuery';
+import numberWithCommas from '../../../utils/numberWithComma';
 import * as S from './CustomerGroupInfo.styles';
 
 const CustomerGroupInfo = () => {
@@ -16,7 +17,7 @@ const CustomerGroupInfo = () => {
         </S.Info>
         <S.Info>
           <S.InfoTitle>총 고객 수</S.InfoTitle>
-          <S.InfoDesc>{detailCampaign?.customerCount}명</S.InfoDesc>
+          <S.InfoDesc>{numberWithCommas(detailCampaign?.customerCount)}명</S.InfoDesc>
         </S.Info>
       </S.Flex>
       <S.Info>

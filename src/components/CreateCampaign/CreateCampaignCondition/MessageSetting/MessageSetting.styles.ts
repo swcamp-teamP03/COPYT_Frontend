@@ -31,11 +31,15 @@ export const RadioInput = styled.div`
   line-height: 30px;
   margin-bottom: 6px;
   input {
-    width: 20px;
-    height: 20px;
+    min-width: 16px;
+    min-height: 16px;
+
     :checked {
       background-color: black;
     }
+  }
+  label {
+    white-space: nowrap;
   }
   span {
     color: ${({ theme }) => theme.colors.gray50};
