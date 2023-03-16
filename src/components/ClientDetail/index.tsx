@@ -5,7 +5,7 @@ import Button from '../common/Button';
 import ReactExcelDownload from '../common/XLSX';
 import DownloadModal from './DownloadModal';
 import useClientDetailQuery from '../../quries/Client/useClientDetailQuery';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { putClientEdit } from '../../api/client/create';
 
 type Property = {
@@ -33,6 +33,7 @@ const ClientGroupDetail = () => {
   const [groupName, setGroupName] = useState('');
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const { data: clientDetail } = useClientDetailQuery(id);
 
@@ -114,7 +115,9 @@ const ClientGroupDetail = () => {
     } catch (err) {}
   };
 
-  console.log(clientDetail);
+  const handleGoCampaigns = (campaignId: number) => {
+    navigate(`/campaign/${campaignId}`);
+  };
 
   return (
     <>
@@ -218,9 +221,9 @@ const ClientGroupDetail = () => {
         {clientDetail && clientDetail.campaigns && clientDetail.campaigns.length > 0 ? (
           <>
             {clientDetail.campaigns.map((list) => (
-              <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} key={list.createdAt}>
+              <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} key={list.campaignId}>
                 {list.campaignName}
-                <Button title="캠페인 바로가기" buttonColor="blue" borderRadius="10px"></Button>
+                <Button title="캠페인 바로가기" buttonColor="blue" borderRadius="10px" onButtonClick={() => handleGoCampaigns(list.campaignId)}></Button>
               </S.ClientProperty>
             ))}
           </>

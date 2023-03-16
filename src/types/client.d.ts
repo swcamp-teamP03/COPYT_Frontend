@@ -14,7 +14,7 @@ export interface ClientGroupsResult {
 }
 
 //고객 그룹 상세
-export type CampaignsType = { campaignName: string | null; createdAt: string };
+export type CampaignsType = { campaignId: number; campaignName: string | null; createdAt: string };
 
 export type ExcelFileType = {
   excelFileName: string;
