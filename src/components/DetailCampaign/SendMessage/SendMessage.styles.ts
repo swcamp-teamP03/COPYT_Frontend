@@ -45,8 +45,10 @@ export const Message = styled.div`
   border: 1px solid #bebebe;
   border-radius: 30px;
   width: 100%;
+  max-height: 300px;
+  min-height: 300px;
   max-width: 367px;
-  white-space: pre;
   padding: 40px 30px;
   height: fit-content;
+  overflow: auto;
 `;

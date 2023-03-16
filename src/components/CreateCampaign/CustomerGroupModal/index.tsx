@@ -18,7 +18,7 @@ interface CustomerGroupModalProps {
 const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
   const [listCount, setListCount] = useState(10);
-  const [selectedGroup, setSelctedGroup] = useState({ id: 0, name: '' });
+  const [selectedGroup, setSelctedGroup] = useState({ id: 0, name: '', customerCnt: 0 });
   const [pageNum, setPageNum] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
 
@@ -35,7 +35,9 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
   };
 
   const onClickGroup = (id: number) => {
-    setSelctedGroup({ id, name: groupList?.groupList.filter((list) => list.customerGroupId === id)[0].groupName ?? '' });
+    const target = groupList?.groupList.filter((list) => list.customerGroupId === id)[0];
+
+    setSelctedGroup({ id, customerCnt: target?.customerCnt ?? 0, name: target?.groupName ?? '' });
   };
 
   const onSave = () => {
@@ -43,6 +45,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
       ...prev,
       customerGroupId: selectedGroup.id,
       customerGroupName: selectedGroup.name,
+      customerCnt: selectedGroup.customerCnt,
     }));
     handler();
   };

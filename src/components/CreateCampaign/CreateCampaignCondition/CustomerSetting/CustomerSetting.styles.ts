@@ -10,6 +10,7 @@ export const FlexBox = styled.div`
 
 export const Title = styled.div`
   font-size: 24px;
+  white-space: nowrap;
   span {
     color: ${({ theme }) => theme.colors.red};
   }
@@ -65,5 +66,8 @@ export const RadioInput = styled.div`
     :checked {
       background-color: black;
     }
+  }
+  label {
+    white-space: nowrap;
   }
 `;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { GNB_SVG } from '../../../assets/GNB';
+import Button from '../Button';
 
 const NAV_ITEM = [
   { title: '홈', svg: GNB_SVG.home, url: '/' },
@@ -17,29 +18,29 @@ const GNB = () => {
     navigate(path);
   };
 
-  // const handleMyClick = () => {
-  //   handleNavigation('/my');
-  // };
-  // const handleLogoutClick = () => {
-  //   handleNavigation('/');
-  // };
+  const handleLogoutClick = () => {
+    localStorage.removeItem('accessToken');
+    navigate(-1);
+  };
 
   return (
     <GNBContainer>
-      <Logo>{GNB_SVG.logo}</Logo>
-      <Gap />
-      <NavWrapper>
-        {NAV_ITEM.map((item) => (
-          <NavItem key={item.title} onClick={() => handleNavigation(item.url)}>
-            {item.svg}
-            {item.title}
-          </NavItem>
-        ))}
-      </NavWrapper>
-      {/* <ButtonWrapper>
-        <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button>
+      <div>
+        <Logo>{GNB_SVG.logo}</Logo>
+        <Gap />
+        <NavWrapper>
+          {NAV_ITEM.map((item) => (
+            <NavItem key={item.title} onClick={() => handleNavigation(item.url)}>
+              {item.svg}
+              {item.title}
+            </NavItem>
+          ))}
+        </NavWrapper>
+      </div>
+      <ButtonWrapper>
+        {/* <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button> */}
         <Button title="로그아웃" buttonSize="buttonM" buttonColor="blue" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={true}></Button>
-      </ButtonWrapper> */}
+      </ButtonWrapper>
     </GNBContainer>
   );
 };
@@ -48,12 +49,13 @@ export default GNB;
 
 const GNBContainer = styled.div`
   position: sticky;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 200px;
+  min-width: 200px;
   border-right: 1px solid ${({ theme }) => theme.colors.gray30};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   z-index: 5;
+  top: 0;
 `;
 
 const Logo = styled.div`

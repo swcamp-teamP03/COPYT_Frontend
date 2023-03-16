@@ -21,8 +21,6 @@ const CapaignGroups = () => {
     navigate(`/campaign/${id}`);
   };
 
-  console.log(campaignData);
-
   useEffect(() => {
     if (campaignData?.totalCampaign) {
       const page = Math.ceil(campaignData?.totalCampaign / listCount);

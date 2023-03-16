@@ -12,28 +12,21 @@ const DetailCampaign = () => {
   return (
     <>
       <Header />
-      <Layout>
-        <WithCollapse title="캠페인 정보">
-          <CampaignInfo />
-        </WithCollapse>
-        <WithCollapse title="고객 그룹 정보">
-          <CustomerGroupInfo />
-        </WithCollapse>
-        <WithCollapse title="보낸 메시지">
-          <SendMessage />
-        </WithCollapse>
-        <Analysis />
-        <WithCollapse title="코멘트">
-          <Comment />
-        </WithCollapse>
-      </Layout>
+      <WithCollapse title="캠페인 정보">
+        <CampaignInfo />
+      </WithCollapse>
+      <WithCollapse title="고객 그룹 정보">
+        <CustomerGroupInfo />
+      </WithCollapse>
+      <WithCollapse title="보낸 메시지">
+        <SendMessage />
+      </WithCollapse>
+      <Analysis />
+      <WithCollapse title="코멘트">
+        <Comment />
+      </WithCollapse>
     </>
   );
 };
 
 export default DetailCampaign;
-
-const Layout = styled.div`
-  max-width: 70%;
-  margin: 0 auto;
-`;
