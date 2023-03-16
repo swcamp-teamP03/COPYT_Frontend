@@ -40,7 +40,18 @@ const Header = () => {
     navigate(-1);
   };
 
-  const isDisabledSumbit = Object.values(condition).includes('') || condition.messageOver;
+  const isDisabledSumbit = () => {
+    if (condition.abTest) {
+      return Object.values(condition).includes('') || condition.messageOver;
+    } else {
+      return (
+        Object.entries(condition)
+          .filter((list) => list[0] !== 'messageB')
+          .flat()
+          .includes('') || condition.messageOver
+      );
+    }
+  };
 
   return (
     <S.Fixed>
@@ -61,7 +72,7 @@ const Header = () => {
         </S.Flex>
       </S.Flex>
       <div>
-        <Button title="캠페인 실행" buttonColor="blue" buttonSize="buttonM" isDisabled={isDisabledSumbit} onButtonClick={onSubmit} />
+        <Button title="캠페인 실행" buttonColor="blue" buttonSize="buttonM" isDisabled={isDisabledSumbit()} onButtonClick={onSubmit} />
       </div>
     </S.Fixed>
   );
