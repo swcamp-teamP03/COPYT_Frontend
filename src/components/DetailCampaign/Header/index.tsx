@@ -25,7 +25,7 @@ const Header = () => {
       <S.Fixed>
         <S.Flex>
           <S.LeftChevron onClick={goBack}>{CHEVRON.left}</S.LeftChevron>
-          <S.Title>{detailCampaign?.copyGroupName}</S.Title>
+          <S.Title>{detailCampaign?.campaignName}</S.Title>
           <S.Tag>{detailCampaign?.messageType}</S.Tag>
         </S.Flex>
         <S.Flex>

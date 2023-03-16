@@ -10,8 +10,6 @@ const CampaignInfo = () => {
   const { campaignID } = useParams();
   const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
 
-  console.log(detailCampaign);
-
   return (
     <>
       <S.EventText>
