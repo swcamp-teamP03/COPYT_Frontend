@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CLIENT_SVG } from '../../../assets';
 import * as S from './ClientGroupList';
-import PageHeader from '../../common/PageHeader';
 import { useNavigate } from 'react-router-dom';
 import useClientGroupsQuery from '../../../quries/Client/useClientGroupsQuery';
 import Pagination from '../../common/Pagination';
@@ -42,41 +41,6 @@ const ClientGroupList = () => {
 
   return (
     <>
-      <PageHeader
-        buttonTitle="고객 그룹 작성"
-        buttonSize="buttonL"
-        onClick={() => {
-          navigate('/clients/create');
-        }}
-      >
-        고객 그룹 리스트
-      </PageHeader>
-
-      {/* <S.HeaderLayout>
-        <S.HeaderSection>
-          {CLIENT_SVG.serch}
-          <input
-            type={'text'}
-            placeholder={'고객 그룹 검색'}
-            style={{
-              border: 'none',
-              fontSize: '17px',
-              color: 'gray',
-            }}
-          />
-        </S.HeaderSection>
-        <S.HeaderSection>
-          <div>
-            <input type={'date'} style={{ border: 'none' }} /> ~ <input type={'date'} style={{ border: 'none' }} />
-          </div>
-        </S.HeaderSection>
-      </S.HeaderLayout> */}
-      {/* <hr
-        style={{
-          color: 'gray',
-        }}
-      /> */}
-
       <S.TaxtContainer>
         <div>전체 {groupList?.totalGroupCount}개</div>
         <S.VerticalHr />
