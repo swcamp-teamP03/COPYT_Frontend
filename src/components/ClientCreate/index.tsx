@@ -57,9 +57,6 @@ const ClientGroupCreate = ({}) => {
     setGroupName(e.target.value);
   }, []);
 
-  const propertiesArray = properties.map((property, index) => {
-    return { [`properties[${index}].propertyValue`]: property };
-  });
   const submitForm = async () => {
     //파일
     const file = inputRef.current?.files?.[0];
@@ -143,7 +140,7 @@ const ClientGroupCreate = ({}) => {
         ) : (
           <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
-            고객 데이터 파일을 업로드 해주세요. *업로드 가능 확장자 : .xls
+            고객 데이터 파일을 업로드 해주세요. *업로드 가능 확장자 : .xls, .xlsx
           </S.ClientProperty>
         )}
       </S.TaxtContainer>

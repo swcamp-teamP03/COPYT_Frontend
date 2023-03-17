@@ -2,11 +2,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CopyGroups from '../pages/CopyGroups';
 import ClientGroups from '../pages/ClientGroups';
 import React from 'react';
-import Layout from '../layouts/Layout';
 import CreateCopy from '../pages/CreateCopy';
 import AuthRouter from './AuthRouter';
 import ClientGroupDetail from '../components/ClientDetail';
-import ClientGroupCreate from '../components/ClientCreate';
+import ClientCreate from '../pages/ClientCreate';
 import DetailCopy from '../pages/DetailCopy';
 import CreateCampaign from '../pages/CreateCampaign';
 import DetailCampaign from '../pages/DetailCampaign';
@@ -22,7 +21,7 @@ const Router = () => {
           <Route path="/" element={<ServiceHome />} />
           <Route path="/clients" element={<ClientGroups />} />
           <Route path="/clients/:id" element={<ClientGroupDetail />} />
-          <Route path="/clients/create" element={<ClientGroupCreate />} />
+          <Route path="/clients/create" element={<ClientCreate />} />
           <Route path="/copies" element={<CopyGroups />} />
           <Route path="/copies/create" element={<CreateCopy />} />
           <Route path="/copies/:id/*" element={<DetailCopy />} />
