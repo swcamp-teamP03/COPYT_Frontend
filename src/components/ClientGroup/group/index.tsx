@@ -12,8 +12,8 @@ interface GroupListProps {
 const Group = ({ clientList, onClick }: GroupListProps) => {
   const { mutate: clientLikeMutate } = useClientLikeMutation();
 
-  const handleParams = (id: number) => {
-    clientLikeMutate(id);
+  const handleFavorite = (id: number, favorite: boolean) => {
+    clientLikeMutate({ id, favorite });
   };
 
   return (
@@ -21,7 +21,7 @@ const Group = ({ clientList, onClick }: GroupListProps) => {
       <S.ListContainer>
         {clientList.map((list) => (
           <S.GroupList key={list.customerGroupId}>
-            <span onClick={() => handleParams}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
+            <span onClick={() => handleFavorite(list.customerGroupId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
             <span>{list.date}</span>
             <span onClick={() => onClick(list.customerGroupId)}>{list.groupName}</span>
             <span>{list.customerCnt}</span>
