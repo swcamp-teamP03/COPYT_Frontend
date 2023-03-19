@@ -77,6 +77,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
               <span onClick={() => handleLiked(list.customerGroupId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
               <span>{list.date.substring(0, 10)}</span>
               <span>{list.groupName}</span>
+              <span>{list.customerCnt}</span>
             </GroupList>
           ))}
         </ListContainer>
@@ -126,7 +127,7 @@ export const GroupList = styled.div<GroupListProps>`
   display: grid;
   cursor: pointer;
   gap: 10px;
-  grid-template-columns: 1fr 1fr 4fr;
+  grid-template-columns: 1fr 1fr 3fr 1fr;
   height: 82px;
   justify-content: center;
   align-items: center;
