@@ -29,9 +29,11 @@ export const CopyType = styled.button<CopyTypeProps>`
   cursor: pointer;
   width: 74px;
   height: 42px;
-  border: 1px solid #e1e1e1;
+  border: 1px solid;
+  border-color: ${(props) => (props.isSelected ? props.theme.colors.blue30 : props.theme.colors.gray30)};
   border-radius: 10px;
-  background-color: ${(props) => (props.isSelected ? '#e1e1e1' : 'white')};
+  color: ${(props) => (props.isSelected ? props.theme.colors.blue30 : props.theme.colors.gray50)};
+  background-color: ${(props) => (props.isSelected ? props.theme.colors.blue20 : props.theme.colors.blue10)};
 `;
 
 export const DropDownBox = styled.div`

@@ -47,7 +47,7 @@ const ModalHeader = ({ children, onClick }: ModalHeaderProps) => {
         <h2>{children}</h2>
         <div onClick={onClick}>{SVG.closeButton}</div>
       </S.ModalHeader>
-      <hr />
+      <S.Hr />
     </>
   );
 };

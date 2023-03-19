@@ -19,7 +19,7 @@ const EditWarningModal = ({ showEditWarnModal, handleEditWarnModal, setIsEditMod
   };
 
   return (
-    <Modal.Frame height="80px" isOpen={showEditWarnModal} onClick={handleEditWarnModal}>
+    <Modal.Frame height="120px" isOpen={showEditWarnModal} onClick={handleEditWarnModal}>
       <Modal.Body>{COPY_MESSAGE.EDIT}</Modal.Body>
       <Modal.Footer>
         <Button title="취소" buttonColor="white" buttonSize="buttonS" onButtonClick={onClickNo} />

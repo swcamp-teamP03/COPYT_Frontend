@@ -40,6 +40,8 @@ const CopyDetails = () => {
     createCopytMutate(copyDetail as CopyDetailResult);
   };
 
+  console.log(copyDetail);
+
   return (
     <div>
       {isLoading && <Loading />}
@@ -54,11 +56,11 @@ const CopyDetails = () => {
         <span>{copyDetail?.productName}</span>
       </S.TextBox>
       <S.Label>필수로 포함할 키워드</S.Label>
-      <S.TextBox>
+      <S.KeywordWrapper>
         {copyDetail?.keyword?.split(',').map((keyword) => (
           <S.Keyword key={keyword}>{keyword}</S.Keyword>
         ))}
-      </S.TextBox>
+      </S.KeywordWrapper>
       <S.Label>유형</S.Label>
       <S.CopyTypeContainer>
         {COPY_TYPE.map((type) => (

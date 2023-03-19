@@ -27,7 +27,7 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 4.25rem 6.125rem;
+  padding: 4.25rem 4.25rem;
 `;
 
 const Content = styled.div`
