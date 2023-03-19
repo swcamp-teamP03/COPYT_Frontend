@@ -28,20 +28,18 @@ export const Desc = styled.div`
 export const RadioInput = styled.div`
   font-size: 20px;
   display: flex;
+  align-items: center;
   gap: 10px;
-  line-height: 30px;
   margin-bottom: 6px;
+  white-space: nowrap;
   input {
     min-width: 16px;
     min-height: 16px;
-
     :checked {
       background-color: black;
     }
   }
-  label {
-    white-space: nowrap;
-  }
+
   span {
     color: ${({ theme }) => theme.colors.gray50};
     font-size: 16px;
