@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import useCopyDetailQuery from '../../../quries/Copy/useCopyDetailQuery';
@@ -8,10 +8,12 @@ import { CopyDetailResult } from '../../../types/copy';
 import Button from '../../common/Button';
 import Loading from '../../common/Loading';
 import { COPY_TYPE } from '../../CreateCopy/CreateCopyCondition';
+import CopyCountLimitModal from '../../CreateCopy/LimitModal';
 import * as S from './CopyDetail.stlyes';
 
 const CopyDetails = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
+  const [showLimitModal, setShowLimitModal] = useState(false);
   const { id } = useParams();
 
   const { data: copyDetail } = useCopyDetailQuery(id);
@@ -21,8 +23,15 @@ const CopyDetails = () => {
     return title === title;
   };
 
+  const handleLimitModal = () => {
+    setShowLimitModal((prev) => !prev);
+  };
+
   const recommendCopy = () => {
-    if (!copyDetail) return;
+    if (!copyDetail || !copyDetail.createCount) return;
+    if (copyList.length + copyDetail.createCount > 20) {
+      return handleLimitModal();
+    }
     createCopytMutate(copyDetail as CopyDetailResult);
   };
 
@@ -57,19 +66,20 @@ const CopyDetails = () => {
         <div>
           <S.Label>생성수</S.Label>
           <S.DarkBox>
-            <span>3</span>
+            <span>{copyDetail?.createCount}</span>
           </S.DarkBox>
         </div>
         <div>
           <S.Label>글자수</S.Label>
           <S.DarkBox>
-            <span>150</span>
+            <span>{copyDetail?.copyLength}</span>
           </S.DarkBox>
         </div>
       </S.FlexLayout>
       <S.CopySubmit>
         <Button title="카피 추천 받기" buttonSize="buttonL" buttonColor="blue" onButtonClick={recommendCopy} />
       </S.CopySubmit>
+      <CopyCountLimitModal showLimitModal={showLimitModal} handleLimitModal={handleLimitModal} />
     </div>
   );
 };
