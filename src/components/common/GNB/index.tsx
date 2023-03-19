@@ -20,7 +20,7 @@ const GNB = () => {
 
   const handleLogoutClick = () => {
     localStorage.removeItem('accessToken');
-    navigate(-1);
+    navigate('/auth');
   };
 
   return (
@@ -39,7 +39,7 @@ const GNB = () => {
       </div>
       <ButtonWrapper>
         {/* <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button> */}
-        <Button title="로그아웃" buttonSize="buttonM" buttonColor="blue" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={true}></Button>
+        <Button title="로그아웃" buttonSize="buttonM" buttonColor="blue" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={false}></Button>
       </ButtonWrapper>
     </GNBContainer>
   );
