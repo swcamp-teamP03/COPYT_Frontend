@@ -11,12 +11,12 @@ const MessageList = () => {
   const memberB = Math.ceil(condition.customerCnt / 2);
 
   return (
-    <>
+    <div>
       <S.Layout>
         <CampaignMessage type="A" member={memberA} initMessage={condition.messageA} />
         {condition.abTest && <CampaignMessage type="B" member={memberB} initMessage={condition.messageB} />}
       </S.Layout>
-    </>
+    </div>
   );
 };
 

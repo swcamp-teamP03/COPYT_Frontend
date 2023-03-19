@@ -47,7 +47,7 @@ const SelectCopy = () => {
       </S.FlexBox>
       <MessageContainer />
       <S.Title>
-        메시지 발송 URL
+        발송 URL
         <span>*</span>
       </S.Title>
       <S.FlexBox>

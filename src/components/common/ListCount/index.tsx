@@ -9,9 +9,10 @@ interface ListCountProps {
   listCount: number;
   setListCount: Dispatch<SetStateAction<number>>;
   totalList: number;
+  setPageNum: Dispatch<SetStateAction<number>>;
 }
 
-const ListCount = ({ listCount, setListCount, totalList }: ListCountProps) => {
+const ListCount = ({ listCount, setListCount, totalList, setPageNum }: ListCountProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
 
   const handleCountDropDown = () => {
@@ -19,6 +20,7 @@ const ListCount = ({ listCount, setListCount, totalList }: ListCountProps) => {
   };
 
   const handleCount = (count: number) => {
+    setPageNum(0);
     setListCount(count);
     handleCountDropDown();
   };

@@ -94,13 +94,13 @@ const Sticky = styled.div`
 
 const MessageContainer = styled.div`
   gap: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   position: relative;
 `;
 
 const Message = styled.div`
   padding: 15px;
-  background-color: ${({ theme }) => theme.colors.blue20};
+  background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid #bebebe;
   border-radius: 30px;
   height: 120px;
