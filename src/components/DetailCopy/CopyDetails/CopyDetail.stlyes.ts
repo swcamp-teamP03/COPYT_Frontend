@@ -17,9 +17,20 @@ export const TextBox = styled.div`
   gap: 10px;
 `;
 
+export const KeywordWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+`;
+
 export const Keyword = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 12px;
+  height: 42px;
+  border: 1px solid #e1e1e1;
   border-radius: 10px;
-  padding: 8px;
   background-color: ${({ theme }) => theme.colors.gray20};
 `;
 
@@ -34,7 +45,6 @@ interface CopyTypeProps {
 }
 
 export const CopyType = styled.button<CopyTypeProps>`
-  cursor: pointer;
   width: 74px;
   height: 42px;
   border: 1px solid #e1e1e1;
