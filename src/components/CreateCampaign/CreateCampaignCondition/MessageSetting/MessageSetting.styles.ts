@@ -4,6 +4,7 @@ export const Gap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
+  margin-bottom: 50px;
 `;
 
 export const Title = styled.div`
