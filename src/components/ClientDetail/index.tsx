@@ -25,6 +25,7 @@ const defaultProperties: Property[] = [
 ];
 
 const ClientGroupDetail = () => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [modify, setModify] = useState(false);
   const [fileName, setFileName] = useState('');
   const [propertyCount, setPropertyCount] = useState<number>(0);
@@ -60,9 +61,6 @@ const ClientGroupDetail = () => {
     setPropertyCount((prevCount) => prevCount + 1);
     setProperties((prevProperties) => [...prevProperties, `속성 ${propertyCount + 1}`]);
   };
-
-  //파일 재 업로드
-  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const onUploadFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
@@ -144,7 +142,7 @@ const ClientGroupDetail = () => {
         </S.TaxtContainer>
       </S.TaxtInnerContainer>
       <S.TaxtContainer>
-        <h3>고객 속성</h3>
+        <h3>타겟 목표 및 메모</h3>
         <S.PropertyHighlight>
           {CLIENT_SVG.highlight} &nbsp; &nbsp;고객 DB의 데이터 속성(목표)을 입력해주세요. 입력한 속성은 고객 DB에 영향을 미치지 않으며, 데이터 정보 확인용으로만 활용됩니다.
         </S.PropertyHighlight>
@@ -154,7 +152,7 @@ const ClientGroupDetail = () => {
             <>
               {properties.map((property, index) => (
                 <div key={index}>
-                  <span>속성{index + 1}</span>
+                  <span>메모{index + 1}</span>
                   <S.ClientModifyProperty
                     type="text"
                     value={property}
@@ -182,17 +180,20 @@ const ClientGroupDetail = () => {
                 <span>{clientDetail?.excelFile.excelUploadTime}</span>
                 <span>{clientDetail?.excelFile.customerCnt}</span>
                 <span>{clientDetail?.excelFile.excelFileSize}</span>
-                <span onClick={handleDownloadClick}>{CLIENT_SVG.download}</span>
+                <span style={{ cursor: 'pointer' }} onClick={handleDownloadClick}>
+                  {CLIENT_SVG.download}
+                </span>
+                <input className="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
               </S.ClientProperty>
             </>
           </>
         ) : (
           //수정 안되는 부분
           <>
-            <div>속성 1 </div>
+            <div>메모 1 </div>
             <S.ClientProperty>{clientDetail?.customerProperties[0]?.propertyValue} </S.ClientProperty>
 
-            <div>속성 2 </div>
+            <div>메모 2 </div>
             <S.ClientProperty>{clientDetail?.customerProperties[1]?.propertyValue} </S.ClientProperty>
 
             <S.PlusButtonLayout>
@@ -210,7 +211,9 @@ const ClientGroupDetail = () => {
               <span>{clientDetail?.excelFile.excelUploadTime}</span>
               <span>{clientDetail?.excelFile.customerCnt}</span>
               <span>{clientDetail?.excelFile.excelFileSize}</span>
-              <span onClick={handleDownloadClick}>{CLIENT_SVG.download}</span>
+              <span style={{ cursor: 'pointer' }} onClick={handleDownloadClick}>
+                {CLIENT_SVG.download}
+              </span>
               {showModal && <DownloadModal show={showModal} onClose={() => setShowModal(false)} />}
             </S.ClientProperty>
           </>
