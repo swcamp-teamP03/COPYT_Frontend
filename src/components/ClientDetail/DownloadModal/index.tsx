@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { postExcelDown } from '../../../api/client/create';
+import { downloadExcelFile } from '../../../api/client/create';
 import styled from 'styled-components';
 import Button from '../../common/Button';
 import NoticeModal from './NoticeModal';
@@ -27,6 +27,7 @@ const CloseButton = styled.button`
 `;
 
 const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
+  const { id } = useParams();
   const [downloadReason, setDownloadReason] = useState('');
   const [step, setStep] = useState(1);
   const [password, setPassword] = useState('');
@@ -34,8 +35,6 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
   const [notice, setNotice] = useState(false);
 
   console.log(downloadReason);
-
-  const { id } = useParams();
 
   const handleConfirmDownload = () => {
     if (downloadReason.trim() === '') {
@@ -52,26 +51,10 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
 
   const handleConfirmPassword = async () => {
     try {
-      const { data }: any = await postExcelDown({
-        id: id,
-        downloadReason: downloadReason,
-        password: password,
-      });
-      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-      const filename = decodeURIComponent(data.headers['content-disposition'].split('filename=')[1]);
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', filename);
-      document.body.appendChild(link);
-      link.click();
-      if (link.parentNode) {
-        link.parentNode.removeChild(link);
-      }
-
+      if (!id) throw new Error('ID가 없습니다.');
+      await downloadExcelFile({ id, password, downloadReason });
       onClose();
       setStep(step + 1);
-      alert('파일이 다운로드되었습니다.');
     } catch (err) {
       setError('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
     }
