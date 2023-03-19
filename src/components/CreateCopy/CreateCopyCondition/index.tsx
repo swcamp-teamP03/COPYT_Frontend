@@ -120,7 +120,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         onChange={(e) => onChangeKeywrod(e, 30)}
         onKeyUp={addKeyword}
         value={keyword}
-        placeholder="키워드를 입력해 주세요. 최대 8개까지 등록 가능해요."
+        placeholder="키워드는 콤마로 구분이 아닌 엔터로 적용해주세요. 최대 8개까지 등록 가능해요."
         disabled={condition.keyword.length === 8}
       />
       <S.KeywordContainer>
@@ -132,7 +132,10 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
             </S.KeywordTag>
           ))}
       </S.KeywordContainer>
-      <S.Label>유형</S.Label>
+      <S.Label>
+        유형
+        <span>*</span>
+      </S.Label>
       <S.CopyTypeContainer>
         {COPY_TYPE.map((type) => (
           <S.CopyType isSelected={isSelected(type.title)} key={type.title} onClick={() => handleType(type.title)}>

@@ -1,13 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
+import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createCamapign } from '../../api/Campaign';
 
-const useCreateCampaignMutation = () => {
-  const navigate = useNavigate();
-
+const useCreateCampaignMutation = (setShowSubmitModal: Dispatch<SetStateAction<boolean>>) => {
   return useMutation(createCamapign, {
     onSuccess: () => {
-      navigate('/campaign');
+      setShowSubmitModal(true);
     },
   });
 };

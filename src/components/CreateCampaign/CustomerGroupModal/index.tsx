@@ -62,7 +62,7 @@ const CustomerGroupModal = ({ isOpen, handler }: CustomerGroupModalProps) => {
       <Modal.Header onClick={handler}>고객 그룹 불러오기</Modal.Header>
       <Modal.Body>
         <h4>고객 그룹 선택</h4>
-        <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList?.totalGroupPage ?? 0} />
+        <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList?.totalGroupPage ?? 0} setPageNum={setPageNum} />
         <ListCategory>
           <div>즐겨찾기</div>
           <div>

@@ -27,15 +27,19 @@ const CopyGroupListForModal = () => {
 
   useEffect(() => {
     if (groupList?.totalCopy) {
-      const page = Math.ceil(groupList?.totalCopy / listCount);
+      const page = Math.ceil(groupList?.totalCopyCount / listCount);
       setTotalPage(page);
     }
-  }, [groupList?.totalCopy]);
+  }, [groupList?.totalCopyCount, listCount]);
+
+  if (!groupList) {
+    return null;
+  }
 
   return (
     <div>
       <h4>카피 그룹 선택</h4>
-      <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList?.totalCopy ?? 0} />
+      <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList.totalCopyCount} setPageNum={setPageNum} />
       <ListCategory>
         <div>즐겨찾기</div>
         <div>
@@ -45,7 +49,7 @@ const CopyGroupListForModal = () => {
         <div>카피그룹명</div>
       </ListCategory>
       {groupList && <CopyGroupList copyList={groupList.groupList} onClick={onClickGroup} />}
-      {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
+      {groupList?.totalCopy > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </div>
   );
 };

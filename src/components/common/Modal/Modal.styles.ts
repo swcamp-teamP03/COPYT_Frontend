@@ -44,16 +44,20 @@ export const ModalHeader = styled.div`
   }
 `;
 
+export const Hr = styled.hr`
+  margin: 0;
+`;
+
 export const ModalBody = styled.div`
   white-space: pre-wrap;
-  height: 80%;
+  height: 70%;
   overflow: auto;
 `;
 
 export const ModalFooter = styled.div`
   padding-top: 20px;
   width: 100%;
-  height: 20%;
+  height: 30%;
   display: flex;
   justify-content: flex-end;
   gap: 10px;

@@ -31,7 +31,7 @@ export const campaignConditionState = atom<CampignConditionInit>({
     copyGroupName: '',
     abTest: true,
     messageType: 'LMS',
-    sendType: 'COMM',
+    sendType: 'AD',
     sentCycle: '일회성 발송',
     sendingDate: tommrrow.toString(),
     sendURL: '',
