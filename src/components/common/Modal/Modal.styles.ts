@@ -44,6 +44,10 @@ export const ModalHeader = styled.div`
   }
 `;
 
+export const Hr = styled.hr`
+  margin: 0;
+`;
+
 export const ModalBody = styled.div`
   white-space: pre-wrap;
   height: 70%;
