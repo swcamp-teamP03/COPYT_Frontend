@@ -9,12 +9,7 @@ const Analysis = () => {
   const { campaignID } = useParams();
   const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
 
-  const analysis = [{ ...detailCampaign?.messageA }, { ...detailCampaign?.messageB }];
-  if (!detailCampaign) {
-    return null;
-  }
-
-  const ctrGap = detailCampaign?.messageA?.uniqueCTR - (detailCampaign?.messageB?.uniqueCTR ?? 0);
+  const ctrGap = detailCampaign?.messageA?.uniqueCTR ?? 0 - (detailCampaign?.messageB?.uniqueCTR ?? 0);
 
   return (
     <>
@@ -45,21 +40,34 @@ const Analysis = () => {
         </S.CategoryTitle>
       </S.Categories>
       <hr />
-      {analysis.map((type, idx) => (
-        <S.Categories key={idx}>
-          <S.CategoryTitle>메시지 {idx === 0 ? 'A' : 'B'}</S.CategoryTitle>
+      <S.Categories>
+        <S.CategoryTitle>메시지 A</S.CategoryTitle>
+        <S.CategoryTitle>
+          {numberWithCommas(detailCampaign?.messageA.messageACnt)}/{detailCampaign?.customerCount}
+        </S.CategoryTitle>
+        <S.CategoryTitle>
+          {detailCampaign?.messageA.messageSuccessCnt} / {detailCampaign?.messageA.messageACnt}
+        </S.CategoryTitle>
+        <S.CategoryTitle>
+          {detailCampaign?.messageA.uniqueCTR}%({detailCampaign?.messageA.clickCnt})
+        </S.CategoryTitle>
+        <S.CategoryTitle>기준</S.CategoryTitle>
+      </S.Categories>
+      {detailCampaign?.copyWriteAB[1] && (
+        <S.Categories>
+          <S.CategoryTitle>메시지 B</S.CategoryTitle>
           <S.CategoryTitle>
-            {idx === 0 ? numberWithCommas(detailCampaign.messageA.messageACnt) : numberWithCommas(detailCampaign.messageB?.messageBCnt)} / {detailCampaign?.customerCount}
+            {numberWithCommas(detailCampaign?.messageB?.messageBCnt)}/{detailCampaign?.customerCount}
           </S.CategoryTitle>
           <S.CategoryTitle>
-            {type.messageSuccessCnt} / {idx === 0 ? detailCampaign.messageA.messageACnt : detailCampaign.messageB?.messageBCnt}
+            {detailCampaign?.messageB?.messageSuccessCnt} / {detailCampaign?.messageB?.messageBCnt}
           </S.CategoryTitle>
           <S.CategoryTitle>
-            {type.uniqueCTR}% ({type.clickCnt})
+            {detailCampaign?.messageB?.uniqueCTR}%({detailCampaign?.messageB?.clickCnt})
           </S.CategoryTitle>
-          <S.CategoryTitle>{idx === 0 ? '기준' : ctrGap + '%'}</S.CategoryTitle>
+          <S.CategoryTitle>{ctrGap + '%'}</S.CategoryTitle>
         </S.Categories>
-      ))}
+      )}
     </>
   );
 };

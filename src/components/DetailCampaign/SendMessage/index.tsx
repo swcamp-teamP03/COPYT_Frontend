@@ -7,8 +7,6 @@ const SendMessage = () => {
   const { campaignID } = useParams();
   const { data: detailCampaign } = useDetailCampaignQuery(campaignID);
 
-  console.log(detailCampaign);
-
   return (
     <>
       <S.Flex>
@@ -22,7 +20,7 @@ const SendMessage = () => {
           <S.InfoTitle>발송 카피</S.InfoTitle>
           <S.Grid>
             <S.InfoDesc>메세지 A</S.InfoDesc>
-            {detailCampaign?.messageB && <S.InfoDesc>메세지 B</S.InfoDesc>}
+            {detailCampaign?.copyWriteAB[1] && <S.InfoDesc>메세지 B</S.InfoDesc>}
           </S.Grid>
         </S.Info>
       </S.Flex>
