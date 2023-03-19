@@ -10,7 +10,8 @@ export interface CampaignsListType {
 }
 
 export interface CamapaignListResult {
-  totalCampaign: number;
+  totalCampaignCount: number;
+  totalCampaignPage: number;
   campaignList: CampaignsListType[];
 }
 
