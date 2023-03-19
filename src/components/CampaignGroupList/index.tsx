@@ -24,13 +24,13 @@ const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListPr
       <S.ListContainer>
         {campaignList.map((list) => (
           <S.GroupList key={list.campaignId}>
-            <span onClick={() => hadleLike(list.campaignId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
-            <span onClick={() => onClickHandler(list.campaignId)}>{list.messageType}</span>
+            <div onClick={() => hadleLike(list.campaignId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</div>
+            <div onClick={() => onClickHandler(list.campaignId)}>{list.messageType}</div>
             <span onClick={() => onClickHandler(list.campaignId)}>{list.campaignName}</span>
-            <span onClick={() => onClickHandler(list.campaignId)}>{list.clickRate}%</span>
-            <span onClick={() => onClickHandler(list.campaignId)}>{list.createdAt}</span>
-            <span onClick={() => onClickHandler(list.campaignId)}>{list.sendingDate}</span>
-            <span onClick={() => onClickHandler(list.campaignId)}>{list.sendState === '발송완료' ? CHECK.check : CHECK.unCheck}</span>
+            <div onClick={() => onClickHandler(list.campaignId)}>{list.clickRate}%</div>
+            <div onClick={() => onClickHandler(list.campaignId)}>{list.createdAt}</div>
+            <div onClick={() => onClickHandler(list.campaignId)}>{list.sendingDate}</div>
+            <div onClick={() => onClickHandler(list.campaignId)}>{list.sendState === '발송완료' ? CHECK.check : CHECK.unCheck}</div>
           </S.GroupList>
         ))}
       </S.ListContainer>

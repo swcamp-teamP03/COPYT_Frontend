@@ -42,6 +42,12 @@ export const URLContaienr = styled.div`
   padding: 0 16px;
   max-width: 507px;
   height: 50px;
+  span {
+    display: block;
+    overflow: hidden;
+    width: 90%;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const CloseButton = styled.div`

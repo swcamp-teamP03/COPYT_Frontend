@@ -7,6 +7,7 @@ import { copyListState } from '../../../store/copyListState';
 import { CopyListType } from '../../../types/copy';
 import Button from '../../common/Button';
 import ClipboardModal from '../ClipboardModal';
+import CopyDeleteModal from '../CopyDeleteModal';
 import EditWarningModal from '../EditModal';
 import * as S from './CopyListItem.styles';
 
@@ -21,6 +22,7 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
   const [editCopy, setEditCopy] = useState('');
   const [isEditMode, setIsEditMode] = useState(false);
   const [showClipboardModal, setShowClipboardModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const editCopyHandler = (id: number) => {
     const target = copyList.filter((list) => list.copyId === id)[0];
@@ -35,16 +37,14 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
     setEditCopy(event.currentTarget.value);
   };
 
-  const deleteList = (id: number) => {
-    console.log(id);
-    const target = copyList.filter((list) => list.copyId === id)[0];
+  const deleteList = () => {
+    const target = copyList.filter((list) => list.copyId === data.copyId)[0];
     const index = copyList.indexOf(target);
-    const data: CopyListType[] = JSON.parse(JSON.stringify(copyList));
-    data.splice(index, 1);
-    setCopyList([...data]);
+    const result: CopyListType[] = JSON.parse(JSON.stringify(copyList));
+    result.splice(index, 1);
+    setCopyList([...result]);
+    setShowDeleteModal(false);
   };
-
-  console.log(copyList);
 
   const handleClipboardModal = () => {
     setShowClipboardModal((prev) => !prev);
@@ -53,6 +53,10 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
   const handleEditWarnModal = () => {
     setShowEditWarnModal((prev) => !prev);
   };
+  const handleDeleteModal = () => {
+    setShowDeleteModal((prev) => !prev);
+  };
+
   const copyText = (text: string) => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
@@ -81,12 +85,11 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
       ) : (
         <S.Container>
           <span>{data.content}</span>
-          <S.DeleteButton onClick={() => deleteList(data.copyId)}>{SVG.closeButton}</S.DeleteButton>
+          <S.DeleteButton onClick={handleDeleteModal}>{SVG.closeButton}</S.DeleteButton>
           <S.TextCount>{data.content.length}/900</S.TextCount>
           <S.Footer>
             <div>
               <div onClick={() => handlePinned(data.copyId)}>{data.isPinned ? PIN.pinned : PIN.unpinned}</div>
-              <div onClick={() => copyText(data.content)}>{POST_SVG.copy}</div>
               <div onClick={handleEditWarnModal}>{POST_SVG.edit}</div>
             </div>
           </S.Footer>
@@ -94,6 +97,7 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
       )}
       <EditWarningModal showEditWarnModal={showEditWarnModal} handleEditWarnModal={handleEditWarnModal} setIsEditMode={setIsEditMode} />
       <ClipboardModal showClipboardModal={showClipboardModal} handleClipboardModal={handleClipboardModal} />
+      <CopyDeleteModal showDeleteModal={showDeleteModal} handleDeleteModal={handleDeleteModal} onClickYes={deleteList} />
     </>
   );
 };

@@ -35,6 +35,7 @@ const MessageListForModal = ({ selectedMesssage, setSelecetedMessage, modalHandl
         messageA: selectedMesssage[0].content,
       }));
     }
+    setSelecetedMessage([]);
     modalHandler();
   };
   return (

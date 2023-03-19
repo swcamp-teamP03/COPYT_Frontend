@@ -24,19 +24,23 @@ export const GroupList = styled.div`
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.blue10};
   font-size: 18px;
-  span,
   div {
     display: flex;
     white-space: nowrap;
     justify-content: center;
     color: #777777;
   }
-  span:nth-child(3) {
+  span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     justify-content: flex-start;
     font-weight: 700;
     font-size: 21px;
     color: #444444;
   }
+
   :hover {
     border: 2px solid rgba(85, 73, 255, 0.4);
   }

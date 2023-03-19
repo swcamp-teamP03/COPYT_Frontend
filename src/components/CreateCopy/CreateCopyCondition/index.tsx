@@ -26,9 +26,9 @@ interface CreatConditionProps {
 
 const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
-  const [isComposing, setIsComposing] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const [showLimitModal, setShowLimitModal] = useState(false);
+  const [keyword, setKeyword] = useState('');
   const { mutate: createCopytMutate, isLoading } = useCreateCopyMutation({ copyList, setCopyList });
 
   const disabledCondition = Object.values(condition).includes('') || condition.keyword.length < 1;
@@ -50,12 +50,15 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
   };
 
   const addKeyword = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const { value } = event.currentTarget;
-    if (isComposing) return;
-    if (event.key === 'Enter' && value) {
-      conditionDispatch({ type: 'ADD_KEYWORD', key: 'keyword', value });
-      event.currentTarget.value = '';
+    if (event.key === 'Enter' && keyword) {
+      conditionDispatch({ type: 'ADD_KEYWORD', key: 'keyword', value: keyword });
+      setKeyword('');
     }
+  };
+
+  const onChangeKeywrod = (event: React.ChangeEvent<HTMLInputElement>, limite: number) => {
+    const value = event.target.value.substring(0, limite);
+    setKeyword(value);
   };
 
   const handleCopyLength = (type: 'plus' | 'minus') => {
@@ -114,10 +117,10 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         labelTitle="필수로 포함할 키워드 태그"
         limit={30}
         name="keyword"
+        onChange={(e) => onChangeKeywrod(e, 30)}
         onKeyUp={addKeyword}
+        value={keyword}
         placeholder="키워드를 입력해 주세요. 최대 8개까지 등록 가능해요."
-        onCompositionStart={() => setIsComposing(true)}
-        onCompositionEnd={() => setIsComposing(false)}
         disabled={condition.keyword.length === 8}
       />
       <S.KeywordContainer>
