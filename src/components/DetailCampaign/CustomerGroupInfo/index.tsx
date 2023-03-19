@@ -13,7 +13,7 @@ const CustomerGroupInfo = () => {
       <S.Flex>
         <S.Info>
           <S.InfoTitle>고객 그룹명</S.InfoTitle>
-          <S.InfoDesc>{detailCampaign?.copyGroupName}</S.InfoDesc>
+          <S.InfoDesc>{detailCampaign?.groupName}</S.InfoDesc>
         </S.Info>
         <S.Info>
           <S.InfoTitle>총 고객 수</S.InfoTitle>

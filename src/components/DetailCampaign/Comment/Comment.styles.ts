@@ -18,7 +18,8 @@ export const CommentText = styled.div`
 
 export const EditButton = styled.div`
   display: flex;
-  padding: 20px 40px;
+  padding: 10px 40px;
+  padding-top: 0px;
   justify-content: flex-end;
 `;
 

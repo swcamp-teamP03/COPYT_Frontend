@@ -7,9 +7,11 @@ export const Flex = styled.div`
   gap: 200px;
 `;
 export const Grid = styled.div`
-  display: grid;
+  display: flex;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
+  justify-content: stretch;
+  padding-right: 180px;
+  gap: 20px;
 `;
 
 export const Info = styled.div`
@@ -28,23 +30,28 @@ export const InfoTitle = styled.div`
 
 export const InfoDesc = styled.span`
   font-size: 24px;
+  width: 100%;
 `;
 
 export const MessageContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 163px;
+  justify-content: space-between;
   background: #f7f7ff;
   border: 1px solid #cac7ff;
   border-radius: 30px;
-  padding: 20px 200px 20px 180px;
+  padding: 20px 180px;
+  gap: 20px;
+`;
+
+export const MessageWrapper = styled.div`
+  width: 100%;
 `;
 
 export const Message = styled.div`
   background: #ffffff;
   border: 1px solid #bebebe;
   border-radius: 30px;
-  width: 100%;
   max-height: 300px;
   min-height: 300px;
   max-width: 367px;
@@ -52,4 +59,3 @@ export const Message = styled.div`
   height: fit-content;
   overflow: auto;
 `;
-

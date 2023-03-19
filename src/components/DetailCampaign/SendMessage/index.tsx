@@ -26,7 +26,9 @@ const SendMessage = () => {
       </S.Flex>
       <S.MessageContainer>
         {detailCampaign?.copyWriteAB.map((copy) => (
-          <S.Message key={copy.copyType}>{copy.content}</S.Message>
+          <S.MessageWrapper key={copy.copyType}>
+            <S.Message>{copy.content}</S.Message>
+          </S.MessageWrapper>
         ))}
       </S.MessageContainer>
     </>
