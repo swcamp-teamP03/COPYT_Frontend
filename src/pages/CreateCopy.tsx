@@ -8,16 +8,21 @@ import ScantyModal from '../components/CreateCopy/ScantyModal';
 import useCreateCopyGroupMutation from '../quries/Copy/useCreateCopyGroupMutation';
 import { useRecoilState } from 'recoil';
 import { copyListState } from '../store/copyListState';
+import SubmitModal from '../components/CreateCopy/SubmitModal';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
   const [showScantyModal, setShowScantyModal] = useState(false);
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
 
-  const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation();
+  const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation(setShowSubmitModal);
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
+  };
+  const handelSubmitModal = () => {
+    setShowSubmitModal((prev) => !prev);
   };
 
   const onSubmit = () => {
@@ -40,6 +45,7 @@ const CreateCopy = () => {
         <CopyList />
       </GridLayout>
       <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
+      <SubmitModal showSubmitModal={showSubmitModal} handleSubmitModal={handelSubmitModal} />
     </>
   );
 };
