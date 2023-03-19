@@ -29,7 +29,7 @@ export const PropertyBox = styled.div`
   padding: 24px 52px;
   border: 1px solid #c6c6c6;
   border-radius: 30px;
-  max-height: 200px;
+  max-height: 120px;
   overflow: auto;
   display: flex;
   flex-direction: column;

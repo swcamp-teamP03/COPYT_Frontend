@@ -12,6 +12,7 @@ export interface CopyGroup {
 }
 export interface CopyGroupsResult {
   groupList: CopyGroup[];
+  totalCopyCount: number;
   totalCopy: number;
 }
 

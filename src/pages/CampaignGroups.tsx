@@ -22,11 +22,13 @@ const CapaignGroups = () => {
   };
 
   useEffect(() => {
-    if (campaignData?.totalCampaign) {
-      const page = Math.ceil(campaignData?.totalCampaign / listCount);
+    if (campaignData?.totalCampaignCount) {
+      const page = Math.ceil(campaignData?.totalCampaignCount / listCount);
       setTotalPage(page);
     }
-  }, [campaignData?.totalCampaign]);
+  }, [campaignData?.totalCampaignCount]);
+
+  console.log(campaignData);
 
   return (
     <>
@@ -39,7 +41,7 @@ const CapaignGroups = () => {
       >
         캠페인 리스트
       </PageHeader>
-      <ListCount listCount={listCount} setListCount={setListCount} totalList={campaignData?.totalCampaign ?? 0} />
+      <ListCount listCount={listCount} setListCount={setListCount} totalList={campaignData?.totalCampaignCount ?? 0} />
       <ListCategory>
         <div>즐겨찾기</div>
         <div>메세지 유형</div>
