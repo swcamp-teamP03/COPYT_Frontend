@@ -9,11 +9,13 @@ import Button from '../../common/Button';
 import Loading from '../../common/Loading';
 import { COPY_TYPE } from '../../CreateCopy/CreateCopyCondition';
 import CopyCountLimitModal from '../../CreateCopy/LimitModal';
+import SubmitModal from '../../CreateCopy/SubmitModal';
 import * as S from './CopyDetail.stlyes';
 
 const CopyDetails = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const [showLimitModal, setShowLimitModal] = useState(false);
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
   const { id } = useParams();
 
   const { data: copyDetail } = useCopyDetailQuery(id);
@@ -25,6 +27,9 @@ const CopyDetails = () => {
 
   const handleLimitModal = () => {
     setShowLimitModal((prev) => !prev);
+  };
+  const handleSubmitModal = () => {
+    setShowSubmitModal((prev) => !prev);
   };
 
   const recommendCopy = () => {
@@ -80,6 +85,7 @@ const CopyDetails = () => {
         <Button title="카피 추천 받기" buttonSize="buttonL" buttonColor="blue" onButtonClick={recommendCopy} />
       </S.CopySubmit>
       <CopyCountLimitModal showLimitModal={showLimitModal} handleLimitModal={handleLimitModal} />
+      <SubmitModal showSubmitModal={showSubmitModal} handleSubmitModal={handleSubmitModal} onClickYes={handleSubmitModal} />
     </div>
   );
 };

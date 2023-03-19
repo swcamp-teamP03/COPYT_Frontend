@@ -6,15 +6,10 @@ import Modal from '../../common/Modal';
 interface SubmitModalProps {
   showSubmitModal: boolean;
   handleSubmitModal: () => void;
+  onClickYes: () => void;
 }
 
-const SubmitModal = ({ showSubmitModal, handleSubmitModal }: SubmitModalProps) => {
-  const navigate = useNavigate();
-
-  const onClickYes = () => {
-    navigate('/copies');
-  };
-
+const SubmitModal = ({ showSubmitModal, handleSubmitModal, onClickYes }: SubmitModalProps) => {
   return (
     <Modal.Frame isOpen={showSubmitModal} onClick={handleSubmitModal} height="150px">
       <Modal.Body>저장되었습니다!</Modal.Body>

@@ -9,13 +9,14 @@ import useCreateCopyGroupMutation from '../quries/Copy/useCreateCopyGroupMutatio
 import { useRecoilState } from 'recoil';
 import { copyListState } from '../store/copyListState';
 import SubmitModal from '../components/CreateCopy/SubmitModal';
+import { useNavigate } from 'react-router-dom';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
   const [showScantyModal, setShowScantyModal] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
-
+  const navigate = useNavigate();
   const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation(setShowSubmitModal);
 
   const handleScantyModal = () => {
@@ -23,6 +24,9 @@ const CreateCopy = () => {
   };
   const handelSubmitModal = () => {
     setShowSubmitModal((prev) => !prev);
+  };
+  const onClickModalConfirm = () => {
+    navigate(-1);
   };
 
   const onSubmit = () => {
@@ -45,7 +49,7 @@ const CreateCopy = () => {
         <CopyList />
       </GridLayout>
       <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
-      <SubmitModal showSubmitModal={showSubmitModal} handleSubmitModal={handelSubmitModal} />
+      <SubmitModal showSubmitModal={showSubmitModal} handleSubmitModal={handelSubmitModal} onClickYes={onClickModalConfirm} />
     </>
   );
 };
