@@ -12,6 +12,7 @@ import DetailCampaign from '../pages/DetailCampaign';
 import CampaignGroups from '../pages/CampaignGroups';
 import ServiceHome from '../pages/ServiceHome';
 import AuthenticateRoute from './AuthenticateRoute';
+import Redirect from '../pages/Redirect';
 
 const Router = () => {
   return (
@@ -31,6 +32,7 @@ const Router = () => {
         </Route>
         <Route element={<AuthenticateRoute isAuthenticated={false} />}>
           <Route path="auth/*" element={<AuthRouter />} />
+          <Route path="/redirect/:url" element={<Redirect />} />
         </Route>
       </Routes>
     </BrowserRouter>

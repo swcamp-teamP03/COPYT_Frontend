@@ -1,13 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import { createCopyGroup } from '../../api/Copy/createCopy';
-import { CopyCondition, CopyListType } from '../../types/copy';
+import { Dispatch, SetStateAction } from 'react';
 
-const useCreateCopyGroupMutation = () => {
-  const navigate = useNavigate();
+import { createCopyGroup } from '../../api/Copy/createCopy';
+
+const useCreateCopyGroupMutation = (setShowSubmitModal: Dispatch<SetStateAction<boolean>>) => {
   return useMutation(createCopyGroup, {
     onSuccess: () => {
-      navigate(-1);
+      setShowSubmitModal(true);
     },
   });
 };

@@ -66,7 +66,7 @@ const CampaignMessage = ({ type, member, initMessage }: CampaignMessageProps) =>
           <div>[무료수신거부]</div>
           <span>copyt.li/ABCDEFGH</span>
           <S.Byte isOver={isOver}>
-            <span>{numberWithCommas(message.length * 2 + 56)}</span>/{numberWithCommas(maxByte)}
+            <span>{numberWithCommas(message.length * 2 + 56)}</span>/{numberWithCommas(maxByte)}byte
           </S.Byte>
         </S.MessageFooter>
       </S.MessageContainer>
