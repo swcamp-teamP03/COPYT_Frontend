@@ -90,21 +90,21 @@ const ClientGroupCreate = ({}) => {
           navigate('/clients');
         }}
       >
-        고객 그룹 리스트
+        고객 그룹 생성
       </PageHeader>
       <S.TaxtInnerContainer>
         <LabelInput labelTitle="고객 그룹명" limit={24} name="clientGroupName" placeholder="고객 그룹을 입력해 주세요" onChange={handleChange} />
       </S.TaxtInnerContainer>
 
       <S.TaxtContainer>
-        <span>고객 속성</span>
+        <span>타겟 목표 및 메모</span>
         <S.PropertyHighlight>
           {CLIENT_SVG.highlight} &nbsp; &nbsp;고객 DB의 데이터 속성(목표)을 입력해주세요. 입력한 속성은 고객 DB에 영향을 미치지 않으며, 데이터 정보 확인용으로만 활용됩니다.
         </S.PropertyHighlight>
         <>
           {properties.map((property, index) => (
             <div key={index}>
-              <span>속성 {index + 1} </span>
+              <span>매모 {index + 1} </span>
               <S.ClientModifyProperty
                 type="text"
                 placeholder={property}
@@ -132,15 +132,19 @@ const ClientGroupCreate = ({}) => {
 
         {fileName ? (
           <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
-            <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
-            {fileName}
+            <>
+              <input className="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+              {fileName}
+            </>
             <div onClick={handleDeleteModal}>x</div>
             {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={deleteFile} />} {/* 모달을 열면서 handleDeleteModal 대신 deleteFile 함수를 넘깁니다. */}
           </S.ClientProperty>
         ) : (
           <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
-            고객 데이터 파일을 업로드 해주세요. *업로드 가능 확장자 : .xls, .xlsx
+            <>
+              <input className="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+              고객 데이터 파일을 업로드 해주세요. *업로드 가능 확장자 : .xls, .xlsx
+            </>
           </S.ClientProperty>
         )}
       </S.TaxtContainer>

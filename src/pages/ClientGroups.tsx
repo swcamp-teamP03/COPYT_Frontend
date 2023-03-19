@@ -9,7 +9,7 @@ const ClientGroups = () => {
   return (
     <>
       <PageHeader
-        buttonTitle="고객 그룹 작성"
+        buttonTitle="고객 그룹 생성"
         buttonSize="buttonL"
         onClick={() => {
           navigate('/clients/create');

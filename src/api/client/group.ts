@@ -12,9 +12,14 @@ export const getClientGroups = async (pageNum: number, count: number): Promise<C
   return res.data.data;
 };
 
-export const likeClient = async (id: number): Promise<ClientFavoritType> => {
-  const res = await api.post(`groups/${id}/Likecheckout`);
-  return res.data.data;
+export const favoreitClient = async ({ id, favorite }: { id: number; favorite: boolean }): Promise<ClientFavoritType | null> => {
+  const res = await api.post(`/groups/${id}`, {
+    favorite: !favorite,
+  });
+  if (res.data.success) {
+    return res.data.data;
+  }
+  return null;
 };
 
 export const getClientGroupDetail = async ({ queryKey }: QueryFunctionContext<[string, string | undefined]>): Promise<CustomerGroup> => {
