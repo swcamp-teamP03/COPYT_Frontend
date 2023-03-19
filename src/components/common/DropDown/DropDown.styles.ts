@@ -32,3 +32,15 @@ export const Base = styled.div<PaddingProps>`
   display: flex;
   justify-content: space-between;
 `;
+
+export const Chevron = styled.div`
+  width: 12px;
+`;
+
+interface ItemProps {
+  isSelected: boolean;
+}
+
+export const Item = styled.div<ItemProps>`
+  color: ${(props) => (props.isSelected ? props.theme.colors.red : props.theme.colors.gray50)};
+`;
