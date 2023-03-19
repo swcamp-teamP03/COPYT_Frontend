@@ -132,15 +132,19 @@ const ClientGroupCreate = ({}) => {
 
         {fileName ? (
           <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
-            <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
-            {fileName}
+            <div>
+              <input className="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+              {fileName}
+            </div>
             <div onClick={handleDeleteModal}>x</div>
             {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={deleteFile} />} {/* 모달을 열면서 handleDeleteModal 대신 deleteFile 함수를 넘깁니다. */}
           </S.ClientProperty>
         ) : (
           <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <input id="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
-            고객 데이터 파일을 업로드 해주세요. *업로드 가능 확장자 : .xls, .xlsx
+            <div>
+              <input className="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
+              고객 데이터 파일을 업로드 해주세요. *업로드 가능 확장자 : .xls, .xlsx
+            </div>
           </S.ClientProperty>
         )}
       </S.TaxtContainer>
