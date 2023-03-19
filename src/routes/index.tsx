@@ -19,7 +19,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<AuthenticateRoute isAuthenticated={true} />}>
-          <Route path="/" element={<ServiceHome />} />
+          <Route path="/main" element={<ServiceHome />} />
           <Route path="/clients" element={<ClientGroups />} />
           <Route path="/clients/:id" element={<ClientGroupDetail />} />
           <Route path="/clients/create" element={<ClientCreate />} />
