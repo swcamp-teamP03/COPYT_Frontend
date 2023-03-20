@@ -14,13 +14,13 @@ type Property = {
 
 const defaultProperties: Property[] = [
   {
-    propertyValue: '속성 1',
+    propertyValue: '메모 1',
   },
   {
-    propertyValue: '속성 2',
+    propertyValue: '메모 2',
   },
   {
-    propertyValue: '속성 3',
+    propertyValue: '메모 3',
   },
 ];
 
@@ -59,7 +59,7 @@ const ClientGroupDetail = () => {
 
   const addProperty = () => {
     setPropertyCount((prevCount) => prevCount + 1);
-    setProperties((prevProperties) => [...prevProperties, `속성 ${propertyCount + 1}`]);
+    setProperties((prevProperties) => [...prevProperties, `메모 ${propertyCount + 1}`]);
   };
 
   const onUploadFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

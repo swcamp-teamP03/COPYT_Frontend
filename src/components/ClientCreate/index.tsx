@@ -13,10 +13,12 @@ import PreventModal from '../PreventModal';
 
 const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
-  const [properties, setProperties] = useState(['속성 1', '속성 2']);
+  const [properties, setProperties] = useState(['메모 1', '메모 2']);
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [groupName, setGroupName] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const navigate = useNavigate();
   const [showPreventModal, setShowPreventModal] = useState(false);
   usePreventEvent({ showPreventModal, setShowPreventModal });
@@ -27,7 +29,7 @@ const ClientGroupCreate = ({}) => {
 
   const addProperty = () => {
     setPropertyCount((prevCount) => prevCount + 1);
-    setProperties((prevProperties) => [...prevProperties, `속성 ${propertyCount + 1}`]);
+    setProperties((prevProperties) => [...prevProperties, `메모 ${propertyCount + 1}`]);
   };
 
   //파일 업로드
@@ -38,6 +40,7 @@ const ClientGroupCreate = ({}) => {
       return;
     }
     const file = e.target.files[0];
+    setSelectedFile(file);
     setFileName(file.name);
   }, []);
 
@@ -67,9 +70,8 @@ const ClientGroupCreate = ({}) => {
 
   const submitForm = async () => {
     //파일
-    const file = inputRef.current?.files?.[0];
-    if (file) {
-      formData.append('file', file);
+    if (selectedFile) {
+      formData.append('file', selectedFile);
     }
 
     //그룹이름
