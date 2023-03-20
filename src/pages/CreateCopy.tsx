@@ -10,20 +10,28 @@ import { useRecoilState } from 'recoil';
 import { copyListState } from '../store/copyListState';
 import SubmitModal from '../components/CreateCopy/SubmitModal';
 import { useNavigate } from 'react-router-dom';
+import usePreventEvent from '../utils/usePreventEvent';
+import PreventModal from '../components/PreventModal';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
   const [showScantyModal, setShowScantyModal] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const [showPreventModal, setShowPreventModal] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const navigate = useNavigate();
   const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation(setShowSubmitModal);
+  usePreventEvent({ showPreventModal, setShowPreventModal });
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
   };
   const handelSubmitModal = () => {
     setShowSubmitModal((prev) => !prev);
+  };
+
+  const handlePrevnetModal = () => {
+    setShowPreventModal((prev) => !prev);
   };
   const onClickModalConfirm = () => {
     navigate(-1);
@@ -50,6 +58,7 @@ const CreateCopy = () => {
       </GridLayout>
       <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
       <SubmitModal showSubmitModal={showSubmitModal} handleSubmitModal={handelSubmitModal} onClickYes={onClickModalConfirm} />
+      <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
     </>
   );
 };

@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import DeleteFileModal from './FileModal';
 import LabelInput from '../common/LabelInput';
 import { postClientCreate } from '../../api/client/create';
+import usePreventEvent from '../../utils/usePreventEvent';
+import PreventModal from '../PreventModal';
 
 const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
@@ -16,6 +18,12 @@ const ClientGroupCreate = ({}) => {
   const [showModal, setShowModal] = useState(false);
   const [groupName, setGroupName] = useState('');
   const navigate = useNavigate();
+  const [showPreventModal, setShowPreventModal] = useState(false);
+  usePreventEvent({ showPreventModal, setShowPreventModal });
+
+  const handlePrevnetModal = () => {
+    setShowPreventModal((prev) => !prev);
+  };
 
   const addProperty = () => {
     setPropertyCount((prevCount) => prevCount + 1);
@@ -148,6 +156,7 @@ const ClientGroupCreate = ({}) => {
           </S.ClientProperty>
         )}
       </S.TaxtContainer>
+      <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
     </>
   );
 };
