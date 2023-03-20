@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { CHEVRON } from '../assets/Chevron';
 import PageHeader from '../components/common/PageHeader';
 import Pagination from '../components/common/Pagination';
 import useCampaignsQuery from '../quries/Campaign/useCampaignsQuery';
-import { CAMPAIGN_SVG } from '../assets';
 import CampaginGroupList from '../components/CampaignGroupList';
 import ListCount from '../components/common/ListCount';
+import NoneList from '../components/common/NoneList';
+import { NONE_LIST_TEXT } from '../constants/noneList';
 
 const CapaignGroups = () => {
   const [listCount, setListCount] = useState(10);
@@ -51,7 +51,11 @@ const CapaignGroups = () => {
         <div>발송일시</div>
         <div>발송상태</div>
       </ListCategory>
-      {campaignData ? <CampaginGroupList campaignList={campaignData.campaignList} onClickHandler={goDetail} /> : <>{CAMPAIGN_SVG.campaigNone}</>}
+      {campaignData ? (
+        <CampaginGroupList campaignList={campaignData.campaignList} onClickHandler={goDetail} />
+      ) : (
+        <NoneList title={NONE_LIST_TEXT.campaign.title} subTitle={NONE_LIST_TEXT.campaign.subTitle} />
+      )}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );
