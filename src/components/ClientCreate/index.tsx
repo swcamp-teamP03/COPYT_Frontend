@@ -11,7 +11,7 @@ import { postClientCreate } from '../../api/client/create';
 
 const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
-  const [properties, setProperties] = useState(['속성 1', '속성 2']);
+  const [properties, setProperties] = useState(['메모 1', '메모 2']);
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [groupName, setGroupName] = useState('');
@@ -19,7 +19,7 @@ const ClientGroupCreate = ({}) => {
 
   const addProperty = () => {
     setPropertyCount((prevCount) => prevCount + 1);
-    setProperties((prevProperties) => [...prevProperties, `속성 ${propertyCount + 1}`]);
+    setProperties((prevProperties) => [...prevProperties, `메모 ${propertyCount + 1}`]);
   };
 
   //파일 업로드
