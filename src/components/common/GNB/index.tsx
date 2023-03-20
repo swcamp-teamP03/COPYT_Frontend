@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GNB_SVG } from '../../../assets/GNB';
 import Button from '../Button';
 
 const NAV_ITEM = [
-  { title: '홈', svg: GNB_SVG.home, url: '/' },
+  { title: '홈', svg: GNB_SVG.home, url: '/main' },
   { title: '고객 그룹', svg: GNB_SVG.client, url: '/clients' },
   { title: '카피 생성', svg: GNB_SVG.copy, url: '/copies' },
   { title: '캠페인', svg: GNB_SVG.campaign, url: '/campaign' },
@@ -13,9 +13,14 @@ const NAV_ITEM = [
 
 const GNB = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleNavigation = (path: string) => {
     navigate(path);
+  };
+
+  const isSelected = (url: string) => {
+    return pathname === url;
   };
 
   const handleLogoutClick = () => {
@@ -30,7 +35,7 @@ const GNB = () => {
         <Gap />
         <NavWrapper>
           {NAV_ITEM.map((item) => (
-            <NavItem key={item.title} onClick={() => handleNavigation(item.url)}>
+            <NavItem key={item.title} onClick={() => handleNavigation(item.url)} isSelected={isSelected(item.url)}>
               {item.svg}
               {item.title}
             </NavItem>
@@ -50,6 +55,7 @@ export default GNB;
 const GNBContainer = styled.div`
   position: sticky;
   min-width: 200px;
+  height: 100vh;
   border-right: 1px solid ${({ theme }) => theme.colors.gray30};
   display: flex;
   flex-direction: column;
@@ -75,7 +81,11 @@ const NavWrapper = styled.nav`
   flex-grow: 1;
 `;
 
-const NavItem = styled.div`
+interface NavItemProps {
+  isSelected: boolean;
+}
+
+const NavItem = styled.div<NavItemProps>`
   cursor: pointer;
   padding: 16px 18px;
   display: flex;
@@ -85,9 +95,10 @@ const NavItem = styled.div`
   font-weight: bold;
   text-align: left;
   gap: 15px;
+  background-color: ${(props) => (props.isSelected ? props.theme.colors.gray40 : props.theme.colors.white)};
+  border-radius: 10px;
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray30};
-    border-radius: 10px;
     color: ${({ theme }) => theme.colors.blue50};
   }
 `;
