@@ -23,7 +23,7 @@ export const TaxtContainer = styled.div`
 export const ListCategory = styled.div`
   margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: 0.5fr 1fr 2fr 2fr;
+  grid-template-columns: 1fr 1fr 4fr 2fr;
   margin-bottom: 20px;
   div {
     display: flex;
