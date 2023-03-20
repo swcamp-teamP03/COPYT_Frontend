@@ -113,7 +113,7 @@ const ClientGroupCreate = ({}) => {
         <>
           {properties.map((property, index) => (
             <div key={index}>
-              <span>매모 {index + 1} </span>
+              <span>메모 {index + 1} </span>
               <S.ClientModifyProperty
                 type="text"
                 placeholder={property}
