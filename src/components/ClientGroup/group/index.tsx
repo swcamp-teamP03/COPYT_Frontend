@@ -17,18 +17,18 @@ const Group = ({ clientList, onClick }: GroupListProps) => {
   };
 
   return (
-    <>
+    <div>
       <S.ListContainer>
         {clientList.map((list) => (
           <S.GroupList key={list.customerGroupId}>
-            <div onClick={() => handleFavorite(list.customerGroupId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</div>
-            <div>{list.date}</div>
-            <div onClick={() => onClick(list.customerGroupId)}>{list.groupName}</div>
-            <div>{list.customerCnt}</div>
+            <span onClick={() => handleFavorite(list.customerGroupId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</span>
+            <span>{list.date}</span>
+            <span onClick={() => onClick(list.customerGroupId)}>{list.groupName}</span>
+            <span>{list.customerCnt}</span>
           </S.GroupList>
         ))}
       </S.ListContainer>
-    </>
+    </div>
   );
 };
 

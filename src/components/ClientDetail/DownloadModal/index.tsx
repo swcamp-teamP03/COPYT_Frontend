@@ -82,7 +82,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
           )}
           {step === 2 && (
             <label>
-              계정 비밀번호
+              비밀번호
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </label>
           )}
