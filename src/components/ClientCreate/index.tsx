@@ -15,6 +15,8 @@ const ClientGroupCreate = ({}) => {
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [groupName, setGroupName] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const navigate = useNavigate();
 
   const addProperty = () => {
@@ -30,6 +32,7 @@ const ClientGroupCreate = ({}) => {
       return;
     }
     const file = e.target.files[0];
+    setSelectedFile(file);
     setFileName(file.name);
   }, []);
 
@@ -59,9 +62,8 @@ const ClientGroupCreate = ({}) => {
 
   const submitForm = async () => {
     //파일
-    const file = inputRef.current?.files?.[0];
-    if (file) {
-      formData.append('file', file);
+    if (selectedFile) {
+      formData.append('file', selectedFile);
     }
 
     //그룹이름

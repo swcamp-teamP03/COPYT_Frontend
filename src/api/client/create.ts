@@ -1,9 +1,11 @@
 import { api } from '../index';
-import { ClientGroupCreateType, ExcelDownloadType } from '../../types/client';
+import { ClientGroupCreateType, ExcelDownloadType, PostClientList, ClientListType } from '../../types/client';
 
-export const postClientCreate = async (formData: FormData): Promise<ClientGroupCreateType> => {
+export const postClientCreate = async (formData: FormData) => {
   const res = await api.post('/groups', formData);
-  return res.data.data;
+  if (res.statusText === 'OK') {
+    return res.data.data;
+  }
 };
 
 export const putClientEdit = async ({ id, formData }: { id: string | undefined; formData: FormData }): Promise<ClientGroupCreateType> => {

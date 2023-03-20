@@ -16,6 +16,7 @@ const ClientGroupList = () => {
 
   const { data: groupList } = useClientGroupsQuery(pageNum, listCount);
 
+  console.log(groupList);
   const goDetail = (id: number) => {
     navigate(`/clients/${id}`);
   };

@@ -1,3 +1,9 @@
+export type ClientListType = { clientId: number; content: string };
+
+export interface PostClientList {
+  resultList: { content: string }[];
+}
+
 //고객 그룹 목록
 export type ClientGroup = {
   customerGroupId: number;
