@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import CopyGroups from '../pages/CopyGroups';
 import ClientGroups from '../pages/ClientGroups';
 import React from 'react';
@@ -34,6 +34,7 @@ const Router = () => {
           <Route path="auth/*" element={<AuthRouter />} />
           <Route path="/redirect/:url" element={<Redirect />} />
         </Route>
+        <Route path="/" element={<Navigate to={'/main'} />} />
       </Routes>
     </BrowserRouter>
   );
