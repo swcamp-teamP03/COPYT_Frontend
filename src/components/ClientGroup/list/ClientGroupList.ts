@@ -17,7 +17,6 @@ export const TaxtContainer = styled.div`
   width: 100%;
   gap: 10px;
   align-items: center;
-  margin: 1rem 0 1.5rem 0;
 `;
 
 export const ListCategory = styled.div`
