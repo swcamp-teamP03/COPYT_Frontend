@@ -10,7 +10,9 @@ interface LayoutProps {
 const Layout = ({ router }: LayoutProps) => {
   return (
     <Wrapper>
-      <GNB />
+      <Sticky>
+        <GNB />
+      </Sticky>
       <ContentWrapper>
         <Content>{router}</Content>
       </ContentWrapper>
@@ -20,7 +22,12 @@ const Layout = ({ router }: LayoutProps) => {
 
 const Wrapper = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
+`;
+
+const Sticky = styled.div`
+  position: sticky;
+  top: 0;
 `;
 
 const ContentWrapper = styled.div`
