@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/CreateCampaign/Header';
 import styled from 'styled-components';
 import CreateCampaignCondition from '../components/CreateCampaign/CreateCampaignCondition';
 import MessageList from '../components/CreateCampaign/MessageList';
+import usePreventEvent from '../utils/usePreventEvent';
+import PreventModal from '../components/PreventModal';
 
 const CreateCampaign = () => {
+  const [showPreventModal, setShowPreventModal] = useState(false);
+  usePreventEvent({ showPreventModal, setShowPreventModal });
+
+  const handlePrevnetModal = () => {
+    setShowPreventModal((prev) => !prev);
+  };
+
   return (
     <>
       <Header />
@@ -12,6 +21,7 @@ const CreateCampaign = () => {
         <CreateCampaignCondition />
         <MessageList />
       </GridLayout>
+      <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
     </>
   );
 };
