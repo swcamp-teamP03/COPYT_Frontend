@@ -17,11 +17,10 @@ jobs:
     env:
       REACT_APP_BASE_URL: ${{ secrets.BASE_URL}}
 
-
     steps:
       - name: Checkout source code.
         uses: actions/checkout@v2
-a
+
       - name: Install Dependencies
         run: yarn
 
@@ -36,4 +35,7 @@ a
           aws-region: ap-northeast-2
 
       - name: Deploy to S3
-        run: aws s3 sync ./dist s3://www.copyt.co.kr --delete
+        run: |
+          aws s3 sync ./dist s3://www.copyt.co.kr --delete
+          aws s3 sync ./public s3://www.copyt.co.kr
+
