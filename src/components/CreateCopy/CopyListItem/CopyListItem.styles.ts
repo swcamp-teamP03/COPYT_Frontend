@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  cursor: pointer;
   position: relative;
   width: 100%;
   background-color: white;
@@ -21,6 +20,18 @@ export const EditMode = styled.div`
     resize: none;
     height: 150px;
   }
+`;
+
+export const PinButton = styled.button`
+  border: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+`;
+
+export const EditButton = styled.button`
+  border: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
 `;
 
 export const DeleteButton = styled.button`

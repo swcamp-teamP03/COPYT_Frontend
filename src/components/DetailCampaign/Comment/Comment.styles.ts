@@ -1,7 +1,21 @@
 import styled from 'styled-components';
 
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 160px;
+`;
+
+export const Title = styled.div`
+  display: flex;
+  align-items: center;
+  h1 {
+    font-size: 32px;
+  }
+`;
+
 export const CommentContainer = styled.div`
-  width: 90%;
   height: 250px;
   background: #ffffff;
   border: 1px solid #b7b7b7;
@@ -14,13 +28,6 @@ export const CommentText = styled.div`
   height: 90%;
   white-space: pre-wrap;
   overflow: auto;
-`;
-
-export const EditButton = styled.div`
-  display: flex;
-  padding: 10px 40px;
-  padding-top: 0px;
-  justify-content: flex-end;
 `;
 
 export const TextArea = styled.textarea`
