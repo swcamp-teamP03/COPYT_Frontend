@@ -35,4 +35,5 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Deploy to S3
-        run: aws s3 sync ./dist ./public s3://www.copyt.co.kr --delete
+        run: aws s3 sync ./dist s3://www.copyt.co.kr --delete
+        run: aws s3 sync ./public s3://www.copyt.co.kr
