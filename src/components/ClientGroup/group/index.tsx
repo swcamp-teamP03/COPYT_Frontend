@@ -6,10 +6,10 @@ import { FAVORITES } from '../../../assets/Like';
 
 interface GroupListProps {
   clientList: ClientGroup[];
-  onClick: (id: number) => void;
+  onClickHandler: (id: number) => void;
 }
 
-const Group = ({ clientList, onClick }: GroupListProps) => {
+const Group = ({ clientList, onClickHandler }: GroupListProps) => {
   const { mutate: clientLikeMutate } = useClientLikeMutation();
 
   const handleFavorite = (id: number, favorite: boolean) => {
@@ -22,9 +22,9 @@ const Group = ({ clientList, onClick }: GroupListProps) => {
         {clientList.map((list) => (
           <S.GroupList key={list.customerGroupId}>
             <div onClick={() => handleFavorite(list.customerGroupId, list.favorite)}>{list.favorite ? FAVORITES.checked : FAVORITES.unChecked}</div>
-            <div>{list.date}</div>
-            <div onClick={() => onClick(list.customerGroupId)}>{list.groupName}</div>
-            <div>{list.customerCnt}</div>
+            <div onClick={() => onClickHandler(list.customerGroupId)}>{list.date}</div>
+            <div onClick={() => onClickHandler(list.customerGroupId)}>{list.groupName}</div>
+            <div onClick={() => onClickHandler(list.customerGroupId)}>{list.customerCnt}</div>
           </S.GroupList>
         ))}
       </S.ListContainer>

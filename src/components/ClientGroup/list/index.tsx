@@ -40,7 +40,7 @@ const ClientGroupList = () => {
         <div>고객수</div>
       </S.ListCategory>
       {groupList?.totalGroupCount ? (
-        <Group clientList={groupList?.groupList} onClick={goDetail} />
+        <Group clientList={groupList?.groupList} onClickHandler={goDetail} />
       ) : (
         <NoneList title={NONE_LIST_TEXT.client.title} subTitle={NONE_LIST_TEXT.client.subTitle} />
       )}
