@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const EditMode = styled.div`
-  height: 100%;
+  height: 80%;
   textarea {
     border-radius: 10px;
     width: 100%;

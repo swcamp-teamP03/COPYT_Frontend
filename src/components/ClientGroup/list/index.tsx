@@ -6,23 +6,20 @@ import useClientGroupsQuery from '../../../quries/Client/useClientGroupsQuery';
 import Pagination from '../../common/Pagination';
 import Group from '../group';
 import { CHEVRON } from '../../../assets/Chevron';
+import ListCount from '../../common/ListCount';
 import DropDwown from '../../common/DropDown';
+import NoneList from '../../common/NoneList';
+import { NONE_LIST_TEXT } from '../../../constants/noneList';
 
 const LIST_COUNT = [10, 30, 50];
 
 const ClientGroupList = () => {
   const [pageNum, setPageNum] = useState(0);
-  const [showCountDropDown, setShowCountDropDown] = useState(false);
   const [listCount, setListCount] = useState(10);
   const [totalPage, setTotalPage] = useState(0);
   const navigate = useNavigate();
 
   const { data: groupList } = useClientGroupsQuery(pageNum, listCount);
-
-  const handleListCount = (count: number) => {
-    setListCount(count);
-    handleCountDropDown;
-  };
 
   const goDetail = (id: number) => {
     navigate(`/clients/${id}`);
@@ -35,13 +32,9 @@ const ClientGroupList = () => {
     }
   }, [groupList?.totalGroupCount]);
 
-  const handleCountDropDown = () => {
-    setShowCountDropDown((prev) => !prev);
-  };
-
   return (
     <>
-      <S.TaxtContainer>
+    <S.TaxtContainer>
         <div>전체 {groupList?.totalGroupCount}개</div>
         <S.VerticalHr />
         <div>목록 개수</div>
@@ -62,7 +55,11 @@ const ClientGroupList = () => {
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      {groupList?.totalGroupCount ? <Group clientList={groupList?.groupList} onClick={goDetail} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>}
+      {groupList?.totalGroupCount ? (
+        <Group clientList={groupList?.groupList} onClick={goDetail} />
+      ) : (
+        <NoneList title={NONE_LIST_TEXT.client.title} subTitle={NONE_LIST_TEXT.client.subTitle} />
+      )}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );

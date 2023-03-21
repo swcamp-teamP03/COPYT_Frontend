@@ -13,12 +13,13 @@ import PreventModal from '../PreventModal';
 
 const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
-  const [properties, setProperties] = useState(['속성 1', '속성 2']);
+  const [properties, setProperties] = useState(['메모 1', '메모 2']);
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [groupName, setGroupName] = useState('');
   const navigate = useNavigate();
   const [showPreventModal, setShowPreventModal] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   usePreventEvent({ showPreventModal, setShowPreventModal });
 
   const handlePrevnetModal = () => {
@@ -38,6 +39,7 @@ const ClientGroupCreate = ({}) => {
       return;
     }
     const file = e.target.files[0];
+    setSelectedFile(file);
     setFileName(file.name);
   }, []);
 
@@ -67,9 +69,8 @@ const ClientGroupCreate = ({}) => {
 
   const submitForm = async () => {
     //파일
-    const file = inputRef.current?.files?.[0];
-    if (file) {
-      formData.append('file', file);
+    if (selectedFile) {
+      formData.append('file', selectedFile);
     }
 
     //그룹이름
@@ -112,7 +113,7 @@ const ClientGroupCreate = ({}) => {
         <>
           {properties.map((property, index) => (
             <div key={index}>
-              <span>매모 {index + 1} </span>
+              <span>메모 {index + 1} </span>
               <S.ClientModifyProperty
                 type="text"
                 placeholder={property}

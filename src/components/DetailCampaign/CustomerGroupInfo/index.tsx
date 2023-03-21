@@ -21,7 +21,7 @@ const CustomerGroupInfo = () => {
         </S.Info>
       </S.Flex>
       <S.Info>
-        <S.InfoTitle>고객 속성</S.InfoTitle>
+        <S.InfoTitle>고객 메모</S.InfoTitle>
         <S.PropertyBox>
           {detailCampaign?.customerProperties.map((property) => (
             <div key={property.propertyValue}>{property.propertyValue}</div>
