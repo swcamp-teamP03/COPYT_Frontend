@@ -89,8 +89,8 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
           <S.TextCount>{data.content.length}/900</S.TextCount>
           <S.Footer>
             <div>
-              <div onClick={() => handlePinned(data.copyId)}>{data.isPinned ? PIN.pinned : PIN.unpinned}</div>
-              <div onClick={handleEditWarnModal}>{POST_SVG.edit}</div>
+              <S.PinButton onClick={() => handlePinned(data.copyId)}>{data.isPinned ? PIN.pinned : PIN.unpinned}</S.PinButton>
+              <S.EditButton onClick={handleEditWarnModal}>{POST_SVG.edit}</S.EditButton>
             </div>
           </S.Footer>
         </S.Container>
