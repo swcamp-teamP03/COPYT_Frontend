@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import styled from 'styled-components';
 
 export const ListCategory = styled.div`
   margin-top: 1.5rem;
@@ -23,4 +22,3 @@ export const NoneSvg = styled.div`
   justify-content: center;
   margin: 50px 0px 0px 0px;
 `;
-

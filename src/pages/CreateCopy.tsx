@@ -34,7 +34,7 @@ const CreateCopy = () => {
     setShowPreventModal((prev) => !prev);
   };
   const onClickModalConfirm = () => {
-    navigate(-1);
+    navigate('/copies');
   };
 
   const onSubmit = () => {

@@ -18,7 +18,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1);
+    navigate('/campaign');
   };
   return (
     <>
