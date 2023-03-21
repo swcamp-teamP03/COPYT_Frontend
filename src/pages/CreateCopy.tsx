@@ -39,7 +39,7 @@ const CreateCopy = () => {
 
   const onSubmit = () => {
     if (copyList.length < 2) return handleScantyModal();
-    const result = { ...condition, keyword: condition.keyword.join('') };
+    const result = { ...condition, keyword: condition.keyword.join(',') };
     createCopyGroupMutate({ condition: result, copyList });
   };
 

@@ -1,35 +1,39 @@
-name: git push into another repo to deploy to vercel
+name: development deployment
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+    types: [closed]
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-   steps:
-      - name: Checkout source code
-        uses: actions/checkout@master
+    strategy:
+      matrix:
+        node-versions: [16.x]
 
-      - name: Cache node modules 
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-master-build-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
+    env:
+      REACT_APP_BASE_URL: ${{ secrets.BASE_URL}}
 
-      - name: Install Dependencies 
+
+    steps:
+      - name: Checkout source code.
+        uses: actions/checkout@v2
+a
+      - name: Install Dependencies
         run: yarn
 
-      - name: Build 
+      - name: Build
         run: yarn build
 
-      - name: Deploy 
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws s3 sync ./build s3://copyt.co.kr
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Deploy to S3
+        run: aws s3 sync ./dist s3://www.copyt.co.kr --delete

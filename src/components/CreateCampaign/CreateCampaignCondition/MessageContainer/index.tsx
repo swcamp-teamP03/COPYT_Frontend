@@ -22,7 +22,7 @@ const MessageContainer = () => {
   };
 
   return (
-    <>
+    <S.Wrapper>
       <S.FlexBox>
         <S.Label>메시지 A</S.Label>
         <S.MessageContainer hasMessage={condition.messageA ? true : false}>
@@ -51,7 +51,7 @@ const MessageContainer = () => {
           </S.MessageContainer>
         </S.FlexBox>
       )}
-    </>
+    </S.Wrapper>
   );
 };
 

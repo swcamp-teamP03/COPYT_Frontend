@@ -35,13 +35,16 @@ const Comment = () => {
   }, [detailCampaign?.comment]);
   return (
     <>
-      <S.EditButton>
+      <S.Header>
+        <S.Title>
+          <h1>코멘트</h1>
+        </S.Title>
         {editMode ? (
           <Button title="저장" buttonColor="blue" buttonSize="buttonS" onButtonClick={onSumbit} />
         ) : (
           <Button title="수정" buttonColor="white" buttonSize="buttonS" onButtonClick={handleEditMode} />
         )}
-      </S.EditButton>
+      </S.Header>
       <S.CommentContainer>
         {editMode ? (
           <>
