@@ -7,20 +7,21 @@ import DownloadModal from './DownloadModal';
 import useClientDetailQuery from '../../quries/Client/useClientDetailQuery';
 import { useNavigate, useParams } from 'react-router-dom';
 import { putClientEdit } from '../../api/client/create';
-
+import DeleteFileModal from './DeleteModal';
+('');
 type Property = {
   propertyValue: string;
 };
 
 const defaultProperties: Property[] = [
   {
-    propertyValue: '속성 1',
+    propertyValue: '메모 1',
   },
   {
-    propertyValue: '속성 2',
+    propertyValue: '메모 2',
   },
   {
-    propertyValue: '속성 3',
+    propertyValue: '메모 3',
   },
 ];
 
@@ -32,6 +33,8 @@ const ClientGroupDetail = () => {
   const [properties, setProperties] = useState<string[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [groupName, setGroupName] = useState('');
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -68,6 +71,8 @@ const ClientGroupDetail = () => {
     }
     const file = e.target.files[0];
     const extension = file.name.split('.').pop()?.toLowerCase();
+    setSelectedFile(file);
+    setFileName(file.name);
 
     if (extension === 'xls' || extension === 'xlsx') {
       setFileName(file.name);
@@ -81,10 +86,18 @@ const ClientGroupDetail = () => {
     if (!inputRef.current) {
       return;
     }
-    inputRef.current.value = '';
-    setFileName('');
     inputRef.current.click();
   }, []);
+
+  const deleteFile = () => {
+    formData.delete('file');
+    setFileName('');
+    setDeleteModal(false);
+  };
+
+  const handleDeleteModal = () => {
+    setDeleteModal(true);
+  };
 
   //파일 다운로드
   const handleDownloadClick = () => {
@@ -99,6 +112,11 @@ const ClientGroupDetail = () => {
   }, []);
 
   const submitForm = async () => {
+    //파일
+    if (selectedFile) {
+      formData.append('file', selectedFile);
+    }
+
     //그룹이름
     formData.append('groupName', groupName);
 
@@ -176,13 +194,22 @@ const ClientGroupDetail = () => {
               </S.PlusButtonLayout>
 
               <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
-                <span>{clientDetail?.excelFile.excelFileName}</span>
-                <span>{clientDetail?.excelFile.excelUploadTime}</span>
-                <span>{clientDetail?.excelFile.customerCnt}</span>
-                <span>{clientDetail?.excelFile.excelFileSize}</span>
-                <span style={{ cursor: 'pointer' }} onClick={handleDownloadClick}>
-                  {CLIENT_SVG.download}
-                </span>
+                {fileName ? (
+                  <>
+                    {fileName} <div onClick={handleDeleteModal}>x</div>
+                    {deleteModal && <DeleteFileModal deleteModal={deleteModal} handleDeleteModal={deleteFile} />}
+                  </>
+                ) : (
+                  <>
+                    <span>{clientDetail?.excelFile.excelFileName}</span>
+                    <span>{clientDetail?.excelFile.excelUploadTime}</span>
+                    <span>{clientDetail?.excelFile.customerCnt}</span>
+                    <span>{clientDetail?.excelFile.excelFileSize}</span>
+                    <span style={{ cursor: 'pointer' }} onClick={handleDownloadClick}>
+                      {CLIENT_SVG.download}
+                    </span>
+                  </>
+                )}
                 <input className="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
               </S.ClientProperty>
             </>

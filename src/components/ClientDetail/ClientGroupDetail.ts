@@ -39,6 +39,9 @@ export const ClientProperty = styled.div`
   border: solid 1px;
   border-color: ${({ theme }) => theme.colors.gray10};
   justify-content: space-between;
+  div:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ClientModifyProperty = styled.input`
