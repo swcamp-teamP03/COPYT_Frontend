@@ -17,11 +17,10 @@ jobs:
     env:
       REACT_APP_BASE_URL: ${{ secrets.BASE_URL}}
 
-
     steps:
       - name: Checkout source code.
         uses: actions/checkout@v2
-a
+
       - name: Install Dependencies
         run: yarn
 
