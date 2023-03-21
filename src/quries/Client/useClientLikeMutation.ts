@@ -6,14 +6,14 @@ const useClientLikeMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(favoreitClient, {
     onMutate: async ({ id }) => {
-      await queryClient.cancelQueries({ queryKey: ['campaignGroups'] });
-      const previousData = queryClient.getQueryData<ClientGroupsResult>(['campaignGroups']);
+      await queryClient.cancelQueries({ queryKey: ['clientGroups'] });
+      const previousData = queryClient.getQueryData<ClientGroupsResult>(['clientGroups']);
 
       if (previousData) {
         const target = previousData.groupList.filter((list) => list.customerGroupId === id)[0];
         target.favorite = !target.favorite;
 
-        queryClient.setQueryData<ClientGroupsResult>(['campaignGroups'], () => {
+        queryClient.setQueryData<ClientGroupsResult>(['clientGroups'], () => {
           return { ...previousData };
         });
       }
@@ -22,10 +22,10 @@ const useClientLikeMutation = () => {
     },
     onError: (error, value, context) => {
       if (context?.previousData) {
-        queryClient.setQueryData<ClientGroupsResult>(['campaginGroups'], context.previousData);
+        queryClient.setQueryData<ClientGroupsResult>(['clientGroups'], context.previousData);
       }
     },
-    onSettled: () => queryClient.invalidateQueries(['campaignGroups']),
+    onSettled: () => queryClient.invalidateQueries(['clientGroups']),
   });
 };
 
