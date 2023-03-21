@@ -1,4 +1,4 @@
-export type ClientListType = { clientId: number; content: string };
+export type ClientListType = { clientId: number; content: string; isPinned: boolean };
 
 export interface PostClientList {
   resultList: { content: string }[];
