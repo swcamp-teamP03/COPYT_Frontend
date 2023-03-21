@@ -14,8 +14,12 @@ const useCreateClientMutaion = ({ clientList, setClientList }: useCreateClientMu
       const totalData = clientList.concat(data).map((list, idx) => {
         return { ...list, clientId: idx + 1 };
       });
+      const pinnedList = totalData.filter((list) => list.isPinned) ?? [];
+      const unPinnedList = totalData.filter((list) => !list.isPinned) ?? [];
 
-      setClientList([]);
+      setClientList([...pinnedList, ...unPinnedList]);
     },
   });
 };
+
+export default useCreateClientMutaion;

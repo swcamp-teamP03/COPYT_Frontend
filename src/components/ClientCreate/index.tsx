@@ -10,6 +10,9 @@ import LabelInput from '../common/LabelInput';
 import { postClientCreate } from '../../api/client/create';
 import usePreventEvent from '../../utils/usePreventEvent';
 import PreventModal from '../PreventModal';
+import { useRecoilState } from 'recoil';
+import { clientListState } from '../../store/clientListState';
+import useCreatClientMutation from '../../quries/Client/useCreateClientMutation';
 
 const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
@@ -19,8 +22,12 @@ const ClientGroupCreate = ({}) => {
   const [groupName, setGroupName] = useState('');
   const navigate = useNavigate();
   const [showPreventModal, setShowPreventModal] = useState(false);
+  const [clientList, setClientList] = useRecoilState(clientListState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   usePreventEvent({ showPreventModal, setShowPreventModal });
+
+  const { mutate: createClientMutate } = useCreatClientMutation();
 
   const handlePrevnetModal = () => {
     setShowPreventModal((prev) => !prev);
@@ -75,6 +82,7 @@ const ClientGroupCreate = ({}) => {
 
     //그룹이름
     formData.append('groupName', groupName);
+    setClientList((prevClientList) => [...prevClientList, { groupName }]);
 
     //파일이름
     formData.append('fileOrgName', fileName);
@@ -84,21 +92,12 @@ const ClientGroupCreate = ({}) => {
       formData.append(`properties[${index}].propertyValue`, property);
     });
 
-    try {
-      const { data }: any = await postClientCreate(formData);
-    } catch (err) {}
+    createClientMutate(formData);
   };
 
   return (
     <>
-      <PageHeader
-        buttonTitle="등록"
-        buttonSize="buttonM"
-        onClick={() => {
-          submitForm();
-          navigate('/clients');
-        }}
-      >
+      <PageHeader buttonTitle="등록" buttonSize="buttonM" onClick={submitForm}>
         고객 그룹 생성
       </PageHeader>
       <S.TaxtInnerContainer>
