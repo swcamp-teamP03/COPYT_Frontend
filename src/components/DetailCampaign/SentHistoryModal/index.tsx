@@ -31,7 +31,7 @@ const SentHistoryModal = ({ isOpen, handleModal }: SentHistoryModalProps) => {
           {sentHistory?.sendList.map((list, idx) => (
             <S.CategoryLayout key={idx}>
               <div>{list.sendMessageId}</div>
-              <div>A</div>
+              <div>{list.sendCopy}</div>
               <div>{list.sendDate.replace('T', ' ')}</div>
               <div>{list.name}</div>
               <div>{list.phone}</div>

@@ -20,13 +20,13 @@ const SignIn = () => {
     signIn: false,
   });
 
-  const { mutate } = useSignInMutation(setError);
+  const { mutate: signInMutate } = useSignInMutation(setError);
 
   const isDisabled = !email || !password;
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mutate({ email, password });
+    signInMutate({ email, password });
   };
 
   return (

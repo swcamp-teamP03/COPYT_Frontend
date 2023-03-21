@@ -7,6 +7,11 @@ import Pagination from '../../common/Pagination';
 import Group from '../group';
 import { CHEVRON } from '../../../assets/Chevron';
 import ListCount from '../../common/ListCount';
+import DropDwown from '../../common/DropDown';
+import NoneList from '../../common/NoneList';
+import { NONE_LIST_TEXT } from '../../../constants/noneList';
+
+const LIST_COUNT = [10, 30, 50];
 
 const ClientGroupList = () => {
   const [pageNum, setPageNum] = useState(0);
@@ -29,17 +34,32 @@ const ClientGroupList = () => {
 
   return (
     <>
-      <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList?.totalGroupCount ?? 0} setPageNum={setPageNum} />
+    <S.TaxtContainer>
+        <div>전체 {groupList?.totalGroupCount}개</div>
+        <S.VerticalHr />
+        <div>목록 개수</div>
+        <S.Footer>
+          <S.ListCount onClick={handleCountDropDown}>
+            <span>{listCount}개</span>
+            {CHEVRON.down}
+            {showCountDropDown && <DropDwown list={LIST_COUNT} base={listCount} handler={handleListCount} />}
+          </S.ListCount>
+        </S.Footer>
+      </S.TaxtContainer>
       <S.ListCategory>
         <div>즐겨찾기</div>
         <div>
           <span>생성일</span>
-          {/* <div>{CHEVRON.verticalArrows}</div> */}
+          <div>{CHEVRON.verticalArrows}</div>
         </div>
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      {groupList?.totalGroupCount ? <Group clientList={groupList?.groupList} onClick={goDetail} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>}
+      {groupList?.totalGroupCount ? (
+        <Group clientList={groupList?.groupList} onClick={goDetail} />
+      ) : (
+        <NoneList title={NONE_LIST_TEXT.client.title} subTitle={NONE_LIST_TEXT.client.subTitle} />
+      )}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );
