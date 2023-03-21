@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { CLIENT_SVG } from '../../../assets';
 import * as S from './ClientGroupList';
 import { useNavigate } from 'react-router-dom';
 import useClientGroupsQuery from '../../../quries/Client/useClientGroupsQuery';
 import Pagination from '../../common/Pagination';
 import Group from '../group';
-import { CHEVRON } from '../../../assets/Chevron';
 import ListCount from '../../common/ListCount';
+import NoneList from '../../common/NoneList';
+import { NONE_LIST_TEXT } from '../../../constants/noneList';
 
 const ClientGroupList = () => {
   const [pageNum, setPageNum] = useState(0);
@@ -39,7 +39,11 @@ const ClientGroupList = () => {
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>
-      {groupList?.totalGroupCount ? <Group clientList={groupList?.groupList} onClick={goDetail} /> : <S.NoneSvg>{CLIENT_SVG.noneList}</S.NoneSvg>}
+      {groupList?.totalGroupCount ? (
+        <Group clientList={groupList?.groupList} onClick={goDetail} />
+      ) : (
+        <NoneList title={NONE_LIST_TEXT.client.title} subTitle={NONE_LIST_TEXT.client.subTitle} />
+      )}
       {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );
