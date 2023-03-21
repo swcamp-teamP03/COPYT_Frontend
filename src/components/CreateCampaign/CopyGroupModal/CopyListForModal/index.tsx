@@ -48,7 +48,7 @@ const CopyListForModal = ({ setSelecetedMessage, selectedMesssage }: CopyListFor
           <LeftChevron onClick={goBack}>{CHEVRON.left}</LeftChevron>
           <h3>{copyDetail?.copyGroupName}</h3>
         </div>
-        <div>생성된 카피 수 {copyDetail?.createCount}개</div>
+        <div>생성된 카피 수 {copyDetail?.copyList.length}개</div>
       </Title>
       <ListContainer>
         {isPinnedList?.map((copy) => (

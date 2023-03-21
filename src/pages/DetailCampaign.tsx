@@ -22,9 +22,7 @@ const DetailCampaign = () => {
         <SendMessage />
       </WithCollapse>
       <Analysis />
-      <WithCollapse title="코멘트">
-        <Comment />
-      </WithCollapse>
+      <Comment />
     </>
   );
 };

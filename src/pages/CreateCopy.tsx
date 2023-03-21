@@ -34,12 +34,12 @@ const CreateCopy = () => {
     setShowPreventModal((prev) => !prev);
   };
   const onClickModalConfirm = () => {
-    navigate(-1);
+    navigate('/copies');
   };
 
   const onSubmit = () => {
     if (copyList.length < 2) return handleScantyModal();
-    const result = { ...condition, keyword: condition.keyword.join('') };
+    const result = { ...condition, keyword: condition.keyword.join(',') };
     createCopyGroupMutate({ condition: result, copyList });
   };
 
