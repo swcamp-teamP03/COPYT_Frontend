@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  margin-bottom: 50px;
+`;
+
 export const FlexBox = styled.div`
   display: flex;
   align-items: center;
