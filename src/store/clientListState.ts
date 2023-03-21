@@ -1,9 +1,10 @@
 import { atom } from 'recoil';
-import { ClientListType } from '../types/client';
 
-type ClientListState = ClientListType[];
+export interface ClientListState {
+  groupName: string;
+}
 
-export const clientListState = atom<ClientListState>({
+export const clientListState = atom({
   key: 'clientListState',
-  default: [],
+  default: [] as ClientListState[],
 });
