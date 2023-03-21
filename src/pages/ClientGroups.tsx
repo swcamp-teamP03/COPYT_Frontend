@@ -15,10 +15,8 @@ const ClientGroups = () => {
           navigate('/clients/create');
         }}
       >
-        {' '}
         고객 그룹 리스트
       </PageHeader>
-
       <ClientGroupList />
     </>
   );

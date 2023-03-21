@@ -7,6 +7,8 @@ import ListCount from '../components/common/ListCount';
 import NonCopyGroupList from '../components/CopyGroups/NonCopyGroupList';
 import Pagination from '../components/common/Pagination';
 import useCopyGroupsQuery from '../quries/Copy/useCopyGroupsQuery';
+import NoneList from '../components/common/NoneList';
+import { NONE_LIST_TEXT } from '../constants/noneList';
 
 const CopyGroups = () => {
   const [listCount, setListCount] = useState(10);
@@ -46,7 +48,7 @@ const CopyGroups = () => {
         <div>생성일</div>
         <div>카피그룹명</div>
       </ListCategory>
-      {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NonCopyGroupList />}
+      {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NoneList title={NONE_LIST_TEXT.copy.title} subTitle={NONE_LIST_TEXT.copy.subTitle} />}
       {groupList?.totalCopy && groupList.totalCopy > 1 && <Pagination totalPage={groupList.totalCopy} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );

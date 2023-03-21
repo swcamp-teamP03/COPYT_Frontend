@@ -18,6 +18,7 @@ export interface CamapaignListResult {
 export interface SentHisory {
   sendMessageId: string;
   sendDate: string;
+  sendCopy: string;
   name: string;
   phone: string;
   state: string;
