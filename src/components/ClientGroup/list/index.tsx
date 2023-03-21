@@ -7,11 +7,14 @@ import Group from '../group';
 import ListCount from '../../common/ListCount';
 import NoneList from '../../common/NoneList';
 import { NONE_LIST_TEXT } from '../../../constants/noneList';
+import { clientListState } from '../../../store/clientListState';
+import { useRecoilState } from 'recoil';
 
 const ClientGroupList = () => {
   const [pageNum, setPageNum] = useState(0);
   const [listCount, setListCount] = useState(10);
   const [totalPage, setTotalPage] = useState(0);
+  const [clientList, setClientList] = useRecoilState(clientListState);
   const navigate = useNavigate();
 
   const { data: groupList } = useClientGroupsQuery(pageNum, listCount);
