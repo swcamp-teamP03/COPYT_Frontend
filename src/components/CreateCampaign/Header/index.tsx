@@ -43,7 +43,7 @@ const Header = () => {
   };
 
   const goBack = () => {
-    navigate(-1);
+    navigate('/campaign');
   };
 
   const isDisabledSumbit = () => {
