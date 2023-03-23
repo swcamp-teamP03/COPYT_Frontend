@@ -1,13 +1,11 @@
-import React, { useState, useCallback, useRef, Dispatch } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { CLIENT_SVG } from '../../assets';
 import * as S from './ClientGroupCreate';
 import Button from '../common/Button';
 import ReactExcelDownload from '../common/XLSX';
 import PageHeader from '../common/PageHeader';
-import { useNavigate } from 'react-router-dom';
 import DeleteFileModal from './FileModal';
 import LabelInput from '../common/LabelInput';
-import { postClientCreate } from '../../api/client/create';
 import usePreventEvent from '../../utils/usePreventEvent';
 import PreventModal from '../PreventModal';
 import { useRecoilState } from 'recoil';
@@ -20,7 +18,6 @@ const ClientGroupCreate = ({}) => {
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [groupName, setGroupName] = useState('');
-  const navigate = useNavigate();
   const [showPreventModal, setShowPreventModal] = useState(false);
   const [clientList, setClientList] = useRecoilState(clientListState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
