@@ -62,7 +62,7 @@ const ClientGroupDetail = () => {
 
   const addProperty = () => {
     setPropertyCount((prevCount) => prevCount + 1);
-    setProperties((prevProperties) => [...prevProperties, `속성 ${propertyCount + 1}`]);
+    setProperties((prevProperties) => [...prevProperties, `메모 ${propertyCount + 1}`]);
   };
 
   const onUploadFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -217,11 +217,12 @@ const ClientGroupDetail = () => {
         ) : (
           //수정 안되는 부분
           <>
-            <div>메모 1 </div>
-            <S.ClientProperty>{clientDetail?.customerProperties[0]?.propertyValue} </S.ClientProperty>
-
-            <div>메모 2 </div>
-            <S.ClientProperty>{clientDetail?.customerProperties[1]?.propertyValue} </S.ClientProperty>
+            {clientDetail?.customerProperties.map((property, index) => (
+              <>
+                <div>메모 {index + 1}</div>
+                <S.ClientProperty key={index}>{property?.propertyValue}</S.ClientProperty>
+              </>
+            ))}
 
             <S.PlusButtonLayout>
               <Button title="+" buttonColor="blue" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>
