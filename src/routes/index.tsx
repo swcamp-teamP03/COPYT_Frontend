@@ -18,6 +18,8 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to={'/main'} />} />
+        <Route path="/redirect/:url" element={<Redirect />} />
         <Route element={<AuthenticateRoute isAuthenticated={true} />}>
           <Route path="/main" element={<ServiceHome />} />
           <Route path="/clients" element={<ClientGroups />} />
@@ -32,9 +34,7 @@ const Router = () => {
         </Route>
         <Route element={<AuthenticateRoute isAuthenticated={false} />}>
           <Route path="auth/*" element={<AuthRouter />} />
-          <Route path="/redirect/:url" element={<Redirect />} />
         </Route>
-        <Route path="/" element={<Navigate to={'/main'} />} />
       </Routes>
     </BrowserRouter>
   );
