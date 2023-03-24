@@ -7,7 +7,13 @@ export const getAccessToken = () => {
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    Authorization: `Bearer ${getAccessToken()}`,
-  },
+  withCredentials: true,
+});
+
+api.interceptors.request.use((config) => {
+  const accessToken = getAccessToken();
+  if (config.headers && accessToken && !config.headers.Authorization) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return config;
 });
