@@ -48,8 +48,12 @@ const CopyGroups = () => {
         <div>생성일</div>
         <div>카피그룹명</div>
       </ListCategory>
-      {groupList ? <CopyGroupList copyList={groupList.groupList} onClick={goDetail} /> : <NoneList title={NONE_LIST_TEXT.copy.title} subTitle={NONE_LIST_TEXT.copy.subTitle} />}
-      {groupList?.totalCopy && groupList.totalCopy > 1 && <Pagination totalPage={groupList.totalCopy} setPageNum={setPageNum} pageNum={pageNum} />}
+      {groupList?.totalCopyCount ? (
+        <CopyGroupList copyList={groupList.groupList} onClick={goDetail} />
+      ) : (
+        <NoneList title={NONE_LIST_TEXT.copy.title} subTitle={NONE_LIST_TEXT.copy.subTitle} />
+      )}
+      {totalPage > 1 && <Pagination totalPage={totalPage} setPageNum={setPageNum} pageNum={pageNum} />}
     </>
   );
 };
