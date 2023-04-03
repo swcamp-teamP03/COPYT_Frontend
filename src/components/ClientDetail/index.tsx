@@ -20,9 +20,6 @@ const defaultProperties: Property[] = [
   {
     propertyValue: '메모 2',
   },
-  {
-    propertyValue: '메모 3',
-  },
 ];
 
 const ClientGroupDetail = () => {
@@ -218,10 +215,10 @@ const ClientGroupDetail = () => {
           //수정 안되는 부분
           <>
             {clientDetail?.customerProperties.map((property, index) => (
-              <>
+              <div key={index}>
                 <div>메모 {index + 1}</div>
-                <S.ClientProperty key={index}>{property?.propertyValue}</S.ClientProperty>
-              </>
+                <S.ClientProperty>{property?.propertyValue}</S.ClientProperty>
+              </div>
             ))}
 
             <S.PlusButtonLayout>
