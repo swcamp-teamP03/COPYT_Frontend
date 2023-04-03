@@ -13,6 +13,7 @@ const colors = {
   blue30: '#5549ff',
   blue40: '#4417f6',
   blue50: '#1C076D',
+  blue60: '#6B7A99',
   black: 'black',
 };
 
