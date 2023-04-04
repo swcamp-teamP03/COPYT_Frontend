@@ -19,18 +19,16 @@ const SignUp = () => {
     email: false,
     password: false,
     passwordCheck: false,
-    managerPhoneNumber: false,
     mainPhoneNumber: false,
   });
 
   const isFormValidate = () => {
-    const { email, password, passwordCheck, mainPhoneNumber, managerPhoneNumber } = userInput;
+    const { email, password, passwordCheck, mainPhoneNumber } = userInput;
     return [
       setError('email', !isEmailValidate(email)),
       setError('password', !isPasswordValidate(password)),
       setError('passwordCheck', password !== passwordCheck),
       setError('mainPhoneNumber', !isPhoneNumberValidate(mainPhoneNumber)),
-      setError('managerPhoneNumber', !isPhoneNumberValidate(managerPhoneNumber)),
     ];
   };
   const isAllChecked = selectedTOS.length === TOS_LIST.length;
@@ -47,7 +45,7 @@ const SignUp = () => {
     <Container onSubmit={onSubmit}>
       <SignUpForm userInputDispatch={userInputDispatch} isError={isError} />
       <SignUpTOS selectedTOS={selectedTOS} setSelectedTOS={setSelectedTOS} isAllChecked={isAllChecked} />
-      <Button title="회원가입" buttonSize="buttonL" buttonColor="blue" isDisabled={isDisabledSubmit} type="submit" />
+      <Button title="회원가입" buttonSize="buttonL" buttonColor="white" isDisabled={isDisabledSubmit} type="submit" />
     </Container>
   );
 };
