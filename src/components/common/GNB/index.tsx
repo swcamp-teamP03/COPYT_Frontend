@@ -146,7 +146,7 @@ const CategoryItem = styled.div`
   padding: 16px 18px;
   display: flex;
   justify-content: flex-start;
-  width: 100%;
+  width: 80%;
   align-items: center;
   color: ${({ theme }) => theme.colors.blue60};
   font-weight: bold;

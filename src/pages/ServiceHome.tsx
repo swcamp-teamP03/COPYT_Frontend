@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import Button from '../components/common/Button';
 
 const LINKS = [
-  { title: '간단하게 여러개 카피 먼저 받아보세요', button: '카피 생성하기', url: '/copies/create' },
-  { title: '기존에 관리하던 고객을 업데이트하고 메시지를 보내세요.', button: '고객 그룹 추가', url: '/clients/create' },
-  { title: '생성한 카피로 \n 메시지 A/B테스트를 진행하세요.', button: '새 캠페인 생성', url: '/campaign/create' },
+  { title: '좋은 카피를 얻는 방법', button: '카피 생성하기', url: '/copies/create' },
+  { title: '고객그룹을 잘 활용하는 방법', button: '고객 그룹 생성하기', url: '/clients/create' },
+  { title: '간편한 문자 발송', button: '새 캠페인 실행하기', url: '/campaign/create' },
 ];
 
 const ServiceHome = () => {
@@ -19,12 +19,7 @@ const ServiceHome = () => {
   return (
     <>
       <TitleContainer>
-        <h2>
-          처음오셨나요?
-          <br />
-          상황에 따른 문자 메시지 카피를 AI를 통해 생성 해보세요
-        </h2>
-        <img src="../../public/example.png" />
+        <h2>온보딩</h2>
       </TitleContainer>
       <LinkContainer>
         {LINKS.map((link) => (
