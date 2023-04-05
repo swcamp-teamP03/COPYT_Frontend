@@ -35,7 +35,7 @@ const Analysis = () => {
         <S.CategoryTitle>
           <S.Relative>
             Unique CTR <br /> 비교
-            <HoverQuestion text={'Unique CTR 비교 = (메시지 A Unique CTR) - (메시지 B Unique CTR)'} />
+            <HoverQuestion text={'Unique CTR 비교 = (메시지 B Unique CTR) - (메시지 A Unique CTR)'} />
           </S.Relative>
         </S.CategoryTitle>
       </S.Categories>
