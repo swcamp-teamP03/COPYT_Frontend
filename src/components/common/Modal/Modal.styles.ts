@@ -1,4 +1,4 @@
-import { ModalFrameProps } from './index';
+import { ModalBodyProps, ModalFrameProps } from './index';
 import styled from 'styled-components';
 
 export const Overlay = styled.div<Pick<ModalFrameProps, 'isOpen'>>`
@@ -29,6 +29,7 @@ export const ModalFrame = styled.div<Partial<ModalFrameProps>>`
   z-index: 20;
   background-color: ${({ theme }) => theme.colors.white};
   padding: 40px 50px;
+  border-radius: ${(props) => props.borderRadius};
 `;
 
 export const ModalHeader = styled.div`
@@ -48,9 +49,9 @@ export const Hr = styled.hr`
   margin: 0;
 `;
 
-export const ModalBody = styled.div`
+export const ModalBody = styled.div<ModalBodyProps>`
   white-space: pre-wrap;
-  height: 70%;
+  height: ${(props) => props.height};
   overflow: auto;
 `;
 
