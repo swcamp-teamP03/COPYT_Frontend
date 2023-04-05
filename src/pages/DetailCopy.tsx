@@ -35,11 +35,13 @@ const DetailCopy = () => {
     }
   }, [copyDetail?.copyList]);
 
+  console.log(copyDetail);
+
   return (
     <>
       <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={onSubmit}>
         카피그룹 상세
-        <Date>2023/02/25</Date>
+        {/* <Date>2023/02/25</Date> */}
       </PageHeader>
       <GridLayout>
         <CopyDetails />
