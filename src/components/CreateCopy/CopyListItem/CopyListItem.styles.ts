@@ -33,6 +33,7 @@ export const EditButton = styled.button`
   background-color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
 `;
+export const CopyButton = styled(PinButton)``;
 
 export const DeleteButton = styled.button`
   position: absolute;
