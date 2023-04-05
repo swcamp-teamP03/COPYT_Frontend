@@ -6,7 +6,7 @@ export const Overlay = styled.div<Pick<ModalFrameProps, 'isOpen'>>`
   position: fixed;
   background-color: ${({ theme }) => theme.colors.gray50};
   opacity: 0.3;
-  z-index: 10;
+  z-index: 20;
   width: 100%;
   height: 100%;
   right: 0;

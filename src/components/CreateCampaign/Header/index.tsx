@@ -13,6 +13,7 @@ import * as S from './Header.styles';
 const Header = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+
   const [title, setTitle] = useState('새 캠페인' + `${dayjs().format('YYMMDD')}`);
   const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();
@@ -39,12 +40,15 @@ const Header = () => {
   };
 
   const onSubmit = () => {
-    createMutate(condition);
+    // createMutate(condition);
+    handleSubmitModal();
   };
 
   const goBack = () => {
     navigate('/campaign');
   };
+
+  const onClickTest = () => {};
 
   const isDisabledSumbit = () => {
     if (condition.abTest) {
@@ -78,9 +82,10 @@ const Header = () => {
             )}
           </S.Flex>
         </S.Flex>
-        <div>
-          <Button title="캠페인 실행" buttonColor="blue" buttonSize="buttonM" isDisabled={isDisabledSumbit()} onButtonClick={onSubmit} />
-        </div>
+        <S.ButtonLayout>
+          <Button title="캠페인 실행" buttonColor="white" buttonSize="buttonM" isDisabled={isDisabledSumbit()} onButtonClick={onSubmit} />
+          <Button title="나에게 테스트 하기" buttonColor="blue" buttonSize="buttonL" onButtonClick={onClickTest} />
+        </S.ButtonLayout>
       </S.Fixed>
       <CampaignSubmitModal isOpen={showSubmitModal} handleModal={handleSubmitModal} />
     </>
