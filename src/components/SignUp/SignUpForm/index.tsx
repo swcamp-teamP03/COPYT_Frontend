@@ -1,13 +1,14 @@
 import React, { Dispatch } from 'react';
-import { SIGNUP_MESSAGE } from '../../../constants/authMessage';
+import { SIGNIN_MESSAGE, SIGNUP_MESSAGE } from '../../../constants/authMessage';
 import useError from '../../../hooks/useError';
+import Button from '../../common/Button';
 import LabelInput from '../../common/LabelInput';
 import { SignUpAction } from '../SignupReducer';
 import * as S from './SignUpForm.styles';
 
 interface SignUpFormProps {
   userInputDispatch: Dispatch<SignUpAction>;
-  isError: { email: boolean; password: boolean; passwordCheck: boolean; mainPhoneNumber: boolean };
+  isError: { email: boolean; password: boolean; passwordCheck: boolean; mainPhoneNumber: boolean; company: boolean; username: boolean };
 }
 
 const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
@@ -19,10 +20,25 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
   return (
     <form>
       <S.Title>회원 가입</S.Title>
-      <LabelInput labelTitle="ID(이메일)" placeholder="이메일을 입력해주세요." name="email" onChange={handleUserInput} errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''} />
+      <S.FlexRover>
+        <LabelInput labelTitle="ID(이메일)" placeholder="copyt@gmail.com" name="email" onChange={handleUserInput} errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''} />
+        <Button title="인증" buttonColor="white" buttonSize="buttonS" />
+      </S.FlexRover>
       <S.FlexRow>
-        <LabelInput labelTitle="브랜드(기업)명" placeholder="브랜드(기업)명을 입력해주세요." name="brandName" onChange={handleUserInput} />
-        <LabelInput labelTitle="담당자명" placeholder="담당자를 입력해주세요." name="manager" onChange={handleUserInput} />
+        <LabelInput
+          labelTitle="브랜드(기업)명"
+          placeholder="브랜드(기업)명을 입력해주세요."
+          name="company"
+          onChange={handleUserInput}
+          errorMessage={isError.company ? SIGNUP_MESSAGE.BRAND : ''}
+        />
+        <LabelInput
+          labelTitle="담당자명"
+          placeholder="담당자를 입력해주세요."
+          name="username"
+          onChange={handleUserInput}
+          errorMessage={isError.username ? SIGNUP_MESSAGE.PERSON : ''}
+        />
       </S.FlexRow>
       <LabelInput
         labelTitle="전화번호"

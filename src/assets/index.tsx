@@ -9,6 +9,7 @@ import Credit from './credit.svg';
 import Question from './question.svg';
 import QuestionBox from './questionBox.svg';
 import NoneList from './noneList.svg';
+import Title from './title.svg';
 
 export const CLIENT_SVG = {
   calender: <Calendar />,
@@ -27,3 +28,5 @@ export const SVG = {
   question: <Question />,
   questionBox: <QuestionBox />,
 };
+
+export const HOME = <Title />;

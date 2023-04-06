@@ -6,8 +6,10 @@ import { signupInit, singUpReducer } from '../components/SignUp/SignupReducer';
 import SignUpTOS, { TOS, TOS_LIST } from '../components/SignUp/TOS';
 import useError from '../hooks/useError';
 import useSignUpMutation from '../quries/Auth/useSignUpMutation';
+import iscompanyValidate from '../utils/iscompanyValidate';
 import isEmailValidate from '../utils/isEmailValidate';
 import isPasswordValidate from '../utils/isPasswordValidate';
+import ispersonValidate from '../utils/isusernameValidate';
 import isPhoneNumberValidate from '../utils/isPhoneNumberValidate';
 
 const SignUp = () => {
@@ -20,15 +22,19 @@ const SignUp = () => {
     password: false,
     passwordCheck: false,
     mainPhoneNumber: false,
+    company: false,
+    username: false,
   });
 
   const isFormValidate = () => {
-    const { email, password, passwordCheck, mainPhoneNumber } = userInput;
+    const { email, password, passwordCheck, mainPhoneNumber, company, username } = userInput;
     return [
       setError('email', !isEmailValidate(email)),
       setError('password', !isPasswordValidate(password)),
       setError('passwordCheck', password !== passwordCheck),
       setError('mainPhoneNumber', !isPhoneNumberValidate(mainPhoneNumber)),
+      setError('company', !iscompanyValidate(company)),
+      setError('username', !ispersonValidate(username)),
     ];
   };
   const isAllChecked = selectedTOS.length === TOS_LIST.length;
@@ -45,7 +51,7 @@ const SignUp = () => {
     <Container onSubmit={onSubmit}>
       <SignUpForm userInputDispatch={userInputDispatch} isError={isError} />
       <SignUpTOS selectedTOS={selectedTOS} setSelectedTOS={setSelectedTOS} isAllChecked={isAllChecked} />
-      <Button title="회원가입" buttonSize="buttonL" buttonColor="white" isDisabled={isDisabledSubmit} type="submit" />
+      <Button title="회원가입" buttonSize="buttonL" buttonColor="white" type="submit" />
     </Container>
   );
 };
