@@ -48,3 +48,8 @@ export const SVG = styled.div`
 export const TitleInput = styled.input`
   width: 250px;
 `;
+
+export const ButtonLayout = styled.div`
+  display: flex;
+  gap: 10px;
+`;

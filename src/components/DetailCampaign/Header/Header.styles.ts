@@ -29,6 +29,7 @@ export const Title = styled.h3`
   justify-content: center;
   text-align: center;
   height: 100%;
+  font-size: 32px;
 `;
 
 export const LeftChevron = styled.div`

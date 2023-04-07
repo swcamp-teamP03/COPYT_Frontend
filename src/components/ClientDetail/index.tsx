@@ -124,7 +124,6 @@ const ClientGroupDetail = () => {
 
     try {
       const { data }: any = await putClientEdit({ id, formData });
-      console.log(data);
     } catch (err) {}
   };
 

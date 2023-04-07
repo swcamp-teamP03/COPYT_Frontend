@@ -8,22 +8,28 @@ import useCreateCampaignMutation from '../../../quries/Campaign/useCreateCampaig
 import { campaignConditionState } from '../../../store/campaignConditionState';
 import Button from '../../common/Button';
 import CampaignSubmitModal from '../SubmitModal';
+import TestSubmitModal from '../TestSubmitModal';
 import * as S from './Header.styles';
 
 const Header = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const [showTestSubmitModal, setShowTestSubmitModal] = useState(false);
+
   const [title, setTitle] = useState('새 캠페인' + `${dayjs().format('YYMMDD')}`);
   const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();
 
-  const { mutate: createMutate } = useCreateCampaignMutation(setShowSubmitModal);
+  const { mutate: createMutate } = useCreateCampaignMutation(setShowTestSubmitModal);
   const handleEditMode = () => {
     setEditMode((prev) => !prev);
   };
 
   const handleSubmitModal = () => {
     setShowSubmitModal((prev) => !prev);
+  };
+  const handleTestSubmitModal = () => {
+    setShowTestSubmitModal((prev) => !prev);
   };
 
   const handleTitleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,11 +45,15 @@ const Header = () => {
   };
 
   const onSubmit = () => {
-    createMutate(condition);
+    handleSubmitModal();
   };
 
   const goBack = () => {
     navigate('/campaign');
+  };
+
+  const onClickTest = () => {
+    createMutate(condition);
   };
 
   const isDisabledSumbit = () => {
@@ -78,11 +88,13 @@ const Header = () => {
             )}
           </S.Flex>
         </S.Flex>
-        <div>
-          <Button title="캠페인 실행" buttonColor="blue" buttonSize="buttonM" isDisabled={isDisabledSumbit()} onButtonClick={onSubmit} />
-        </div>
+        <S.ButtonLayout>
+          <Button title="캠페인 실행" buttonColor="white" buttonSize="buttonM" isDisabled={isDisabledSumbit()} onButtonClick={onSubmit} />
+          <Button title="나에게 테스트 하기" buttonColor="blue" buttonSize="buttonL" onButtonClick={onClickTest} isDisabled={isDisabledSumbit()} />
+        </S.ButtonLayout>
       </S.Fixed>
       <CampaignSubmitModal isOpen={showSubmitModal} handleModal={handleSubmitModal} />
+      <TestSubmitModal isOpen={showTestSubmitModal} handleModal={handleTestSubmitModal} />
     </>
   );
 };
