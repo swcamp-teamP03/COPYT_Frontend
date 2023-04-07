@@ -10,6 +10,8 @@ import Question from './question.svg';
 import QuestionBox from './questionBox.svg';
 import NoneList from './noneList.svg';
 import Title from './title.svg';
+import NoneCampaign from './noneCampaign.svg';
+import NoneCopy from './noneCopy.svg';
 
 export const CLIENT_SVG = {
   calender: <Calendar />,
@@ -29,4 +31,8 @@ export const SVG = {
   questionBox: <QuestionBox />,
 };
 
-export const HOME = <Title />;
+export const HOME = {
+  hoem: <Title />,
+  noneCampaign: <NoneCampaign />,
+  noneCopy: <NoneCopy />,
+};
