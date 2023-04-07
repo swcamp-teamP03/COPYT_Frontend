@@ -1,12 +1,17 @@
 export interface SignUpInit {
   email: string;
-  brandName: string;
-  managerPhoneNumber: string;
-  manager: string;
-  mainPhoneNumber: string;
   password: string;
   passwordCheck: string;
+  company: string;
+  username: string;
+  phoneNumber: string;
 }
+
+export interface Email {
+  email: string;
+  certificationNumber: number;
+}
+
 export interface SignUpAction {
   type: 'CHANGE_INPUT';
   key: string;
@@ -15,13 +20,13 @@ export interface SignUpAction {
 
 export const signupInit = {
   email: '',
-  brandName: '',
-  managerPhoneNumber: '',
-  manager: '',
-  mainPhoneNumber: '',
+  company: '',
+  username: '',
+  phoneNumber: '',
   password: '',
   passwordCheck: '',
 };
+
 export const singUpReducer: React.Reducer<SignUpInit, SignUpAction> = (state, action) => {
   switch (action.type) {
     case 'CHANGE_INPUT':

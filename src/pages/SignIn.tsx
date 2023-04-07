@@ -29,12 +29,19 @@ const SignIn = () => {
     signInMutate({ email, password });
   };
 
+  const goSignup = () => {
+    navigate('/auth/signup');
+  };
+
   return (
     <Container>
       <Title>로그인</Title>
       <form onSubmit={onSubmit}>
         <LabelInput labelTitle="이메일" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={handleChange} />
         <LabelInput labelTitle="비밀번호" placeholder="비밀번호를 입력해주세요." name="password" value={password} onChange={handleChange} type="password" />
+        <SignupForm>
+          아직 회원이 아니신가요? <span onClick={goSignup}>회원가입</span>
+        </SignupForm>
         {isError.signIn && (
           <ErrorMessage>
             {VALIDATE.false} {SIGNIN_MESSAGE.SIGN_IN}
@@ -63,6 +70,17 @@ const Container = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 42px;
+`;
+
+const SignupForm = styled.span`
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  span {
+    color: ${({ theme }) => theme.colors.blue30};
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 const Footer = styled.div`

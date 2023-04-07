@@ -19,8 +19,9 @@ export const CheckBoxContent = styled.div`
     margin: 5px 0 10px 0;
   }
   span {
-    font-size: ${({ theme }) => theme.fontSize.sm};
-    color: ${({ theme }) => theme.colors.gray20};
+    font-size: ${({ theme }) => theme.fontSize.xs};
+    color: ${({ theme }) => theme.colors.gray40};
+    font-weight: 700;
   }
 `;
 
