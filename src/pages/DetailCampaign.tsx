@@ -12,15 +12,9 @@ const DetailCampaign = () => {
   return (
     <>
       <Header />
-      <WithCollapse title="캠페인 정보">
-        <CampaignInfo />
-      </WithCollapse>
-      <WithCollapse title="고객 그룹 정보">
-        <CustomerGroupInfo />
-      </WithCollapse>
-      <WithCollapse title="보낸 메시지">
-        <SendMessage />
-      </WithCollapse>
+      <CampaignInfo />
+      <CustomerGroupInfo />
+      <SendMessage />
       <Analysis />
       <Comment />
     </>

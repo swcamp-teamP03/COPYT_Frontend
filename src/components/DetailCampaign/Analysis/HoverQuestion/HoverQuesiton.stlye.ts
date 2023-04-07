@@ -21,7 +21,6 @@ export const QuestionInfo = styled.div<QuestionInfoProps>`
   height: 120px;
   left: 35px;
   top: -125px;
-  font-size: 16px;
   color: black;
   z-index: 1000;
 `;
@@ -30,4 +29,7 @@ export const QuestionText = styled.div`
   max-width: 183px;
   padding: 25px;
   width: 100%;
+  line-height: 23px;
+  white-space: pre-wrap;
+  font-size: 14px;
 `;

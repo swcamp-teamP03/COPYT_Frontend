@@ -12,8 +12,11 @@ const CampaignInfo = () => {
 
   return (
     <>
+      <S.Title>
+        <h1>캠페인 정보</h1>
+      </S.Title>
       <S.EventText>
-        카피티 베타버전에 한여 차감 크딧 없이&nbsp; <span>무료</span>로 전송됩니다.
+        카피티 베타버전에 한여 차감 크레딧 없이&nbsp; <span>무료</span>로 전송됩니다.
       </S.EventText>
       <S.Flex>
         <div>

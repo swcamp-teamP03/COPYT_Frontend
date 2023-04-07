@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+export const Title = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 80px;
+  h1 {
+    font-size: 32px;
+  }
+`;
+
 export const EventText = styled.div`
   display: flex;
   justify-content: center;
@@ -11,7 +21,7 @@ export const EventText = styled.div`
   height: 50px;
   font-weight: 700;
   span {
-    color: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.blue40};
   }
 `;
 
@@ -20,7 +30,6 @@ export const Flex = styled.div`
   width: 100%;
   grid-template-columns: 2fr 2fr 1fr;
   margin-top: 30px;
-  font-size: 24px;
   div {
     display: flex;
   }

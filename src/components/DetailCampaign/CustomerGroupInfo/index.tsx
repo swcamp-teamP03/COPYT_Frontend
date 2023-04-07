@@ -10,6 +10,9 @@ const CustomerGroupInfo = () => {
 
   return (
     <>
+      <S.Title>
+        <h1>고객 그룹 정보</h1>
+      </S.Title>
       <S.Flex>
         <S.Info>
           <S.InfoTitle>고객 그룹명</S.InfoTitle>

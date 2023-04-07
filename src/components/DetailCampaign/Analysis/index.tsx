@@ -29,13 +29,13 @@ const Analysis = () => {
           <S.Relative>
             Unique CTR <br />
             (고유 링크 클릭 수)
-            <HoverQuestion text={'Unique CTR = (고유 링크 클릭 수 / 발송 성공 메시지 수) x 100'} />
+            <HoverQuestion text={'Unique CTR\n(고유 링크 클릭 수 / 발송 성공 메시지 수) x 100'} />
           </S.Relative>
         </S.CategoryTitle>
         <S.CategoryTitle>
           <S.Relative>
             Unique CTR <br /> 비교
-            <HoverQuestion text={'Unique CTR 비교 = (메시지 B Unique CTR) - (메시지 A Unique CTR)'} />
+            <HoverQuestion text={'Unique CTR 비교\n(메시지 B Unique CTR) - (메시지 A Unique CTR)'} />
           </S.Relative>
         </S.CategoryTitle>
       </S.Categories>

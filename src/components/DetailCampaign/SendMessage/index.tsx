@@ -9,6 +9,9 @@ const SendMessage = () => {
 
   return (
     <>
+      <S.Title>
+        <h1>보낸 메세지</h1>
+      </S.Title>
       <S.Flex>
         <S.Info>
           <S.InfoTitle>연결 카피 그룹</S.InfoTitle>
