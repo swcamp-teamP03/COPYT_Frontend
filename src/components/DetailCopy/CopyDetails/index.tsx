@@ -40,8 +40,6 @@ const CopyDetails = () => {
     createCopytMutate(copyDetail as CopyDetailResult);
   };
 
-  console.log(copyDetail);
-
   return (
     <div>
       {isLoading && <Loading />}

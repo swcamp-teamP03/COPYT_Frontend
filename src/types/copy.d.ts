@@ -29,6 +29,7 @@ export interface CopyDetailResult {
   createCount: number;
   copyLength: number;
   sector: string;
+  createdAt: string;
   copyList: CopyListType[];
 }
 

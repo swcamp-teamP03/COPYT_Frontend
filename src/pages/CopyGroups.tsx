@@ -29,8 +29,6 @@ const CopyGroups = () => {
     }
   }, [groupList?.totalCopyCount]);
 
-  console.log(groupList);
-
   return (
     <>
       <PageHeader
