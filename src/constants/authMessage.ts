@@ -6,6 +6,7 @@ export const SIGNUP_MESSAGE = {
   PHONENUMBER: '하이픈(-)을 제외한 숫자만 입력해주세요.',
   BRAND: '브랜드(기업)명을 적어 주세요',
   PERSON: '담당자명을 적어주세요',
+  CERTIFICATION_NUMBER: '인증번호를 입력해 주세요',
 };
 
 export const SIGNIN_MESSAGE = {

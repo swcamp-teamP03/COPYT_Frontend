@@ -1,29 +1,70 @@
-import React, { Dispatch } from 'react';
-import { SIGNIN_MESSAGE, SIGNUP_MESSAGE } from '../../../constants/authMessage';
+import React, { Dispatch, useState } from 'react';
+import { sendEmail, confirmEmail } from '../../../api/Auth/signUp';
+import { SIGNUP_MESSAGE } from '../../../constants/authMessage';
 import useError from '../../../hooks/useError';
 import Button from '../../common/Button';
 import LabelInput from '../../common/LabelInput';
-import { SignUpAction } from '../SignupReducer';
+import { SignUpAction, SignUpInit } from '../SignupReducer';
 import * as S from './SignUpForm.styles';
 
 interface SignUpFormProps {
   userInputDispatch: Dispatch<SignUpAction>;
-  isError: { email: boolean; password: boolean; passwordCheck: boolean; mainPhoneNumber: boolean; company: boolean; username: boolean };
+  isError: { email: boolean; password: boolean; passwordCheck: boolean; company: boolean; phoneNumber: boolean; username: boolean };
 }
 
 const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
+  const [email, setEmail] = useState('');
+  const [certification, setCertification] = useState(false);
+  const [number, setNumber] = useState(0);
+
   const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     userInputDispatch({ type: 'CHANGE_INPUT', key: name, value });
+    if (name === 'email') {
+      setEmail(value);
+    }
+    if (name === 'certificationNumber') {
+      setNumber(parseInt(value));
+    }
+  };
+
+  const handleSendEmail = async () => {
+    const result = await sendEmail(email);
+    if (result) {
+      console.log('이메일 전송 완료');
+    }
+    setCertification(true);
+  };
+
+  const handleConfirmation = async () => {
+    const result = await confirmEmail(email, number);
+    if (result) {
+      console.log('이메일 전송 완료');
+    }
+    setCertification(false);
   };
 
   return (
-    <form>
+    <div>
       <S.Title>회원 가입</S.Title>
+
       <S.FlexRover>
-        <LabelInput labelTitle="ID(이메일)" placeholder="copyt@gmail.com" name="email" onChange={handleUserInput} errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''} />
-        <Button title="인증" buttonColor="white" buttonSize="buttonS" />
+        <LabelInput labelTitle="ID(이메일)" placeholder="이메일을 입력해주세요." name="email" onChange={handleUserInput} errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''} />
+        <Button title="인증" buttonColor="white" buttonSize="buttonS" onButtonClick={handleSendEmail} />
       </S.FlexRover>
+      {certification && (
+        <S.FlexRover>
+          <LabelInput
+            labelTitle="인증번호"
+            placeholder="인증번호를 입력해주세요."
+            name="certificationNumber"
+            onChange={handleUserInput}
+            errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
+          />
+          <Button title="확인" buttonColor="white" buttonSize="buttonS" type="button" />
+        </S.FlexRover>
+      )}
+
       <S.FlexRow>
         <LabelInput
           labelTitle="브랜드(기업)명"
@@ -32,6 +73,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           onChange={handleUserInput}
           errorMessage={isError.company ? SIGNUP_MESSAGE.BRAND : ''}
         />
+
         <LabelInput
           labelTitle="담당자명"
           placeholder="담당자를 입력해주세요."
@@ -45,7 +87,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         placeholder="( - )를 제외한 전화번호를 입력해주세요."
         name="mainPhoneNumber"
         onChange={handleUserInput}
-        errorMessage={isError.mainPhoneNumber ? SIGNUP_MESSAGE.PHONENUMBER : ''}
+        errorMessage={isError.phoneNumber ? SIGNUP_MESSAGE.PHONENUMBER : ''}
       />
       <LabelInput
         labelTitle="비밀번호"
@@ -63,7 +105,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
       />
-    </form>
+    </div>
   );
 };
 

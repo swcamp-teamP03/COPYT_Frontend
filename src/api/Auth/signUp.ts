@@ -6,15 +6,15 @@ export const postSignUp = (userInput: SignUpInit) => {
 };
 
 export const sendEmail = async (email: string): Promise<Email | null> => {
-  const res = await api.post('/sign/sendMail', { email });
+  const res = await api.post(`/sign/sendMail?email=${email}`);
   if (res.data.success) {
     return res.data.data;
   }
   return null;
 };
 
-export const checkEmail = async (email: string, certificationNumber: number): Promise<Email | null> => {
-  const res = await api.post('/sign/mailConfirm', { email, certificationNumber });
+export const confirmEmail = async (email: string, certificationNumber: number): Promise<Email | null> => {
+  const res = await api.post(`/sign/mailConfirm?email=${email}certificationNumber=${certificationNumber}`);
   if (res.data.success) {
     return res.data.data;
   }

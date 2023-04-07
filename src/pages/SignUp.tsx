@@ -21,18 +21,18 @@ const SignUp = () => {
     email: false,
     password: false,
     passwordCheck: false,
-    mainPhoneNumber: false,
+    phoneNumber: false,
     company: false,
     username: false,
   });
 
   const isFormValidate = () => {
-    const { email, password, passwordCheck, mainPhoneNumber, company, username } = userInput;
+    const { email, password, passwordCheck, phoneNumber, company, username } = userInput;
     return [
       setError('email', !isEmailValidate(email)),
       setError('password', !isPasswordValidate(password)),
       setError('passwordCheck', password !== passwordCheck),
-      setError('mainPhoneNumber', !isPhoneNumberValidate(mainPhoneNumber)),
+      setError('phoneNumber', !isPhoneNumberValidate(phoneNumber)),
       setError('company', !iscompanyValidate(company)),
       setError('username', !ispersonValidate(username)),
     ];
