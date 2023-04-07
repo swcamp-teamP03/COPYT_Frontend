@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import theme from './src/styles/theme';
 import { RecoilRoot } from 'recoil';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import GlobalStyle from './src/styles/GlobalStyle';
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,7 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <Router />
+          <GlobalStyle />
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'} />
       </QueryClientProvider>

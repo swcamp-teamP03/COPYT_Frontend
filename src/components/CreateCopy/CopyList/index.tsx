@@ -23,7 +23,9 @@ const CopyList = () => {
       <S.CopyListContainer>
         {copyList.length > 0 ? (
           <>
-            <S.CopyCount>생성된 카피 수 {copyList.length}개</S.CopyCount>
+            <S.CopyCount>
+              생성된 카피 수 <span>{copyList.length}개</span>
+            </S.CopyCount>
             {copyList?.map((data, id) => (
               <CopyListItem data={data} key={id} handlePinned={handlePinned} />
             ))}

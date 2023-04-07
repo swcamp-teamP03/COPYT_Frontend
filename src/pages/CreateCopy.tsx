@@ -10,8 +10,8 @@ import { useRecoilState } from 'recoil';
 import { copyListState } from '../store/copyListState';
 import SubmitModal from '../components/CreateCopy/SubmitModal';
 import { useNavigate } from 'react-router-dom';
-import usePreventEvent from '../utils/usePreventEvent';
 import PreventModal from '../components/PreventModal';
+import useBeforeunload from '../hooks/useBeforunload';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
@@ -21,7 +21,7 @@ const CreateCopy = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const navigate = useNavigate();
   const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation(setShowSubmitModal);
-  usePreventEvent({ showPreventModal, setShowPreventModal });
+  useBeforeunload({ showPreventModal, setShowPreventModal });
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);

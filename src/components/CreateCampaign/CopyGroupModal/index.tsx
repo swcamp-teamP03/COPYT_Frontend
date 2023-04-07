@@ -23,7 +23,7 @@ const CopyGroupModal = ({ isOpen, handler }: CopyGroupModalProps) => {
   return (
     <Modal.Frame isOpen={isOpen} onClick={handler} height="70%" width="70%">
       <Modal.Header onClick={handler}>카피 불러오기</Modal.Header>
-      <Modal.Body>
+      <Modal.Body height="90%">
         <S.GridLayout>
           {!condition.copyGroupName ? <CopyGroupListForModal /> : <CopyListForModal setSelecetedMessage={setSelecetedMessage} selectedMesssage={selectedMesssage} />}
           <MessageListForModal selectedMesssage={selectedMesssage} setSelecetedMessage={setSelecetedMessage} modalHandler={handler} />

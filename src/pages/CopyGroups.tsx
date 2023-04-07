@@ -23,13 +23,11 @@ const CopyGroups = () => {
   };
 
   useEffect(() => {
-    if (groupList?.totalCopy) {
-      const page = Math.ceil(groupList?.totalCopy / listCount);
+    if (groupList?.totalCopyCount) {
+      const page = Math.ceil(groupList?.totalCopyCount / listCount);
       setTotalPage(page);
     }
-  }, [groupList?.totalCopy]);
-
-  console.log(groupList);
+  }, [groupList?.totalCopyCount]);
 
   return (
     <>

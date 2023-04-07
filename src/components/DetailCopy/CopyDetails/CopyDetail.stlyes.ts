@@ -32,6 +32,7 @@ export const Keyword = styled.div`
   border: 1px solid #e1e1e1;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.gray20};
+  white-space: nowrap;
 `;
 
 export const CopyTypeContainer = styled.div`

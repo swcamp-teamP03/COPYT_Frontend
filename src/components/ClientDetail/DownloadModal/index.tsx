@@ -34,8 +34,6 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ show, onClose }) => {
   const [error, setError] = useState('');
   const [notice, setNotice] = useState(false);
 
-  console.log(downloadReason);
-
   const handleConfirmDownload = () => {
     if (downloadReason.trim() === '') {
       setError('다운로드 사유를 입력해주세요.');

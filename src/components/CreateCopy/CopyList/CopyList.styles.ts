@@ -22,6 +22,9 @@ export const CopyCount = styled.div`
   margin-bottom: 1rem;
   font-weight: 700;
   font-size: 22px;
+  span {
+    color: ${({ theme }) => theme.colors.blue40};
+  }
 `;
 
 export const NonData = styled.div`

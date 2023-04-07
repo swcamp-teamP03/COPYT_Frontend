@@ -12,11 +12,17 @@ const CampaignSubmitModal = ({ isOpen, handleModal }: CampaignSubmitModalProps) 
   const navigate = useNavigate();
 
   const onClickConfirm = () => {
-    navigate('/campaign');
+    // navigate('/campaign');
+    handleModal();
   };
   return (
-    <Modal.Frame isOpen={isOpen} onClick={handleModal} height="150px">
-      <Modal.Body>캠페인이 생성되었습니다.</Modal.Body>
+    <Modal.Frame isOpen={isOpen} onClick={handleModal} height="100px">
+      {/* <Modal.Body>캠페인이 생성되었습니다.</Modal.Body> */}
+      <Modal.Body>
+        <span>캠페인 실행은 데모에서 진행 할 수 없어요.</span>
+        <br />
+        <span>"나에게 테스트 하기"로 문자를 보내보세요.</span>
+      </Modal.Body>
       <Modal.Footer>
         <Button buttonColor="blue" title="확인" onButtonClick={onClickConfirm} buttonSize="buttonS" />
       </Modal.Footer>
