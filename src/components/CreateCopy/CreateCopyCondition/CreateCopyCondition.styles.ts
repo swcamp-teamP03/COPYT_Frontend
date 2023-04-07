@@ -7,7 +7,7 @@ export const FlexLayout = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 20px;
+  font-size: 16px;
   span {
     color: ${({ theme }) => theme.colors.red};
     font-size: 24px;
