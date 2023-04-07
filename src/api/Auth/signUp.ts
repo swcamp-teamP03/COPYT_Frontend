@@ -14,7 +14,7 @@ export const sendEmail = async (email: string): Promise<Email | null> => {
 };
 
 export const confirmEmail = async (email: string, certificationNumber: number): Promise<Email | null> => {
-  const res = await api.post(`/sign/mailConfirm?email=${email}certificationNumber=${certificationNumber}`);
+  const res = await api.post(`/sign/mailConfirm?email=${email}&certificationNumber=${certificationNumber}`);
   if (res.data.success) {
     return res.data.data;
   }

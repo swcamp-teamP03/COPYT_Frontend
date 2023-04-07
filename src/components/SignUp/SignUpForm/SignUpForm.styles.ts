@@ -15,3 +15,11 @@ export const FlexRover = styled.div`
   /* grid-template-columns: 1fr 2fr; */
   align-items: center;
 `;
+export const ClientBox = styled.div`
+  margin-bottom: 15px;
+`;
+
+export const TimerContainer = styled.span`
+  color: ${({ theme }) => theme.colors.gray50};
+  font-size: 12px;
+`;
