@@ -6,8 +6,8 @@ import Button from '../Button';
 
 const NAV_ITEM = [
   { title: '홈', svg: GNB_SVG.home, svg1: GNB_SVG.whitehome, url: '/main' },
-  { title: '고객 그룹', svg: GNB_SVG.client, svg1: GNB_SVG.whiteclient, url: '/clients' },
   { title: '카피 생성', svg: GNB_SVG.copy, svg1: GNB_SVG.whitecopy, url: '/copies' },
+  { title: '고객 그룹', svg: GNB_SVG.client, svg1: GNB_SVG.whiteclient, url: '/clients' },
   { title: '캠페인', svg: GNB_SVG.campaign, svg1: GNB_SVG.whitecampaign, url: '/campaign' },
 ];
 
@@ -118,6 +118,8 @@ const NavItem = styled.div<NavItemProps>`
   gap: 15px;
   background-color: ${(props) => (props.isSelected ? props.theme.colors.blue30 : props.theme.colors.white)};
   border-radius: 10px;
+  margin: 1px 0;
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.blue30};
     color: ${({ theme }) => theme.colors.white};
@@ -131,12 +133,11 @@ const ButtonWrapper = styled.div`
 `;
 
 const CategoryWrapper = styled.nav`
-  position: fixed;
   bottom: 0;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 10px;
   .hr {
     color: ${({ theme }) => theme.colors.blue60};
   }
@@ -147,7 +148,7 @@ const CategoryItem = styled.div`
   padding: 16px 18px;
   display: flex;
   justify-content: flex-start;
-  width: 100%;
+  width: 80%;
   align-items: center;
   color: ${({ theme }) => theme.colors.blue60};
   font-weight: bold;
