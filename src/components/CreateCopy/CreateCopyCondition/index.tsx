@@ -146,7 +146,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
       <S.FlexLayout>
         <div>
           <S.Label>
-            생성수 <span>*</span>
+            생성 수 <span>*</span>
           </S.Label>
           <S.DropDownBox onClick={handleCountDropDown}>
             <span>{condition.createCount}</span>
@@ -156,7 +156,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         </div>
         <div>
           <S.Label>
-            글자수 <span>*</span>
+            글자 수 <span>*</span>
           </S.Label>
           <S.TextCount>
             <div onClick={() => handleCopyLength('minus')}>{ARITHMETIC.minus}</div>

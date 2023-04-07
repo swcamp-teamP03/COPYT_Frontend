@@ -3,10 +3,10 @@ import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createCamapign } from '../../api/Campaign';
 
-const useCreateCampaignMutation = (setShowSubmitModal: Dispatch<SetStateAction<boolean>>) => {
+const useCreateCampaignMutation = (setShowTestSubmitModal: Dispatch<SetStateAction<boolean>>) => {
   return useMutation(createCamapign, {
     onSuccess: () => {
-      setShowSubmitModal(true);
+      setShowTestSubmitModal(true);
     },
   });
 };

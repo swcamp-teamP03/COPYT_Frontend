@@ -17,7 +17,6 @@ const CampaginGroupList = ({ campaignList, onClickHandler }: CampaginGroupListPr
     campaginLikeMutate({ id, favorite });
   };
 
-  console.log(campaignList);
 
   return (
     <>

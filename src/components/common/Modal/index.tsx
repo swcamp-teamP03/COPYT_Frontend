@@ -11,9 +11,10 @@ export interface ModalFrameProps extends PropsWithChild {
   height?: string;
   width?: string;
   onClick: () => void;
+  borderRadius?: string;
 }
 
-const ModalFrame = ({ isOpen, height = '180px', width = '520px', onClick, children }: ModalFrameProps) => {
+const ModalFrame = ({ isOpen, height = '180px', width = '520px', onClick, children, borderRadius }: ModalFrameProps) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.cssText = `
@@ -29,7 +30,7 @@ const ModalFrame = ({ isOpen, height = '180px', width = '520px', onClick, childr
   return (
     <>
       <S.Overlay isOpen={isOpen} onClick={onClick} />
-      <S.ModalFrame isOpen={isOpen} width={width} height={height}>
+      <S.ModalFrame isOpen={isOpen} width={width} height={height} borderRadius={borderRadius}>
         {children}
       </S.ModalFrame>
     </>
@@ -52,8 +53,12 @@ const ModalHeader = ({ children, onClick }: ModalHeaderProps) => {
   );
 };
 
-const ModalBody = ({ children }: PropsWithChild) => {
-  return <S.ModalBody>{children}</S.ModalBody>;
+export interface ModalBodyProps extends PropsWithChild {
+  height?: string;
+}
+
+const ModalBody = ({ children, height = '70%' }: ModalBodyProps) => {
+  return <S.ModalBody height={height}>{children}</S.ModalBody>;
 };
 
 const ModalFooter = ({ children }: PropsWithChild) => {

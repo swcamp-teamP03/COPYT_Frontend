@@ -90,6 +90,7 @@ const CopyListItem = ({ data, handlePinned }: CopyListItemProps) => {
           <S.Footer>
             <div>
               <S.PinButton onClick={() => handlePinned(data.copyId)}>{data.isPinned ? PIN.pinned : PIN.unpinned}</S.PinButton>
+              <S.CopyButton onClick={() => copyText(data.content)}>{POST_SVG.copy}</S.CopyButton>
               <S.EditButton onClick={handleEditWarnModal}>{POST_SVG.edit}</S.EditButton>
             </div>
           </S.Footer>
