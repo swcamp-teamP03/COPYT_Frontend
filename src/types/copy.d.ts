@@ -30,15 +30,18 @@ export interface CopyDetailResult {
   copyLength: number;
   sector: string;
   createdAt: string;
+  targetAge: string;
+  targetGender: string;
   copyList: CopyListType[];
 }
 
 export interface CopyCondition {
   brandName: string;
-  copyLength: number;
   createCount: number;
   keyword: string;
   productName: string;
   type: string;
   sector: string;
+  targetAge: string;
+  targetGender: string;
 }

@@ -12,8 +12,11 @@ export const Layout = styled.div<LayoutProps>`
 `;
 export const Label = styled.label`
   margin-bottom: 10px;
+  position: relative;
+  width: fit-content;
   span {
     color: red;
+    margin-right: 0.5rem;
   }
 `;
 
@@ -23,10 +26,14 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.gray30};
 `;
 
-export const TextCount = styled.div`
+interface TextCountProps {
+  hasDesc: boolean;
+}
+
+export const TextCount = styled.div<TextCountProps>`
   position: absolute;
   right: 1rem;
-  bottom: 1rem;
+  bottom: ${(props) => (props.hasDesc ? '2.5rem' : '0.7rem')};
   color: ${({ theme }) => theme.colors.gray50};
 `;
 
@@ -36,4 +43,13 @@ export const ErrorMessage = styled.div`
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.xs};
   color: ${({ theme }) => theme.colors.red};
+`;
+
+export const Desc = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  span {
+    color: #606060;
+  }
 `;

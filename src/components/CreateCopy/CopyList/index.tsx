@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
+import { NONE_LIST } from '../../../assets';
 import { copyListState } from '../../../store/copyListState';
 import { CopyListType } from '../../../types/copy';
 import CopyListItem from '../CopyListItem';
@@ -32,7 +33,12 @@ const CopyList = () => {
           </>
         ) : (
           <S.NonData>
-            <p>조건을 작성하고 생성해주세요</p>
+            <span>
+              조건을 입력하고
+              <br />
+              다양한 카피를 추천받아보세요!
+            </span>
+            {NONE_LIST}
           </S.NonData>
         )}
       </S.CopyListContainer>

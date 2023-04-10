@@ -1,5 +1,5 @@
 export interface CopyConditionAction {
-  type: 'CHANGE_INPUT' | 'CHANGE_TYPE' | 'CHANGE_LENGTH' | 'CHANGE_COUNT' | 'ADD_KEYWORD' | 'REMOVE_KEYWORD';
+  type: 'CHANGE_VALUE' | 'ADD_KEYWORD' | 'REMOVE_KEYWORD';
   key: string;
   value: string | number;
 }
@@ -11,20 +11,14 @@ export interface CopyConditionInit {
   productName: string;
   keyword: string[];
   createCount: number;
-  copyLength: number;
   type: string;
+  targetAge: string;
+  targetGender: string;
 }
+
 export const copyConditionReducer: React.Reducer<CopyConditionInit, CopyConditionAction> = (state, action) => {
   switch (action.type) {
-    case 'CHANGE_INPUT':
-      return { ...state, [action.key]: action.value };
-    case 'CHANGE_TYPE':
-      return { ...state, [action.key]: action.value };
-    case 'CHANGE_LENGTH': {
-      const prev = Number(state.copyLength);
-      return { ...state, [action.key]: action.value === 'plus' ? prev + 50 : prev - 50 };
-    }
-    case 'CHANGE_COUNT':
+    case 'CHANGE_VALUE':
       return { ...state, [action.key]: action.value };
     case 'ADD_KEYWORD':
       if (typeof action.value === 'string') {
@@ -42,6 +36,7 @@ export const copyConditionInit = {
   productName: '',
   keyword: [],
   createCount: 3,
-  copyLength: 100,
-  type: '리뷰',
+  type: '짧게',
+  targetAge: '10대',
+  targetGender: '여성',
 };
