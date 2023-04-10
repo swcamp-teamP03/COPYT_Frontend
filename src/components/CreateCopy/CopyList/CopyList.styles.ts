@@ -4,7 +4,6 @@ export const CopyListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.gray20};
   padding: 40px;

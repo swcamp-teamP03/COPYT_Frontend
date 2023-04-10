@@ -50,7 +50,7 @@ const CreateCopy = () => {
   return (
     <>
       <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={onSubmit} buttonColor="blue">
-        카피 추천 받기
+        새로운 카피 생성
       </PageHeader>
       <GridLayout>
         <CreateCopyCondition condition={condition} conditionDispatch={conditionDispatch} />
@@ -67,6 +67,7 @@ export default CreateCopy;
 
 const GridLayout = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
 `;
