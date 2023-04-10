@@ -101,26 +101,19 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         name="copyGroupName"
         onChange={(e) => handleInput(e, 24)}
         value={condition.copyGroupName}
-        placeholder="그룹명을 입력해 주세요."
+        placeholder="커피티 신메뉴 출시 이벤트 문구"
       />
+      <LabelInput labelTitle="브랜드명" limit={24} name="brandName" onChange={(e) => handleInput(e, 24)} value={condition.brandName} placeholder="커피티" />
+      <LabelInput labelTitle="상품 &middot; 서비스 카테고리" limit={24} name="sector" onChange={(e) => handleInput(e, 24)} value={condition.sector} placeholder="식품" />
+      <LabelInput labelTitle="상품명" limit={30} name="productName" onChange={(e) => handleInput(e, 30)} value={condition.productName} placeholder="딸기 프라푸치노" />
       <LabelInput
-        labelTitle="브랜드 이름"
-        limit={24}
-        name="brandName"
-        onChange={(e) => handleInput(e, 24)}
-        value={condition.brandName}
-        placeholder="브랜드 이름을 입력해 주세요."
-      />
-      <LabelInput labelTitle="업종" limit={24} name="sector" onChange={(e) => handleInput(e, 24)} value={condition.sector} placeholder="업종을 입력해 주세요." />
-      <LabelInput labelTitle="상품명" limit={30} name="productName" onChange={(e) => handleInput(e, 30)} value={condition.productName} placeholder="상품명을 입력해 주세요." />
-      <LabelInput
-        labelTitle="필수로 포함할 키워드 태그"
+        labelTitle="핵심 키워드"
         limit={30}
         name="keyword"
         onChange={(e) => onChangeKeywrod(e, 30)}
         onKeyUp={addKeyword}
         value={keyword}
-        placeholder="키워드는 콤마로 구분이 아닌 엔터로 적용해주세요. 최대 8개까지 등록 가능해요."
+        placeholder="기간한정"
         disabled={condition.keyword.length === 8}
       />
       <S.KeywordContainer>
