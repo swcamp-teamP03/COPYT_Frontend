@@ -12,11 +12,10 @@ import { SVG } from '../../../assets';
 import { CHEVRON } from '../../../assets/Chevron';
 import Loading from '../../common/Loading';
 
-export const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [1, 2, 3, 4, 5];
 const TARTGET_AGE = ['10대', '20대', '30대', '40대', '50대', '60대 이상', '구분없음'];
 const TARGET_GENDER = ['여성', '남성', '구분없음'];
-const COPY_LENGTH = [{ title: '짧게' }, { title: '길게' }];
+export const COPY_LENGTH = [{ title: '짧게' }, { title: '길게' }];
 
 interface CreatConditionProps {
   condition: CopyConditionInit;
@@ -158,7 +157,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
       <S.FlexLayout>
         <div>
           <S.Label>
-            문장길이 <span>*</span>
+            문장 길이 <span>*</span>
           </S.Label>
           <S.CopyTypeContainer>
             {COPY_LENGTH.map((type) => (
