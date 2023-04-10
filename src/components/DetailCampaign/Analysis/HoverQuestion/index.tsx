@@ -5,15 +5,16 @@ import * as S from './HoverQuesiton.stlye';
 
 interface HoverQuestionProps {
   text: string;
+  left?: string;
 }
 
-const HoverQuestion = ({ text }: HoverQuestionProps) => {
+const HoverQuestion = ({ text, left = '35px' }: HoverQuestionProps) => {
   const [hoverRef, isHover] = useHover<HTMLDivElement>();
 
   return (
     <>
       <S.QuestioMark ref={hoverRef}>{SVG.question}</S.QuestioMark>
-      <S.QuestionInfo isHover={isHover}>
+      <S.QuestionInfo isHover={isHover} left={left}>
         <S.QuestionText>{text}</S.QuestionText>
       </S.QuestionInfo>
     </>
