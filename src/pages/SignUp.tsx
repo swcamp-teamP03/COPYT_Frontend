@@ -26,6 +26,8 @@ const SignUp = () => {
     username: false,
   });
 
+  //에러 부분에 대해서 기본을 false로 설정
+
   const isFormValidate = () => {
     const { email, password, passwordCheck, phoneNumber, company, username } = userInput;
     return [
@@ -37,6 +39,8 @@ const SignUp = () => {
       setError('username', !ispersonValidate(username)),
     ];
   };
+
+  // userInput 부분에  조건에 맞는지 확인하고 에러를 발사 !
   const isAllChecked = selectedTOS.length === TOS_LIST.length;
   const isAbledTOS = selectedTOS.filter((tos) => tos.isRequired).length === TOS_LIST.filter((tos) => tos.isRequired).length;
 
@@ -59,7 +63,7 @@ const SignUp = () => {
 export default SignUp;
 
 const Container = styled.form`
-  width: 382px;
+  width: 384px;
   margin: auto;
   margin-top: 80px;
   display: flex;
