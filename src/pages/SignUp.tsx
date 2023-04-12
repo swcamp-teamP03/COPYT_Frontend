@@ -11,6 +11,7 @@ import isEmailValidate from '../utils/isEmailValidate';
 import isPasswordValidate from '../utils/isPasswordValidate';
 import ispersonValidate from '../utils/isusernameValidate';
 import isPhoneNumberValidate from '../utils/isPhoneNumberValidate';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [userInput, userInputDispatch] = useReducer(singUpReducer, signupInit);
@@ -26,6 +27,8 @@ const SignUp = () => {
     username: false,
   });
 
+  //에러 부분에 대해서 기본을 false로 설정
+
   const isFormValidate = () => {
     const { email, password, passwordCheck, phoneNumber, company, username } = userInput;
     return [
@@ -37,14 +40,22 @@ const SignUp = () => {
       setError('username', !ispersonValidate(username)),
     ];
   };
+
+  // userInput 부분에  조건에 맞는지 확인하고
   const isAllChecked = selectedTOS.length === TOS_LIST.length;
   const isAbledTOS = selectedTOS.filter((tos) => tos.isRequired).length === TOS_LIST.filter((tos) => tos.isRequired).length;
 
   const isDisabledSubmit = Object.values(userInput).includes('') || !isAbledTOS;
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    !isFormValidate().includes(true) && mutate(userInput);
+    const formErrors = isFormValidate();
+    if (!formErrors.includes(true)) {
+      try {
+        const result = await mutate(userInput);
+        return;
+      } catch (error) {}
+    }
   };
 
   return (
@@ -59,7 +70,7 @@ const SignUp = () => {
 export default SignUp;
 
 const Container = styled.form`
-  width: 382px;
+  width: 384px;
   margin: auto;
   margin-top: 80px;
   display: flex;

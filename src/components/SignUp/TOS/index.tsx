@@ -2,24 +2,26 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import * as S from './TOS.styles';
 import { motion } from 'framer-motion';
 import { CHEVRON } from '../../../assets/Chevron';
+import InfoNoticeModal from '../InfoNotice';
 
 export interface TOS {
   id: number;
   title: string;
   desc: string;
   isRequired: boolean;
+  img: string;
 }
 
 export const TOS_LIST: TOS[] = [
-  { id: 1, title: '개인정보 처리 방침 및 이용 약관', desc: '', isRequired: true },
-  { id: 2, title: '이메일 수집 동의', desc: '', isRequired: true },
-  { id: 3, title: '제 3자 제공 동의', desc: '', isRequired: true },
-  { id: 4, title: '프로모션 정보 수신(선택)', desc: '', isRequired: false },
+  { id: 1, title: '개인정보 처리 방침 및 이용 약관', desc: '개인정보 처리 방침', isRequired: true, img: '/public/info.png' },
+  { id: 2, title: '이메일 수집 동의', desc: '이용악관', isRequired: true, img: '/public/condition.png' },
 ];
 
 const AllOfTOs = {
   title: '모두 동의합니다.',
-  dsec: '카피티 개인정보 처리방침, 이용약관에 모두 동의합니다. 자세한 사항은 약관별 전문에서 고지하고 있습니다. 약관 동의를 거부할 수 있으며, 필수 약관 거부시에는 회원가입이 제한됩니다.',
+  title1: '개인정보 처리 방침',
+  title2: '이메일 수집 동의',
+  content: '전문보기',
 };
 
 const variants = {
@@ -40,6 +42,7 @@ interface SignUPTOSProps {
 
 const SignUpTOS = ({ selectedTOS, setSelectedTOS, isAllChecked }: SignUPTOSProps) => {
   const [open, setOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
 
   const checkedItemHandler = (tos: TOS, isChecked: boolean) => {
     if (isChecked) {
@@ -50,6 +53,10 @@ const SignUpTOS = ({ selectedTOS, setSelectedTOS, isAllChecked }: SignUPTOSProps
 
   const checkHandler = (e: React.ChangeEvent<HTMLInputElement>, tos: TOS) => {
     checkedItemHandler(tos, e.target.checked);
+  };
+
+  const handleInfo = () => {
+    setInfoOpen((prev) => !prev);
   };
 
   const handleCollapsed = () => {
@@ -67,24 +74,42 @@ const SignUpTOS = ({ selectedTOS, setSelectedTOS, isAllChecked }: SignUPTOSProps
   return (
     <>
       <S.CheckBoxContainer>
-        <S.CheckBox type="checkbox" checked={isAllChecked} onChange={allCheckHandler} />
-        <S.CheckBoxContent>
-          <h3>{AllOfTOs.title}</h3>
-          <span>{AllOfTOs.dsec}</span>
-          <S.ChevronButton onClick={handleCollapsed} open={open}>
-            {CHEVRON.up}
-          </S.ChevronButton>
-        </S.CheckBoxContent>
+        <S.CheckBoxLayout>
+          <S.CheckBox type="checkbox" id="check_all" checked={isAllChecked} onChange={allCheckHandler} />
+          <S.CheckBoxContent>
+            <h3>
+              {AllOfTOs.title}
+              <span style={{ color: 'red', textAlign: 'center', fontSize: '24px' }}>*</span>
+            </h3>
+
+            <p>
+              카피티 개인정보 처리방침, 이용양관에 모두 동의합니다. <br /> 자세한 사항은 약관별 전문에서 고지하고 있습니다.
+              <br /> 약관 동의를 거부할 수 있으며, 필수 약관 거부시에는 회원가입이 제한됩니다.{' '}
+            </p>
+            <S.ChevronButton onClick={handleCollapsed} open={open}>
+              {' '}
+              {CHEVRON.down}
+            </S.ChevronButton>
+          </S.CheckBoxContent>
+        </S.CheckBoxLayout>
       </S.CheckBoxContainer>
+
       <S.MotionWrapper>
         <motion.div variants={variants} transition={transition} initial="collapsed" animate={open ? 'open' : 'collapsed'}>
           {TOS_LIST.map((list) => (
             <S.CheckBoxContainer key={list.title}>
-              <S.CheckBox type="checkbox" checked={selectedTOS.includes(list)} onChange={(event) => checkHandler(event, list)} />
-              <S.CheckBoxContent>
-                <h3>{list.title}</h3>
-                <span>{list.desc}</span>
-              </S.CheckBoxContent>
+              <S.CheckBoxLayout>
+                <S.CheckBox type="checkbox" checked={selectedTOS.includes(list)} onChange={(event) => checkHandler(event, list)} />
+                <S.CheckBoxContent>
+                  <h3>
+                    {list.title}
+                    <span onClick={handleInfo} style={{ marginLeft: '10px', textDecoration: 'underline' }}>
+                      전문보기
+                      {infoOpen && <InfoNoticeModal infoOpen={true} handleInfo={handleInfo} personalImg={list.img} personalAlt={list.desc} titleText={list.desc} />}
+                    </span>
+                  </h3>
+                </S.CheckBoxContent>
+              </S.CheckBoxLayout>
             </S.CheckBoxContainer>
           ))}
         </motion.div>
