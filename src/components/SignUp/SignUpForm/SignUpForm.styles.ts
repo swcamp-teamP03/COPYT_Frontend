@@ -12,7 +12,7 @@ export const FlexRow = styled.div`
 
 export const FlexRover = styled.div`
   display: flex;
-  /* grid-template-columns: 1fr 2fr; */
+  justify-content: space-between;
   align-items: center;
 `;
 export const ClientBox = styled.div`
@@ -22,4 +22,11 @@ export const ClientBox = styled.div`
 export const TimerContainer = styled.span`
   color: ${({ theme }) => theme.colors.gray50};
   font-size: 12px;
+`;
+
+export const Relative = styled.div`
+  display: flex;
+  justify-content: center;
+  min-width: 150px;
+  position: relative;
 `;
