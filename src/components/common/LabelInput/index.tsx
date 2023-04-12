@@ -28,6 +28,12 @@ const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, er
         {hover && <HoverQuestion text={hover} left={'-25px'} />}
       </S.Label>
       <S.Input {...props} ref={inputRef} borderColor={inputBorderColor} />
+      {desc && (
+        <S.Desc>
+          {SVG.exclamation}
+          <span>{desc}</span>
+        </S.Desc>
+      )}
       {limit && (
         <S.TextCount hasDesc={desc ? true : false}>
           {textCount}/ {limit}
