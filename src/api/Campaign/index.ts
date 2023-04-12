@@ -5,6 +5,7 @@ import { CreateCampaignResult } from '../../types/campaign';
 import { CommentResult, DetailCampaignResult, SentHistoryResult } from '../../types/campaign';
 import { QueryFunctionContext } from '@tanstack/react-query';
 import { LikeResult } from '../../types/copy';
+import { CAMAPAIGN_MOCK_LIST, CAMPAIGN_MOCK_DETAIL } from '../../constants/mock/campaingMock';
 
 export const getCampaignsCreate = async (pageNum: number, count: number): Promise<CamapaignListResult> => {
   const res = await api.get('/campaigns', {
@@ -13,6 +14,7 @@ export const getCampaignsCreate = async (pageNum: number, count: number): Promis
       size: count,
     },
   });
+  res.data.data.campaignList.unshift(CAMAPAIGN_MOCK_LIST);
   return res.data.data;
 };
 
@@ -27,6 +29,9 @@ export const getSentHistory = async ({ queryKey }: QueryFunctionContext<[string,
 
 export const getCampaignDetail = async ({ queryKey }: QueryFunctionContext<[string, string | undefined]>): Promise<DetailCampaignResult | null> => {
   const [_, id] = queryKey;
+  if (id === '0') {
+    return CAMPAIGN_MOCK_DETAIL;
+  }
   const res = await api.get(`/campaigns/${id}`);
   if (res.data.success) {
     return res.data.data;
