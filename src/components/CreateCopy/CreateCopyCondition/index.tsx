@@ -1,5 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-
+import React, { Dispatch, useState } from 'react';
 import LabelInput from '../../common/LabelInput';
 import { CopyConditionAction, CopyConditionInit } from './copyConditionReducer';
 import * as S from './CreateCopyCondition.styles';
@@ -12,12 +11,11 @@ import DropDwown from '../../common/DropDown';
 import { SVG } from '../../../assets';
 import { CHEVRON } from '../../../assets/Chevron';
 import Loading from '../../common/Loading';
-import { ARITHMETIC } from '../../../assets/Arithmetic';
 
-export const COPY_TYPE = [{ title: '리뷰' }, { title: '홍보' }, { title: '질문' }, { title: '광고' }];
 const COPY_COUNT = [1, 2, 3, 4, 5];
-const LIMITE_MIN_LENGTH = 50;
-const LIMITE_MAX_LENGTH = 900;
+const TARTGET_AGE = ['10대', '20대', '30대', '40대', '50대', '60대 이상', '구분없음'];
+const TARGET_GENDER = ['여성', '남성', '구분없음'];
+export const COPY_LENGTH = [{ title: '짧게' }, { title: '길게' }];
 
 interface CreatConditionProps {
   condition: CopyConditionInit;
@@ -26,6 +24,8 @@ interface CreatConditionProps {
 
 const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) => {
   const [showCountDropDown, setShowCountDropDown] = useState(false);
+  const [showAgeDropDown, setShowAgeDropDown] = useState(false);
+  const [showGenderDropDwon, setShowGenderDropDown] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [keyword, setKeyword] = useState('');
@@ -33,16 +33,14 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
 
   const disabledCondition = Object.values(condition).includes('') || condition.keyword.length < 1;
 
-  const handleType = (value: string) => {
-    conditionDispatch({ type: 'CHANGE_TYPE', value, key: 'type' });
-  };
-
   const handleCountDropDown = () => {
     setShowCountDropDown((prev) => !prev);
   };
-
-  const isSelected = (title: string) => {
-    return condition.type === title;
+  const handleAgeDropDown = () => {
+    setShowAgeDropDown((prev) => !prev);
+  };
+  const handleGenderDropDown = () => {
+    setShowGenderDropDown((prev) => !prev);
   };
 
   const removeKeyword = (keyword: string) => {
@@ -56,22 +54,32 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
     }
   };
 
-  const onChangeKeywrod = (event: React.ChangeEvent<HTMLInputElement>, limite: number) => {
+  const onChangeKeyword = (event: React.ChangeEvent<HTMLInputElement>, limite: number) => {
     const value = event.target.value.substring(0, limite);
     setKeyword(value);
-  };
-
-  const handleCopyLength = (type: 'plus' | 'minus') => {
-    const { copyLength } = condition;
-    if (type === 'minus' && copyLength === LIMITE_MIN_LENGTH) return;
-    if (type === 'plus' && copyLength === LIMITE_MAX_LENGTH) return;
-    conditionDispatch({ type: 'CHANGE_LENGTH', key: 'copyLength', value: type });
   };
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>, limite: number) => {
     const value = event.target.value.substring(0, limite - 1);
     const name = event.target.name;
-    conditionDispatch({ type: 'CHANGE_INPUT', key: name, value });
+    conditionDispatch({ type: 'CHANGE_VALUE', key: name, value });
+  };
+
+  const changeAge = (value: string) => {
+    conditionDispatch({ type: 'CHANGE_VALUE', key: 'targetAge', value });
+  };
+  const changeGender = (value: string) => {
+    conditionDispatch({ type: 'CHANGE_VALUE', key: 'targetGender', value });
+  };
+  const changeCount = (value: number) => {
+    conditionDispatch({ type: 'CHANGE_VALUE', key: 'createCount', value });
+  };
+
+  const changeType = (value: string) => {
+    conditionDispatch({ type: 'CHANGE_VALUE', value, key: 'type' });
+  };
+  const isSelected = (title: string) => {
+    return condition.type === title;
   };
 
   const handleLimitModal = () => {
@@ -82,14 +90,9 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
     if (copyList.length + Number(condition.createCount) > 20) {
       return handleLimitModal();
     }
-    const { brandName, productName, keyword, type, copyLength, createCount, sector } = condition;
+    const { keyword } = condition;
     const keywordStr = keyword.join();
-    createCopytMutate({ brandName, productName, keyword: keywordStr, type, copyLength, createCount, sector });
-  };
-
-  const handleDropDown = (value: number) => {
-    conditionDispatch({ type: 'CHANGE_COUNT', key: 'createCount', value });
-    handleCountDropDown;
+    createCopytMutate({ ...condition, keyword: keywordStr });
   };
 
   return (
@@ -101,27 +104,22 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         name="copyGroupName"
         onChange={(e) => handleInput(e, 24)}
         value={condition.copyGroupName}
-        placeholder="그룹명을 입력해 주세요."
+        placeholder="커피티 신메뉴 출시 이벤트 문구"
       />
+      <LabelInput labelTitle="브랜드명" limit={24} name="brandName" onChange={(e) => handleInput(e, 24)} value={condition.brandName} placeholder="커피티" />
+      <LabelInput labelTitle="상품 &middot; 서비스 카테고리" limit={24} name="sector" onChange={(e) => handleInput(e, 24)} value={condition.sector} placeholder="식품" />
+      <LabelInput labelTitle="상품명" limit={30} name="productName" onChange={(e) => handleInput(e, 30)} value={condition.productName} placeholder="딸기 프라푸치노" />
       <LabelInput
-        labelTitle="브랜드 이름"
-        limit={24}
-        name="brandName"
-        onChange={(e) => handleInput(e, 24)}
-        value={condition.brandName}
-        placeholder="브랜드 이름을 입력해 주세요."
-      />
-      <LabelInput labelTitle="업종" limit={24} name="sector" onChange={(e) => handleInput(e, 24)} value={condition.sector} placeholder="업종을 입력해 주세요." />
-      <LabelInput labelTitle="상품명" limit={30} name="productName" onChange={(e) => handleInput(e, 30)} value={condition.productName} placeholder="상품명을 입력해 주세요." />
-      <LabelInput
-        labelTitle="필수로 포함할 키워드 태그"
+        labelTitle="핵심 키워드"
         limit={30}
         name="keyword"
-        onChange={(e) => onChangeKeywrod(e, 30)}
+        onChange={(e) => onChangeKeyword(e, 30)}
         onKeyUp={addKeyword}
         value={keyword}
-        placeholder="키워드는 콤마로 구분이 아닌 엔터로 적용해주세요. 최대 8개까지 등록 가능해요."
+        placeholder="기간한정"
+        desc={condition.keyword.length === 0 ? "키워드 입력 시, 'Enter key (엔터 키)'를 눌러 하나씩 추가해주세요!" : ''}
         disabled={condition.keyword.length === 8}
+        hover="필수로 포함되어야하거나 핵심 내용을 담은 키워드를 입력해주세요!"
       />
       <S.KeywordContainer>
         {condition.keyword &&
@@ -132,37 +130,52 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
             </S.KeywordTag>
           ))}
       </S.KeywordContainer>
-      <S.Label>
-        유형
-        <span>*</span>
-      </S.Label>
-      <S.CopyTypeContainer>
-        {COPY_TYPE.map((type) => (
-          <S.CopyType isSelected={isSelected(type.title)} key={type.title} onClick={() => handleType(type.title)}>
-            {type.title}
-          </S.CopyType>
-        ))}
-      </S.CopyTypeContainer>
       <S.FlexLayout>
         <div>
           <S.Label>
-            생성 수 <span>*</span>
+            타겟 연령
+            <span>*</span>
           </S.Label>
-          <S.DropDownBox onClick={handleCountDropDown}>
-            <span>{condition.createCount}</span>
+          <S.DropDownBox onClick={handleAgeDropDown}>
+            <span>{condition.targetAge}</span>
             <div>{CHEVRON.down}</div>
-            {showCountDropDown && <DropDwown list={COPY_COUNT} base={condition.createCount} handler={handleDropDown} />}
+            {showAgeDropDown && <DropDwown list={TARTGET_AGE} base={condition.targetAge} handler={changeAge} />}
           </S.DropDownBox>
         </div>
         <div>
           <S.Label>
-            글자 수 <span>*</span>
+            타겟 성별
+            <span>*</span>
           </S.Label>
-          <S.TextCount>
-            <div onClick={() => handleCopyLength('minus')}>{ARITHMETIC.minus}</div>
-            <span>{condition.copyLength}</span>
-            <div onClick={() => handleCopyLength('plus')}>{ARITHMETIC.plus}</div>
-          </S.TextCount>
+          <S.DropDownBox onClick={handleGenderDropDown}>
+            <span>{condition.targetGender}</span>
+            <div>{CHEVRON.down}</div>
+            {showGenderDropDwon && <DropDwown list={TARGET_GENDER} base={condition.targetGender} handler={changeGender} />}
+          </S.DropDownBox>
+        </div>
+      </S.FlexLayout>
+      <S.FlexLayout>
+        <div>
+          <S.Label>
+            문장 길이 <span>*</span>
+          </S.Label>
+          <S.CopyTypeContainer>
+            {COPY_LENGTH.map((type) => (
+              <S.CopyType isSelected={isSelected(type.title)} key={type.title} onClick={() => changeType(type.title)}>
+                {type.title}
+              </S.CopyType>
+            ))}
+          </S.CopyTypeContainer>
+        </div>
+        <div>
+          <S.Label>
+            카피 생성 수 <span>*</span>
+          </S.Label>
+          <S.DropDownBox onClick={handleCountDropDown}>
+            <span>{condition.createCount}</span>
+            <div>{CHEVRON.down}</div>
+            {showCountDropDown && <DropDwown list={COPY_COUNT} base={condition.createCount} handler={changeCount} />}
+          </S.DropDownBox>
         </div>
       </S.FlexLayout>
       <S.CopySubmit>

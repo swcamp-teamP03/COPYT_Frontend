@@ -4,13 +4,14 @@ export const FlexLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
+  margin-bottom: 50px;
 `;
 
 export const Label = styled.label`
   font-size: 16px;
   span {
     color: ${({ theme }) => theme.colors.red};
-    font-size: 24px;
+    font-size: 16px;
     text-align: center;
   }
 `;

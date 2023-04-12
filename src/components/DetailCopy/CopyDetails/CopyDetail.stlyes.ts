@@ -20,7 +20,7 @@ export const TextBox = styled.div`
 export const KeywordWrapper = styled.div`
   display: flex;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 26px;
 `;
 
 export const Keyword = styled.div`

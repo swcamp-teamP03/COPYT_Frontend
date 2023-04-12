@@ -7,7 +7,7 @@ import { copyListState } from '../../../store/copyListState';
 import { CopyDetailResult } from '../../../types/copy';
 import Button from '../../common/Button';
 import Loading from '../../common/Loading';
-import { COPY_TYPE } from '../../CreateCopy/CreateCopyCondition';
+import { COPY_LENGTH } from '../../CreateCopy/CreateCopyCondition';
 import CopyCountLimitModal from '../../CreateCopy/LimitModal';
 import SubmitModal from '../../CreateCopy/SubmitModal';
 import * as S from './CopyDetail.stlyes';
@@ -22,7 +22,7 @@ const CopyDetails = () => {
   const { mutate: createCopytMutate, isLoading } = useCreateCopyMutation({ setCopyList, copyList });
 
   const isSelected = (title: string) => {
-    return title === title;
+    return title === copyDetail?.type;
   };
 
   const handleLimitModal = () => {
@@ -45,7 +45,7 @@ const CopyDetails = () => {
       {isLoading && <Loading />}
       <S.Label>카피그룹명</S.Label>
       <S.GroupName>{copyDetail?.copyGroupName}</S.GroupName>
-      <S.Label>브랜드 이름</S.Label>
+      <S.Label>브랜드명</S.Label>
       <S.TextBox>
         <span>{copyDetail?.brandName}</span>
       </S.TextBox>
@@ -53,31 +53,37 @@ const CopyDetails = () => {
       <S.TextBox>
         <span>{copyDetail?.productName}</span>
       </S.TextBox>
-      <S.Label>필수로 포함할 키워드</S.Label>
+      <S.Label>핵심 키워드</S.Label>
       <S.KeywordWrapper>
         {copyDetail?.keyword?.split(',').map((keyword) => (
           <S.Keyword key={keyword}>{keyword}</S.Keyword>
         ))}
       </S.KeywordWrapper>
-      <S.Label>유형</S.Label>
-      <S.CopyTypeContainer>
-        {COPY_TYPE.map((type) => (
-          <S.CopyType isSelected={isSelected(type.title)} key={type.title}>
-            {type.title}
-          </S.CopyType>
-        ))}
-      </S.CopyTypeContainer>
       <S.FlexLayout>
         <div>
-          <S.Label>생성수</S.Label>
-          <S.DarkBox>
-            <span>{copyDetail?.createCount}</span>
-          </S.DarkBox>
+          <S.Label>타겟 연령</S.Label>
+          <S.DarkBox>{copyDetail?.targetAge}</S.DarkBox>
         </div>
         <div>
-          <S.Label>글자수</S.Label>
+          <S.Label>타겟 성별</S.Label>
+          <S.DarkBox>{copyDetail?.targetGender}</S.DarkBox>
+        </div>
+      </S.FlexLayout>
+      <S.FlexLayout>
+        <div>
+          <S.Label>문장 길이</S.Label>
+          <S.CopyTypeContainer>
+            {COPY_LENGTH.map((type) => (
+              <S.CopyType isSelected={isSelected(type.title)} key={type.title}>
+                {type.title}
+              </S.CopyType>
+            ))}
+          </S.CopyTypeContainer>
+        </div>
+        <div>
+          <S.Label>카피 생성 수</S.Label>
           <S.DarkBox>
-            <span>{copyDetail?.copyLength}</span>
+            <span>{copyDetail?.createCount}</span>
           </S.DarkBox>
         </div>
       </S.FlexLayout>
