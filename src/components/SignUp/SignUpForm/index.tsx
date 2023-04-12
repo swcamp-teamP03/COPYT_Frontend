@@ -20,6 +20,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
   const [isTimeOver, setIsTimeOver] = useState(false); //시간초과
   const intervalRef = useRef<number | null>(null);
   const [disable, setDisable] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   useEffect(() => {
     if (certification && timer > 0) {
@@ -48,12 +49,19 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
 
   const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    userInputDispatch({ type: 'CHANGE_INPUT', key: name, value });
     if (name === 'email') {
       setEmail(value);
     }
     if (name === 'certificationNumber') {
       setNumber(parseInt(value));
+    }
+    if (name === 'phoneNumber') {
+      const newPhoneNumber = value.replace(/-/g, '');
+      const formattedPhoneNumber = /^010\d*$/.test(newPhoneNumber) ? newPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3') : value;
+      userInputDispatch({ type: 'CHANGE_INPUT', key: name, value: formattedPhoneNumber });
+      setPhoneNumber(formattedPhoneNumber);
+    } else {
+      userInputDispatch({ type: 'CHANGE_INPUT', key: name, value });
     }
   };
 
@@ -101,13 +109,14 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
           disabled={disable}
           style={{ width: '250px' }}
+          maxLength={24}
         />
 
         {/* <S.Relative>
           인증번호가 오지 않나요?
           <WhiteHoverQuestion text={'메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 "인증" 버튼을 눌러주세요.'} />
         </S.Relative> */}
-        <span style={{ marginTop: '11px' }}>
+        <span style={{ marginTop: '10px' }}>
           {certification ? (
             <Button title="재인증" buttonColor="white" buttonSize="buttonS" onButtonClick={handleResendEmail} />
           ) : (
@@ -127,10 +136,13 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
               style={{ width: '250px' }}
             />
             <span style={{ marginTop: '11px' }}>
-              <Button title="확인" buttonColor="white" buttonSize="buttonS" type="button" onButtonClick={handleConfirmation} />
+              <Button title="확인" buttonColor="blue" buttonSize="buttonS" type="button" onButtonClick={handleConfirmation} />
             </span>
           </S.FlexRover>
-          <S.TimerContainer> 인증 제한시간 {`${minutes}:${seconds}`}</S.TimerContainer>
+          <S.TimerContainer>
+            {' '}
+            인증 제한시간 <span style={{ color: 'blue', fontWeight: '600' }}>{`${minutes}:${seconds}`}</span>
+          </S.TimerContainer>
         </S.ClientBox>
       )}
 
@@ -141,6 +153,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           name="company"
           onChange={handleUserInput}
           errorMessage={isError.company ? SIGNUP_MESSAGE.BRAND : ''}
+          maxLength={24}
         />
 
         <LabelInput
@@ -149,15 +162,18 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           name="username"
           onChange={handleUserInput}
           errorMessage={isError.username ? SIGNUP_MESSAGE.PERSON : ''}
+          maxLength={24}
         />
       </S.FlexRow>
-      <S.Relative>
+      {/* <S.Relative>
         <WhiteHoverQuestion text={'문자발송 테스트 시 수신번호로 사용됩니다.'} />
-      </S.Relative>
+      </S.Relative> */}
       <LabelInput
         labelTitle="전화번호"
-        placeholder="( - )를 제외한 전화번호를 입력해주세요."
-        name="mainPhoneNumber"
+        placeholder="010-1234-1234"
+        value={phoneNumber}
+        maxLength={13}
+        name="phoneNumber"
         onChange={handleUserInput}
         errorMessage={isError.phoneNumber ? SIGNUP_MESSAGE.PHONENUMBER : ''}
       />
@@ -168,6 +184,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         type="password"
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
+        maxLength={24}
       />
       <LabelInput
         labelTitle="비밀번호 재입력"
@@ -176,6 +193,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         type="password"
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
+        maxLength={24}
       />
     </div>
   );

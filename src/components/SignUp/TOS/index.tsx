@@ -77,7 +77,11 @@ const SignUpTOS = ({ selectedTOS, setSelectedTOS, isAllChecked }: SignUPTOSProps
         <S.CheckBoxLayout>
           <S.CheckBox type="checkbox" id="check_all" checked={isAllChecked} onChange={allCheckHandler} />
           <S.CheckBoxContent>
-            <h3>{AllOfTOs.title}</h3>
+            <h3>
+              {AllOfTOs.title}
+              <span style={{ color: 'red', textAlign: 'center', fontSize: '24px' }}>*</span>
+            </h3>
+
             <p>
               카피티 개인정보 처리방침, 이용양관에 모두 동의합니다. <br /> 자세한 사항은 약관별 전문에서 고지하고 있습니다.
               <br /> 약관 동의를 거부할 수 있으며, 필수 약관 거부시에는 회원가입이 제한됩니다.{' '}

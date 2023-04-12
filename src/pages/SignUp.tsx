@@ -11,6 +11,7 @@ import isEmailValidate from '../utils/isEmailValidate';
 import isPasswordValidate from '../utils/isPasswordValidate';
 import ispersonValidate from '../utils/isusernameValidate';
 import isPhoneNumberValidate from '../utils/isPhoneNumberValidate';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [userInput, userInputDispatch] = useReducer(singUpReducer, signupInit);
@@ -40,15 +41,21 @@ const SignUp = () => {
     ];
   };
 
-  // userInput 부분에  조건에 맞는지 확인하고 에러를 발사 !
+  // userInput 부분에  조건에 맞는지 확인하고
   const isAllChecked = selectedTOS.length === TOS_LIST.length;
   const isAbledTOS = selectedTOS.filter((tos) => tos.isRequired).length === TOS_LIST.filter((tos) => tos.isRequired).length;
 
   const isDisabledSubmit = Object.values(userInput).includes('') || !isAbledTOS;
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    !isFormValidate().includes(true) && mutate(userInput);
+    const formErrors = isFormValidate();
+    if (!formErrors.includes(true)) {
+      try {
+        const result = await mutate(userInput);
+        return;
+      } catch (error) {}
+    }
   };
 
   return (
