@@ -11,7 +11,6 @@ import isEmailValidate from '../utils/isEmailValidate';
 import isPasswordValidate from '../utils/isPasswordValidate';
 import ispersonValidate from '../utils/isusernameValidate';
 import isPhoneNumberValidate from '../utils/isPhoneNumberValidate';
-import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [userInput, userInputDispatch] = useReducer(singUpReducer, signupInit);
@@ -28,7 +27,6 @@ const SignUp = () => {
   });
 
   //에러 부분에 대해서 기본을 false로 설정
-
   const isFormValidate = () => {
     const { email, password, passwordCheck, phoneNumber, company, username } = userInput;
     return [

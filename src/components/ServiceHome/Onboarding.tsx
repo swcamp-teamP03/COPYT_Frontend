@@ -95,8 +95,7 @@ const ContentBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 700px;
-  min-width: 50%;
+  max-width: 682px;
   height: 350px;
   padding: 30px;
   background-color: #ffffff;
