@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { HOME } from '../assets';
 import Onboarding from '../components/ServiceHome/Onboarding';
-import WithCollapse from '../components/common/WithCollapse';
-import { CHEVRON } from '../assets/Chevron';
 import useCopyGroupsQuery from '../quries/Copy/useCopyGroupsQuery';
 import useCampaignsQuery from '../quries/Campaign/useCampaignsQuery';
 
@@ -14,7 +11,7 @@ const ServiceHome = () => {
   const navigate = useNavigate();
 
   const { data: groupList } = useCopyGroupsQuery(0, 3);
-  const { data: campaignData } = useCampaignsQuery(0, 2);
+  const { data: campaignData } = useCampaignsQuery(0, 1);
 
   const toggleOnboarding = () => {
     setIsOnboardingOpen(!isOnboardingOpen);
@@ -24,8 +21,7 @@ const ServiceHome = () => {
     <Background>
       <TitleContainer>
         <OnboardingText>
-          <Image src="../../public/airport.jpeg" />
-          <h2>온보딩</h2>
+          <h2>🛬 온보딩</h2>
         </OnboardingText>
         <ToggleText onClick={toggleOnboarding}>{isOnboardingOpen ? <>접어두기 {HOME.up}</> : <>펼치기 {HOME.down}</>}</ToggleText>
       </TitleContainer>
@@ -34,10 +30,10 @@ const ServiceHome = () => {
       <hr />
 
       <BoxLayout>
-        <div>
+        <span>
           <h2 style={{ textAlign: 'left' }}>최근 카피</h2>
           <>
-            {groupList ? (
+            {groupList?.totalCopy ? (
               groupList.groupList.map((copy) => (
                 <CopyLayout key={copy.copyId}>
                   <span>{copy.copyName} </span>
@@ -58,18 +54,17 @@ const ServiceHome = () => {
               </Box>
             )}
           </>
-        </div>
-
+        </span>
         <div>
           <h2 style={{ textAlign: 'left' }}>최근 성과</h2>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', width: '609px', justifyContent: 'space-between' }}>
             {campaignData ? (
               campaignData.campaignList.map((list) => (
                 <CampaignLayout key={list.campaignId}>
                   <SendDate style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                    <div style={{ flex: 1 }}>{list.campaignName} </div>
+                    <div>{list.campaignName} </div>
                     <div>{list.sendingDate} </div>
-                    <div>{list.clickRate} </div>
+                    <div style={{ alignItems: 'flex-start' }}>{list.clickRate} </div>
                   </SendDate>
                   <GoCurrent onClick={() => navigate(`/campaign/${list.campaignId}`)}>{HOME.goCurrent}</GoCurrent>
                 </CampaignLayout>
@@ -93,6 +88,7 @@ const Background = styled.div`
   min-height: 100vh;
   margin-left: 10%;
   font-weight: 600;
+  background-color: #f2f2f2;
   hr {
     margin-top: 40px;
     border-color: 1px solid ${({ theme }) => theme.colors.gray40};
@@ -119,15 +115,9 @@ const ToggleText = styled.div`
   cursor: pointer;
 `;
 
-const Image = styled.img`
-  width: 2em;
-  height: 2em;
-  margin-right: 10px;
-`;
-
-const Box = styled.div`
+const Box = styled.span`
   width: 480px;
-  height: 200px;
+  height: 240px;
   display: flex;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.colors.gray40};
@@ -135,13 +125,14 @@ const Box = styled.div`
   justify-content: space-evenly;
   align-items: center;
   color: ${({ theme }) => theme.colors.gray40};
-  padding: 20px;
+  padding: 0px 20px;
+  margin-right: 120px;
+  background-color: white;
 `;
 
 const BoxLayout = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 30px;
   justify-content: space-between;
   align-items: flex-start;
 
@@ -151,30 +142,32 @@ const BoxLayout = styled.div`
 `;
 
 const CopyLayout = styled.div`
-  min-width: 250px;
-  max-width: 480px;
+  min-width: 300px;
+  max-width: 604.16px;
   height: 70px;
   display: flex;
   border: 1px solid ${({ theme }) => theme.colors.gray40};
   border-radius: 17px;
   align-items: center;
-  justify-content: space-around;
-  margin: 10px;
+  margin-bottom: 10px;
+  margin-right: 210px;
+  justify-content: space-between;
+  padding: 0px 15px;
+  background-color: white;
 `;
 
 const CampaignLayout = styled.div`
   min-width: 130px;
-  max-width: 200px;
-  height: 230px;
+  max-width: 240.36px;
+  height: 210.42px;
   display: flex;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.colors.gray40};
   border-radius: 17px;
-  align-items: center;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 30px 50px 0 0;
-  margin-right: 10px;
+  padding: 30px 0 10px 15px;
+  align-items: flex-start;
+  background-color: white;
 `;
 
 const GoCurrent = styled.span`
