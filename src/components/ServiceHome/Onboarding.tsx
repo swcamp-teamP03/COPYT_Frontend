@@ -65,16 +65,18 @@ const LinkContainer = styled.div`
   margin-right: 60px;
   display: flex;
   flex-direction: column;
+
+  /* justify-content: space-between; */
 `;
 
 const LinkBox = styled.div<{ isActive: boolean }>`
   display: flex;
   align-items: center;
-  width: 250px;
+  width: 270px;
   padding: 20px;
   margin-bottom: 20px;
   color: ${({ theme }) => theme.colors.blue60};
-  background-color: ${({ isActive }) => (isActive ? '#eef2ff' : '#fffff')};
+  background-color: ${({ isActive }) => (isActive ? '#eef2ff' : ' white')};
   border-radius: 10px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
   cursor: pointer;
@@ -82,6 +84,8 @@ const LinkBox = styled.div<{ isActive: boolean }>`
 
 const WrapperBox = styled.div`
   display: flex;
+  justify-content: space-between;
+  width: 1200px;
 `;
 
 const LinkTitle = styled.div`
@@ -95,7 +99,7 @@ const ContentBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 682px;
+  width: 602px;
   height: 350px;
   padding: 30px;
   background-color: #ffffff;
