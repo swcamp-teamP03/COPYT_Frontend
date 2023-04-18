@@ -45,8 +45,6 @@ const SignUp = () => {
 
   const isDisabledSubmit = Object.values(userInput).includes('') || !isAbledTOS;
 
-  console.log(Object.values(userInput));
-
   const onSubmit = async () => {
     const formErrors = isFormValidate();
     if (!formErrors.includes(true)) {
