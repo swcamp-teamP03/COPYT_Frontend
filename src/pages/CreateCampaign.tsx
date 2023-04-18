@@ -3,12 +3,12 @@ import Header from '../components/CreateCampaign/Header';
 import styled from 'styled-components';
 import CreateCampaignCondition from '../components/CreateCampaign/CreateCampaignCondition';
 import MessageList from '../components/CreateCampaign/MessageList';
-import usePreventEvent from '../utils/usePreventEvent';
 import PreventModal from '../components/PreventModal';
+import useBeforeunload from '../hooks/useBeforunload';
 
 const CreateCampaign = () => {
   const [showPreventModal, setShowPreventModal] = useState(false);
-  usePreventEvent({ showPreventModal, setShowPreventModal });
+  useBeforeunload({ showPreventModal, setShowPreventModal });
 
   const handlePrevnetModal = () => {
     setShowPreventModal((prev) => !prev);

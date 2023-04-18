@@ -1,76 +1,180 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '../components/common/Button';
-
-const LINKS = [
-  { title: '간단하게 여러개 카피 먼저 받아보세요', button: '카피 생성하기', url: '/copies/create' },
-  { title: '기존에 관리하던 고객을 업데이트하고 메시지를 보내세요.', button: '고객 그룹 추가', url: '/clients/create' },
-  { title: '생성한 카피로 \n 메시지 A/B테스트를 진행하세요.', button: '새 캠페인 생성', url: '/campaign/create' },
-];
+import { HOME } from '../assets';
+import Onboarding from '../components/ServiceHome/Onboarding';
+import useCopyGroupsQuery from '../quries/Copy/useCopyGroupsQuery';
+import useCampaignsQuery from '../quries/Campaign/useCampaignsQuery';
 
 const ServiceHome = () => {
+  const [isOnboardingOpen, setIsOnboardingOpen] = useState(true);
   const navigate = useNavigate();
 
-  const onMovePage = (url: string) => {
-    navigate(url);
+  const { data: groupList } = useCopyGroupsQuery(0, 3);
+  const { data: campaignData } = useCampaignsQuery(0, 1);
+
+  const toggleOnboarding = () => {
+    setIsOnboardingOpen(!isOnboardingOpen);
   };
 
   return (
-    <>
+    <Background>
       <TitleContainer>
-        <h2>
-          처음오셨나요?
-          <br />
-          상황에 따른 문자 메시지 카피를 AI를 통해 생성 해보세요
-        </h2>
-        <img src="../../public/example.png" />
+        <OnboardingText>
+          <h2>🛬 온보딩</h2>
+        </OnboardingText>
+        <ToggleText onClick={toggleOnboarding}>{isOnboardingOpen ? <>접어두기 {HOME.up}</> : <>펼치기 {HOME.down}</>}</ToggleText>
       </TitleContainer>
-      <LinkContainer>
-        {LINKS.map((link) => (
-          <LinkBox key={link.button}>
-            <LinkTitle>{link.title}</LinkTitle>
-            <Button buttonColor="blue" buttonSize="buttonM" title={link.button} onButtonClick={() => onMovePage(link.url)} />
-          </LinkBox>
-        ))}
-      </LinkContainer>
-    </>
+
+      {isOnboardingOpen && <Onboarding />}
+      <hr />
+
+      <BoxLayout>
+        <span>
+          <h2 style={{ textAlign: 'left' }}>최근 카피</h2>
+          <>
+            {groupList?.totalCopy ? (
+              groupList.groupList.map((copy) => (
+                <CopyLayout key={copy.copyId}>
+                  <span>{copy.copyName} </span>
+                  <GoCurrent
+                    onClick={() => {
+                      navigate(`/copies/${copy.copyId}`);
+                    }}
+                  >
+                    {' '}
+                    {HOME.goCurrent}
+                  </GoCurrent>
+                </CopyLayout>
+              ))
+            ) : (
+              <Box>
+                아직 생성한 카피가 없어요
+                {HOME.noneCopy}
+              </Box>
+            )}
+          </>
+        </span>
+        <div>
+          <h2 style={{ textAlign: 'left' }}>최근 성과</h2>
+          <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', width: '609px', justifyContent: 'space-between' }}>
+            {campaignData ? (
+              campaignData.campaignList.map((list) => (
+                <CampaignLayout key={list.campaignId}>
+                  <SendDate style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <div>{list.campaignName} </div>
+                    <div>{list.sendingDate} </div>
+                    <div style={{ alignItems: 'flex-start' }}>{list.clickRate} </div>
+                  </SendDate>
+                  <GoCurrent onClick={() => navigate(`/campaign/${list.campaignId}`)}>{HOME.goCurrent}</GoCurrent>
+                </CampaignLayout>
+              ))
+            ) : (
+              <Box style={{ marginBottom: '20px' }}>
+                아직 생성한 성과가 없어요
+                {HOME.noneCampaign}
+              </Box>
+            )}
+          </div>
+        </div>
+      </BoxLayout>
+    </Background>
   );
 };
 
 export default ServiceHome;
 
+const Background = styled.div`
+  min-height: 100vh;
+  margin-left: 10%;
+  font-weight: 600;
+  background-color: #f2f2f2;
+  hr {
+    margin-top: 40px;
+    border-color: 1px solid ${({ theme }) => theme.colors.gray40};
+  }
+`;
+
 const TitleContainer = styled.div`
   display: flex;
-  gap: 10px;
-  align-items: flex-end;
+  align-items: center;
   white-space: nowrap;
   margin-bottom: 20px;
-`;
-
-const LinkContainer = styled.div`
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 30px;
 `;
 
-const LinkBox = styled.div`
+const OnboardingText = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ToggleText = styled.div`
+  margin-bottom: 20px;
+  text-align: right;
+  margin-right: 15%;
+  cursor: pointer;
+`;
+
+const Box = styled.span`
+  width: 480px;
+  height: 240px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  border: 1px solid ${({ theme }) => theme.colors.gray40};
+  border-radius: 12px;
+  justify-content: space-evenly;
   align-items: center;
-  width: 100%;
-  padding: 30px;
-  padding-top: 60px;
-  background-color: #f9f9fa;
-  border-radius: 10px;
+  color: ${({ theme }) => theme.colors.gray40};
+  padding: 0px 20px;
+  margin-right: 120px;
+  background-color: white;
 `;
 
-const LinkTitle = styled.div`
-  margin-top: 10px;
-  width: 100%;
-  height: 100px;
-  font-weight: 700;
-  font-size: 20px;
+const BoxLayout = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  div {
+    flex: 1;
+  }
+`;
+
+const CopyLayout = styled.div`
+  min-width: 300px;
+  max-width: 604.16px;
+  height: 70px;
+  display: flex;
+  border: 1px solid ${({ theme }) => theme.colors.gray40};
+  border-radius: 17px;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 210px;
+  justify-content: space-between;
+  padding: 0px 15px;
+  background-color: white;
+`;
+
+const CampaignLayout = styled.div`
+  min-width: 130px;
+  max-width: 240.36px;
+  height: 210.42px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid ${({ theme }) => theme.colors.gray40};
+  border-radius: 17px;
+  justify-content: space-between;
+  padding: 30px 0 10px 15px;
+  align-items: flex-start;
+  background-color: white;
+`;
+
+const GoCurrent = styled.span`
+  cursor: pointer;
+`;
+
+const SendDate = styled.span`
+  gap: 15px;
+  margin-left: 10px;
 `;

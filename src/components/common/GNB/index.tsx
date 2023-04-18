@@ -5,10 +5,10 @@ import { GNB_SVG } from '../../../assets/GNB';
 import Button from '../Button';
 
 const NAV_ITEM = [
-  { title: '홈', svg: GNB_SVG.home, svg1: GNB_SVG.whitehome, url: '/main' },
-  { title: '고객 그룹', svg: GNB_SVG.client, svg1: GNB_SVG.whiteclient, url: '/clients' },
-  { title: '카피 생성', svg: GNB_SVG.copy, svg1: GNB_SVG.whitecopy, url: '/copies' },
-  { title: '캠페인', svg: GNB_SVG.campaign, svg1: GNB_SVG.whitecampaign, url: '/campaign' },
+  { title: '홈', svg: GNB_SVG.home, url: '/main' },
+  { title: '카피 생성', svg: GNB_SVG.copy, url: '/copies' },
+  { title: '고객 그룹', svg: GNB_SVG.client, url: '/clients' },
+  { title: '캠페인', svg: GNB_SVG.campaign, url: '/campaign' },
 ];
 
 const CATEGORY = [
@@ -34,9 +34,13 @@ const GNB = () => {
     navigate('/auth');
   };
 
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
   return (
     <GNBContainer>
-      <Logo>{GNB_SVG.logo}</Logo>
+      <Logo onClick={handleGoHome}>{GNB_SVG.logo}</Logo>
       <Gap />
       <NavWrapper>
         {NAV_ITEM.map((item) => (
@@ -61,9 +65,9 @@ const GNB = () => {
               {item.title}
             </CategoryItem>
           ))}
-          <ButtonWrapper>
+          <ButtonWrapper onClick={handleLogoutClick}>
             {/* <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button> */}
-            <Button title="로그아웃" buttonSize="buttonM" buttonColor="blue" borderRadius="15px" onButtonClick={handleLogoutClick} isDisabled={false}></Button>
+            로그아웃
           </ButtonWrapper>
         </div>
       </CategoryWrapper>
@@ -90,6 +94,7 @@ const Logo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const Gap = styled.p`
@@ -118,9 +123,18 @@ const NavItem = styled.div<NavItemProps>`
   gap: 15px;
   background-color: ${(props) => (props.isSelected ? props.theme.colors.blue30 : props.theme.colors.white)};
   border-radius: 10px;
+  margin: 1px 0;
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.blue30};
     color: ${({ theme }) => theme.colors.white};
+    svg path {
+      fill: ${({ theme }) => theme.colors.white};
+    }
+  }
+
+  svg path {
+    fill: ${(props) => (props.isSelected ? props.theme.colors.white : props.theme.colors.blue50)};
   }
 `;
 
@@ -128,15 +142,20 @@ const ButtonWrapper = styled.div`
   display: flex;
   padding: 0.8rem;
   gap: 0.3rem;
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.blue50};
+  justify-content: flex-start;
+  margin-left: 10px;
+  font-weight: 700;
+  font-size: 16px;
 `;
 
 const CategoryWrapper = styled.nav`
-  position: fixed;
   bottom: 0;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 10px;
   .hr {
     color: ${({ theme }) => theme.colors.blue60};
   }
@@ -147,7 +166,7 @@ const CategoryItem = styled.div`
   padding: 16px 18px;
   display: flex;
   justify-content: flex-start;
-  width: 100%;
+  width: 80%;
   align-items: center;
   color: ${({ theme }) => theme.colors.blue60};
   font-weight: bold;

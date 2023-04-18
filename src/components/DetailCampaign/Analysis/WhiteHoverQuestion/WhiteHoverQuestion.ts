@@ -11,7 +11,6 @@ export const QuestioMark = styled.div`
 
 interface QuestionInfoProps {
   isHover: boolean;
-  left: string;
 }
 
 export const QuestionInfo = styled.div<QuestionInfoProps>`
@@ -20,17 +19,17 @@ export const QuestionInfo = styled.div<QuestionInfoProps>`
   position: absolute;
   width: 233px;
   height: 120px;
-  left: ${(props) => props.left};
+  left: 35px;
   top: -125px;
   color: black;
   z-index: 1000;
 `;
 
 export const QuestionText = styled.div`
-  max-width: 183px;
+  max-width: 188px;
   padding: 25px;
   width: 100%;
   line-height: 23px;
   white-space: pre-wrap;
-  font-size: 14px;
+  font-size: 11.5px;
 `;

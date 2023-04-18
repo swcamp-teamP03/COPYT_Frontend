@@ -10,8 +10,8 @@ import { useRecoilState } from 'recoil';
 import { copyListState } from '../store/copyListState';
 import SubmitModal from '../components/CreateCopy/SubmitModal';
 import { useNavigate } from 'react-router-dom';
-import usePreventEvent from '../utils/usePreventEvent';
 import PreventModal from '../components/PreventModal';
+import useBeforeunload from '../hooks/useBeforunload';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
@@ -21,7 +21,7 @@ const CreateCopy = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const navigate = useNavigate();
   const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation(setShowSubmitModal);
-  usePreventEvent({ showPreventModal, setShowPreventModal });
+  // useBeforeunload({ showPreventModal, setShowPreventModal });
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
@@ -50,7 +50,7 @@ const CreateCopy = () => {
   return (
     <>
       <PageHeader buttonTitle="저장" buttonSize="buttonM" onClick={onSubmit} buttonColor="blue">
-        카피 추천 받기
+        새로운 카피 생성
       </PageHeader>
       <GridLayout>
         <CreateCopyCondition condition={condition} conditionDispatch={conditionDispatch} />
@@ -67,6 +67,7 @@ export default CreateCopy;
 
 const GridLayout = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
 `;

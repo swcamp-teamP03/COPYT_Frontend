@@ -4,8 +4,8 @@ export const CopyListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100vh;
+  height: 100%;
+  max-height: 100vh;
   background-color: ${({ theme }) => theme.colors.gray20};
   padding: 40px;
   overflow-y: auto;
@@ -31,8 +31,18 @@ export const NonData = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  span {
+    display: flex;
+    text-align: center;
+    margin: 0;
+    font-weight: 700;
+    font-size: 30px;
+    color: #c6c6c6;
+    margin-bottom: 35px;
+  }
 `;
 
 export const ModalBody = styled.div`

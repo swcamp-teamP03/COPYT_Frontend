@@ -3,6 +3,13 @@ import styled from 'styled-components';
 export const CheckBoxContainer = styled.div`
   display: flex;
   margin-bottom: 10px;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const CheckBoxLayout = styled.div`
+  display: flex;
+  margin-bottom: 10px;
   width: 100%;
 `;
 
@@ -18,9 +25,16 @@ export const CheckBoxContent = styled.div`
   h3 {
     margin: 5px 0 10px 0;
   }
+  p {
+    font-size: ${({ theme }) => theme.fontSize.xs};
+    color: ${({ theme }) => theme.colors.gray50};
+    font-weight: 700;
+  }
   span {
-    font-size: ${({ theme }) => theme.fontSize.sm};
-    color: ${({ theme }) => theme.colors.gray20};
+    font-size: ${({ theme }) => theme.fontSize.xs};
+    color: ${({ theme }) => theme.colors.gray50};
+    font-weight: 300;
+    cursor: pointer;
   }
 `;
 
