@@ -33,12 +33,13 @@ const CopyList = () => {
           </>
         ) : (
           <S.NonData>
-            <span>
+            <S.NonDataTitle>
               조건을 입력하고
               <br />
               다양한 카피를 추천받아보세요!
-            </span>
+            </S.NonDataTitle>
             {NONE_LIST}
+            <S.NondataFooter>Powered by GTP-3</S.NondataFooter>
           </S.NonData>
         )}
       </S.CopyListContainer>
