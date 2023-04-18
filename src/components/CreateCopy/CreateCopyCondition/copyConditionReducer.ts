@@ -37,6 +37,6 @@ export const copyConditionInit = {
   keyword: [],
   createCount: 3,
   type: '짧게',
-  targetAge: '10대',
-  targetGender: '여성',
+  targetAge: '구분없음',
+  targetGender: '구분없음',
 };

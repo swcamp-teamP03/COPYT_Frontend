@@ -2,11 +2,6 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { postSignUp } from '../../api/Auth/signUp';
 
-type ErrorResponse = {
-  message: string;
-  detail?: string;
-};
-
 const useSignUpMutation = () => {
   const navigate = useNavigate();
 
