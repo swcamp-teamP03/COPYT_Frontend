@@ -3,6 +3,7 @@ import { sendEmail, confirmEmail } from '../../../api/Auth/signUp';
 import { SIGNUP_MESSAGE } from '../../../constants/authMessage';
 import Button from '../../common/Button';
 import LabelInput from '../../common/LabelInput';
+import HoverQuestion from '../../DetailCampaign/Analysis/HoverQuestion';
 import WhiteHoverQuestion from '../../DetailCampaign/Analysis/WhiteHoverQuestion';
 import { SignUpAction, SignUpInit } from '../SignupReducer';
 import * as S from './SignUpForm.styles';
@@ -15,7 +16,7 @@ interface SignUpFormProps {
 const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
   const [email, setEmail] = useState(''); // 이메일 담는 곳
   const [certification, setCertification] = useState(false); // 인증 버튼
-  const [number, setNumber] = useState(0); //인증번호
+  const [number, setNumber] = useState(''); //인증번호
   const [timer, setTimer] = useState<number>(180); //초기 시간
   const [isTimeOver, setIsTimeOver] = useState(false); //시간초과
   const intervalRef = useRef<number | null>(null);
@@ -53,7 +54,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
       setEmail(value);
     }
     if (name === 'certificationNumber') {
-      setNumber(parseInt(value));
+      setNumber(value);
     }
     if (name === 'phoneNumber') {
       const newPhoneNumber = value.replace(/-/g, '');
@@ -108,23 +109,21 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           onChange={handleUserInput}
           errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
           disabled={disable}
-          style={{ width: '250px' }}
+          marginBottom="0px"
           maxLength={24}
         />
-
-        {/* <S.Relative>
-          인증번호가 오지 않나요?
-          <WhiteHoverQuestion text={'메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 "인증" 버튼을 눌러주세요.'} />
-        </S.Relative> */}
-        <span style={{ marginTop: '10px' }}>
+        <section>
           {certification ? (
             <Button title="재인증" buttonColor="white" buttonSize="buttonS" onButtonClick={handleResendEmail} />
           ) : (
             <Button title="인증" buttonColor="white" buttonSize="buttonS" onButtonClick={handleSendEmail} />
           )}
-        </span>
+        </section>
       </S.FlexRover>
-      {certification && (
+      <S.TimerContainer>
+        인증 제한시간 <span style={{ color: 'blue', fontWeight: '600' }}>{`${minutes}:${seconds}`}</span>
+      </S.TimerContainer>
+      {!certification && (
         <S.ClientBox>
           <S.FlexRover>
             <LabelInput
@@ -133,16 +132,16 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
               name="certificationNumber"
               onChange={handleUserInput}
               errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
-              style={{ width: '250px' }}
+              marginBottom="0px"
             />
-            <span style={{ marginTop: '11px' }}>
+            <section>
               <Button title="확인" buttonColor="blue" buttonSize="buttonS" type="button" onButtonClick={handleConfirmation} />
-            </span>
+            </section>
           </S.FlexRover>
-          <S.TimerContainer>
-            {' '}
-            인증 제한시간 <span style={{ color: 'blue', fontWeight: '600' }}>{`${minutes}:${seconds}`}</span>
-          </S.TimerContainer>
+          <S.Relative>
+            <span>인증번호가 오지 않나요?</span>
+            <HoverQuestion text={'메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요.\n스팸 메일함에도 메일이 없다면, 다시 한 번 "인증" 버튼을 눌러주세요.'} color="white" />
+          </S.Relative>
         </S.ClientBox>
       )}
 
