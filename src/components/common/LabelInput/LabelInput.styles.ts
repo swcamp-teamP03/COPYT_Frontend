@@ -35,8 +35,9 @@ interface TextCountProps {
 
 export const TextCount = styled.div<TextCountProps>`
   position: absolute;
+  font-size: 14px;
   right: 1rem;
-  bottom: ${(props) => (props.hasDesc ? '2.5rem' : '0.7rem')};
+  bottom: ${(props) => (props.hasDesc ? '2.8rem' : '1rem')};
   color: ${({ theme }) => theme.colors.gray50};
 `;
 
