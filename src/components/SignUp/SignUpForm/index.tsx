@@ -1,10 +1,11 @@
 import React, { Dispatch, useState, useEffect, useRef } from 'react';
-import { sendEmail, confirmEmail } from '../../../api/Auth/signUp';
 import { SIGNUP_MESSAGE } from '../../../constants/authMessage';
+import useConfirmEmailMutation from '../../../quries/Auth/useConfirmEmailMutation';
+import useSendMailMutation from '../../../quries/Auth/useSendMailMutation';
 import Button from '../../common/Button';
 import LabelInput from '../../common/LabelInput';
-import WhiteHoverQuestion from '../../DetailCampaign/Analysis/WhiteHoverQuestion';
-import { SignUpAction, SignUpInit } from '../SignupReducer';
+import HoverQuestion from '../../DetailCampaign/Analysis/HoverQuestion';
+import { SignUpAction } from '../SignupReducer';
 import * as S from './SignUpForm.styles';
 
 interface SignUpFormProps {
@@ -15,79 +16,58 @@ interface SignUpFormProps {
 const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
   const [email, setEmail] = useState(''); // 이메일 담는 곳
   const [certification, setCertification] = useState(false); // 인증 버튼
-  const [number, setNumber] = useState(0); //인증번호
-  const [timer, setTimer] = useState<number>(180); //초기 시간
+  const [certificationNumber, setCertificationNumber] = useState(''); //인증번호
+  const [timer, setTimer] = useState(180); //초기 시간
   const [isTimeOver, setIsTimeOver] = useState(false); //시간초과
   const intervalRef = useRef<number | null>(null);
   const [disable, setDisable] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  useEffect(() => {
-    if (certification && timer > 0) {
-      intervalRef.current = window.setInterval(() => {
-        setTimer((timer) => timer - 1);
-      }, 1000);
-    }
-    return () => clearInterval(intervalRef.current as number);
-  }, [certification, timer]);
-
-  useEffect(() => {
-    if (timer === 0) {
-      setIsTimeOver(true);
-    }
-    if (certification && isTimeOver) {
-      clearInterval(intervalRef.current as number);
-      setCertification(false);
-      setIsTimeOver(false);
-    }
-  }, [timer, certification, isTimeOver]);
-
-  const minutes = Math.floor(timer / 60)
-    .toString()
-    .padStart(2, '0');
-  const seconds = (timer % 60).toString().padStart(2, '0');
-
-  const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    if (name === 'email') {
-      setEmail(value);
-    }
-    if (name === 'certificationNumber') {
-      setNumber(parseInt(value));
-    }
-    if (name === 'phoneNumber') {
-      const newPhoneNumber = value.replace(/-/g, '');
-      const formattedPhoneNumber = /^010\d*$/.test(newPhoneNumber) ? newPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3') : value;
-      userInputDispatch({ type: 'CHANGE_INPUT', key: name, value: formattedPhoneNumber });
-      setPhoneNumber(formattedPhoneNumber);
-    } else {
-      userInputDispatch({ type: 'CHANGE_INPUT', key: name, value });
-    }
+  const onConfirmEmail = () => {
+    userInputDispatch({ type: 'CHANGE_INPUT', key: 'email', value: email });
+    setCertification(false);
+    setDisable(true);
+    setIsTimeOver(false);
   };
-
-  const handleSendEmail = async () => {
-    if (email.trim() === '') {
-      return alert('내용을 입력해 주세요');
-    }
-    const result = await sendEmail(email);
-    if (result) {
-      alert('메일함에서 인증번호를 확인해 주세요');
-    }
+  const onSendEmail = () => {
     setCertification(true);
     setIsTimeOver(false);
     setTimer(180);
   };
 
-  const handleConfirmation = async () => {
-    const result = await confirmEmail(email, number);
-    if (result) {
-      alert('인증이 완료 되었습니다.');
-      setCertification(false);
-      setDisable(true);
-    } else {
-      alert('인증번호를 다시 확인해 주세요');
+  const { mutate: sendMailMutate } = useSendMailMutation({ onSendEmail });
+  const { mutate: confirmEmailMutate } = useConfirmEmailMutation({ onConfirmEmail });
+
+  const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    switch (name) {
+      case 'email':
+        setEmail(value);
+        break;
+      case 'certificationNumber':
+        setCertificationNumber(value);
+        break;
+      case 'phoneNumber':
+        const newPhoneNumber = value.replace(/[^0-9]/g, '');
+        const formattedPhoneNumber = /^010\d*$/.test(newPhoneNumber) ? newPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3') : newPhoneNumber;
+        userInputDispatch({ type: 'CHANGE_INPUT', key: name, value: formattedPhoneNumber });
+        setPhoneNumber(formattedPhoneNumber);
+        break;
+      default:
+        userInputDispatch({ type: 'CHANGE_INPUT', key: name, value });
+        break;
     }
-    setIsTimeOver(false);
+  };
+
+  const handleSendEmail = () => {
+    if (email.trim() === '') {
+      return alert('내용을 입력해 주세요');
+    }
+    sendMailMutate(email);
+  };
+
+  const handleConfirmation = () => {
+    confirmEmailMutate({ email, certificationNumber });
   };
 
   const handleResendEmail = () => {
@@ -96,10 +76,33 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
     handleSendEmail();
   };
 
+  useEffect(() => {
+    if (certification && timer > 0) {
+      intervalRef.current = window.setInterval(() => {
+        setTimer((timer) => timer - 1);
+      }, 1000);
+    }
+
+    if (timer === 0) {
+      setIsTimeOver(true);
+    }
+    if (certification && isTimeOver) {
+      clearInterval(intervalRef.current as number);
+      setCertification(false);
+      setIsTimeOver(false);
+    }
+
+    return () => clearInterval(intervalRef.current as number);
+  }, [certification, timer, isTimeOver]);
+
+  const minutes = Math.floor(timer / 60)
+    .toString()
+    .padStart(2, '0');
+  const seconds = (timer % 60).toString().padStart(2, '0');
+
   return (
     <div>
       <S.Title>회원 가입</S.Title>
-
       <S.FlexRover>
         <LabelInput
           labelTitle="ID(이메일)"
@@ -108,22 +111,18 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           onChange={handleUserInput}
           errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
           disabled={disable}
-          style={{ width: '250px' }}
+          marginBottom="0px"
           maxLength={24}
         />
-
-        {/* <S.Relative>
-          인증번호가 오지 않나요?
-          <WhiteHoverQuestion text={'메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 "인증" 버튼을 눌러주세요.'} />
-        </S.Relative> */}
-        <span style={{ marginTop: '10px' }}>
-          {certification ? (
-            <Button title="재인증" buttonColor="white" buttonSize="buttonS" onButtonClick={handleResendEmail} />
-          ) : (
-            <Button title="인증" buttonColor="white" buttonSize="buttonS" onButtonClick={handleSendEmail} />
-          )}
-        </span>
+        <S.LabelButton>
+          <Button title={certification ? '재인증' : '인증'} buttonColor="white" buttonSize="buttonS" onButtonClick={certification ? handleResendEmail : handleSendEmail} />
+        </S.LabelButton>
       </S.FlexRover>
+      {certification && (
+        <S.TimerContainer>
+          인증 제한시간 <span>{`${minutes}:${seconds}`}</span>
+        </S.TimerContainer>
+      )}
       {certification && (
         <S.ClientBox>
           <S.FlexRover>
@@ -133,19 +132,18 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
               name="certificationNumber"
               onChange={handleUserInput}
               errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
-              style={{ width: '250px' }}
+              marginBottom="0px"
             />
-            <span style={{ marginTop: '11px' }}>
+            <S.LabelButton>
               <Button title="확인" buttonColor="blue" buttonSize="buttonS" type="button" onButtonClick={handleConfirmation} />
-            </span>
+            </S.LabelButton>
           </S.FlexRover>
-          <S.TimerContainer>
-            {' '}
-            인증 제한시간 <span style={{ color: 'blue', fontWeight: '600' }}>{`${minutes}:${seconds}`}</span>
-          </S.TimerContainer>
+          <S.Relative>
+            <span>인증번호가 오지 않나요?</span>
+            <HoverQuestion text={'메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요.\n스팸 메일함에도 메일이 없다면, 다시 한 번 "인증" 버튼을 눌러주세요.'} />
+          </S.Relative>
         </S.ClientBox>
       )}
-
       <S.FlexRow>
         <LabelInput
           labelTitle="브랜드(기업)명"
@@ -165,9 +163,6 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           maxLength={24}
         />
       </S.FlexRow>
-      {/* <S.Relative>
-        <WhiteHoverQuestion text={'문자발송 테스트 시 수신번호로 사용됩니다.'} />
-      </S.Relative> */}
       <LabelInput
         labelTitle="전화번호"
         placeholder="010-1234-1234"
@@ -176,6 +171,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         name="phoneNumber"
         onChange={handleUserInput}
         errorMessage={isError.phoneNumber ? SIGNUP_MESSAGE.PHONENUMBER : ''}
+        hover={'문자발송 테스트 시 수신번호로 사용됩니다.'}
       />
       <LabelInput
         labelTitle="비밀번호"
@@ -184,7 +180,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         type="password"
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
-        maxLength={24}
+        maxLength={8}
       />
       <LabelInput
         labelTitle="비밀번호 재입력"
@@ -193,7 +189,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         type="password"
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
-        maxLength={24}
+        maxLength={8}
       />
     </div>
   );

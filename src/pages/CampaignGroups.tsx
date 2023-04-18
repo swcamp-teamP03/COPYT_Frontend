@@ -28,6 +28,8 @@ const CapaignGroups = () => {
     }
   }, [campaignData?.totalCampaignCount]);
 
+  console.log(campaignData);
+
   return (
     <>
       <PageHeader
@@ -49,7 +51,7 @@ const CapaignGroups = () => {
         <div>발송일시</div>
         <div>발송상태</div>
       </ListCategory>
-      {campaignData?.totalCampaignCount ? (
+      {campaignData?.campaignList.length ? (
         <CampaginGroupList campaignList={campaignData.campaignList} onClickHandler={goDetail} />
       ) : (
         <NoneList title={NONE_LIST_TEXT.campaign.title} subTitle={NONE_LIST_TEXT.campaign.subTitle} />

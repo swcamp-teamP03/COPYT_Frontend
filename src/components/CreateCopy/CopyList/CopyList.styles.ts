@@ -28,25 +28,29 @@ export const CopyCount = styled.div`
 `;
 
 export const NonData = styled.div`
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  span {
-    display: flex;
-    text-align: center;
-    margin: 0;
-    font-weight: 700;
-    font-size: 30px;
-    color: #c6c6c6;
-    margin-bottom: 35px;
-  }
 `;
 
-export const ModalBody = styled.div`
-  height: 80px;
-  font-weight: 700;
-  font-size: 24px;
+export const NonDataTitle = styled.h2`
+  display: flex;
+  text-align: center;
+  margin: 0;
+  font-weight: 500;
+  font-size: 25px;
+  margin-bottom: 20px;
+  color: #c6c6c6;
+`;
+
+export const NondataFooter = styled.span`
+  position: absolute;
+  bottom: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #c6c6c6;
 `;
