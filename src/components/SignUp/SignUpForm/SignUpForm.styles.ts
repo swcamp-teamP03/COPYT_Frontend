@@ -15,9 +15,10 @@ export const FlexRover = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  section {
-    margin-top: 30px;
-  }
+`;
+
+export const LabelButton = styled.div`
+  margin-top: 30px;
 `;
 
 export const ClientBox = styled.div`
@@ -27,6 +28,10 @@ export const ClientBox = styled.div`
 export const TimerContainer = styled.span`
   color: ${({ theme }) => theme.colors.gray50};
   font-size: 12px;
+  span {
+    color: ${({ theme }) => theme.colors.blue40};
+    font-weight: 600;
+  }
 `;
 
 export const Relative = styled.div`

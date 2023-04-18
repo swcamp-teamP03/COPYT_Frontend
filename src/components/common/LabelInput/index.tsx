@@ -28,9 +28,7 @@ const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, er
         {isRequire && <span>*</span>}
         {hover && <HoverQuestion text={hover} />}
       </S.Label>
-
       <S.Input {...props} ref={inputRef} borderColor={inputBorderColor} />
-
       {desc && (
         <S.Desc>
           {SVG.exclamation}
