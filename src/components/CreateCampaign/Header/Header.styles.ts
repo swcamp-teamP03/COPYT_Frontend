@@ -18,7 +18,8 @@ export const Fixed = styled.div`
 
 export const Flex = styled.div`
   display: flex;
-  gap: 30px;
+  align-items: center;
+  gap: 20px;
 `;
 
 export const Title = styled.h3`
@@ -40,8 +41,8 @@ export const SVG = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
 `;
 

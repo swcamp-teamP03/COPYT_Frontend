@@ -9,6 +9,7 @@ line-height:29px;
  }
 
  font-family: 'Pretendard';
+
 }
 `;
 

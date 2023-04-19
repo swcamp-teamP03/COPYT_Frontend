@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const QuestioMark = styled.div`
   position: relative;
   cursor: pointer;
-  top: 0px;
+  top: 3px;
   width: 20px;
   height: 20px;
 `;

@@ -4,7 +4,7 @@ export const FlexLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 export const Label = styled.label`
@@ -17,6 +17,7 @@ export const Label = styled.label`
 `;
 
 export const CopyTypeContainer = styled.div`
+  margin-top: 10px;
   display: flex;
   gap: 10px;
   margin-bottom: 30px;
@@ -38,12 +39,14 @@ export const CopyType = styled.button<CopyTypeProps>`
 `;
 
 export const DropDownBox = styled.div`
+  margin-top: 10px;
   position: relative;
   height: 30px;
   border: 1px solid #e1e1e1;
   border-radius: 10px;
   padding: 10px;
   display: flex;
+  font-size: 14px;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
@@ -67,6 +70,7 @@ export const KeywordContainer = styled.div`
   width: 100%;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 1rem;
 `;
 
 export const KeywordTag = styled.div`
@@ -74,8 +78,9 @@ export const KeywordTag = styled.div`
   gap: 10px;
   overflow: hidden;
   border-radius: 10px;
-  padding: 5px;
-  background-color: ${({ theme }) => theme.colors.gray20};
+  padding: 5px 10px;
+  background-color: ${({ theme }) => theme.colors.blue20};
+  border: 1px solid #e1e1e1;
   margin-bottom: 10px;
   font-size: 14px;
   div {

@@ -62,7 +62,6 @@ export const Footer = styled.div`
 
   div {
     display: flex;
-    gap: 15px;
     cursor: pointer;
   }
 `;

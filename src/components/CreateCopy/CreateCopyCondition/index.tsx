@@ -60,7 +60,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
   };
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>, limite: number) => {
-    const value = event.target.value.substring(0, limite - 1);
+    const value = event.target.value.substring(0, limite);
     const name = event.target.name;
     conditionDispatch({ type: 'CHANGE_VALUE', key: name, value });
   };
@@ -120,7 +120,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         desc={condition.keyword.length === 0 ? "키워드 입력 시, 'Enter key (엔터 키)'를 눌러 하나씩 추가해주세요!" : ''}
         disabled={condition.keyword.length === 8}
         hover="필수로 포함되어야하거나 핵심 내용을 담은 키워드를 입력해주세요!"
-        marginBottom="0px"
+        marginBottom="1rem"
       />
       <S.KeywordContainer>
         {condition.keyword &&

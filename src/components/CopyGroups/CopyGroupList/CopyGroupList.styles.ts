@@ -11,7 +11,7 @@ export const ListContainer = styled.div`
   display: flex;
   white-space: nowrap;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 `;
 
 export const GroupList = styled.div`
@@ -19,12 +19,12 @@ export const GroupList = styled.div`
   cursor: pointer;
   gap: 10px;
   grid-template-columns: 0.5fr 1fr 4fr;
-  height: 82px;
+  height: 72px;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.blue10};
-  font-size: 18px;
+  font-size: 16px;
   span,
   div {
     display: flex;
@@ -34,7 +34,7 @@ export const GroupList = styled.div`
   div:nth-child(3) {
     justify-content: flex-start;
     font-weight: 700;
-    font-size: 21px;
+    font-size: 18px;
     color: #444444;
   }
   :hover {

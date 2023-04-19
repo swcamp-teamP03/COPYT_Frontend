@@ -4,19 +4,20 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 160px;
+  margin-top: 80px;
 `;
 
 export const Title = styled.div`
   display: flex;
   align-items: center;
   h1 {
-    font-size: 32px;
+    font-size: 24px;
+    font-weight: 500;
   }
 `;
 
 export const CommentContainer = styled.div`
-  height: 250px;
+  height: 120px;
   background: #ffffff;
   border: 1px solid #b7b7b7;
   border-radius: 25px;

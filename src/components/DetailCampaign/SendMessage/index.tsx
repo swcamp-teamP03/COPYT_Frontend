@@ -10,7 +10,7 @@ const SendMessage = () => {
   return (
     <>
       <S.Title>
-        <h1>보낸 메세지</h1>
+        <h1>보낸 메시지</h1>
       </S.Title>
       <S.Flex>
         <S.Info>
@@ -22,8 +22,8 @@ const SendMessage = () => {
         <S.Info>
           <S.InfoTitle>발송 카피</S.InfoTitle>
           <S.Grid>
-            <S.InfoDesc>메세지 A</S.InfoDesc>
-            {detailCampaign?.copyWriteAB[1] && <S.InfoDesc>메세지 B</S.InfoDesc>}
+            <S.InfoDesc>메시지 A</S.InfoDesc>
+            {detailCampaign?.copyWriteAB[1] && <S.InfoDesc>메시지 B</S.InfoDesc>}
           </S.Grid>
         </S.Info>
       </S.Flex>

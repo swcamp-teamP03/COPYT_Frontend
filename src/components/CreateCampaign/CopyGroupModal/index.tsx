@@ -21,7 +21,7 @@ const CopyGroupModal = ({ isOpen, handler }: CopyGroupModalProps) => {
   const [selectedMesssage, setSelecetedMessage] = useState<SelecetedMessage[]>([]);
 
   return (
-    <Modal.Frame isOpen={isOpen} onClick={handler} height="70%" width="70%">
+    <Modal.Frame isOpen={isOpen} onClick={handler} height="75%" width="70%">
       <Modal.Header onClick={handler}>카피 불러오기</Modal.Header>
       <Modal.Body height="90%">
         <S.GridLayout>

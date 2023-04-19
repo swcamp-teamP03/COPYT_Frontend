@@ -19,7 +19,7 @@ export const Fixed = styled.div`
 export const Flex = styled.div`
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 `;
 
 export const Title = styled.h3`
@@ -29,7 +29,7 @@ export const Title = styled.h3`
   justify-content: center;
   text-align: center;
   height: 100%;
-  font-size: 32px;
+  font-size: 18px;
 `;
 
 export const LeftChevron = styled.div`
@@ -40,8 +40,10 @@ export const LeftChevron = styled.div`
 
 export const Tag = styled.div`
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 0px 15px;
+  border: 1px solid #e1e1e1;
   text-align: center;
+  font-size: 14px;
   background-color: #eeedff;
   color: #5549ff;
 `;
