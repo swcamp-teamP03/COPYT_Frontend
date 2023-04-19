@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 42px;
+  margin-bottom: 20px;
 `;
 
 export const HeadTitle = styled.h2``;

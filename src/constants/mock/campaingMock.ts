@@ -8,7 +8,7 @@ export const CAMAPAIGN_MOCK_LIST: CampaignsListType = {
   createdAt: '2023-04-01',
   sendingDate: '2023-04-02 08:30',
   sendState: '발송완료',
-  clickRate: 0.0,
+  clickRate: 46.8,
 };
 
 export const CAMPAIGN_MOCK_DETAIL: DetailCampaignResult = {

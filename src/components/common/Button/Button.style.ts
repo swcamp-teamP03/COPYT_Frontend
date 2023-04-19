@@ -9,6 +9,7 @@ interface ButtonProps {
 
 export const HeaderButton = styled.button<ButtonProps>`
   ${(props) => props.theme.button[`${props.buttonSize}`]}
+  font-family:'Pretendard';
   cursor: pointer;
   background-color: ${(props) => (props.buttonColor === 'blue' ? props.theme.colors.blue30 : props.theme.colors.white)};
   color: ${(props) => (props.buttonColor === 'blue' ? props.theme.colors.white : props.theme.colors.blue30)};

@@ -10,7 +10,7 @@ export const TagContainer = styled.div`
 export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 `;
 
 export const GroupList = styled.div`
@@ -18,12 +18,12 @@ export const GroupList = styled.div`
   cursor: pointer;
   gap: 10px;
   grid-template-columns: 1fr 2fr 2fr 1fr 1.5fr 1.5fr 1fr;
-  height: 82px;
+  height: 72px;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.blue10};
-  font-size: 18px;
+  font-size: 16px;
   div {
     display: flex;
     white-space: nowrap;
@@ -37,7 +37,7 @@ export const GroupList = styled.div`
     text-overflow: ellipsis;
     justify-content: flex-start;
     font-weight: 700;
-    font-size: 21px;
+    font-size: 18px;
     color: #444444;
   }
 

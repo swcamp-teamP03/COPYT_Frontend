@@ -42,8 +42,9 @@ export const CampaignLayout = styled.div`
 
 export const CampaignItems = styled.div`
   display: flex;
+  width: 40%;
+  height: 220px;
   flex-direction: column;
-  width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.gray40};
   border-radius: 17px;
   padding: 20px 25px 0px 25px;
@@ -53,11 +54,17 @@ export const CampaignItems = styled.div`
 export const CampaignBody = styled.div`
   display: flex;
   flex-direction: column;
+  height: 80%;
   h3 {
     margin: 0;
     font-weight: 700;
     font-size: 18px;
   }
+`;
+export const CamapignFooter = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: end;
 `;
 
 export const SendDate = styled.span`
@@ -72,12 +79,8 @@ export const ClickRate = styled.div`
   margin-bottom: 25px;
 `;
 
-export const CampaignFooter = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-`;
-
 export const GoCurrent = styled.div`
+  display: flex;
+  align-items: center;
   cursor: pointer;
 `;

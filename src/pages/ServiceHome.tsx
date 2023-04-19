@@ -15,18 +15,22 @@ const ServiceHome = () => {
     <Layout>
       <TitleContainer>
         <OnboardingText>
-          <h2>🛬 온보딩</h2>
+          <h2>카피티 이용 가이드</h2>
         </OnboardingText>
         <ToggleText onClick={toggleOnboarding}>{isOnboardingOpen ? <>접어두기 {HOME.up}</> : <>펼치기 {HOME.down}</>}</ToggleText>
       </TitleContainer>
       {isOnboardingOpen && <Onboarding />}
-      <hr />
+      <Hr />
       <Recent />
     </Layout>
   );
 };
 
 export default ServiceHome;
+
+const Hr = styled.hr`
+  opacity: 0.2;
+`;
 
 const Layout = styled.div`
   padding: 0 10%;
