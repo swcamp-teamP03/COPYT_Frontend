@@ -75,4 +75,7 @@ export const Desc = styled.div`
     color: #606060;
     line-height: 21px;
   }
+  div {
+    margin-top: 5px;
+  }
 `;

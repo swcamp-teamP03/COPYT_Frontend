@@ -33,6 +33,7 @@ const LabelInput = ({
   value,
   ...props
 }: LabelInputProps) => {
+
   const textCount = value?.length ?? 0;
   const inputBorderColor = errorMessage ? 'red' : undefined;
 
