@@ -14,6 +14,7 @@ export const HeaderLayout = styled.div`
   h1 {
     font-size: 24px;
     font-weight: 700;
+    margin: 19.92px 0;
   }
   h2 {
     font-weight: 500;
@@ -42,6 +43,7 @@ export const TaxtContainer = styled.div`
   flex-direction: column;
   h3 {
     font-weight: 500;
+    font-size: 20px;
   }
 `;
 

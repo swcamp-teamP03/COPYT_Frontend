@@ -60,9 +60,6 @@ export const Desc = styled.div`
   div {
     margin-top: 4px;
   }
-  div {
-    margin-top: 4px;
-  }
 `;
 
 export const Red = styled.span`
