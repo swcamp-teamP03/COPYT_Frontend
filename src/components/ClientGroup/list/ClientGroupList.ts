@@ -5,6 +5,7 @@ export const ListCategory = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 1fr 2fr 2fr;
   margin-bottom: 20px;
+  white-space: nowrap;
   div {
     display: flex;
     justify-content: center;

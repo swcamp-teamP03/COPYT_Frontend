@@ -13,6 +13,7 @@ import { copyListState } from '../store/copyListState';
 const DetailCopy = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const [showSubmitModa, setShowSubmitModal] = useState(false);
+
   const { id } = useParams();
 
   const { data: copyDetail } = useCopyDetailQuery(id);

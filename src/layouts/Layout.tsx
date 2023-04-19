@@ -38,13 +38,14 @@ const ContentWrapper = styled.div<{ isRoot: boolean }>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 4.25rem 4.25rem;
+  padding: 4.25rem;
   background-color: ${({ isRoot }) => (isRoot ? '#f2f2f2' : 'transparent')};
 `;
 
 const Content = styled.div`
   position: relative;
   height: 100%;
+  min-width: 1000px;
 `;
 
 export default Layout;

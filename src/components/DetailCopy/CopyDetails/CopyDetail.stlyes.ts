@@ -8,19 +8,17 @@ export const Label = styled.label`
 export const GroupName = styled.h2``;
 
 export const TextBox = styled.div`
-  width: 100%;
-  padding: 18px 20px;
+  padding: 11px 20px;
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.colors.gray30};
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   display: flex;
-  gap: 10px;
 `;
 
 export const KeywordWrapper = styled.div`
   display: flex;
   gap: 12px;
-  margin-bottom: 26px;
+  margin-bottom: 30px;
 `;
 
 export const Keyword = styled.div`
@@ -57,6 +55,7 @@ export const FlexLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
+  margin-bottom: 30px;
 `;
 
 export const DarkBox = styled.div`
@@ -74,8 +73,7 @@ export const CopySubmit = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin: 42px 0;
-
+  margin: 20px 0;
   button {
     cursor: pointer;
     width: 204px;
