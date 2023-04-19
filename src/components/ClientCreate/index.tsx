@@ -22,7 +22,7 @@ const ClientGroupCreate = ({}) => {
   const [clientList, setClientList] = useRecoilState(clientListState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  useBeforeunload({ showPreventModal, setShowPreventModal });
+  // useBeforeunload({ showPreventModal, setShowPreventModal });
 
   const { mutate: createClientMutate } = useCreatClientMutation();
 
@@ -95,16 +95,24 @@ const ClientGroupCreate = ({}) => {
   };
 
   return (
-    <>
+    <S.Layout>
       <PageHeader buttonTitle="등록" buttonSize="buttonM" onClick={submitForm}>
         고객 그룹 생성
       </PageHeader>
       <S.TaxtInnerContainer>
-        <LabelInput labelTitle="고객 그룹명" limit={24} name="clientGroupName" placeholder="고객 그룹을 입력해 주세요" onChange={handleChange} />
+        <LabelInput
+          labelTitle="고객 그룹명"
+          limit={24}
+          name="clientGroupName"
+          placeholder="고객 그룹을 입력해 주세요"
+          onChange={handleChange}
+          labelFontSize="20px"
+          labelFontWeight="500"
+        />
       </S.TaxtInnerContainer>
 
       <S.TaxtContainer>
-        <span>타겟 목표 및 메모</span>
+        <h3>타겟 목표 및 메모</h3>
         <S.PropertyHighlight>
           {CLIENT_SVG.highlight} &nbsp; &nbsp;고객 DB의 데이터 속성(목표)을 입력해주세요. 입력한 속성은 고객 DB에 영향을 미치지 않으며, 데이터 정보 확인용으로만 활용됩니다.
         </S.PropertyHighlight>
@@ -127,15 +135,18 @@ const ClientGroupCreate = ({}) => {
           </S.HeaderLayout>
         </>
 
-        <div>
-          고객 DB 업로드 <span style={{ color: 'red' }}>*</span>
+        <S.FlexBox>
+          <h3>
+            고객 DB 업로드
+            <span style={{ color: 'red' }}>*</span>
+          </h3>
           <S.HeaderLayout>
             <ReactExcelDownload />
             <label>
               <Button title="고객 DB 업로드" buttonColor="blue" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick}></Button>
             </label>
           </S.HeaderLayout>
-        </div>
+        </S.FlexBox>
 
         {fileName ? (
           <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
@@ -156,7 +167,7 @@ const ClientGroupCreate = ({}) => {
         )}
       </S.TaxtContainer>
       <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
-    </>
+    </S.Layout>
   );
 };
 

@@ -8,7 +8,7 @@ import useBeforeunload from '../hooks/useBeforunload';
 
 const CreateCampaign = () => {
   const [showPreventModal, setShowPreventModal] = useState(false);
-  useBeforeunload({ showPreventModal, setShowPreventModal });
+  // useBeforeunload({ showPreventModal, setShowPreventModal });
 
   const handlePrevnetModal = () => {
     setShowPreventModal((prev) => !prev);
