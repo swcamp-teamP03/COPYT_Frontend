@@ -38,7 +38,7 @@ const CopyGroups = () => {
           navigate('/copies/create');
         }}
       >
-        카피그룹 리스트
+        카피 그룹 리스트
       </PageHeader>
       <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList?.totalCopyCount ?? 0} setPageNum={setPageNum} />
       <ListCategory>

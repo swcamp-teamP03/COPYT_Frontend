@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as S from './GNB.styles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GNB_SVG } from '../../../assets/GNB';
 import Button from '../Button';
@@ -39,142 +39,38 @@ const GNB = () => {
   };
 
   return (
-    <GNBContainer>
-      <Logo onClick={handleGoHome}>{GNB_SVG.logo}</Logo>
-      <Gap />
-      <NavWrapper>
+    <S.GNBContainer>
+      <S.Logo onClick={handleGoHome}>{GNB_SVG.logo}</S.Logo>
+      <S.NavWrapper>
         {NAV_ITEM.map((item) => (
-          <NavItem key={item.title} onClick={() => handleNavigation(item.url)} isSelected={isSelected(item.url)}>
+          <S.NavItem key={item.title} onClick={() => handleNavigation(item.url)} isSelected={isSelected(item.url)}>
             {item.svg}
             {item.title}
-          </NavItem>
+          </S.NavItem>
         ))}
-      </NavWrapper>
+      </S.NavWrapper>
 
-      <CategoryWrapper>
+      <S.CategoryWrapper>
         <div>
           <hr />
           {CATEGORY.map((item) => (
-            <CategoryItem
+            <S.CategoryItem
               key={item.title}
               onClick={() => {
                 window.open(item.url);
               }}
             >
-              {item.svg}
-              {item.title}
-            </CategoryItem>
+              <div>{item.svg}</div>
+              <span>{item.title}</span>
+            </S.CategoryItem>
           ))}
-          <ButtonWrapper onClick={handleLogoutClick}>
-            {/* <Button title="MY" buttonSize="buttonS" buttonColor="white" borderRadius="15px" onButtonClick={handleMyClick} isDisabled={true}></Button> */}
-            로그아웃
-          </ButtonWrapper>
         </div>
-      </CategoryWrapper>
-    </GNBContainer>
+      </S.CategoryWrapper>
+      <S.ButtonWrapper>
+        <span onClick={handleLogoutClick}>로그아웃</span>
+      </S.ButtonWrapper>
+    </S.GNBContainer>
   );
 };
 
 export default GNB;
-
-const GNBContainer = styled.div`
-  position: sticky;
-  min-width: 200px;
-  height: 100vh;
-  border-right: 1px solid ${({ theme }) => theme.colors.gray30};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 5;
-  top: 0;
-`;
-
-const Logo = styled.div`
-  margin: 15px 15px 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
-
-const Gap = styled.p`
-  background-color: ${({ theme }) => theme.colors.white};
-  padding: 3px;
-`;
-
-const NavWrapper = styled.nav`
-  margin-bottom: 10px;
-  flex-grow: 1;
-`;
-
-interface NavItemProps {
-  isSelected: boolean;
-}
-
-const NavItem = styled.div<NavItemProps>`
-  cursor: pointer;
-  padding: 16px 18px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: ${(props) => (props.isSelected ? props.theme.colors.white : props.theme.colors.blue50)};
-  font-weight: bold;
-  text-align: left;
-  gap: 15px;
-  background-color: ${(props) => (props.isSelected ? props.theme.colors.blue30 : props.theme.colors.white)};
-  border-radius: 10px;
-  margin: 1px 0;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.blue30};
-    color: ${({ theme }) => theme.colors.white};
-    svg path {
-      fill: ${({ theme }) => theme.colors.white};
-    }
-  }
-
-  svg path {
-    fill: ${(props) => (props.isSelected ? props.theme.colors.white : props.theme.colors.blue50)};
-  }
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  padding: 0.8rem;
-  gap: 0.3rem;
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.blue50};
-  justify-content: flex-start;
-  margin-left: 10px;
-  font-weight: 700;
-  font-size: 16px;
-`;
-
-const CategoryWrapper = styled.nav`
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 10px;
-  .hr {
-    color: ${({ theme }) => theme.colors.blue60};
-  }
-`;
-
-const CategoryItem = styled.div`
-  cursor: pointer;
-  padding: 16px 18px;
-  display: flex;
-  justify-content: flex-start;
-  width: 80%;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.blue60};
-  font-weight: bold;
-  text-align: left;
-  gap: 15px;
-  font-size: 15px;
-  border-radius: 10px;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.gray30};
-  }
-`;

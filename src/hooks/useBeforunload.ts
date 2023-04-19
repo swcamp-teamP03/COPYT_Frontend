@@ -1,6 +1,4 @@
-import { handler } from '../mocks/handler';
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
 interface usePreventEventProps {
   showPreventModal: boolean;

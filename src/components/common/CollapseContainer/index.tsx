@@ -53,7 +53,7 @@ export const Title = styled.div`
   gap: 20px;
   margin-top: 80px;
   h1 {
-    font-size: 32px;
+    font-size: 24px;
   }
 `;
 

@@ -32,7 +32,7 @@ const MessageContainer = () => {
               <S.CloseButton onClick={() => deleteCopyMessages('A')}>{SVG.closeButton}</S.CloseButton>
             </>
           ) : (
-            <span>아직 등록된 카피 메세지가 없습니다.</span>
+            <span>아직 등록된 카피 메시지가 없습니다.</span>
           )}
         </S.MessageContainer>
       </S.FlexBox>
@@ -46,7 +46,7 @@ const MessageContainer = () => {
                 <S.CloseButton onClick={() => deleteCopyMessages('B')}>{SVG.closeButton}</S.CloseButton>
               </>
             ) : (
-              <span>아직 등록된 카피 메세지가 없습니다.</span>
+              <span>아직 등록된 카피 메시지가 없습니다.</span>
             )}
           </S.MessageContainer>
         </S.FlexBox>

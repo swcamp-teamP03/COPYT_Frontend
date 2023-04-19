@@ -10,7 +10,8 @@ export const FlexBox = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 500;
   span {
     color: ${({ theme }) => theme.colors.red};
   }
@@ -19,6 +20,8 @@ export const Desc = styled.div`
   display: flex;
   gap: 10px;
   color: #606060;
+  font-size: 14px;
+  line-height: 21px;
   span {
     width: 100%;
     white-space: wrap;

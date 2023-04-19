@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const ListCategory = styled.div`
   margin-top: 1.5rem;
   display: grid;
+  gap: 10px;
   grid-template-columns: 0.5fr 1fr 2fr 2fr;
   margin-bottom: 20px;
+  white-space: nowrap;
   div {
     display: flex;
     justify-content: center;

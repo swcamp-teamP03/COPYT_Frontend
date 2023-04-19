@@ -13,6 +13,7 @@ export const NoticeContainer = styled.div`
   border-radius: 10px;
   height: 50px;
   background-color: #f4f4f4;
+
   span {
     font-weight: 700;
     color: ${({ theme }) => theme.colors.red};

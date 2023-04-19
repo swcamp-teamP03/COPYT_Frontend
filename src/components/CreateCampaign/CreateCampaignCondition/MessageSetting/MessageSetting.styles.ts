@@ -3,21 +3,25 @@ import styled from 'styled-components';
 export const Gap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
   margin-bottom: 50px;
 `;
 
 export const Title = styled.div`
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 500;
   margin-bottom: 10px;
+  margin-top: 20px;
   span {
     color: ${({ theme }) => theme.colors.red};
   }
 `;
 export const Desc = styled.div`
+  margin-left: 5px;
   display: flex;
   gap: 10px;
-
+  font-size: 14px;
+  line-height: 21px;
   span {
     color: ${({ theme }) => theme.colors.gray50};
     width: 100%;
@@ -29,7 +33,7 @@ export const Desc = styled.div`
 `;
 
 export const RadioInput = styled.div`
-  font-size: 20px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -44,6 +48,6 @@ export const RadioInput = styled.div`
   }
   span {
     color: ${({ theme }) => theme.colors.gray50};
-    font-size: 16px;
+    font-size: 14px;
   }
 `;

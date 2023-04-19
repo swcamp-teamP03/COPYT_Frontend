@@ -35,10 +35,7 @@ const ClientGroupList = () => {
       <ListCount listCount={listCount} setListCount={setListCount} totalList={groupList?.totalGroupCount ?? 0} setPageNum={setPageNum} />
       <S.ListCategory>
         <div>즐겨찾기</div>
-        <div>
-          <span>생성일</span>
-          {/* <div>{CHEVRON.verticalArrows}</div> */}
-        </div>
+        <div>생성일</div>
         <div>그룹명 </div>
         <div>고객수</div>
       </S.ListCategory>

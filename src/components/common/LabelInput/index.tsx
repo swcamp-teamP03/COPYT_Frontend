@@ -14,13 +14,13 @@ interface LabelInputProps extends InputHTMLAttributes<HTMLInputElement> {
   desc?: string;
   hover?: string;
   marginBottom?: string;
+  value?: string;
 }
 
-const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, errorMessage, desc, limit, hover, marginBottom = '20px', ...props }: LabelInputProps) => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const textCount = inputRef.current?.value.length ?? 0;
+const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, errorMessage, desc, limit, hover, marginBottom = '20px', value, ...props }: LabelInputProps) => {
+  const textCount = value?.length ?? 0;
   const inputBorderColor = errorMessage ? 'red' : undefined;
+
   return (
     <S.Layout flexDirection={flexDirection} marginBottom={marginBottom}>
       <S.Label>
@@ -28,7 +28,7 @@ const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, er
         {isRequire && <span>*</span>}
         {hover && <HoverQuestion text={hover} />}
       </S.Label>
-      <S.Input {...props} ref={inputRef} borderColor={inputBorderColor} />
+      <S.Input {...props} value={value} borderColor={inputBorderColor} />
       {desc && (
         <S.Desc>
           <div>{SVG.exclamation}</div>

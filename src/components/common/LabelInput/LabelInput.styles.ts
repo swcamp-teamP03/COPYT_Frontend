@@ -35,10 +35,11 @@ interface TextCountProps {
 
 export const TextCount = styled.div<TextCountProps>`
   position: absolute;
-  font-size: 14px;
+  font-size: 12px;
   right: 1rem;
-  bottom: ${(props) => (props.hasDesc ? '2.8rem' : '1rem')};
+  bottom: ${(props) => (props.hasDesc ? '3.5rem' : '1rem')};
   color: ${({ theme }) => theme.colors.gray50};
+  opacity: 0.7;
 `;
 
 export const ErrorMessage = styled.div`
@@ -61,9 +62,11 @@ export const Desc = styled.div`
   display: flex;
   white-space: pre;
   gap: 10px;
-  font-size: 12px;
+  font-size: 14px;
+  margin-top: 0.7rem;
   span {
     color: #606060;
+    line-height: 21px;
   }
   div {
     margin-top: 5px;

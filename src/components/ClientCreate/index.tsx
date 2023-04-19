@@ -71,6 +71,8 @@ const ClientGroupCreate = ({}) => {
     setGroupName(e.target.value);
   }, []);
 
+  console.log(selectedFile);
+
   const submitForm = async () => {
     //파일
     if (selectedFile) {
@@ -141,7 +143,7 @@ const ClientGroupCreate = ({}) => {
               <input className="input-file" type="file" accept=".xls, .xlsx" ref={inputRef} onChange={onUploadFile} style={{ display: 'none' }} />
               {fileName}
             </>
-            <div onClick={handleDeleteModal}>x</div>
+            <div onClick={handleDeleteModal}>X</div>
             {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={deleteFile} />} {/* 모달을 열면서 handleDeleteModal 대신 deleteFile 함수를 넘깁니다. */}
           </S.ClientProperty>
         ) : (

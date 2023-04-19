@@ -10,8 +10,8 @@ interface LayoutProps {
 
 const Layout = ({ router }: LayoutProps) => {
   const location = useLocation();
-  const isRoot = location.pathname === '/main';
-
+  const { pathname } = location;
+  const isRoot = pathname === '/main';
   return (
     <Wrapper>
       <Sticky>
@@ -38,13 +38,14 @@ const ContentWrapper = styled.div<{ isRoot: boolean }>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 4.25rem 4.25rem;
-  background-color: ${({ isRoot }) => (isRoot ? '#f2f2f2' : 'transparent')};
+  padding: 4.25rem;
+  background-color: ${({ isRoot }) => (isRoot ? '#F7F8FA' : 'transparent')};
 `;
 
 const Content = styled.div`
   position: relative;
   height: 100%;
+  min-width: 1000px;
 `;
 
 export default Layout;

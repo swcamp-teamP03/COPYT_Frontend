@@ -52,9 +52,9 @@ const Recent = () => {
                     <span>{list.clickRate}%</span>
                   </S.ClickRate>
                 </S.CampaignBody>
-                <S.CampaignFooter>
+                <S.CamapignFooter>
                   <S.GoCurrent onClick={() => onClickCampaign(list.campaignId)}>{HOME.goCurrent}</S.GoCurrent>
-                </S.CampaignFooter>
+                </S.CamapignFooter>
               </S.CampaignItems>
             ))}
           </S.CampaignLayout>

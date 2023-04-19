@@ -20,6 +20,7 @@ export const Title = styled.div`
 
 export const Label = styled.label`
   white-space: nowrap;
+  font-size: 18px;
   width: fit-content;
 `;
 
@@ -32,17 +33,21 @@ export const MessageContainer = styled.div<MessageContainerProps>`
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
-  max-width: 507px;
+  width: 400px;
+  max-width: 400px;
   height: 50px;
   border: ${(props) => (props.hasMessage ? 'none' : '1px dashed #DADADA')};
   border-radius: 10px;
   background-color: ${(props) => (props.hasMessage ? props.theme.colors.gray30 : 'white')};
+  opacity: ${(props) => !props.hasMessage && 0.7};
+  text-align: ${(props) => (props.hasMessage ? 'left' : 'center')};
   span {
     width: 100%;
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 14px;
   }
 `;
 
