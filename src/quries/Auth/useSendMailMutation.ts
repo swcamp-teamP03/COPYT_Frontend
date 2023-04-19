@@ -11,6 +11,9 @@ const useSendMailMutation = ({ onSendEmail }: UseSendMailMutationProps) => {
       alert('메일함에서 인증번호를 확인해 주세요');
       onSendEmail();
     },
+    onError: () => {
+      alert('이메일 주소를 확인해 주세요.');
+    },
   });
 };
 

@@ -59,10 +59,13 @@ export const ConfirmMessage = styled.div`
 
 export const Desc = styled.div`
   display: flex;
-  align-items: center;
+  white-space: pre;
   gap: 10px;
   font-size: 12px;
   span {
     color: #606060;
+  }
+  div {
+    margin-top: 5px;
   }
 `;

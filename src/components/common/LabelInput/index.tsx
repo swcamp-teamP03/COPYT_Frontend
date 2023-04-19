@@ -31,7 +31,7 @@ const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, er
       <S.Input {...props} ref={inputRef} borderColor={inputBorderColor} />
       {desc && (
         <S.Desc>
-          {SVG.exclamation}
+          <div>{SVG.exclamation}</div>
           <span>{desc}</span>
         </S.Desc>
       )}
