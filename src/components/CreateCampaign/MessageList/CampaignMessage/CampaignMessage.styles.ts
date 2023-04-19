@@ -23,7 +23,7 @@ export const MessageMember = styled.div`
 
 export const MessageContainer = styled.div`
   padding: 30px;
-  height: 432px;
+  height: 400px;
   background-color: white;
   border-radius: 30px;
   border: 1px solid #bebebe;
@@ -34,19 +34,23 @@ export const MessageHeader = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
 export const MessageBody = styled.div`
-  height: 75%;
+  height: 65%;
   overflow-y: auto;
   white-space: pre-wrap;
 `;
 
 export const MessageFooter = styled.div`
   font-size: ${({ theme }) => theme.fontSize.sm};
+  line-height: 20px;
+  margin: 0;
   span {
     color: blue;
     text-decoration: underline;
   }
 `;
+
 interface ByteProps {
   isOver: boolean;
 }
