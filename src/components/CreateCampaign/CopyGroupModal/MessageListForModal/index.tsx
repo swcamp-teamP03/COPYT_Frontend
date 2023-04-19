@@ -42,7 +42,7 @@ const MessageListForModal = ({ selectedMesssage, setSelecetedMessage, modalHandl
     <MessageList>
       <Sticky>
         <MessageContainer>
-          <span>메세지 A</span>
+          <span>메시지 A</span>
           <Message>
             <span>{selectedMesssage[0]?.content}</span>
           </Message>
@@ -52,7 +52,7 @@ const MessageListForModal = ({ selectedMesssage, setSelecetedMessage, modalHandl
         </MessageContainer>
         {condition.abTest && (
           <MessageContainer>
-            <span>메세지 B</span>
+            <span>메시지 B</span>
             <Message>
               <span>{selectedMesssage[1]?.content}</span>
             </Message>

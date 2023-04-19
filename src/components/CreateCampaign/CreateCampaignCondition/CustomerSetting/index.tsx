@@ -8,8 +8,8 @@ import CustomerGroupModal from '../../CustomerGroupModal';
 import * as S from './CustomerSetting.styles';
 
 const WHETER_NOTICE = [
-  'A/B 테스트 기능 사용 시, 고객 그룹 내 포함된 고객 수의 50%씩 메세지 A,B 그룹으로 자동으로 나누어져 메세지가 전송됩니다.',
-  'A/B 테스트 기능 사용 시, 캠페인 상세 화면에서 메세지 별 성과추이 그래프를 확인할 수 있습니다.',
+  'A/B 테스트 기능 사용 시, 고객 그룹 내 포함된 고객 수의 50%씩 메시지 A,B 그룹으로 자동으로 나누어져 메시지가 전송됩니다.',
+  'A/B 테스트 기능 사용 시, 캠페인 상세 화면에서 메시지 별 성과추이 그래프를 확인할 수 있습니다.',
 ];
 
 const CustomerSetting = () => {

@@ -44,7 +44,7 @@ const CapaignGroups = () => {
       <ListCount listCount={listCount} setListCount={setListCount} totalList={campaignData?.totalCampaignCount ?? 0} setPageNum={setPageNum} />
       <ListCategory>
         <div>즐겨찾기</div>
-        <div>메세지 유형</div>
+        <div>메시지 유형</div>
         <div>캠페인명</div>
         <div>전체 클릭률</div>
         <div>생성일</div>

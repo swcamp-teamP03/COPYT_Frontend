@@ -2,9 +2,9 @@ import React from 'react';
 import * as S from './NonCopyGroupList.style';
 
 const MESSAGE_TYPE = [
-  { title: '웰컴 메세지', desc: '새롭게 유입된 고객을 위한 메세지를 작성해보세요.' },
-  { title: '이벤트 메세지', desc: '이벤트를 위한 메세지를 작성해보세요.' },
-  { title: '할인 메세지', desc: '할인을 위한 메세지를 작성해보세요.' },
+  { title: '웰컴 메시지', desc: '새롭게 유입된 고객을 위한 메시지를 작성해보세요.' },
+  { title: '이벤트 메시지', desc: '이벤트를 위한 메시지를 작성해보세요.' },
+  { title: '할인 메시지', desc: '할인을 위한 메시지를 작성해보세요.' },
 ];
 
 const NonCopyGroupList = () => {
