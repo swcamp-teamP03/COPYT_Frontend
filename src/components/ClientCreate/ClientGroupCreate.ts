@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const Layout = styled.div`
+  padding: 0 4rem;
+`;
+
 export const HeaderLayout = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -21,6 +25,10 @@ export const TaxtContainer = styled.div`
   gap: 10px;
   margin: 1rem 0 1.5rem 1rem;
   flex-direction: column;
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+  }
 `;
 
 export const TaxtInnerContainer = styled.div`
@@ -29,6 +37,11 @@ export const TaxtInnerContainer = styled.div`
   gap: 10px;
   margin: 1rem 0 1.5rem 1rem;
   flex-direction: column;
+  h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+  }
 `;
 
 export const ClientProperty = styled.div`
@@ -44,6 +57,12 @@ export const ClientProperty = styled.div`
   div:hover {
     cursor: pointer;
   }
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
 `;
 
 export const ClientModifyProperty = styled.input`

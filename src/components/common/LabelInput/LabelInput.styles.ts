@@ -13,10 +13,17 @@ export const Layout = styled.div<LayoutProps>`
   margin-bottom: ${(props) => props.marginBottom};
 `;
 
-export const Label = styled.label`
+interface LabelProps {
+  labelFontSize: string;
+  labelFontWeight: string;
+}
+
+export const Label = styled.label<LabelProps>`
   margin-bottom: 10px;
   display: flex;
   width: fit-content;
+  font-size: ${(props) => props.labelFontSize};
+  font-weight: ${(props) => props.labelFontWeight};
   span {
     color: red;
     margin-right: 0.5rem;

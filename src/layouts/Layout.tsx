@@ -38,7 +38,7 @@ const ContentWrapper = styled.div<{ isRoot: boolean }>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 4.25rem;
+  padding: 3.8rem 4.25rem;
   background-color: ${({ isRoot }) => (isRoot ? '#F7F8FA' : 'transparent')};
 `;
 

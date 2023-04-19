@@ -5,7 +5,7 @@ import HoverQuestion from '../../DetailCampaign/Analysis/HoverQuestion';
 import * as S from './LabelInput.styles';
 
 interface LabelInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  labelTitle: string;
+  labelTitle?: string;
   flexDirection?: 'row' | 'column';
   isRequire?: boolean;
   errorMessage?: string;
@@ -15,15 +15,30 @@ interface LabelInputProps extends InputHTMLAttributes<HTMLInputElement> {
   hover?: string;
   marginBottom?: string;
   value?: string;
+  labelFontSize?: string;
+  labelFontWeight?: string;
 }
 
-const LabelInput = ({ labelTitle, flexDirection = 'column', isRequire = true, errorMessage, desc, limit, hover, marginBottom = '20px', value, ...props }: LabelInputProps) => {
+const LabelInput = ({
+  labelTitle,
+  flexDirection = 'column',
+  isRequire = true,
+  errorMessage,
+  desc,
+  limit,
+  hover,
+  marginBottom = '20px',
+  labelFontSize = '16px',
+  labelFontWeight = 'normal',
+  value,
+  ...props
+}: LabelInputProps) => {
   const textCount = value?.length ?? 0;
   const inputBorderColor = errorMessage ? 'red' : undefined;
 
   return (
     <S.Layout flexDirection={flexDirection} marginBottom={marginBottom}>
-      <S.Label>
+      <S.Label labelFontSize={labelFontSize} labelFontWeight={labelFontWeight}>
         {labelTitle}
         {isRequire && <span>*</span>}
         {hover && <HoverQuestion text={hover} />}
