@@ -21,7 +21,7 @@ const CreateCopy = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const navigate = useNavigate();
   const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation(setShowSubmitModal);
-  // useBeforeunload({ showPreventModal, setShowPreventModal });
+  useBeforeunload({ showPreventModal, setShowPreventModal });
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
