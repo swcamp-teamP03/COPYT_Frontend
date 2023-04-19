@@ -136,6 +136,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
               labelTitle="인증번호"
               placeholder="인증번호를 입력해주세요."
               name="certificationNumber"
+              value={phoneNumber}
               onChange={handleUserInput}
               errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
               marginBottom="0px"

@@ -72,6 +72,7 @@ const ListCategory = styled.div`
   div {
     display: flex;
     justify-content: center;
+    white-space: nowrap;
   }
   div:nth-child(2) {
     gap: 20px;

@@ -55,18 +55,20 @@ const CustomerSetting = () => {
           <span>아직 등록된 고객 그룹이 없습니다.</span>
         </S.NonGroupBox>
       )}
-      <S.Desc>
-        <div>{SVG.exclamation}</div>
-        <span>
-          전화번호가 식별된
-          <S.Red> {condition.customerCnt}</S.Red>
-          명을 대상으로 캠페인 발송을 시도합니다.
-        </span>
-      </S.Desc>
-      <S.Desc>
-        <div>{SVG.exclamation}</div>
-        <span>SMS 수신 동의하지 않은 고객에게는 발송되지 않도록 확인해주세요.</span>
-      </S.Desc>
+      <S.DescWrapper>
+        <S.Desc>
+          <div>{SVG.exclamation}</div>
+          <span>
+            전화번호가 식별된
+            <S.Red> {condition.customerCnt}</S.Red>
+            명을 대상으로 캠페인 발송을 시도합니다.
+          </span>
+        </S.Desc>
+        <S.Desc>
+          <div>{SVG.exclamation}</div>
+          <span>SMS 수신 동의하지 않은 고객에게는 발송되지 않도록 확인해주세요.</span>
+        </S.Desc>
+      </S.DescWrapper>
       <S.FlexBox>
         <S.Title>
           A/B 테스트 기능 사용 여부
@@ -81,12 +83,14 @@ const CustomerSetting = () => {
           <label>사용 안함</label>
         </S.RadioInput>
       </S.FlexBox>
-      {WHETER_NOTICE.map((notice, idx) => (
-        <S.Desc key={idx}>
-          <div>{SVG.exclamation}</div>
-          <span>{notice}</span>
-        </S.Desc>
-      ))}
+      <S.DescWrapper>
+        {WHETER_NOTICE.map((notice, idx) => (
+          <S.Desc key={idx}>
+            <div>{SVG.exclamation}</div>
+            <span>{notice}</span>
+          </S.Desc>
+        ))}
+      </S.DescWrapper>
 
       <CustomerGroupModal isOpen={showCustomerGroupModal} handler={handleCustomerGroupModal} />
     </>

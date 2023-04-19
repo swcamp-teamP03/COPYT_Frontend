@@ -94,7 +94,7 @@ const Sticky = styled.div`
 
 const MessageContainer = styled.div`
   gap: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   position: relative;
 `;
 
@@ -115,7 +115,7 @@ const DeleteButton = styled.div`
   justify-content: center;
   align-items: center;
   right: 0;
-  top: 10px;
+  top: 20px;
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;

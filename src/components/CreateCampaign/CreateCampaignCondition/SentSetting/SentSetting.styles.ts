@@ -10,7 +10,8 @@ export const FlexBox = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 500;
   margin-bottom: 10px;
   span {
     color: ${({ theme }) => theme.colors.red};
@@ -29,18 +30,22 @@ export const Desc = styled.div`
 export const RadioInput = styled.div`
   font-size: 20px;
   display: flex;
+  align-items: center;
   gap: 10px;
   line-height: 30px;
   input {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     :checked {
       background-color: black;
     }
   }
+  label {
+    font-size: 18px;
+  }
   span {
     color: ${({ theme }) => theme.colors.gray50};
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 
@@ -62,5 +67,5 @@ export const SDatePicker = styled(DatePicker)`
   border: none;
   width: 180px;
   height: 40px;
-  font-size: 18px;
+  font-size: 16px;
 `;

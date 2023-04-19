@@ -4,12 +4,12 @@ export const FlexBox = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 
 export const Title = styled.div`
   font-size: 20px;
+  font-weight: 500;
   white-space: nowrap;
   margin-top: 5px;
   span {
@@ -18,8 +18,8 @@ export const Title = styled.div`
 `;
 
 export const GroupBox = styled.div`
-  margin: 30px 0;
   display: flex;
+  margin-bottom: 10px;
   justify-content: space-between;
   border-radius: 10px;
   padding: 1rem;
@@ -33,8 +33,9 @@ export const GroupBox = styled.div`
 `;
 
 export const NonGroupBox = styled.div`
-  margin: 30px 0;
   display: flex;
+  margin-bottom: 10px;
+  font-size: 14px;
   justify-content: center;
   border: 1px dotted #dadada;
   border-radius: 10px;
@@ -42,10 +43,14 @@ export const NonGroupBox = styled.div`
   color: #606060;
 `;
 
+export const DescWrapper = styled.div`
+  margin-bottom: 50px;
+`;
+
 export const Desc = styled.div`
   display: flex;
   gap: 10px;
-
+  line-height: 21px;
   span {
     color: ${({ theme }) => theme.colors.gray50};
     width: 100%;
