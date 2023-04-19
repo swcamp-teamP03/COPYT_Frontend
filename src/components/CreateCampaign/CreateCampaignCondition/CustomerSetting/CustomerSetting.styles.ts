@@ -49,6 +49,9 @@ export const Desc = styled.div`
     width: 100%;
     white-space: wrap;
   }
+  div {
+    margin-top: 4px;
+  }
 `;
 
 export const Red = styled.span`

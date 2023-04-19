@@ -23,6 +23,9 @@ export const Desc = styled.div`
     width: 100%;
     white-space: wrap;
   }
+  div {
+    margin-top: 4px;
+  }
 `;
 
 export const RadioInput = styled.div`
@@ -39,7 +42,6 @@ export const RadioInput = styled.div`
       background-color: black;
     }
   }
-
   span {
     color: ${({ theme }) => theme.colors.gray50};
     font-size: 16px;

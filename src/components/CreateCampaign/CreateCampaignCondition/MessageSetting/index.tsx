@@ -62,7 +62,7 @@ const MessageSetting = () => {
             </S.RadioInput>
           ))}
           <S.Desc>
-            {SVG.exclamation}
+            <div>{SVG.exclamation}</div>
             <span>광고성 내용이 포함되어 있으면 꼭 체크해 주세요. 정책 위반 시 책임은 고객사 당사에 있으니 주의해주세요.자세한 사례는 가이드문서를 확인해주세요.</span>
           </S.Desc>
         </div>

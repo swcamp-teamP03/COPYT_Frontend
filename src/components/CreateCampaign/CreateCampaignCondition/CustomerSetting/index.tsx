@@ -56,7 +56,7 @@ const CustomerSetting = () => {
         </S.NonGroupBox>
       )}
       <S.Desc>
-        {SVG.exclamation}
+        <div>{SVG.exclamation}</div>
         <span>
           전화번호가 식별된
           <S.Red> {condition.customerCnt}</S.Red>
@@ -64,7 +64,7 @@ const CustomerSetting = () => {
         </span>
       </S.Desc>
       <S.Desc>
-        {SVG.exclamation}
+        <div>{SVG.exclamation}</div>
         <span>SMS 수신 동의하지 않은 고객에게는 발송되지 않도록 확인해주세요.</span>
       </S.Desc>
       <S.FlexBox>
@@ -83,7 +83,7 @@ const CustomerSetting = () => {
       </S.FlexBox>
       {WHETER_NOTICE.map((notice, idx) => (
         <S.Desc key={idx}>
-          {SVG.exclamation}
+          <div>{SVG.exclamation}</div>
           <span>{notice}</span>
         </S.Desc>
       ))}

@@ -12,12 +12,7 @@ const today = new Date(new Date().setHours(8, 0));
 const tommrrow = new Date(today.setDate(today.getDate() + 1));
 const SentSetting = () => {
   const [condition, setCondition] = useRecoilState(campaignConditionState);
-  const [open, setOpen] = useState(true);
   const [startDate, setStartDate] = useState(tommrrow);
-
-  const handleCollapsed = () => {
-    setOpen((prev) => !prev);
-  };
 
   const onChangeSentCycle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCondition((prev) => ({

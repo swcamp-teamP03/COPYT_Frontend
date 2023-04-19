@@ -2,6 +2,7 @@ import React, { Dispatch, useState, useEffect, useRef } from 'react';
 import { SIGNUP_MESSAGE } from '../../../constants/authMessage';
 import useConfirmEmailMutation from '../../../quries/Auth/useConfirmEmailMutation';
 import useSendMailMutation from '../../../quries/Auth/useSendMailMutation';
+import isEmailValidate from '../../../utils/isEmailValidate';
 import Button from '../../common/Button';
 import LabelInput from '../../common/LabelInput';
 import HoverQuestion from '../../DetailCampaign/Analysis/HoverQuestion';
@@ -63,7 +64,12 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
     if (email.trim() === '') {
       return alert('내용을 입력해 주세요');
     }
-    sendMailMutate(email);
+    const validate = isEmailValidate(email);
+    if (validate) {
+      sendMailMutate(email);
+    } else {
+      alert('이메일 주소를 확인해 주세요.');
+    }
   };
 
   const handleConfirmation = () => {
@@ -175,21 +181,23 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
       />
       <LabelInput
         labelTitle="비밀번호"
-        placeholder="영문,숫자,특수문자 포함 총 8자리"
+        placeholder="영문,숫자,특수문자 포함 총 8자리 이상"
         name="password"
         type="password"
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
-        maxLength={8}
+        maxLength={24}
+        desc={SIGNUP_MESSAGE.PASSWORD_DESC}
       />
       <LabelInput
         labelTitle="비밀번호 재입력"
-        placeholder="영문,숫자,특수문자 포함 총 8자리"
+        placeholder="영문,숫자,특수문자 포함 총 8자리 이상"
         name="passwordCheck"
         type="password"
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
-        maxLength={8}
+        maxLength={24}
+        desc={SIGNUP_MESSAGE.PASSWORD_DESC}
       />
     </div>
   );

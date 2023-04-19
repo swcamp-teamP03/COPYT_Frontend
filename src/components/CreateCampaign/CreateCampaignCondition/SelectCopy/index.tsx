@@ -63,7 +63,7 @@ const SelectCopy = () => {
       </S.FlexBox>
       {EXCLAMATION.map((text, idx) => (
         <S.Desc key={idx}>
-          {SVG.exclamation}
+          <div>{SVG.exclamation}</div>
           <span>{text}</span>
         </S.Desc>
       ))}
