@@ -132,18 +132,14 @@ const ClientGroupDetail = () => {
   };
 
   return (
-    <>
+    <S.Layout>
       <S.HeaderLayout>
         <h1>고객 그룹 상세</h1>
-
         <>
           {clientDetail && clientDetail.campaigns && clientDetail.campaigns.length > 0 ? null : (
             <Button title={modify ? '저장' : '수정'} buttonColor="blue" borderRadius="10px" onButtonClick={ModifyHandler} />
           )}
         </>
-      </S.HeaderLayout>
-      <S.HeaderLayout>
-        <h2>고객 그룹 정보</h2>
       </S.HeaderLayout>
       <S.TaxtInnerContainer>
         <S.TaxtContainer>
@@ -165,8 +161,8 @@ const ClientGroupDetail = () => {
           <>
             <>
               {properties.map((property, index) => (
-                <div key={index}>
-                  <span>메모{index + 1}</span>
+                <div key={index} style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span>메모 {index + 1}</span>
                   <S.ClientModifyProperty
                     type="text"
                     value={property}
@@ -183,11 +179,13 @@ const ClientGroupDetail = () => {
             </>
 
             <>
-              <h2>고객 DB 업로드</h2>
-              <S.PlusButtonLayout>
-                <ReactExcelDownload />
-                <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick} />
-              </S.PlusButtonLayout>
+              <S.SubTitle>
+                <h3>고객 DB 업로드</h3>
+                <S.PlusButtonLayout>
+                  <ReactExcelDownload />
+                  <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={false} onButtonClick={onUploadFileButtonClick} />
+                </S.PlusButtonLayout>
+              </S.SubTitle>
 
               <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
                 {fileName ? (
@@ -224,13 +222,15 @@ const ClientGroupDetail = () => {
               <Button title="+" buttonColor="blue" borderRadius="10px" buttonSize="buttonS" isDisabled={true}></Button>
             </S.PlusButtonLayout>
 
-            <h2>고객 DB 업로드</h2>
-            <S.PlusButtonLayout>
-              <ReactExcelDownload />
-              <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={true} onButtonClick={onUploadFileButtonClick} />
-            </S.PlusButtonLayout>
+            <S.SubTitle>
+              <h3>고객 DB 업로드</h3>
+              <S.PlusButtonLayout>
+                <ReactExcelDownload />
+                <Button title="파일 재 업로드" buttonColor="blue" borderRadius="10px" isDisabled={true} onButtonClick={onUploadFileButtonClick} />
+              </S.PlusButtonLayout>
+            </S.SubTitle>
 
-            <S.ClientProperty style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+            <S.ClientProperty style={{ height: '60px', paddingRight: '50px' }} color="blue">
               <span>{clientDetail?.excelFile.excelFileName}</span>
               <span>{clientDetail?.excelFile.excelUploadTime}</span>
               <span>{clientDetail?.excelFile.customerCnt}</span>
@@ -244,23 +244,23 @@ const ClientGroupDetail = () => {
         )}
       </S.TaxtContainer>
       <S.TaxtContainer>
-        <h2>연결된 캠페인</h2>
+        <h3>연결된 캠페인</h3>
         {clientDetail && clientDetail.campaigns && clientDetail.campaigns.length > 0 ? (
           <>
             {clientDetail.campaigns.map((list) => (
-              <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} key={list.campaignId}>
+              <S.ClientProperty color="blue" style={{ height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} key={list.campaignId}>
                 {list.campaignName}
                 <Button title="캠페인 바로가기" buttonColor="blue" borderRadius="10px" onButtonClick={() => handleGoCampaigns(list.campaignId)}></Button>
               </S.ClientProperty>
             ))}
           </>
         ) : (
-          <S.ClientProperty style={{ height: '30px', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <S.ClientProperty style={{ height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             연결된 캠페인이 없습니다. 캠페인에 활용된 고객그룹은 수정이 불가합니다.
           </S.ClientProperty>
         )}
       </S.TaxtContainer>
-    </>
+    </S.Layout>
   );
 };
 
