@@ -11,7 +11,8 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   h1 {
-    font-size: 32px;
+    font-size: 24px;
+    font-weight: 500;
   }
 `;
 
