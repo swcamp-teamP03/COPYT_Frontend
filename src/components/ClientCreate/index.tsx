@@ -10,7 +10,6 @@ import PreventModal from '../PreventModal';
 import { useRecoilState } from 'recoil';
 import { clientListState } from '../../store/clientListState';
 import useCreatClientMutation from '../../quries/Client/useCreateClientMutation';
-import useBeforeunload from '../../hooks/useBeforunload';
 
 const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
@@ -22,7 +21,6 @@ const ClientGroupCreate = ({}) => {
   const [clientList, setClientList] = useRecoilState(clientListState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  // useBeforeunload({ showPreventModal, setShowPreventModal });
 
   const { mutate: createClientMutate } = useCreatClientMutation();
 
@@ -155,7 +153,7 @@ const ClientGroupCreate = ({}) => {
               {fileName}
             </>
             <div onClick={handleDeleteModal}>X</div>
-            {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={deleteFile} />} {/* 모달을 열면서 handleDeleteModal 대신 deleteFile 함수를 넘깁니다. */}
+            {showModal && <DeleteFileModal showModal={showModal} handleDeleteModal={deleteFile} />}
           </S.ClientProperty>
         ) : (
           <S.ClientProperty style={{ height: '60px', border: 'dashed 2px', borderColor: '#ded6d6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
