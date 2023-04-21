@@ -25,6 +25,9 @@ const ModalFrame = ({ isOpen, height = '180px', width = '520px', onClick, childr
     } else {
       document.body.style.cssText = '';
     }
+    return () => {
+      document.body.style.cssText = '';
+    };
   }, [isOpen]);
 
   return (
