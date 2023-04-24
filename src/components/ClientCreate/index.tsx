@@ -6,10 +6,11 @@ import ReactExcelDownload from '../common/XLSX';
 import PageHeader from '../common/PageHeader';
 import DeleteFileModal from './FileModal';
 import LabelInput from '../common/LabelInput';
-import PreventModal from '../PreventModal';
 import { useRecoilState } from 'recoil';
 import { clientListState } from '../../store/clientListState';
 import useCreatClientMutation from '../../quries/Client/useCreateClientMutation';
+import useBeforeunload from '../../hooks/useBeforunload';
+import PreventModal from '../common/PreventModal';
 
 const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
@@ -21,6 +22,7 @@ const ClientGroupCreate = ({}) => {
   const [clientList, setClientList] = useRecoilState(clientListState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
+  useBeforeunload({ when: true, setShowPreventModal });
 
   const { mutate: createClientMutate } = useCreatClientMutation();
 
