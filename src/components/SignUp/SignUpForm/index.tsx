@@ -107,8 +107,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
   const seconds = (timer % 60).toString().padStart(2, '0');
 
   return (
-    <div>
-      <S.Title>회원 가입</S.Title>
+    <>
       <S.FlexRover>
         <LabelInput
           labelTitle="ID(이메일)"
@@ -200,7 +199,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         maxLength={24}
         desc={SIGNUP_MESSAGE.PASSWORD_DESC}
       />
-    </div>
+    </>
   );
 };
 
