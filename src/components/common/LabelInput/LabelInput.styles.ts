@@ -69,7 +69,8 @@ export const Desc = styled.div`
   display: flex;
   white-space: pre;
   gap: 10px;
-  font-size: 14px;
+  align-items: center;
+  font-size: 11px;
   margin-top: 0.7rem;
   span {
     color: #606060;
