@@ -11,6 +11,7 @@ import DropDwown from '../../common/DropDown';
 import { SVG } from '../../../assets';
 import { CHEVRON } from '../../../assets/Chevron';
 import Loading from '../../common/Loading';
+import HoverQuestion from '../../DetailCampaign/Analysis/HoverQuestion';
 
 const COPY_COUNT = [1, 2, 3, 4, 5];
 const TARTGET_AGE = ['10대', '20대', '30대', '40대', '50대', '60대 이상', '구분없음'];
@@ -159,6 +160,7 @@ const CreateCondition = ({ condition, conditionDispatch }: CreatConditionProps) 
         <div>
           <S.Label>
             문장 길이 <span>*</span>
+            <HoverQuestion text="‘짧게’는 20자 내외,‘길게’는 100 내외로 문장이 생성돼요!" />
           </S.Label>
           <S.CopyTypeContainer>
             {COPY_LENGTH.map((type) => (

@@ -11,6 +11,7 @@ import isEmailValidate from '../utils/isEmailValidate';
 import isPasswordValidate from '../utils/isPasswordValidate';
 import ispersonValidate from '../utils/isusernameValidate';
 import isPhoneNumberValidate from '../utils/isPhoneNumberValidate';
+import { GNB_SVG } from '../assets/GNB';
 
 const SignUp = () => {
   const [userInput, userInputDispatch] = useReducer(singUpReducer, signupInit);
@@ -53,22 +54,59 @@ const SignUp = () => {
   };
 
   return (
-    <Container>
-      <SignUpForm userInputDispatch={userInputDispatch} isError={isError} />
-      <SignUpTOS selectedTOS={selectedTOS} setSelectedTOS={setSelectedTOS} isAllChecked={isAllChecked} />
-      <Button title="회원가입" buttonSize="buttonL" buttonColor="white" onButtonClick={onSubmit} isDisabled={isDisabledSubmit} />
-    </Container>
+    <Layout>
+      <Header>{GNB_SVG.logo}</Header>
+      <Title>회원 가입</Title>
+      <Container>
+        <SignUpForm userInputDispatch={userInputDispatch} isError={isError} />
+        <SignUpTOS selectedTOS={selectedTOS} setSelectedTOS={setSelectedTOS} isAllChecked={isAllChecked} />
+        <ButtonContainer>
+          <Button title="회원가입" buttonSize="buttonL" buttonColor="white" onButtonClick={onSubmit} isDisabled={isDisabledSubmit} borderRadius={'24px'} />
+        </ButtonContainer>
+      </Container>
+    </Layout>
   );
 };
 
 export default SignUp;
 
-const Container = styled.div`
-  width: 384px;
-  margin: auto;
-  margin-top: 80px;
+const Layout = styled.div`
+  background-color: ${({ theme }) => theme.colors.gray30};
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 150px 0;
+`;
+
+const Header = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 26px 75px;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.white};
+  z-index: 100;
+  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.07));
+`;
+
+const Title = styled.h1`
+  margin-bottom: 42px;
+  width: 569.68px;
+  text-align: left;
+`;
+
+const Container = styled.div`
+  width: 500px;
+  background: #ffffff;
+  padding: 42px;
+  border-radius: 24px;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
