@@ -8,11 +8,13 @@ export const FlexLayout = styled.div`
 `;
 
 export const Label = styled.label`
+  display: flex;
   font-size: 16px;
   span {
     color: ${({ theme }) => theme.colors.red};
     font-size: 16px;
     text-align: center;
+    margin-right: 0.5rem;
   }
 `;
 
