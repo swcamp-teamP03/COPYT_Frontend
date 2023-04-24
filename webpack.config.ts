@@ -64,9 +64,6 @@ const config: Configuration = {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.REACT_APP_BASE_URL': JSON.stringify(process.env.REACT_APP_BASE_URL),
-    }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
