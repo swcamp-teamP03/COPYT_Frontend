@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import useCopyDetailQuery from '../../../quries/Copy/useCopyDetailQuery';
@@ -12,7 +12,11 @@ import CopyCountLimitModal from '../../CreateCopy/LimitModal';
 import SubmitModal from '../../CreateCopy/SubmitModal';
 import * as S from './CopyDetail.stlyes';
 
-const CopyDetails = () => {
+interface CopyDetailsProps {
+  setAbleOutPage: React.Dispatch<SetStateAction<boolean>>;
+}
+
+const CopyDetails = ({ setAbleOutPage }: CopyDetailsProps) => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const [showLimitModal, setShowLimitModal] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
@@ -37,6 +41,7 @@ const CopyDetails = () => {
     if (copyList.length + copyDetail.createCount > 20) {
       return handleLimitModal();
     }
+    setAbleOutPage(true);
     createCopytMutate(copyDetail as CopyDetailResult);
   };
 

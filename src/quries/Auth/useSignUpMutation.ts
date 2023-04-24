@@ -6,9 +6,8 @@ const useSignUpMutation = () => {
   const navigate = useNavigate();
 
   return useMutation(postSignUp, {
-    onSuccess: ({ data }) => {
-      alert('카피티에 오신 것을 환영합니다.');
-      navigate('/');
+    onSuccess: () => {
+      navigate('/auth/signup/success');
     },
     onError: (error: any) => {
       const errorResponse = error.response;

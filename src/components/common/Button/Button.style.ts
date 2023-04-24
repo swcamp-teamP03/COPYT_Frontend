@@ -5,6 +5,7 @@ interface ButtonProps {
   buttonColor: 'blue' | 'white';
   disabled: boolean;
   borderRadius: string;
+  width?: string;
 }
 
 export const HeaderButton = styled.button<ButtonProps>`
@@ -15,6 +16,7 @@ export const HeaderButton = styled.button<ButtonProps>`
   color: ${(props) => (props.buttonColor === 'blue' ? props.theme.colors.white : props.theme.colors.blue30)};
   border: ${(props) => (props.buttonColor === 'white' ? 'solid 1px' : 'none')};
   border-radius: ${(props) => props.borderRadius};
+  width: ${(props) => props.width && props.width};
   :hover {
     background-color: ${(props) => (props.buttonColor === 'white' ? props.theme.colors.blue20 : props.theme.colors.blue40)};
   }

@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import PageHeader from '../components/common/PageHeader';
+import PreventModal from '../components/common/PreventModal';
 import CopyList from '../components/CreateCopy/CopyList';
 import SubmitModal from '../components/CreateCopy/SubmitModal';
 import CopyDetails from '../components/DetailCopy/CopyDetails';
+import useBeforeunload from '../hooks/useBeforunload';
 import useCopyDetailQuery from '../quries/Copy/useCopyDetailQuery';
 import useUpdateCopyMutation from '../quries/Copy/useUpdateCopyMutation';
 import { copyListState } from '../store/copyListState';
@@ -13,6 +15,10 @@ import { copyListState } from '../store/copyListState';
 const DetailCopy = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const [showSubmitModa, setShowSubmitModal] = useState(false);
+  const [showPreventModal, setShowPreventModal] = useState(false);
+  const [ableOutPage, setAbleOutPage] = useState(false);
+
+  useBeforeunload({ when: ableOutPage, setShowPreventModal });
 
   const { id } = useParams();
 
@@ -23,8 +29,13 @@ const DetailCopy = () => {
     setShowSubmitModal((prev) => !prev);
   };
 
+  const handlePrevnetModal = () => {
+    setShowPreventModal((prev) => !prev);
+  };
+
   const onSubmit = () => {
     setShowSubmitModal(true);
+    setAbleOutPage(false);
     updateCopyMutate({ id, list: copyList });
   };
 
@@ -43,10 +54,11 @@ const DetailCopy = () => {
         <Date>{copyDetail?.createdAt}</Date>
       </PageHeader>
       <GridLayout>
-        <CopyDetails />
+        <CopyDetails setAbleOutPage={setAbleOutPage} />
         <CopyList />
       </GridLayout>
       <SubmitModal showSubmitModal={showSubmitModa} handleSubmitModal={handleSubmitModal} onClickYes={handleSubmitModal} />
+      <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
     </>
   );
 };

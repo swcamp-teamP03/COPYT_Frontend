@@ -9,15 +9,14 @@ interface ButtonProps {
   isDisabled?: boolean;
   borderRadius?: string;
   type?: 'submit' | 'reset' | 'button';
+  width?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ title, buttonSize = 'buttonM', buttonColor = 'blue', onButtonClick, isDisabled = false, borderRadius = '4px', type }) => {
+const Button: React.FC<ButtonProps> = ({ title, buttonSize = 'buttonM', buttonColor = 'blue', onButtonClick, isDisabled = false, borderRadius = '4px', type, width }) => {
   return (
-    <div>
-      <HeaderButton buttonSize={buttonSize} buttonColor={buttonColor} onClick={onButtonClick} disabled={isDisabled} borderRadius={borderRadius} type={type}>
-        {title}
-      </HeaderButton>
-    </div>
+    <HeaderButton buttonSize={buttonSize} buttonColor={buttonColor} onClick={onButtonClick} disabled={isDisabled} borderRadius={borderRadius} type={type} width={width}>
+      {title}
+    </HeaderButton>
   );
 };
 
