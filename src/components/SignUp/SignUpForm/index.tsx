@@ -6,23 +6,23 @@ import isEmailValidate from '../../../utils/isEmailValidate';
 import Button from '../../common/Button';
 import LabelInput from '../../common/LabelInput';
 import HoverQuestion from '../../DetailCampaign/Analysis/HoverQuestion';
-import { SignUpAction } from '../SignupReducer';
+import { SignUpAction, SignUpInit } from '../SignupReducer';
 import * as S from './SignUpForm.styles';
 
 interface SignUpFormProps {
   userInputDispatch: Dispatch<SignUpAction>;
+  userInput: SignUpInit;
   isError: { email: boolean; password: boolean; passwordCheck: boolean; company: boolean; phoneNumber: boolean; username: boolean };
 }
 
-const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
-  const [email, setEmail] = useState(''); // 이메일 담는 곳
+const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) => {
   const [certification, setCertification] = useState(false); // 인증 버튼
   const [certificationNumber, setCertificationNumber] = useState(''); //인증번호
   const [timer, setTimer] = useState(180); //초기 시간
   const [isTimeOver, setIsTimeOver] = useState(false); //시간초과
   const intervalRef = useRef<number | null>(null);
   const [disable, setDisable] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const { email, password, passwordCheck, phoneNumber, username, company } = userInput;
 
   const onConfirmEmail = () => {
     userInputDispatch({ type: 'CHANGE_INPUT', key: 'email', value: email });
@@ -42,9 +42,6 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
   const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
       case 'certificationNumber':
         setCertificationNumber(value);
         break;
@@ -52,7 +49,6 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         const newPhoneNumber = value.replace(/[^0-9]/g, '');
         const formattedPhoneNumber = /^010\d*$/.test(newPhoneNumber) ? newPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3') : newPhoneNumber;
         userInputDispatch({ type: 'CHANGE_INPUT', key: name, value: formattedPhoneNumber });
-        setPhoneNumber(formattedPhoneNumber);
         break;
       default:
         userInputDispatch({ type: 'CHANGE_INPUT', key: name, value });
@@ -114,6 +110,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           placeholder="copyt@gmail.com."
           name="email"
           onChange={handleUserInput}
+          value={email}
           errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
           disabled={disable}
           marginBottom="0px"
@@ -135,7 +132,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
               labelTitle="인증번호"
               placeholder="인증번호를 입력해주세요."
               name="certificationNumber"
-              value={phoneNumber}
+              value={certificationNumber}
               onChange={handleUserInput}
               errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
               marginBottom="0px"
@@ -156,6 +153,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           placeholder="브랜드(기업)명을 입력해주세요."
           name="company"
           onChange={handleUserInput}
+          value={company}
           errorMessage={isError.company ? SIGNUP_MESSAGE.BRAND : ''}
           maxLength={24}
         />
@@ -164,6 +162,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
           labelTitle="담당자명"
           placeholder="담당자를 입력해주세요."
           name="username"
+          value={username}
           onChange={handleUserInput}
           errorMessage={isError.username ? SIGNUP_MESSAGE.PERSON : ''}
           maxLength={24}
@@ -184,6 +183,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         placeholder="영문,숫자,특수문자 포함 총 8자리 이상"
         name="password"
         type="password"
+        value={password}
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
         maxLength={24}
@@ -194,6 +194,7 @@ const SignUpForm = ({ userInputDispatch, isError }: SignUpFormProps) => {
         placeholder="영문,숫자,특수문자 포함 총 8자리 이상"
         name="passwordCheck"
         type="password"
+        value={passwordCheck}
         onChange={handleUserInput}
         errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
         maxLength={24}

@@ -58,7 +58,7 @@ const SignUp = () => {
       <Header>{GNB_SVG.logo}</Header>
       <Title>회원 가입</Title>
       <Container>
-        <SignUpForm userInputDispatch={userInputDispatch} isError={isError} />
+        <SignUpForm userInputDispatch={userInputDispatch} isError={isError} userInput={userInput} />
         <SignUpTOS selectedTOS={selectedTOS} setSelectedTOS={setSelectedTOS} isAllChecked={isAllChecked} />
         <ButtonContainer>
           <Button title="회원가입" buttonSize="buttonL" buttonColor="white" onButtonClick={onSubmit} isDisabled={isDisabledSubmit} borderRadius={'24px'} />
