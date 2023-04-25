@@ -66,14 +66,14 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
     setError('email', inValidate);
   };
 
-  const handleConfirmation = () => {
-    confirmEmailMutate({ email, certificationNumber });
-  };
-
   const handleResendEmail = () => {
     setIsTimeOver(false);
     setDisable(false);
     handleSendEmail();
+  };
+
+  const handleEmailConfirm = () => {
+    confirmEmailMutate({ email, certificationNumber });
   };
 
   useEffect(() => {
@@ -136,7 +136,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
               marginBottom="0px"
             />
             <S.LabelButton>
-              <Button title="확인" buttonColor="blue" buttonSize="buttonS" type="button" onButtonClick={handleConfirmation} />
+              <Button title="확인" buttonColor="blue" buttonSize="buttonS" type="button" onButtonClick={handleEmailConfirm} />
             </S.LabelButton>
           </S.FlexRover>
           <S.Relative>

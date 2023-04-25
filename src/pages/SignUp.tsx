@@ -1,4 +1,4 @@
-import React, { FormEvent, useReducer, useState } from 'react';
+import React, { FormEvent, useEffect, useReducer, useState } from 'react';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 import SignUpForm from '../components/SignUp/SignUpForm';
@@ -11,11 +11,13 @@ import isPasswordValidate from '../utils/isPasswordValidate';
 import isPhoneNumberValidate from '../utils/isPhoneNumberValidate';
 import { GNB_SVG } from '../assets/GNB';
 import { SIGNUP_MESSAGE } from '../constants/authMessage';
+import usePopUp from '../hooks/PopUp/usePopUp';
 
 const SignUp = () => {
   const [userInput, userInputDispatch] = useReducer(singUpReducer, signupInit);
   const [selectedTOS, setSelectedTOS] = useState<TOS[]>([]);
   const { mutate: signUpMutate } = useSignUpMutation();
+  const { openPopup, closePopup } = usePopUp();
 
   const [isError, setError] = useError({
     email: '',
@@ -47,11 +49,19 @@ const SignUp = () => {
       signUpMutate(userInput);
     }
   };
+  const open = () => {
+    openPopup({
+      message: 'hi',
+      confirmText: 'hi',
+      handleClose: closePopup,
+      handleConfirm: closePopup,
+    });
+  };
 
   return (
     <Layout>
       <Header>{GNB_SVG.logo}</Header>
-      <Title>회원 가입</Title>
+      <Title onClick={open}>회원 가입</Title>
       <Container>
         <SignUpForm userInputDispatch={userInputDispatch} isError={isError} userInput={userInput} setError={setError} />
         <SignUpTOS selectedTOS={selectedTOS} setSelectedTOS={setSelectedTOS} isAllChecked={isAllChecked} />

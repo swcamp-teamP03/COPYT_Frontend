@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import * as S from './TOS.styles';
 import { motion } from 'framer-motion';
 import { CHEVRON } from '../../../assets/Chevron';
-import InfoNoticeModal from '../InfoNotice';
+import InfoNoticeModal from './TOSModal/InfoNotice';
 
 export interface TOS {
   id: number;
@@ -84,10 +84,9 @@ const SignUpTOS = ({ selectedTOS, setSelectedTOS, isAllChecked }: SignUPTOSProps
 
             <p>
               카피티 개인정보 처리방침, 이용양관에 모두 동의합니다. <br /> 자세한 사항은 약관별 전문에서 고지하고 있습니다.
-              <br /> 약관 동의를 거부할 수 있으며, 필수 약관 거부시에는 회원가입이 제한됩니다.{' '}
+              <br /> 약관 동의를 거부할 수 있으며, 필수 약관 거부시에는 회원가입이 제한됩니다.
             </p>
             <S.ChevronButton onClick={handleCollapsed} open={open}>
-              {' '}
               {CHEVRON.down}
             </S.ChevronButton>
           </S.CheckBoxContent>

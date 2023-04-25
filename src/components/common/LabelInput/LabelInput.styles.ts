@@ -69,14 +69,10 @@ export const Desc = styled.div`
   display: flex;
   white-space: pre;
   gap: 10px;
-  align-items: center;
   font-size: 11px;
   margin-top: 0.7rem;
   span {
     color: #606060;
     line-height: 21px;
-  }
-  div {
-    margin-top: 5px;
   }
 `;

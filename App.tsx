@@ -6,6 +6,7 @@ import theme from './src/styles/theme';
 import { RecoilRoot } from 'recoil';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import GlobalStyle from './src/styles/GlobalStyle';
+import PopupJs from './src/hooks/PopUp/PopUpJs';
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,7 @@ const App = () => {
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
+          <PopupJs />
           <Router />
           <GlobalStyle />
         </ThemeProvider>
