@@ -12,32 +12,18 @@ import * as S from './SignUpForm.styles';
 interface SignUpFormProps {
   userInputDispatch: Dispatch<SignUpAction>;
   userInput: SignUpInit;
-  isError: { email: boolean; password: boolean; passwordCheck: boolean; company: boolean; phoneNumber: boolean; username: boolean };
+  setError: <P extends 'email' | 'password' | 'passwordCheck' | 'phoneNumber' | 'company' | 'username'>(target: P, message: string) => string;
+  isError: { email: string; password: string; passwordCheck: string; company: string; phoneNumber: string; username: string };
 }
 
-const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) => {
+const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpFormProps) => {
   const [certification, setCertification] = useState(false); // 인증 버튼
   const [certificationNumber, setCertificationNumber] = useState(''); //인증번호
-  const [timer, setTimer] = useState(180); //초기 시간
+  const [timer, setTimer] = useState(300); //초기 시간
   const [isTimeOver, setIsTimeOver] = useState(false); //시간초과
   const intervalRef = useRef<number | null>(null);
   const [disable, setDisable] = useState(false);
   const { email, password, passwordCheck, phoneNumber, username, company } = userInput;
-
-  const onConfirmEmail = () => {
-    userInputDispatch({ type: 'CHANGE_INPUT', key: 'email', value: email });
-    setCertification(false);
-    setDisable(true);
-    setIsTimeOver(false);
-  };
-  const onSendEmail = () => {
-    setCertification(true);
-    setIsTimeOver(false);
-    setTimer(180);
-  };
-
-  const { mutate: sendMailMutate } = useSendMailMutation({ onSendEmail });
-  const { mutate: confirmEmailMutate } = useConfirmEmailMutation({ onConfirmEmail });
 
   const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -56,16 +42,28 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
     }
   };
 
+  const onConfirmEmailSuccess = () => {
+    userInputDispatch({ type: 'CHANGE_INPUT', key: 'email', value: email });
+    setCertification(false);
+    setDisable(true);
+    setIsTimeOver(false);
+  };
+
+  const onSendEmailSuccess = () => {
+    setCertification(true);
+    setIsTimeOver(false);
+    setTimer(300);
+  };
+
+  const { mutate: sendMailMutate } = useSendMailMutation({ onSendEmailSuccess });
+  const { mutate: confirmEmailMutate } = useConfirmEmailMutation({ onConfirmEmailSuccess });
+
   const handleSendEmail = () => {
-    if (email.trim() === '') {
-      return alert('내용을 입력해 주세요');
-    }
-    const validate = isEmailValidate(email);
-    if (validate) {
+    const inValidate = isEmailValidate(email);
+    if (!inValidate) {
       sendMailMutate(email);
-    } else {
-      alert('이메일 주소를 확인해 주세요.');
     }
+    setError('email', inValidate);
   };
 
   const handleConfirmation = () => {
@@ -107,7 +105,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
       <S.FlexRover>
         <LabelInput
           labelTitle="ID(이메일)"
-          placeholder="copyt@gmail.com."
+          placeholder="copyt@gmail.com"
           name="email"
           onChange={handleUserInput}
           value={email}
