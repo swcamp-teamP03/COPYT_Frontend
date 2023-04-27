@@ -24,11 +24,16 @@ const useBeforeunload = ({ when }: usePreventEventProps) => {
     });
   };
 
+  const blockRefresh = (event: BeforeUnloadEvent) => {
+    event.preventDefault();
+    event.returnValue = '';
+  };
+
   useEffect(() => {
     if (!when) return;
-    window.onbeforeunload = function (event) {
-      event.preventDefault();
-      return false;
+    window.addEventListener('beforeunload', blockRefresh);
+    return () => {
+      window.removeEventListener('beforeunload', blockRefresh);
     };
   }, [when]);
 
