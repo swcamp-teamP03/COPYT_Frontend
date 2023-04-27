@@ -1,29 +1,43 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useEffect } from 'react';
+import { PREVENT_MESSAGE } from '../constants/Prevent';
+import usePopup from './PopUp/usePopUp';
 
 interface usePreventEventProps {
   when: boolean;
-  setShowPreventModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const useBeforeunload = ({ when, setShowPreventModal }: usePreventEventProps) => {
-  const detectEvent = (event: BeforeUnloadEvent) => {
-    event.preventDefault();
-    event.returnValue = false;
+const useBeforeunload = ({ when }: usePreventEventProps) => {
+  const { openPopup, closePopup } = usePopup();
+
+  const handleConfirm = () => {
+    closePopup();
+    history.back();
+  };
+
+  const preventGoBack = () => {
+    openPopup({
+      message: PREVENT_MESSAGE,
+      confirmText: '확인',
+      cancelText: '취소',
+      handleConfirm: handleConfirm,
+      handleClose: closePopup,
+    });
   };
 
   useEffect(() => {
     if (!when) return;
-    window.addEventListener('beforeunload', detectEvent);
-    return () => {
-      window.removeEventListener('beforeunload', detectEvent);
+    window.onbeforeunload = function (event) {
+      event.preventDefault();
+      return false;
     };
   }, [when]);
 
   useEffect(() => {
     if (!when) return;
-    history.pushState(null, '', location.href); // 현재 페이지 history stack 한개 더 쌓기
-    window.onpopstate = () => {
-      setShowPreventModal(true);
+    history.pushState(null, '', location.pathname);
+    window.addEventListener('popstate', preventGoBack);
+    return () => {
+      window.removeEventListener('popstate', preventGoBack);
     };
   }, [when]);
 };

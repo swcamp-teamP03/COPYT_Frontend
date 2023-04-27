@@ -10,7 +10,6 @@ import { useRecoilState } from 'recoil';
 import { clientListState } from '../../store/clientListState';
 import useCreatClientMutation from '../../quries/Client/useCreateClientMutation';
 import useBeforeunload from '../../hooks/useBeforunload';
-import PreventModal from '../common/PreventModal';
 
 const ClientGroupCreate = ({}) => {
   const [fileName, setFileName] = useState('');
@@ -18,17 +17,12 @@ const ClientGroupCreate = ({}) => {
   const [propertyCount, setPropertyCount] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const [groupName, setGroupName] = useState('');
-  const [showPreventModal, setShowPreventModal] = useState(false);
   const [clientList, setClientList] = useRecoilState(clientListState);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  useBeforeunload({ when: true, setShowPreventModal });
+  useBeforeunload({ when: true });
 
   const { mutate: createClientMutate } = useCreatClientMutation();
-
-  const handlePrevnetModal = () => {
-    setShowPreventModal((prev) => !prev);
-  };
 
   const addProperty = () => {
     setPropertyCount((prevCount) => prevCount + 1);
@@ -166,7 +160,6 @@ const ClientGroupCreate = ({}) => {
           </S.ClientProperty>
         )}
       </S.TaxtContainer>
-      <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
     </S.Layout>
   );
 };

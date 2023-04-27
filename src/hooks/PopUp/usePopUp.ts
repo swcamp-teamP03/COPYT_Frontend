@@ -6,9 +6,11 @@ const usePopUp = () => {
 
   const openPopup = (props: PopUpStateType) => {
     setPopup(props);
+    console.log('open');
   };
 
   const closePopup = () => {
+    console.log('close');
     setPopup(null);
   };
 

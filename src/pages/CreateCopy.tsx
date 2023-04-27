@@ -12,17 +12,15 @@ import SubmitModal from '../components/CreateCopy/SubmitModal';
 import { useNavigate } from 'react-router-dom';
 
 import useBeforeunload from '../hooks/useBeforunload';
-import PreventModal from '../components/common/PreventModal';
 
 const CreateCopy = () => {
   const [condition, conditionDispatch] = useReducer(copyConditionReducer, copyConditionInit);
   const [showScantyModal, setShowScantyModal] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
-  const [showPreventModal, setShowPreventModal] = useState(false);
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const navigate = useNavigate();
   const { mutate: createCopyGroupMutate } = useCreateCopyGroupMutation(setShowSubmitModal);
-  useBeforeunload({ when: true, setShowPreventModal });
+  useBeforeunload({ when: true });
 
   const handleScantyModal = () => {
     setShowScantyModal((prev) => !prev);
@@ -31,9 +29,6 @@ const CreateCopy = () => {
     setShowSubmitModal((prev) => !prev);
   };
 
-  const handlePrevnetModal = () => {
-    setShowPreventModal((prev) => !prev);
-  };
   const onClickModalConfirm = () => {
     navigate('/copies');
   };
@@ -59,7 +54,6 @@ const CreateCopy = () => {
       </GridLayout>
       <ScantyModal showScantyModal={showScantyModal} handleScantyModal={handleScantyModal} />
       <SubmitModal showSubmitModal={showSubmitModal} handleSubmitModal={handelSubmitModal} onClickYes={onClickModalConfirm} />
-      <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
     </>
   );
 };
