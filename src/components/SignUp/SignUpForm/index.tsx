@@ -1,5 +1,6 @@
 import React, { Dispatch, useState, useEffect, useRef } from 'react';
 import { SIGNUP_MESSAGE } from '../../../constants/authMessage';
+import usePopUp from '../../../hooks/PopUp/usePopUp';
 import useConfirmEmailMutation from '../../../quries/Auth/useConfirmEmailMutation';
 import useSendMailMutation from '../../../quries/Auth/useSendMailMutation';
 import isEmailValidate from '../../../utils/isEmailValidate';
@@ -23,6 +24,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
   const [isTimeOver, setIsTimeOver] = useState(false); //시간초과
   const intervalRef = useRef<number | null>(null);
   const [disable, setDisable] = useState(false);
+  const { openPopup, closePopup } = usePopUp();
   const { email, password, passwordCheck, phoneNumber, username, company } = userInput;
 
   const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {

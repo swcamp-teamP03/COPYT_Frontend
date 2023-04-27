@@ -53,7 +53,7 @@ const Header = () => {
   };
 
   const onClickTest = () => {
-    createMutate(condition);
+    createMutate({ ...condition, sendingDate: null });
   };
 
   const isDisabledSumbit = () => {
