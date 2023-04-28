@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 export interface PopUpStateType {
   message: string;
-  confirmText?: string;
+  confirmText: string;
   cancelText?: string;
   handleClose: (...arg: any[]) => any;
   handleConfirm: (...arg: any[]) => any;

@@ -1,20 +1,30 @@
 import { useMutation } from '@tanstack/react-query';
-import { Dispatch } from 'react';
+import { AxiosError } from 'axios';
 import { confirmEmail } from '../../api/Auth/signUp';
-import { SignUpAction } from '../../components/SignUp/SignupReducer';
+import usePopUp from '../../hooks/PopUp/usePopUp';
 
 interface UseConfirmEmailMutationProps {
   onConfirmEmailSuccess: () => void;
 }
 
 const useConfirmEmailMutation = ({ onConfirmEmailSuccess }: UseConfirmEmailMutationProps) => {
+  const { openPopup, closePopup } = usePopUp();
+
   return useMutation(confirmEmail, {
     onSuccess: () => {
-      alert('인증이 완료 되었습니다.');
       onConfirmEmailSuccess();
     },
-    onError: () => {
-      alert('인증번호를 다시 확인해 주세요');
+    onError: (error) => {
+      const axiosError = error as unknown as AxiosError;
+      const { response } = axiosError;
+      if (response?.status === 400) {
+        openPopup({
+          message: '이메일 인증번호가 일치하지 않습니다.',
+          confirmText: '확인',
+          handleConfirm: closePopup,
+          handleClose: closePopup,
+        });
+      }
     },
   });
 };

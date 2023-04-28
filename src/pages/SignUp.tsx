@@ -24,12 +24,14 @@ const SignUp = () => {
     phoneNumber: '',
     company: '',
     username: '',
+    certification: '',
   });
 
   const isFormValidate = () => {
-    const { email, password, passwordCheck, phoneNumber, company, username } = userInput;
+    const { email, password, passwordCheck, phoneNumber, certification } = userInput;
     return [
       setError('email', isEmailValidate(email)),
+      setError('certification', certification === false ? SIGNUP_MESSAGE.CERTIFICATIOM : ''),
       setError('password', isPasswordValidate(password)),
       setError('passwordCheck', password !== passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''),
       setError('phoneNumber', isPhoneNumberValidate(phoneNumber)),

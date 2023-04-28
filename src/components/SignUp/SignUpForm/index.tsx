@@ -14,7 +14,7 @@ interface SignUpFormProps {
   userInputDispatch: Dispatch<SignUpAction>;
   userInput: SignUpInit;
   setError: <P extends 'email' | 'password' | 'passwordCheck' | 'phoneNumber' | 'company' | 'username'>(target: P, message: string) => string;
-  isError: { email: string; password: string; passwordCheck: string; company: string; phoneNumber: string; username: string };
+  isError: { email: string; password: string; passwordCheck: string; company: string; phoneNumber: string; username: string; certification: string };
 }
 
 const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpFormProps) => {
@@ -45,7 +45,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
   };
 
   const onConfirmEmailSuccess = () => {
-    userInputDispatch({ type: 'CHANGE_INPUT', key: 'email', value: email });
+    userInputDispatch({ type: 'CERTIFICATION', key: 'certificaiton', value: true });
     setCertification(false);
     setDisable(true);
     setIsTimeOver(false);
@@ -75,6 +75,14 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
   };
 
   const handleEmailConfirm = () => {
+    if (!certificationNumber.trim()) {
+      return openPopup({
+        message: '인증번호를 입력해 주세요.',
+        confirmText: '확인',
+        handleClose: closePopup,
+        handleConfirm: closePopup,
+      });
+    }
     confirmEmailMutate({ email, certificationNumber });
   };
 
@@ -111,7 +119,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
           name="email"
           onChange={handleUserInput}
           value={email}
-          errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
+          errorMessage={isError.email ? isError.email : isError.certification ? isError.certification : ''}
           disabled={disable}
           marginBottom="0px"
           maxLength={24}
@@ -134,7 +142,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
               name="certificationNumber"
               value={certificationNumber}
               onChange={handleUserInput}
-              errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
+              errorMessage={isError.email}
               marginBottom="0px"
             />
             <S.LabelButton>
@@ -154,7 +162,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
           name="company"
           onChange={handleUserInput}
           value={company}
-          errorMessage={isError.company ? SIGNUP_MESSAGE.BRAND : ''}
+          errorMessage={isError.company}
           maxLength={24}
         />
 
@@ -164,7 +172,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
           name="username"
           value={username}
           onChange={handleUserInput}
-          errorMessage={isError.username ? SIGNUP_MESSAGE.PERSON : ''}
+          errorMessage={isError.username}
           maxLength={24}
         />
       </S.FlexRow>
@@ -175,7 +183,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
         maxLength={13}
         name="phoneNumber"
         onChange={handleUserInput}
-        errorMessage={isError.phoneNumber ? SIGNUP_MESSAGE.PHONENUMBER : ''}
+        errorMessage={isError.phoneNumber}
         hover={'문자발송 테스트 시 수신번호로 사용됩니다.'}
       />
       <LabelInput
@@ -185,7 +193,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
         type="password"
         value={password}
         onChange={handleUserInput}
-        errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
+        errorMessage={isError.password ? isError.password : isError.passwordCheck ? isError.passwordCheck : ''}
         maxLength={24}
         desc={SIGNUP_MESSAGE.PASSWORD_DESC}
       />
@@ -196,7 +204,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpF
         type="password"
         value={passwordCheck}
         onChange={handleUserInput}
-        errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
+        errorMessage={isError.password ? isError.password : isError.passwordCheck ? isError.passwordCheck : ''}
         maxLength={24}
         desc={SIGNUP_MESSAGE.PASSWORD_DESC}
       />

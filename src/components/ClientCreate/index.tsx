@@ -65,7 +65,6 @@ const ClientGroupCreate = ({}) => {
     setGroupName(e.target.value);
   }, []);
 
-  console.log(selectedFile);
 
   const submitForm = async () => {
     //파일
