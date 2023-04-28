@@ -1,18 +1,30 @@
 import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { sendEmail } from '../../api/Auth/signUp';
+import usePopUp from '../../hooks/PopUp/usePopUp';
 
 interface UseSendMailMutationProps {
-  onSendEmail: () => void;
+  onSendEmailSuccess: () => void;
 }
 
-const useSendMailMutation = ({ onSendEmail }: UseSendMailMutationProps) => {
+const useSendMailMutation = ({ onSendEmailSuccess }: UseSendMailMutationProps) => {
+  const { openPopup, closePopup } = usePopUp();
+
   return useMutation(sendEmail, {
     onSuccess: () => {
-      alert('메일함에서 인증번호를 확인해 주세요');
-      onSendEmail();
+      onSendEmailSuccess();
     },
-    onError: () => {
-      alert('이메일 주소를 확인해 주세요.');
+    onError: (error) => {
+      const axiosError = error as unknown as AxiosError;
+      const { response } = axiosError;
+      if (response?.status === 400) {
+        openPopup({
+          message: '이미 존재하는 이메일 입니다',
+          confirmText: '확인',
+          handleConfirm: closePopup,
+          handleClose: closePopup,
+        });
+      }
     },
   });
 };

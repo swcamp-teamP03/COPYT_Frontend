@@ -39,7 +39,7 @@ const CopyList = () => {
               다양한 카피를 추천받아보세요!
             </S.NonDataTitle>
             {NONE_LIST}
-            <S.NondataFooter>Powered by GTP-3</S.NondataFooter>
+            <S.NondataFooter>Powered by GPT-3</S.NondataFooter>
           </S.NonData>
         )}
       </S.CopyListContainer>

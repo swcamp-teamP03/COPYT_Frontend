@@ -7,6 +7,7 @@ export const SIGNUP_MESSAGE = {
   BRAND: '브랜드(기업)명을 적어 주세요',
   PERSON: '담당자명을 적어주세요',
   CERTIFICATION_NUMBER: '인증번호를 입력해 주세요',
+  CERTIFICATIOM: '이메일 인증을 진행해주세요.',
   PASSWORD_DESC: '최소 영문 대소문자, 특수문자 합 총 8자리\n특수문자 예시 <~ ․ ! @ # $ % ^ & * ( ) _ - + = [ ] [ ] |  ; : ‘ “ , . ? / >',
 };
 
