@@ -9,17 +9,6 @@ const useSignUpMutation = () => {
     onSuccess: () => {
       navigate('/auth/signup/success');
     },
-    onError: (error: any) => {
-      const errorResponse = error.response;
-      const errorData = errorResponse && errorResponse.data;
-
-      if (errorData && errorData.error && errorData.error.detail) {
-        const errorMessage = errorData.error.detail;
-        alert(`회원가입 실패: ${errorMessage}`);
-      } else {
-        alert('회원가입 실패');
-      }
-    },
   });
 };
 

@@ -44,8 +44,7 @@ const SignUp = () => {
   const isDisabledSubmit = Object.values(userInput).includes('') || !isAbledTOS;
 
   const onSubmit = async () => {
-    const formErrors = isFormValidate();
-    if (!formErrors.includes('')) {
+    if (isFormValidate().every((value) => !value)) {
       signUpMutate(userInput);
     }
   };
