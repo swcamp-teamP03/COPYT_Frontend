@@ -28,7 +28,6 @@ const CapaignGroups = () => {
     }
   }, [campaignData?.totalCampaignCount]);
 
-  console.log(campaignData);
 
   return (
     <>

@@ -10,7 +10,7 @@ export interface CampignConditionInit {
   messageType: 'LMS' | 'SMS';
   sendType: 'AD' | 'COMM';
   sentCycle: string;
-  sendingDate: string;
+  sendingDate: string | null;
   messageA: string;
   messageB: string;
   sendURL: string;

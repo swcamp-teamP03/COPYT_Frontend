@@ -18,7 +18,7 @@ const SignIn = () => {
     password: '',
   });
   const [isError, setError] = useError({
-    signIn: false,
+    signIn: '',
   });
 
   const { mutate: signInMutate } = useSignInMutation(setError);

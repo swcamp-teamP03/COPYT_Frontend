@@ -1,5 +1,6 @@
 import React, { Dispatch, useState, useEffect, useRef } from 'react';
 import { SIGNUP_MESSAGE } from '../../../constants/authMessage';
+import usePopUp from '../../../hooks/PopUp/usePopUp';
 import useConfirmEmailMutation from '../../../quries/Auth/useConfirmEmailMutation';
 import useSendMailMutation from '../../../quries/Auth/useSendMailMutation';
 import isEmailValidate from '../../../utils/isEmailValidate';
@@ -12,32 +13,19 @@ import * as S from './SignUpForm.styles';
 interface SignUpFormProps {
   userInputDispatch: Dispatch<SignUpAction>;
   userInput: SignUpInit;
-  isError: { email: boolean; password: boolean; passwordCheck: boolean; company: boolean; phoneNumber: boolean; username: boolean };
+  setError: <P extends 'email' | 'password' | 'passwordCheck' | 'phoneNumber' | 'company' | 'username'>(target: P, message: string) => string;
+  isError: { email: string; password: string; passwordCheck: string; company: string; phoneNumber: string; username: string; certification: string };
 }
 
-const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) => {
+const SignUpForm = ({ userInputDispatch, isError, userInput, setError }: SignUpFormProps) => {
   const [certification, setCertification] = useState(false); // 인증 버튼
   const [certificationNumber, setCertificationNumber] = useState(''); //인증번호
-  const [timer, setTimer] = useState(180); //초기 시간
+  const [timer, setTimer] = useState(300); //초기 시간
   const [isTimeOver, setIsTimeOver] = useState(false); //시간초과
   const intervalRef = useRef<number | null>(null);
   const [disable, setDisable] = useState(false);
+  const { openPopup, closePopup } = usePopUp();
   const { email, password, passwordCheck, phoneNumber, username, company } = userInput;
-
-  const onConfirmEmail = () => {
-    userInputDispatch({ type: 'CHANGE_INPUT', key: 'email', value: email });
-    setCertification(false);
-    setDisable(true);
-    setIsTimeOver(false);
-  };
-  const onSendEmail = () => {
-    setCertification(true);
-    setIsTimeOver(false);
-    setTimer(180);
-  };
-
-  const { mutate: sendMailMutate } = useSendMailMutation({ onSendEmail });
-  const { mutate: confirmEmailMutate } = useConfirmEmailMutation({ onConfirmEmail });
 
   const handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -56,26 +44,46 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
     }
   };
 
-  const handleSendEmail = () => {
-    if (email.trim() === '') {
-      return alert('내용을 입력해 주세요');
-    }
-    const validate = isEmailValidate(email);
-    if (validate) {
-      sendMailMutate(email);
-    } else {
-      alert('이메일 주소를 확인해 주세요.');
-    }
+  const onConfirmEmailSuccess = () => {
+    userInputDispatch({ type: 'CERTIFICATION', key: 'certificaiton', value: true });
+    setCertification(false);
+    setDisable(true);
+    setIsTimeOver(false);
   };
 
-  const handleConfirmation = () => {
-    confirmEmailMutate({ email, certificationNumber });
+  const onSendEmailSuccess = () => {
+    setCertification(true);
+    setIsTimeOver(false);
+    setTimer(300);
+  };
+
+  const { mutate: sendMailMutate } = useSendMailMutation({ onSendEmailSuccess });
+  const { mutate: confirmEmailMutate } = useConfirmEmailMutation({ onConfirmEmailSuccess });
+
+  const handleSendEmail = () => {
+    const inValidate = isEmailValidate(email);
+    if (!inValidate) {
+      sendMailMutate(email);
+    }
+    setError('email', inValidate);
   };
 
   const handleResendEmail = () => {
     setIsTimeOver(false);
     setDisable(false);
     handleSendEmail();
+  };
+
+  const handleEmailConfirm = () => {
+    if (!certificationNumber.trim()) {
+      return openPopup({
+        message: '인증번호를 입력해 주세요.',
+        confirmText: '확인',
+        handleClose: closePopup,
+        handleConfirm: closePopup,
+      });
+    }
+    confirmEmailMutate({ email, certificationNumber });
   };
 
   useEffect(() => {
@@ -107,11 +115,11 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
       <S.FlexRover>
         <LabelInput
           labelTitle="ID(이메일)"
-          placeholder="copyt@gmail.com."
+          placeholder="copyt@gmail.com"
           name="email"
           onChange={handleUserInput}
           value={email}
-          errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
+          errorMessage={isError.email ? isError.email : isError.certification ? isError.certification : ''}
           disabled={disable}
           marginBottom="0px"
           maxLength={24}
@@ -134,11 +142,11 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
               name="certificationNumber"
               value={certificationNumber}
               onChange={handleUserInput}
-              errorMessage={isError.email ? SIGNUP_MESSAGE.EMAIL : ''}
+              errorMessage={isError.email}
               marginBottom="0px"
             />
             <S.LabelButton>
-              <Button title="확인" buttonColor="blue" buttonSize="buttonS" type="button" onButtonClick={handleConfirmation} />
+              <Button title="확인" buttonColor="blue" buttonSize="buttonS" type="button" onButtonClick={handleEmailConfirm} />
             </S.LabelButton>
           </S.FlexRover>
           <S.Relative>
@@ -154,7 +162,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
           name="company"
           onChange={handleUserInput}
           value={company}
-          errorMessage={isError.company ? SIGNUP_MESSAGE.BRAND : ''}
+          errorMessage={isError.company}
           maxLength={24}
         />
 
@@ -164,7 +172,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
           name="username"
           value={username}
           onChange={handleUserInput}
-          errorMessage={isError.username ? SIGNUP_MESSAGE.PERSON : ''}
+          errorMessage={isError.username}
           maxLength={24}
         />
       </S.FlexRow>
@@ -175,7 +183,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
         maxLength={13}
         name="phoneNumber"
         onChange={handleUserInput}
-        errorMessage={isError.phoneNumber ? SIGNUP_MESSAGE.PHONENUMBER : ''}
+        errorMessage={isError.phoneNumber}
         hover={'문자발송 테스트 시 수신번호로 사용됩니다.'}
       />
       <LabelInput
@@ -185,7 +193,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
         type="password"
         value={password}
         onChange={handleUserInput}
-        errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
+        errorMessage={isError.password ? isError.password : isError.passwordCheck ? isError.passwordCheck : ''}
         maxLength={24}
         desc={SIGNUP_MESSAGE.PASSWORD_DESC}
       />
@@ -196,7 +204,7 @@ const SignUpForm = ({ userInputDispatch, isError, userInput }: SignUpFormProps) 
         type="password"
         value={passwordCheck}
         onChange={handleUserInput}
-        errorMessage={isError.password ? SIGNUP_MESSAGE.PASSWORD : isError.passwordCheck ? SIGNUP_MESSAGE.PASSWORD_MATCH : ''}
+        errorMessage={isError.password ? isError.password : isError.passwordCheck ? isError.passwordCheck : ''}
         maxLength={24}
         desc={SIGNUP_MESSAGE.PASSWORD_DESC}
       />

@@ -5,15 +5,9 @@ import CreateCampaignCondition from '../components/CreateCampaign/CreateCampaign
 import MessageList from '../components/CreateCampaign/MessageList';
 
 import useBeforeunload from '../hooks/useBeforunload';
-import PreventModal from '../components/common/PreventModal';
 
 const CreateCampaign = () => {
-  const [showPreventModal, setShowPreventModal] = useState(false);
-  useBeforeunload({ when: true, setShowPreventModal });
-
-  const handlePrevnetModal = () => {
-    setShowPreventModal((prev) => !prev);
-  };
+  useBeforeunload({ when: true });
 
   return (
     <>
@@ -22,7 +16,6 @@ const CreateCampaign = () => {
         <CreateCampaignCondition />
         <MessageList />
       </GridLayout>
-      <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
     </>
   );
 };

@@ -15,6 +15,7 @@ export const CheckBoxLayout = styled.div`
 
 export const CheckBox = styled.input`
   width: 24px;
+  margin-top: 9px;
   margin-right: 20px;
   height: 24px;
 `;

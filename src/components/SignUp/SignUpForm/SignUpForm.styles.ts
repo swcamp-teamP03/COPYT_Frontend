@@ -13,12 +13,11 @@ export const FlexRow = styled.div`
 export const FlexRover = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 15px;
 `;
 
 export const LabelButton = styled.div`
-  margin-top: 30px;
+  margin-top: 45px;
 `;
 
 export const ClientBox = styled.div`

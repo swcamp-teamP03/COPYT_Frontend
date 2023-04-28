@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import PageHeader from '../components/common/PageHeader';
-import PreventModal from '../components/common/PreventModal';
 import CopyList from '../components/CreateCopy/CopyList';
 import SubmitModal from '../components/CreateCopy/SubmitModal';
 import CopyDetails from '../components/DetailCopy/CopyDetails';
@@ -15,10 +14,9 @@ import { copyListState } from '../store/copyListState';
 const DetailCopy = () => {
   const [copyList, setCopyList] = useRecoilState(copyListState);
   const [showSubmitModa, setShowSubmitModal] = useState(false);
-  const [showPreventModal, setShowPreventModal] = useState(false);
   const [ableOutPage, setAbleOutPage] = useState(false);
 
-  useBeforeunload({ when: ableOutPage, setShowPreventModal });
+  useBeforeunload({ when: ableOutPage });
 
   const { id } = useParams();
 
@@ -27,10 +25,6 @@ const DetailCopy = () => {
 
   const handleSubmitModal = () => {
     setShowSubmitModal((prev) => !prev);
-  };
-
-  const handlePrevnetModal = () => {
-    setShowPreventModal((prev) => !prev);
   };
 
   const onSubmit = () => {
@@ -58,7 +52,6 @@ const DetailCopy = () => {
         <CopyList />
       </GridLayout>
       <SubmitModal showSubmitModal={showSubmitModa} handleSubmitModal={handleSubmitModal} onClickYes={handleSubmitModal} />
-      <PreventModal isOpen={showPreventModal} handleModal={handlePrevnetModal} />
     </>
   );
 };
